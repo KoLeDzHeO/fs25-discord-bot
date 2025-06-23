@@ -28,11 +28,13 @@ def fetch_vehicles_xml():
         buffer.seek(0)
         ftp.quit()
         return buffer.getvalue()
-    except Exception:
+    except Exception as e:
+        print(f"FTP Error: {e}")
         return None
 
 def parse_vehicles(xml_data):
-    results = []
+    good_embeds = []
+    bad_embeds = []
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
@@ -41,17 +43,22 @@ def parse_vehicles(xml_data):
 
             name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
 
+            fuel_level = 0.0
+            fuel_capacity = 1.0
+            fuel_percent = 0.0
+            dirt_percent = 0.0
+
             # Топливо
-            fuel = "?"
             fillUnit = vehicle.find("fillUnit")
             if fillUnit is not None:
                 for unit in fillUnit.findall("unit"):
                     if unit.attrib.get("fillType") == "DIESEL":
                         try:
-                            fuel_val = float(unit.attrib.get("fillLevel", 0))
-                            fuel = f"{fuel_val:.0f} л"
+                            fuel_level = float(unit.attrib.get("fillLevel", 0))
+                            fuel_capacity = float(unit.attrib.get("capacity", 1))
+                            fuel_percent = fuel_level / fuel_capacity
                         except:
-                            fuel = "?"
+                            pass
 
             # Износ
             damage = "?"
@@ -61,48 +68,68 @@ def parse_vehicles(xml_data):
                     dmg = float(wearable.attrib.get("damage", 0))
                     damage = f"{dmg * 100:.2f}%"
                 except:
-                    pass
+                    damage = "?"
 
             # Грязь
-            dirt = "?"
             washable = vehicle.find("washable")
             if washable is not None:
                 dirtNode = washable.find("dirtNode")
                 if dirtNode is not None:
                     try:
-                        amount = float(dirtNode.attrib.get("amount", 0))
-                        dirt = f"{amount * 100:.2f}%"
+                        dirt_percent = float(dirtNode.attrib.get("amount", 0))
                     except:
                         pass
 
-            results.append(f"🚜 {name} — топливо: {fuel}, износ: {damage}, грязь: {dirt}")
-    except Exception:
-        results.append("❌ Ошибка при разборе XML.")
-    return results
+            fuel_str = f"{fuel_level:.0f} л ({fuel_percent * 100:.0f}%)"
+            dirt_str = f"{dirt_percent * 100:.2f}%"
+
+            # Цвет embed: зелёный (0x2ECC71) если >50% топлива и <50% грязи
+            if fuel_percent > 0.5 and dirt_percent < 0.5:
+                color = 0x2ECC71  # зелёный
+                embed_list = good_embeds
+            else:
+                color = 0xE74C3C  # красный
+                embed_list = bad_embeds
+
+            embed = discord.Embed(title=f"🚜 {name}", color=color)
+            embed.add_field(name="Топливо", value=fuel_str, inline=True)
+            embed.add_field(name="Износ", value=damage, inline=True)
+            embed.add_field(name="Грязь", value=dirt_str, inline=True)
+            embed_list.append(embed)
+    except Exception as e:
+        embed = discord.Embed(title="❌ Ошибка при разборе XML", description=str(e), color=0xFF0000)
+        bad_embeds.append(embed)
+
+    return good_embeds + bad_embeds
 
 @client.event
 async def on_ready():
     print(f"✅ Бот запущен как {client.user}")
     channel = client.get_channel(CHANNEL_ID)
     while True:
-        # Удаляем все свои предыдущие сообщения
         try:
             async for msg in channel.history(limit=50):
                 if msg.author == client.user:
                     await msg.delete()
         except Exception as e:
-            print(f"❌ Ошибка при очистке: {e}")
+            print(f"⚠️ Ошибка очистки: {e}")
 
         xml_data = fetch_vehicles_xml()
+        embeds = []
         if xml_data:
-            messages = parse_vehicles(xml_data)
+            embeds = parse_vehicles(xml_data)
         else:
-            messages = ["❌ Не удалось подключиться к FTP."]
+            embeds = [discord.Embed(title="❌ Не удалось подключиться к FTP", color=0xFF0000)]
 
-        try:
-            await channel.send("\n".join(messages[:10]) if messages else "ℹ️ Нет техники для отображения.")
-        except Exception as e:
-            print(f"❌ Ошибка при отправке: {e}")
+        if embeds:
+            for embed in embeds:
+                try:
+                    await channel.send(embed=embed)
+                except Exception as send_err:
+                    print(f"Ошибка при отправке: {send_err}")
+        else:
+            await channel.send("ℹ️ Нет техники для отображения.")
 
-        await asyncio.sleep(60)  # обновление каждую минуту
+        await asyncio.sleep(60)
+
 client.run(TOKEN)
