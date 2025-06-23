@@ -12,6 +12,7 @@ FTP_PORT = int(os.getenv("FTP_PORT", "21"))
 FTP_USER = os.getenv("FTP_USER")
 FTP_PASS = os.getenv("FTP_PASS")
 FTP_PATH = os.getenv("FTP_PATH")
+FARM_ID = "1"  # оставляем только свою ферму
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -26,7 +27,7 @@ def fetch_vehicles_xml():
         buffer.seek(0)
         ftp.quit()
         return buffer.getvalue()
-    except Exception as e:
+    except Exception:
         return None
 
 def parse_vehicles(xml_data):
@@ -34,12 +35,24 @@ def parse_vehicles(xml_data):
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
+            if vehicle.attrib.get("farmId") != FARM_ID:
+                continue
+
             name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
-            fuel = vehicle.findtext("fuelFillLevel", default="?")
-            damage = vehicle.findtext("damage", default="?")
-            dirt = vehicle.findtext("dirtAmount", default="?")
-            results.append(f"🚜 {name} — топливо: {fuel}, износ: {damage}, грязь: {dirt}")
-    except Exception as e:
+            fuel = vehicle.findtext("fuelFillLevel")
+            damage = vehicle.findtext("damage")
+            dirt = vehicle.findtext("dirtAmount")
+
+            # Пропускаем, если всё пусто
+            if fuel is None and damage is None and dirt is None:
+                continue
+
+            fuel_str = f"{float(fuel):.0f}%" if fuel else "?"
+            damage_str = f"{float(damage)*100:.0f}%" if damage else "?"
+            dirt_str = f"{float(dirt)*100:.0f}%" if dirt else "?"
+
+            results.append(f"🚜 {name} — топливо: {fuel_str}, износ: {damage_str}, грязь: {dirt_str}")
+    except Exception:
         results.append("❌ Ошибка при разборе XML.")
     return results
 
@@ -53,7 +66,7 @@ async def on_ready():
             messages = parse_vehicles(xml_data)
         else:
             messages = ["❌ Не удалось подключиться к FTP."]
-        await channel.send("\n".join(messages[:10]))  # максимум 10 строк
-        await asyncio.sleep(300)  # каждые 5 минут
+        await channel.send("\n".join(messages[:10]) if messages else "ℹ️ Нет техники для отображения.")
+        await asyncio.sleep(300)
 
 client.run(TOKEN)
