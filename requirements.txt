@@ -1,2 +1,1 @@
-discord.py==2.3.2
-aiohttp==3.9.3
+git+https://github.com/Rapptz/discord.py@v2.3.2#egg=discord.py
