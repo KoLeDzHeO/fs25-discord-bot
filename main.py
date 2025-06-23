@@ -100,6 +100,6 @@ async def on_ready():
         except Exception as e:
             print(f"❌ Ошибка при отправке или удалении сообщения: {e}")
 
-        await asyncio.sleep(300)
+        await asyncio.sleep(30)
 
 client.run(TOKEN)
