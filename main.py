@@ -5,7 +5,6 @@ from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
 import json
-from collections import defaultdict
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
@@ -18,17 +17,6 @@ FARM_ID = "1"
 
 with open("tech_filter_cleaned.json", "r", encoding="utf-8") as f:
     TECH_CATEGORIES = json.load(f)
-
-CATEGORY_NAMES = {
-    "tractorsM": "🚜 Тракторы",
-    "cutters": "✂️ Жатки",
-    "trailers": "🚛 Прицепы",
-    "balers": "🧶 Пресс-подборщики",
-    "sprayers": "💧 Опрыскиватели",
-    "seeders": "🌱 Сеялки",
-    "weights": "⚖️ Грузы",
-    "unknown": "🧲 Прочее",
-}
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -49,7 +37,7 @@ def fetch_vehicles_xml():
         return None
 
 def parse_vehicles(xml_data):
-    categorized = defaultdict(list)
+    lines = []
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
@@ -57,20 +45,17 @@ def parse_vehicles(xml_data):
                 continue
 
             name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
-            category = TECH_CATEGORIES.get(name, "unknown")
             readable_name = name.replace("_", " ").capitalize()
 
-            fuel_level = 0.0
-            fuel_capacity = 1.0
-            fuel_str = "-"
+            fuel_level = "-"
             fillUnit = vehicle.find("fillUnit")
             if fillUnit is not None:
                 for unit in fillUnit.findall("unit"):
                     if unit.attrib.get("fillType") == "DIESEL":
                         try:
-                            fuel_level = float(unit.attrib.get("fillLevel", 0))
-                            fuel_capacity = float(unit.attrib.get("capacity", 1))
-                            fuel_str = f"{fuel_level:.0f}/{fuel_capacity:.0f}л"
+                            level = float(unit.attrib.get("fillLevel", 0))
+                            capacity = float(unit.attrib.get("capacity", 1))
+                            fuel_level = f"{level:.0f}/{capacity:.0f}л"
                         except:
                             pass
 
@@ -93,23 +78,13 @@ def parse_vehicles(xml_data):
                     except:
                         pass
 
-            line = f"{readable_name} | Топливо: {fuel_str} | Износ: {damage} | Грязь: {dirt}"
-            categorized[category].append(line)
+            line = f"{readable_name} | Топливо: {fuel_level} | Износ: {damage} | Грязь: {dirt}"
+            lines.append(line)
 
     except Exception as e:
-        return f"❌ Ошибка при разборе XML: {str(e)}"
+        return f"❌ Ошибка XML: {str(e)}"
 
-    final_lines = []
-    for cat, lines in categorized.items():
-        title = CATEGORY_NAMES.get(cat, cat.capitalize())
-        section = f"{title}:
-" + "
-".join(lines)
-        final_lines.append(section)
-
-    return "
-
-".join(final_lines)
+    return "\n".join(lines)
 
 @client.event
 async def on_ready():
