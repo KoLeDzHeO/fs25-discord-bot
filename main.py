@@ -12,7 +12,6 @@ FTP_PORT = int(os.getenv("FTP_PORT", "21"))
 FTP_USER = os.getenv("FTP_USER")
 FTP_PASS = os.getenv("FTP_PASS")
 FTP_PATH = os.getenv("FTP_PATH")
-FARM_ID = "1"  # оставляем только свою ферму
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -35,23 +34,20 @@ def parse_vehicles(xml_data):
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
-            if vehicle.attrib.get("farmId") != FARM_ID:
-                continue
-
+            farm_id = vehicle.attrib.get("farmId", "?")
             name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
             fuel = vehicle.findtext("fuelFillLevel")
             damage = vehicle.findtext("damage")
             dirt = vehicle.findtext("dirtAmount")
 
-            # Пропускаем, если всё пусто
-            if fuel is None and damage is None and dirt is None:
+            if not any([fuel, damage, dirt]):
                 continue
 
             fuel_str = f"{float(fuel):.0f}%" if fuel else "?"
             damage_str = f"{float(damage)*100:.0f}%" if damage else "?"
             dirt_str = f"{float(dirt)*100:.0f}%" if dirt else "?"
 
-            results.append(f"🚜 {name} — топливо: {fuel_str}, износ: {damage_str}, грязь: {dirt_str}")
+            results.append(f"🚜 {name} — farmId: {farm_id}, топливо: {fuel_str}, износ: {damage_str}, грязь: {dirt_str}")
     except Exception:
         results.append("❌ Ошибка при разборе XML.")
     return results
