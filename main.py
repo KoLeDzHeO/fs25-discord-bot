@@ -4,6 +4,8 @@ import discord
 from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
+import json
+from collections import defaultdict
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
@@ -13,6 +15,21 @@ FTP_USER = os.getenv("FTP_USER")
 FTP_PASS = os.getenv("FTP_PASS")
 FTP_PATH = os.getenv("FTP_PATH")
 FARM_ID = "1"
+
+# Загрузка фильтра техники
+with open("tech_filter_cleaned.json", "r", encoding="utf-8") as f:
+    TECH_CATEGORIES = json.load(f)
+
+CATEGORY_ICONS = {
+    "tractorsM": "🚜",
+    "cutters": "🌾",
+    "trailers": "🚛",
+    "balers": "🧶",
+    "sprayers": "💧",
+    "seeders": "🌱",
+    "weights": "⚖️",
+    "unknown": "❓",
+}
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -33,8 +50,7 @@ def fetch_vehicles_xml():
         return None
 
 def parse_vehicles(xml_data):
-    good_embeds = []
-    bad_embeds = []
+    categorized_text = defaultdict(list)
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
@@ -42,13 +58,14 @@ def parse_vehicles(xml_data):
                 continue
 
             name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
+            category = TECH_CATEGORIES.get(name, "unknown")
+            icon = CATEGORY_ICONS.get(category, "🧲")
 
             fuel_level = 0.0
             fuel_capacity = 1.0
             fuel_percent = 0.0
             dirt_percent = 0.0
 
-            # Топливо
             fillUnit = vehicle.find("fillUnit")
             if fillUnit is not None:
                 for unit in fillUnit.findall("unit"):
@@ -60,7 +77,6 @@ def parse_vehicles(xml_data):
                         except:
                             pass
 
-            # Износ
             damage = "?"
             wearable = vehicle.find("wearable")
             if wearable is not None:
@@ -70,7 +86,6 @@ def parse_vehicles(xml_data):
                 except:
                     damage = "?"
 
-            # Грязь
             washable = vehicle.find("washable")
             if washable is not None:
                 dirtNode = washable.find("dirtNode")
@@ -83,24 +98,20 @@ def parse_vehicles(xml_data):
             fuel_str = f"{fuel_level:.0f} л ({fuel_percent * 100:.0f}%)"
             dirt_str = f"{dirt_percent * 100:.2f}%"
 
-            # Цвет embed: зелёный (0x2ECC71) если >50% топлива и <50% грязи
-            if fuel_percent > 0.5 and dirt_percent < 0.5:
-                color = 0x2ECC71  # зелёный
-                embed_list = good_embeds
-            else:
-                color = 0xE74C3C  # красный
-                embed_list = bad_embeds
+            line = f"**{icon} {name}**\nТопливо: {fuel_str}\nИзнос: {damage}\nГрязь: {dirt_str}"
+            categorized_text[category].append(line)
 
-            embed = discord.Embed(title=f"🚜 {name}", color=color)
-            embed.add_field(name="Топливо", value=fuel_str, inline=True)
-            embed.add_field(name="Износ", value=damage, inline=True)
-            embed.add_field(name="Грязь", value=dirt_str, inline=True)
-            embed_list.append(embed)
     except Exception as e:
-        embed = discord.Embed(title="❌ Ошибка при разборе XML", description=str(e), color=0xFF0000)
-        bad_embeds.append(embed)
+        return [discord.Embed(title="❌ Ошибка при разборе XML", description=str(e), color=0xFF0000)]
 
-    return good_embeds + bad_embeds
+    embeds = []
+    for cat, items in categorized_text.items():
+        icon = CATEGORY_ICONS.get(cat, "🧲")
+        embed = discord.Embed(title=f"{icon} {cat.capitalize()}", color=0x2ECC71)
+        embed.description = "\n\n".join(items)
+        embeds.append(embed)
+
+    return embeds
 
 @client.event
 async def on_ready():
