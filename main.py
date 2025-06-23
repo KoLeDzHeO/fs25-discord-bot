@@ -15,9 +15,8 @@ FTP_PATH = os.getenv("FTP_PATH")
 FARM_ID = "1"
 
 intents = discord.Intents.default()
+intents.message_content = True
 client = discord.Client(intents=intents)
-
-last_message = None  # для хранения последнего сообщения
 
 def fetch_vehicles_xml():
     try:
@@ -83,10 +82,17 @@ def parse_vehicles(xml_data):
 
 @client.event
 async def on_ready():
-    global last_message
     print(f"✅ Бот запущен как {client.user}")
     channel = client.get_channel(CHANNEL_ID)
     while True:
+        # Удаляем все свои предыдущие сообщения
+        try:
+            async for msg in channel.history(limit=50):
+                if msg.author == client.user:
+                    await msg.delete()
+        except Exception as e:
+            print(f"❌ Ошибка при очистке: {e}")
+
         xml_data = fetch_vehicles_xml()
         if xml_data:
             messages = parse_vehicles(xml_data)
@@ -94,12 +100,9 @@ async def on_ready():
             messages = ["❌ Не удалось подключиться к FTP."]
 
         try:
-            if last_message:
-                await last_message.delete()
-            last_message = await channel.send("\n".join(messages[:10]) if messages else "ℹ️ Нет техники для отображения.")
+            await channel.send("\n".join(messages[:10]) if messages else "ℹ️ Нет техники для отображения.")
         except Exception as e:
-            print(f"❌ Ошибка при отправке или удалении сообщения: {e}")
+            print(f"❌ Ошибка при отправке: {e}")
 
-        await asyncio.sleep(30)
-
+        await asyncio.sleep(60)  # обновление каждую минуту
 client.run(TOKEN)
