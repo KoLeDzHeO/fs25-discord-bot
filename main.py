@@ -12,6 +12,7 @@ FTP_PORT = int(os.getenv("FTP_PORT", "21"))
 FTP_USER = os.getenv("FTP_USER")
 FTP_PASS = os.getenv("FTP_PASS")
 FTP_PATH = os.getenv("FTP_PATH")
+FARM_ID = "1"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -34,20 +35,46 @@ def parse_vehicles(xml_data):
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
-            farm_id = vehicle.attrib.get("farmId", "?")
-            name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
-            fuel = vehicle.findtext("fuelFillLevel")
-            damage = vehicle.findtext("damage")
-            dirt = vehicle.findtext("dirtAmount")
-
-            if not any([fuel, damage, dirt]):
+            if vehicle.attrib.get("farmId") != FARM_ID:
                 continue
 
-            fuel_str = f"{float(fuel):.0f}%" if fuel else "?"
-            damage_str = f"{float(damage)*100:.0f}%" if damage else "?"
-            dirt_str = f"{float(dirt)*100:.0f}%" if dirt else "?"
+            name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
 
-            results.append(f"🚜 {name} — farmId: {farm_id}, топливо: {fuel_str}, износ: {damage_str}, грязь: {dirt_str}")
+            # Топливо
+            fuel = "?"
+            fillUnit = vehicle.find("fillUnit")
+            if fillUnit is not None:
+                for unit in fillUnit.findall("unit"):
+                    if unit.attrib.get("fillType") == "DIESEL":
+                        try:
+                            fuel_val = float(unit.attrib.get("fillLevel", 0))
+                            fuel = f"{fuel_val:.0f} л"
+                        except:
+                            fuel = "?"
+
+            # Износ
+            damage = "?"
+            wearable = vehicle.find("wearable")
+            if wearable is not None:
+                try:
+                    dmg = float(wearable.attrib.get("damage", 0))
+                    damage = f"{dmg * 100:.2f}%"
+                except:
+                    pass
+
+            # Грязь
+            dirt = "?"
+            washable = vehicle.find("washable")
+            if washable is not None:
+                dirtNode = washable.find("dirtNode")
+                if dirtNode is not None:
+                    try:
+                        amount = float(dirtNode.attrib.get("amount", 0))
+                        dirt = f"{amount * 100:.2f}%"
+                    except:
+                        pass
+
+            results.append(f"🚜 {name} — топливо: {fuel}, износ: {damage}, грязь: {dirt}")
     except Exception:
         results.append("❌ Ошибка при разборе XML.")
     return results
