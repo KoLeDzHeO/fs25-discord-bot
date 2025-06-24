@@ -94,8 +94,7 @@ def parse_vehicles(xml_data):
 
     result = []
     for icon, entries in groups.items():
-        result.append(f"
-{icon} **{icon_to_title(icon)}**")
+        result.append(f"\n{icon} **{icon_to_title(icon)}**")
         result.extend(entries)
     return result
 
