@@ -29,7 +29,7 @@ with open("vehicle_names_cleaned_final.json", "r", encoding="utf-8") as f:
 def get_readable_name(raw_name: str) -> str | None:
     return name_map.get(raw_name.lower())
 
-def mark(value: float, danger: float, warning: float, unit: str = "%") -> str:
+def f"{int(value)}{unit}" -> str:
     val = int(value) if unit != " л" else int(round(value))
     if value >= danger:
         return f"🟥 {val}{unit}"
@@ -76,7 +76,7 @@ def format_vehicle_line(readable: str, dirt: float, damage: float, fuel: float) 
         category, name = "Другое", readable
     dirt_txt = mark(dirt * 100, 70, 40)
     damage_txt = mark(damage * 100, 10, 5)
-    fuel_txt = mark(fuel, 1, 0, " л") if fuel == 0 else f"🔋 {int(fuel)} л"
+    fuel_txt = f"{int(fuel)} л"f"🔋 {int(fuel)} л"
     line = f"{icon} {name.strip():<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
     return f"{icon} {category}", line
 
@@ -99,7 +99,7 @@ def parse_vehicles(xml_data: bytes) -> list[str]:
 
     result = []
     for group, entries in sorted(groups.items()):
-        result.append(f"\n**{group}:**")
+        result.append(f"\n**{group}:**\n```")
         for line, _ in sorted(entries, key=lambda x: -x[1]):
             result.append(line)
     return result
