@@ -99,9 +99,11 @@ def parse_vehicles(xml_data: bytes) -> list[str]:
 
     result = []
     for group, entries in sorted(groups.items()):
-        result.append(f"\n**{group}:**\n```")
+        result.append(f"\n**{group}:**")
+        result.append("```")
         for line, _ in sorted(entries, key=lambda x: -x[1]):
             result.append(line)
+        result.append("```")
     return result
 
 def split_message_blocks(lines: list[str], max_length: int = 2000) -> list[str]:
