@@ -68,7 +68,6 @@ def extract_status(vehicle: ET.Element) -> tuple[float, float, float]:
     return dirt, damage, fuel
 
 def format_vehicle_line(readable: str, dirt: float, damage: float, fuel: float) -> tuple[str, str]:
-    icon = readable[0]
     if "—" in readable:
         category, name = readable.split("—", 1)
         category = category.strip()
@@ -77,7 +76,7 @@ def format_vehicle_line(readable: str, dirt: float, damage: float, fuel: float) 
     dirt_txt = f"{int(dirt * 100)}%"
     damage_txt = f"{int(damage * 100)}%"
     fuel_txt = f"{int(fuel)} л"
-    line = f"{icon} {name.strip():<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
+    line = f"{name.strip():<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
     return category, line
 
 def parse_vehicles(xml_data: bytes) -> list[str]:
