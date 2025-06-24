@@ -55,9 +55,15 @@ def parse_vehicles(xml_data):
 
             name = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
             readable_name = get_readable_name(name)
-            if readable_name:
-                lines.append(readable_name)
-            # иначе пропускаем вообще
+            if not readable_name:
+                continue  # игнорируем, если не распознано
+
+            dirt = float(vehicle.attrib.get("dirt", 0))
+            damage = float(vehicle.attrib.get("damage", 0))
+            fuel = float(vehicle.attrib.get("fuel", 0))
+
+            status = f" | Грязь: {int(dirt * 100)}% | Поврежд.: {int(damage * 100)}% | Топливо: {int(fuel)} л"
+            lines.append(readable_name + status)
 
     except Exception as e:
         return [f"❌ Ошибка XML: {str(e)}"]
