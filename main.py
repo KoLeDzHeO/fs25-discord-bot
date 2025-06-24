@@ -56,11 +56,20 @@ def parse_vehicles(xml_data):
             name = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
             readable_name = get_readable_name(name)
             if not readable_name:
-                continue  # игнорируем, если не распознано
+                continue  # пропускаем неизвестную технику
 
-            dirt = float(vehicle.attrib.get("dirt", 0))
-            damage = float(vehicle.attrib.get("damage", 0))
-            fuel = float(vehicle.attrib.get("fuel", 0))
+            # === Вложенные данные ===
+            dirt_elem = vehicle.find(".//washable/dirtNode")
+            dirt = float(dirt_elem.attrib.get("amount", 0)) if dirt_elem is not None else 0
+
+            damage_elem = vehicle.find("wearable")
+            damage = float(damage_elem.attrib.get("damage", 0)) if damage_elem is not None else 0
+
+            fuel = 0
+            for unit in vehicle.findall(".//fillUnit/unit"):
+                if unit.attrib.get("fillType", "").lower() == "diesel":
+                    fuel = float(unit.attrib.get("fillLevel", 0))
+                    break
 
             status = f" | Грязь: {int(dirt * 100)}% | Поврежд.: {int(damage * 100)}% | Топливо: {int(fuel)} л"
             lines.append(readable_name + status)
