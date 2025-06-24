@@ -104,11 +104,8 @@ def parse_vehicles(xml_data: bytes) -> dict[str, list[str]]:
 
 def split_message_blocks(grouped_data: dict[str, list[str]], max_length: int = 2000) -> list[str]:
     blocks = []
-    current = ""
-
     for category, lines in grouped_data.items():
-        header = f"\n**{category}:**\n```
-"
+        header = f"\n**{category}:**\n```\n"
         footer = "```"
 
         block = header
