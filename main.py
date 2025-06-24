@@ -6,7 +6,6 @@ import xml.etree.ElementTree as ET
 from io import BytesIO
 import json
 
-# === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
 FTP_HOST = os.getenv("FTP_HOST")
@@ -42,17 +41,19 @@ def fetch_vehicles_xml():
         return None
 
 def parse_vehicles(xml_data):
-    lines = []
+    groups = {}
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
             if vehicle.attrib.get("farmId") != FARM_ID:
                 continue
 
-            name = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
-            readable_name = get_readable_name(name)
-            if not readable_name:
+            filename = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
+            readable = get_readable_name(filename)
+            if not readable:
                 continue
+
+            icon, name = readable.split(" — ", 1) if "—" in readable else ("🚜", readable)
 
             dirt_elem = vehicle.find(".//washable/dirtNode")
             dirt = float(dirt_elem.attrib.get("amount", 0)) if dirt_elem is not None else 0
@@ -66,13 +67,56 @@ def parse_vehicles(xml_data):
                     fuel = float(unit.attrib.get("fillLevel", 0))
                     break
 
-            status = f" | Грязь: {int(dirt * 100)}% | Поврежд.: {int(damage * 100)}% | Топливо: {int(fuel)} л"
-            lines.append(readable_name + status)
+            # Цветовая маркировка
+            def mark(value, danger, warning, unit="%"):
+                if value >= danger:
+                    return f"🟥 {int(value)}{unit}"
+                elif value >= warning:
+                    return f"🟨 {int(value)}{unit}"
+                return f"✅ {int(value)}{unit}"
+
+            dirt_txt = mark(dirt * 100, 70, 40)
+            damage_txt = mark(damage * 100, 10, 5)
+            fuel_txt = mark(fuel, 1, 0, " л") if fuel == 0 else f"🔋 {int(fuel)} л"
+
+            line = f"{icon} {name:<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
+
+            if icon not in groups:
+                groups[icon] = []
+            groups[icon].append(line)
 
     except Exception as e:
         return [f"❌ Ошибка XML: {str(e)}"]
 
-    return lines
+    # Сортировка по убыванию урона в пределах группы
+    for icon in groups:
+        groups[icon].sort(key=lambda l: -int(l.split("Поврежд.: ")[1].split('%')[0].replace("🟥", "").replace("🟨", "").replace("✅", "").strip()))
+
+    result = []
+    for icon, entries in groups.items():
+        result.append(f"
+{icon} **{icon_to_title(icon)}**")
+        result.extend(entries)
+    return result
+
+def icon_to_title(icon):
+    return {
+        "🚜": "Техника",
+        "🌾": "Сельхозтехника",
+        "⚖️": "Противовесы",
+        "🚛": "Прицепы",
+        "📦": "Навесное оборудование",
+        "🛢️": "Бочки",
+        "🍃": "Сгребатели",
+        "🔄": "Обмотчики",
+        "🔧": "Инструменты",
+        "🔵": "Катки",
+        "🪨": "Камнеуборщики",
+        "💩": "Разбрасыватели",
+        "🧪": "Опрыскиватели",
+        "🌲": "Лесная техника",
+        "🚗": "Машины"
+    }.get(icon, "Другое")
 
 def split_message_blocks(lines, max_length=2000):
     blocks = []
@@ -96,7 +140,6 @@ async def start_reporting():
     channel = client.get_channel(CHANNEL_ID)
 
     while True:
-        # Удаляем старые сообщения
         for msg in last_messages:
             try:
                 await msg.delete()
