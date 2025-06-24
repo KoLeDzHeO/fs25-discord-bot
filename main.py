@@ -99,7 +99,8 @@ def parse_vehicles(xml_data: bytes) -> list[str]:
 
     result = []
     for group, entries in sorted(groups.items()):
-        result.append(f"\n**{group.strip("* ").strip()}:**")
+        clean_group = group.strip("* ").strip()
+        result.append(f"\n**{clean_group}:**")
         result.append("```")
         for line, _ in sorted(entries, key=lambda x: -x[1]):
             result.append(line)
