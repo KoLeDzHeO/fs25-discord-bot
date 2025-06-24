@@ -52,8 +52,7 @@ def parse_vehicles(xml_data):
                     if unit.attrib.get("fillType") == "DIESEL":
                         try:
                             level = float(unit.attrib.get("fillLevel", 0))
-                            capacity = float(unit.attrib.get("capacity", 1))
-                            fuel_level = f"{level:.0f}/{capacity:.0f}л"
+                            fuel_level = f"{level:.0f} л"
                         except:
                             pass
 
@@ -62,7 +61,7 @@ def parse_vehicles(xml_data):
             if wearable is not None:
                 try:
                     dmg = float(wearable.attrib.get("damage", 0))
-                    damage = f"{dmg * 100:.1f}%"
+                    damage = f"{dmg * 100:.2f}%"
                 except:
                     pass
 
@@ -72,11 +71,11 @@ def parse_vehicles(xml_data):
                 dirtNode = washable.find("dirtNode")
                 if dirtNode is not None:
                     try:
-                        dirt = f"{float(dirtNode.attrib.get('amount', 0)) * 100:.1f}%"
+                        dirt = f"{float(dirtNode.attrib.get('amount', 0)) * 100:.2f}%"
                     except:
                         pass
 
-            line = f"{readable_name} | Топливо: {fuel_level} | Износ: {damage} | Грязь: {dirt}"
+            line = f"🚜 {readable_name} — топливо: {fuel_level}, износ: {damage}, грязь: {dirt}"
             lines.append(line)
 
     except Exception as e:
