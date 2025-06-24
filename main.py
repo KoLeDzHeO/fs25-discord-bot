@@ -4,7 +4,6 @@ import discord
 from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
-import json
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
@@ -15,12 +14,11 @@ FTP_PASS = os.getenv("FTP_PASS")
 FTP_PATH = os.getenv("FTP_PATH")
 FARM_ID = "1"
 
-with open("tech_filter_cleaned.json", "r", encoding="utf-8") as f:
-    TECH_CATEGORIES = json.load(f)
-
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
+
+last_message = None
 
 def fetch_vehicles_xml():
     try:
@@ -82,34 +80,38 @@ def parse_vehicles(xml_data):
             lines.append(line)
 
     except Exception as e:
-        return f"❌ Ошибка XML: {str(e)}"
+        return [f"❌ Ошибка XML: {str(e)}"]
 
-    return "\n".join(lines)
+    return lines
 
 @client.event
 async def on_ready():
     print(f"✅ Бот запущен как {client.user}")
+    await start_reporting()
+
+async def start_reporting():
+    global last_message
     channel = client.get_channel(CHANNEL_ID)
+
     while True:
-        try:
-            async for msg in channel.history(limit=50):
-                if msg.author == client.user:
-                    await msg.delete()
-        except Exception as e:
-            print(f"⚠️ Ошибка очистки: {e}")
+        if last_message:
+            try:
+                await last_message.delete()
+            except:
+                pass
 
         xml_data = fetch_vehicles_xml()
-        result = ""
         if xml_data:
-            result = parse_vehicles(xml_data)
+            lines = parse_vehicles(xml_data)
         else:
-            result = "❌ Не удалось подключиться к FTP"
+            lines = ["❌ Не удалось получить данные с FTP"]
 
         try:
-            await channel.send(result[:2000])
-        except Exception as send_err:
-            print(f"Ошибка при отправке: {send_err}")
+            content = "\n".join(lines)
+            last_message = await channel.send(content[:2000])
+        except Exception as e:
+            print(f"Ошибка отправки: {e}")
 
-        await asyncio.sleep(60)
+        await asyncio.sleep(30)
 
 client.run(TOKEN)
