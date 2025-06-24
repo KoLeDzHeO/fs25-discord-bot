@@ -53,10 +53,11 @@ def parse_vehicles(xml_data):
             if vehicle.attrib.get("farmId") != FARM_ID:
                 continue
 
-            name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
+            name = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
             readable_name = get_readable_name(name)
             if readable_name:
                 lines.append(readable_name)
+            # иначе пропускаем вообще
 
     except Exception as e:
         return [f"❌ Ошибка XML: {str(e)}"]
