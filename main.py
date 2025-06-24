@@ -71,14 +71,14 @@ def format_vehicle_line(readable: str, dirt: float, damage: float, fuel: float) 
     icon = readable[0]
     if "—" in readable:
         category, name = readable.split("—", 1)
-        category = category.replace(icon, "").strip()
+        category = category.strip()
     else:
         category, name = "Другое", readable
     dirt_txt = f"{int(dirt * 100)}%"
     damage_txt = f"{int(damage * 100)}%"
     fuel_txt = f"{int(fuel)} л"
     line = f"{icon} {name.strip():<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
-    return f"{icon} {category}", line
+    return category, line
 
 def parse_vehicles(xml_data: bytes) -> list[str]:
     groups = {}
