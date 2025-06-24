@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 from io import BytesIO
 import json
 
+# === CONFIGURATION ===
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
 FTP_HOST = os.getenv("FTP_HOST")
@@ -15,18 +16,28 @@ FTP_PASS = os.getenv("FTP_PASS")
 FTP_PATH = os.getenv("FTP_PATH")
 FARM_ID = "1"
 
+# === DISCORD SETUP ===
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 last_messages = []
 
+# === LOAD NAME MAP ===
 with open("vehicle_names_cleaned_final.json", "r", encoding="utf-8") as f:
     name_map = json.load(f)
 
-def get_readable_name(name):
-    return name_map.get(name.lower(), None)
+def get_readable_name(raw_name: str) -> str | None:
+    return name_map.get(raw_name.lower())
 
-def fetch_vehicles_xml():
+def mark(value: float, danger: float, warning: float, unit: str = "%") -> str:
+    val = int(value) if unit != " л" else int(round(value))
+    if value >= danger:
+        return f"🟥 {val}{unit}"
+    elif value >= warning:
+        return f"🟨 {val}{unit}"
+    return f"✅ {val}{unit}" if unit != " л" else f"🔋 {val} л"
+
+def fetch_vehicles_xml() -> bytes | None:
     try:
         ftp = FTP()
         ftp.connect(FTP_HOST, FTP_PORT)
@@ -40,98 +51,68 @@ def fetch_vehicles_xml():
         print(f"FTP Error: {e}")
         return None
 
-def parse_vehicles(xml_data):
+def extract_status(vehicle: ET.Element) -> tuple[float, float, float]:
+    dirt = 0
+    damage = 0
+    fuel = 0
+    dirt_elem = vehicle.find(".//washable/dirtNode")
+    if dirt_elem is not None:
+        dirt = float(dirt_elem.attrib.get("amount", 0))
+    damage_elem = vehicle.find("wearable")
+    if damage_elem is not None:
+        damage = float(damage_elem.attrib.get("damage", 0))
+    for unit in vehicle.findall(".//fillUnit/unit"):
+        if unit.attrib.get("fillType", "").lower() == "diesel":
+            fuel = float(unit.attrib.get("fillLevel", 0))
+            break
+    return dirt, damage, fuel
+
+def format_vehicle_line(readable: str, dirt: float, damage: float, fuel: float) -> tuple[str, str]:
+    icon = readable[0]
+    if "—" in readable:
+        category, name = readable.split("—", 1)
+        category = category.replace(icon, "").strip()
+    else:
+        category, name = "Другое", readable
+    dirt_txt = mark(dirt * 100, 70, 40)
+    damage_txt = mark(damage * 100, 10, 5)
+    fuel_txt = mark(fuel, 1, 0, " л") if fuel == 0 else f"🔋 {int(fuel)} л"
+    line = f"{icon} {name.strip():<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
+    return f"{icon} {category}", line
+
+def parse_vehicles(xml_data: bytes) -> list[str]:
     groups = {}
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
             if vehicle.attrib.get("farmId") != FARM_ID:
                 continue
-
             filename = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
             readable = get_readable_name(filename)
             if not readable:
                 continue
-
-            icon = readable[0]
-            if "—" in readable:
-                category_text = readable.split("—")[0].strip().replace(icon, "").strip()
-                name = readable.split("—")[1].strip()
-            else:
-                category_text = "Другое"
-                name = readable
-
-            dirt_elem = vehicle.find(".//washable/dirtNode")
-            dirt = float(dirt_elem.attrib.get("amount", 0)) if dirt_elem is not None else 0
-
-            damage_elem = vehicle.find("wearable")
-            damage = float(damage_elem.attrib.get("damage", 0)) if damage_elem is not None else 0
-
-            fuel = 0
-            for unit in vehicle.findall(".//fillUnit/unit"):
-                if unit.attrib.get("fillType", "").lower() == "diesel":
-                    fuel = float(unit.attrib.get("fillLevel", 0))
-                    break
-
-            def mark(value, danger, warning, unit="%"):
-                if value >= danger:
-                    return f"🟥 {int(value)}{unit}"
-                elif value >= warning:
-                    return f"🟨 {int(value)}{unit}"
-                return f"✅ {int(value)}{unit}"
-
-            dirt_txt = mark(dirt * 100, 70, 40)
-            damage_txt = mark(damage * 100, 10, 5)
-            fuel_txt = mark(fuel, 1, 0, " л") if fuel == 0 else f"🔋 {int(fuel)} л"
-
-            line = f"{icon} {name:<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
-
-            group_key = f"{icon} {category_text}"
-            if group_key not in groups:
-                groups[group_key] = []
-            groups[group_key].append(line)
-
+            dirt, damage, fuel = extract_status(vehicle)
+            group_key, formatted_line = format_vehicle_line(readable, dirt, damage, fuel)
+            groups.setdefault(group_key, []).append((formatted_line, damage))
     except Exception as e:
         return [f"❌ Ошибка XML: {str(e)}"]
 
-    for cat in groups:
-        groups[cat].sort(key=lambda l: -int(l.split("Поврежд.: ")[1].split('%')[0].replace("🟥", "").replace("🟨", "").replace("✅", "").strip()))
-
     result = []
-    for group, entries in groups.items():
+    for group, entries in sorted(groups.items()):
         result.append(f"\n**{group}:**")
-        result.extend(entries)
+        for line, _ in sorted(entries, key=lambda x: -x[1]):
+            result.append(line)
     return result
 
-def icon_to_title(icon):
-    return {
-        "🚜": "Техника",
-        "🌾": "Сельхозтехника",
-        "⚖️": "Противовесы",
-        "🚛": "Прицепы",
-        "📦": "Навесное оборудование",
-        "🛢️": "Бочки",
-        "🍃": "Сгребатели",
-        "🔄": "Обмотчики",
-        "🔧": "Инструменты",
-        "🔵": "Катки",
-        "🪨": "Камнеуборщики",
-        "💩": "Разбрасыватели",
-        "🧪": "Опрыскиватели",
-        "🌲": "Лесная техника",
-        "🚗": "Машины"
-    }.get(icon, "Другое")
-
-def split_message_blocks(lines, max_length=2000):
-    blocks = []
-    current_block = ""
+def split_message_blocks(lines: list[str], max_length: int = 2000) -> list[str]:
+    blocks, current = [], ""
     for line in lines:
-        if len(current_block) + len(line) + 1 > max_length:
-            blocks.append(current_block.strip())
-            current_block = ""
-        current_block += line + "\n"
-    if current_block:
-        blocks.append(current_block.strip())
+        if len(current) + len(line) + 1 > max_length:
+            blocks.append(current.strip())
+            current = ""
+        current += line + "\n"
+    if current:
+        blocks.append(current.strip())
     return blocks
 
 @client.event
@@ -152,19 +133,13 @@ async def start_reporting():
         last_messages.clear()
 
         xml_data = fetch_vehicles_xml()
-        if xml_data:
-            lines = parse_vehicles(xml_data)
-        else:
-            lines = ["❌ Не удалось получить данные с FTP"]
-
-        chunks = split_message_blocks(lines)
-        for chunk in chunks:
+        lines = parse_vehicles(xml_data) if xml_data else ["❌ Не удалось получить данные с FTP"]
+        for chunk in split_message_blocks(lines):
             try:
                 sent = await channel.send(chunk)
                 last_messages.append(sent)
             except Exception as e:
                 print(f"Ошибка отправки: {e}")
-
         await asyncio.sleep(30)
 
 client.run(TOKEN)
