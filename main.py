@@ -16,20 +16,17 @@ FTP_PASS = os.getenv("FTP_PASS")
 FTP_PATH = os.getenv("FTP_PATH")
 FARM_ID = "1"
 
-# === DISCORD CLIENT ===
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
-last_message = None
+last_messages = []
 
-# === ЗАГРУЗКА СЛОВАРЯ ИМЁН ===
 with open("vehicle_names_cleaned_final.json", "r", encoding="utf-8") as f:
     name_map = json.load(f)
 
 def get_readable_name(name):
     return name_map.get(name.lower(), None)
 
-# === FTP ===
 def fetch_vehicles_xml():
     try:
         ftp = FTP()
@@ -44,7 +41,6 @@ def fetch_vehicles_xml():
         print(f"FTP Error: {e}")
         return None
 
-# === ПАРСИНГ XML ===
 def parse_vehicles(xml_data):
     lines = []
     try:
@@ -56,9 +52,8 @@ def parse_vehicles(xml_data):
             name = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
             readable_name = get_readable_name(name)
             if not readable_name:
-                continue  # пропускаем неизвестную технику
+                continue
 
-            # === Вложенные данные ===
             dirt_elem = vehicle.find(".//washable/dirtNode")
             dirt = float(dirt_elem.attrib.get("amount", 0)) if dirt_elem is not None else 0
 
@@ -79,22 +74,35 @@ def parse_vehicles(xml_data):
 
     return lines
 
-# === ОБРАБОТКА СООБЩЕНИЙ ===
+def split_message_blocks(lines, max_length=2000):
+    blocks = []
+    current_block = ""
+    for line in lines:
+        if len(current_block) + len(line) + 1 > max_length:
+            blocks.append(current_block.strip())
+            current_block = ""
+        current_block += line + "\n"
+    if current_block:
+        blocks.append(current_block.strip())
+    return blocks
+
 @client.event
 async def on_ready():
     print(f"✅ Бот запущен как {client.user}")
     await start_reporting()
 
 async def start_reporting():
-    global last_message
+    global last_messages
     channel = client.get_channel(CHANNEL_ID)
 
     while True:
-        if last_message:
+        # Удаляем старые сообщения
+        for msg in last_messages:
             try:
-                await last_message.delete()
+                await msg.delete()
             except:
                 pass
+        last_messages.clear()
 
         xml_data = fetch_vehicles_xml()
         if xml_data:
@@ -102,11 +110,13 @@ async def start_reporting():
         else:
             lines = ["❌ Не удалось получить данные с FTP"]
 
-        try:
-            content = "\n".join(lines)
-            last_message = await channel.send(content[:2000])
-        except Exception as e:
-            print(f"Ошибка отправки: {e}")
+        chunks = split_message_blocks(lines)
+        for chunk in chunks:
+            try:
+                sent = await channel.send(chunk)
+                last_messages.append(sent)
+            except Exception as e:
+                print(f"Ошибка отправки: {e}")
 
         await asyncio.sleep(30)
 
