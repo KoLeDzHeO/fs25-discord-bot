@@ -53,7 +53,13 @@ def parse_vehicles(xml_data):
             if not readable:
                 continue
 
-            icon, name = readable.split(" — ", 1) if "—" in readable else ("🚜", readable)
+            icon = readable[0]
+            if "—" in readable:
+                category_text = readable.split("—")[0].strip().replace(icon, "").strip()
+                name = readable.split("—")[1].strip()
+            else:
+                category_text = "Другое"
+                name = readable
 
             dirt_elem = vehicle.find(".//washable/dirtNode")
             dirt = float(dirt_elem.attrib.get("amount", 0)) if dirt_elem is not None else 0
@@ -67,7 +73,6 @@ def parse_vehicles(xml_data):
                     fuel = float(unit.attrib.get("fillLevel", 0))
                     break
 
-            # Цветовая маркировка
             def mark(value, danger, warning, unit="%"):
                 if value >= danger:
                     return f"🟥 {int(value)}{unit}"
@@ -81,46 +86,24 @@ def parse_vehicles(xml_data):
 
             line = f"{icon} {name:<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
 
-            if icon not in groups:
-                groups[icon] = []
-            groups[icon].append(line)
+            group_key = f"{icon} {category_text}"
+            if group_key not in groups:
+                groups[group_key] = []
+            groups[group_key].append(line)
 
     except Exception as e:
         return [f"❌ Ошибка XML: {str(e)}"]
 
-    # Сортировка по убыванию урона в пределах группы
-    for icon in groups:
-        groups[icon].sort(key=lambda l: -int(l.split("Поврежд.: ")[1].split('%')[0].replace("🟥", "").replace("🟨", "").replace("✅", "").strip()))
+    for cat in groups:
+        groups[cat].sort(key=lambda l: -int(l.split("Поврежд.: ")[1].split('%')[0].replace("🟥", "").replace("🟨", "").replace("✅", "").strip()))
 
     result = []
-    for icon, entries in groups.items():
-        result.append(f"\n**{icon_to_title(icon)}:**")
+    for group, entries in groups.items():
+        result.append(f"\n**{group}:**")
         result.extend(entries)
     return result
 
 def icon_to_title(icon):
-    return {
-        "🚜": "Тракторы",
-        "🌾": "Сельхозтехника",
-        "⚖️": "Противовесы",
-        "🚛": "Прицепы",
-        "📦": "Навесное оборудование",
-        "🛢️": "Бочки",
-        "🍃": "Сгребатели",
-        "🔄": "Обмотчики",
-        "🔧": "Инструменты",
-        "🔵": "Катки",
-        "🪨": "Камнеуборщики",
-        "💩": "Разбрасыватели",
-        "🧪": "Опрыскиватели",
-        "🌲": "Лесная техника",
-        "🚗": "Машины",
-        "🧺": "Сеялки",
-        "🧲": "Плуги",
-        "✂️": "Косилки",
-        "🧭": "Культиваторы",
-        "🥕": "Овощная техника"
-    }.get(icon, "Разное")
     return {
         "🚜": "Техника",
         "🌾": "Сельхозтехника",
