@@ -4,7 +4,9 @@ import discord
 from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
+import json
 
+# === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
 FTP_HOST = os.getenv("FTP_HOST")
@@ -14,12 +16,20 @@ FTP_PASS = os.getenv("FTP_PASS")
 FTP_PATH = os.getenv("FTP_PATH")
 FARM_ID = "1"
 
+# === DISCORD CLIENT ===
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
-
 last_message = None
 
+# === ЗАГРУЗКА СЛОВАРЯ ИМЁН ===
+with open("vehicle_names_with_categories_updated.json", "r", encoding="utf-8") as f:
+    name_map = json.load(f)
+
+def get_readable_name(name):
+    return name_map.get(name, f"🚜 Техника — {name}")
+
+# === FTP ===
 def fetch_vehicles_xml():
     try:
         ftp = FTP()
@@ -34,6 +44,7 @@ def fetch_vehicles_xml():
         print(f"FTP Error: {e}")
         return None
 
+# === ПАРСИНГ XML ===
 def parse_vehicles(xml_data):
     lines = []
     try:
@@ -43,39 +54,9 @@ def parse_vehicles(xml_data):
                 continue
 
             name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
-            readable_name = name.replace("_", " ").capitalize()
+            readable_name = get_readable_name(name)
 
-            fuel_level = "-"
-            fillUnit = vehicle.find("fillUnit")
-            if fillUnit is not None:
-                for unit in fillUnit.findall("unit"):
-                    if unit.attrib.get("fillType") == "DIESEL":
-                        try:
-                            level = float(unit.attrib.get("fillLevel", 0))
-                            fuel_level = f"{level:.0f} л"
-                        except:
-                            pass
-
-            damage = "-"
-            wearable = vehicle.find("wearable")
-            if wearable is not None:
-                try:
-                    dmg = float(wearable.attrib.get("damage", 0))
-                    damage = f"{dmg * 100:.2f}%"
-                except:
-                    pass
-
-            dirt = "-"
-            washable = vehicle.find("washable")
-            if washable is not None:
-                dirtNode = washable.find("dirtNode")
-                if dirtNode is not None:
-                    try:
-                        dirt = f"{float(dirtNode.attrib.get('amount', 0)) * 100:.2f}%"
-                    except:
-                        pass
-
-            line = f"🚜 {readable_name} — топливо: {fuel_level}, износ: {damage}, грязь: {dirt}"
+            line = f"{readable_name}"
             lines.append(line)
 
     except Exception as e:
@@ -83,6 +64,7 @@ def parse_vehicles(xml_data):
 
     return lines
 
+# === ОБРАБОТКА СООБЩЕНИЙ ===
 @client.event
 async def on_ready():
     print(f"✅ Бот запущен как {client.user}")
