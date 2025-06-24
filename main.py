@@ -79,7 +79,7 @@ def format_vehicle_line(readable: str, dirt: float, damage: float, fuel: float) 
     line = f"{name.strip():<20} | Грязь: {dirt_txt} | Поврежд.: {damage_txt} | Топливо: {fuel_txt}"
     return category, line
 
-def parse_vehicles(xml_data: bytes) -> list[str]:
+def parse_vehicles(xml_data: bytes) -> dict[str, list[str]]:
     groups = {}
     try:
         root = ET.fromstring(xml_data)
@@ -94,27 +94,34 @@ def parse_vehicles(xml_data: bytes) -> list[str]:
             group_key, formatted_line = format_vehicle_line(readable, dirt, damage, fuel)
             groups.setdefault(group_key, []).append((formatted_line, damage))
     except Exception as e:
-        return [f"❌ Ошибка XML: {str(e)}"]
+        return {"Ошибки": [f"❌ Ошибка XML: {str(e)}"]}
 
-    result = []
+    final = {}
     for group, entries in sorted(groups.items()):
-        clean_group = group.strip("* ").strip()
-        result.append(f"\n**{clean_group}:**")
-        result.append("```")
-        for line, _ in sorted(entries, key=lambda x: -x[1]):
-            result.append(line)
-        result.append("```")
-    return result
+        lines = [line for line, _ in sorted(entries, key=lambda x: -x[1])]
+        final[group.strip("* ").strip()] = lines
+    return final
 
-def split_message_blocks(lines: list[str], max_length: int = 2000) -> list[str]:
-    blocks, current = [], ""
-    for line in lines:
-        if len(current) + len(line) + 1 > max_length:
-            blocks.append(current.strip())
-            current = ""
-        current += line + "\n"
-    if current:
-        blocks.append(current.strip())
+def split_message_blocks(grouped_data: dict[str, list[str]], max_length: int = 2000) -> list[str]:
+    blocks = []
+    current = ""
+
+    for category, lines in grouped_data.items():
+        header = f"\n**{category}:**\n```
+"
+        footer = "```"
+
+        block = header
+        for line in lines:
+            if len(block) + len(line) + len(footer) + 1 > max_length:
+                block += footer
+                blocks.append(block.strip())
+                block = header + line + "\n"
+            else:
+                block += line + "\n"
+        block += footer
+        blocks.append(block.strip())
+
     return blocks
 
 @client.event
@@ -135,8 +142,9 @@ async def start_reporting():
         last_messages.clear()
 
         xml_data = fetch_vehicles_xml()
-        lines = parse_vehicles(xml_data) if xml_data else ["❌ Не удалось получить данные с FTP"]
-        for chunk in split_message_blocks(lines):
+        parsed = parse_vehicles(xml_data) if xml_data else {"Ошибки": ["❌ Не удалось получить данные с FTP"]}
+        blocks = split_message_blocks(parsed)
+        for chunk in blocks:
             try:
                 sent = await channel.send(chunk)
                 last_messages.append(sent)
