@@ -23,11 +23,11 @@ client = discord.Client(intents=intents)
 last_message = None
 
 # === ЗАГРУЗКА СЛОВАРЯ ИМЁН ===
-with open("vehicle_names_with_categories_updated.json", "r", encoding="utf-8") as f:
+with open("vehicle_names_cleaned_final.json", "r", encoding="utf-8") as f:
     name_map = json.load(f)
 
 def get_readable_name(name):
-    return name_map.get(name, f"🚜 Техника — {name}")
+    return name_map.get(name.lower(), None)
 
 # === FTP ===
 def fetch_vehicles_xml():
@@ -55,9 +55,8 @@ def parse_vehicles(xml_data):
 
             name = vehicle.get("filename", "Неизвестно").split("/")[-1].replace(".xml", "")
             readable_name = get_readable_name(name)
-
-            line = f"{readable_name}"
-            lines.append(line)
+            if readable_name:
+                lines.append(readable_name)
 
     except Exception as e:
         return [f"❌ Ошибка XML: {str(e)}"]
