@@ -151,3 +151,6 @@ async def start_reporting():
                 print(f"Ошибка отправки: {e}")
 
         await asyncio.sleep(30)
+
+
+client.run(TOKEN)
