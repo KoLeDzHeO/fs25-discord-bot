@@ -7,6 +7,8 @@ from io import BytesIO
 from collections import defaultdict
 from vehicle_filter import get_info_by_key, get_icon_by_class
 
+last_messages = []
+
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
