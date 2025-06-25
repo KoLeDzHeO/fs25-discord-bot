@@ -158,12 +158,13 @@ async def start_reporting():
             print("✅ XML получен")
 
         lines = parse_vehicles(xml_data)
-        lines.insert(0, "**──────────────────────────────────────── ТЕХНИКА НУЖДАЮЩАЯСЯ В ОБСЛУЖИВАНИИ ────────────────────────────────────────**")
         if not lines:
             print("ℹ️ Нет техники для обслуживания")
             await channel.send("ℹ️ Нет техники для обслуживания")
             await asyncio.sleep(30)
             continue
+
+        lines.insert(0, "**──────────────────────────────────────── ТЕХНИКА НУЖДАЮЩАЯСЯ В ОБСЛУЖИВАНИИ ────────────────────────────────────────**")
 
         for block in split_messages(lines):
             try:
@@ -173,10 +174,4 @@ async def start_reporting():
                 print(f"Ошибка отправки: {e}")
 
         await asyncio.sleep(600)
-
-@client.event
-async def on_ready():
-    print(f"✅ Logged in as {client.user}")
-    await start_reporting()
-
 client.run(TOKEN)
