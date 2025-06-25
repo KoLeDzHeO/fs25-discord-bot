@@ -62,7 +62,7 @@ def format_line(name, dirt, damage, fuel, max_fuel):
     if max_fuel and fuel < 0.99 * max_fuel:
         status.append(f"топл. {int(fuel)}L")
     stat_str = ", ".join(status)
-    return f"{name:<30}  {stat_str}" if status else name
+    return f"{name:<32} {stat_str}" if status else name
 
 def parse_vehicles(xml_data):
     categories = defaultdict(list)
@@ -96,44 +96,52 @@ def format_output(groups):
     result = []
     for cat, items in sorted(groups.items()):
         icon = get_icon_by_class(cat)
-        result.append(f"{icon} {cat}:")
-        result.append("```")
-        result.extend(items)
-        result.append("```")
+        block = [f"{icon} {cat}:", "```"]
+        block.extend(items)
+        block.append("```")
+        result.append("\n".join(block))
     return result
 
 def split_messages(lines, max_length=2000):
     blocks, current = [], ""
-    for line in lines:
-        if len(current) + len(line) + 1 > max_length:
-            blocks.append(current)
+    for section in lines:
+        if len(current) + len(section) + 2 > max_length:
+            blocks.append(current.strip())
             current = ""
-        current += line + "\n"
-    if current:
-        blocks.append(current)
+        current += section + "\n\n"
+    if current.strip():
+        blocks.append(current.strip())
     return blocks
 
 @client.event
 async def on_ready():
-    print(f"Bot started как {client.user}")
+    print(f"Бот запущен как {client.user}")
     await start_reporting()
 
 async def start_reporting():
     channel = client.get_channel(CHANNEL_ID)
-    async for msg in channel.history(limit=None):
-        if msg.author == client.user:
+
+    # Удаление сообщений только от бота и только с контентом
+    async for msg in channel.history(limit=100):
+        if msg.author == client.user and msg.content:
             try:
                 await msg.delete()
             except:
                 pass
+
     while True:
         xml_data = fetch_vehicles_xml()
-        lines = parse_vehicles(xml_data) if xml_data else ["Ошибка получения данных с FTP"]
+        if not xml_data:
+            await channel.send("Ошибка получения XML с FTP.")
+            await asyncio.sleep(30)
+            continue
+
+        lines = parse_vehicles(xml_data)
         for block in split_messages(lines):
             try:
                 await channel.send(block)
             except Exception as e:
-                print(f"Ошибка отправки: {e}")
+                print(f"Ошибка отправки сообщения: {e}")
         await asyncio.sleep(30)
 
 client.run(TOKEN)
