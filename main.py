@@ -122,8 +122,8 @@ async def start_reporting():
     channel = client.get_channel(CHANNEL_ID)
 
     # Удаление сообщений только от бота и только с контентом
-    async for msg in channel.history(limit=100):
-        if msg.author == client.user and msg.content:
+    async for msg in channel.history(limit=None):
+        if msg.author == client.user:
             try:
                 await msg.delete()
             except:
