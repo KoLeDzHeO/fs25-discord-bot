@@ -61,7 +61,7 @@ def format_line(name, dirt, damage, fuel, max_fuel):
         status.append(f"грязь {int(dirt * 100)}%")
     if damage > 0.05:
         status.append(f"повреж. {int(damage * 100)}%")
-    if max_fuel and fuel < 0.99 * max_fuel:
+    if max_fuel and fuel < 0.80 * max_fuel:
         status.append(f"топл. {int(fuel)}L")
     stat_str = ", ".join(status)
     return f"{name:<32} {stat_str}" if status else name
