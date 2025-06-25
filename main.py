@@ -119,20 +119,26 @@ async def on_ready():
     await start_reporting()
 
 
+
 async def start_reporting():
     global last_messages
     channel = client.get_channel(CHANNEL_ID)
 
-    # Удаляем все предыдущие сообщения от бота в начале
+    if not channel:
+        print(f"❌ Канал с ID {CHANNEL_ID} не найден! Проверь переменную DISCORD_CHANNEL_ID.")
+        return
+    else:
+        print(f"✅ Канал найден: {channel.name} ({channel.id})")
+
+    # Удаляем все предыдущие сообщения от бота
     async for msg in channel.history(limit=None):
         if msg.author == client.user:
             try:
                 await msg.delete()
-            except:
-                pass
+            except Exception as e:
+                print(f"⚠️ Не удалось удалить сообщение: {e}")
 
     while True:
-        # Удаляем ранее отправленные сообщения
         for msg in last_messages:
             try:
                 await msg.delete()
@@ -141,7 +147,20 @@ async def start_reporting():
         last_messages.clear()
 
         xml_data = fetch_vehicles_xml()
-        lines = parse_vehicles(xml_data) if xml_data else ["Ошибка получения данных с FTP"]
+        if not xml_data:
+            print("❌ Не удалось получить XML с FTP")
+            await channel.send("❌ Не удалось подключиться к FTP")
+            await asyncio.sleep(30)
+            continue
+        else:
+            print("✅ XML получен")
+
+        lines = parse_vehicles(xml_data)
+        if not lines:
+            print("ℹ️ Нет техники для обслуживания")
+            await channel.send("ℹ️ Нет техники для обслуживания")
+            await asyncio.sleep(30)
+            continue
 
         for block in split_messages(lines):
             try:
@@ -152,5 +171,9 @@ async def start_reporting():
 
         await asyncio.sleep(30)
 
+@client.event
+async def on_ready():
+    print(f"✅ Logged in as {client.user}")
+    await start_reporting()
 
 client.run(TOKEN)
