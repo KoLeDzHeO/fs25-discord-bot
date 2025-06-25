@@ -1,0 +1,5852 @@
+[
+    {
+        "xml_key": "condorEndurance2",
+        "name": "condorEndurance2",
+        "class": "Сеялка",
+        "uses_fuel": true,
+        "fuel_capacity": 750.0,
+        "fuel_type": "diesel",
+        "name_ru": "Horsch Condor Endurance 2",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "zkivSE",
+        "name": "zkivSE",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 900.0,
+        "fuel_type": "diesel",
+        "name_ru": "Dewulf ZKIVSE",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "maus5",
+        "name": "maus5",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1225.0,
+        "fuel_type": "diesel",
+        "name_ru": "Maus 5 (свеклоразгрузчик)",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "mkb4TR",
+        "name": "mkb4TR",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 950.0,
+        "fuel_type": "diesel",
+        "name_ru": "Oxbo MKB‑4TR",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "series9R",
+        "name": "series9R",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 1490.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 9R Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "nawaRoMaus",
+        "name": "nawaRoMaus",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1225.0,
+        "fuel_type": "diesel",
+        "name_ru": "ROPA NawaRo-Maus",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "puma",
+        "name": "puma",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 390.0,
+        "fuel_type": "diesel",
+        "name_ru": "Puma AFS Connect",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "lexion8900",
+        "name": "lexion8900",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 950.0,
+        "fuel_type": "diesel",
+        "name_ru": "Claas Lexion 8900",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "timberFrameFH16",
+        "name": "timberFrameFH16",
+        "class": "Лесовоз",
+        "uses_fuel": true,
+        "fuel_capacity": 755.0,
+        "fuel_type": "diesel",
+        "name_ru": "timberFrameFH16",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "xerion12",
+        "name": "xerion12",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 1400.0,
+        "fuel_type": "diesel",
+        "name_ru": "XERION 12",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "cr11",
+        "name": "cr11",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1500.0,
+        "fuel_type": "diesel",
+        "name_ru": "CR11",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "harvester1270G",
+        "name": "harvester1270G",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 390.0,
+        "fuel_type": "diesel",
+        "name_ru": "harvester1270G",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "sSeries",
+        "name": "sSeries",
+        "class": "Трактор",
+        "uses_fuel": true,
+        "fuel_capacity": 610.0,
+        "fuel_type": "diesel",
+        "name_ru": "Valtra S Series",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "felix",
+        "name": "felix",
+        "class": "Форвардер",
+        "uses_fuel": true,
+        "fuel_capacity": 220.0,
+        "fuel_type": "diesel",
+        "name_ru": "Felix",
+        "icon": "🌲"
+    },
+    {
+        "xml_key": "series6RLarge",
+        "name": "series6RLarge",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 322.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 6R Large",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "lightOptitraxx",
+        "name": "lightOptitraxx",
+        "class": "Фара",
+        "uses_fuel": true,
+        "fuel_capacity": 900.0,
+        "fuel_type": "diesel",
+        "name_ru": "lightOptitraxx",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "series9S",
+        "name": "series9S",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 660.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 9S Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "series6RExtraLarge",
+        "name": "series6RExtraLarge",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 470.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 6R Extra Large",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "bp2140e",
+        "name": "bp2140e",
+        "class": "Оборудование",
+        "uses_fuel": true,
+        "fuel_capacity": 850.0,
+        "fuel_type": "diesel",
+        "name_ru": "BP2140e (электрический пресс)",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "jaguar990TT",
+        "name": "jaguar990TT",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1500.0,
+        "fuel_type": "diesel",
+        "name_ru": "Claas Jaguar 990 Terra Trac",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "cvSeries",
+        "name": "cvSeries",
+        "class": "Трактор",
+        "uses_fuel": true,
+        "fuel_capacity": 246.0,
+        "fuel_type": "diesel",
+        "name_ru": "CV Series",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "cobraHybrid",
+        "name": "cobraHybrid",
+        "class": "Трактор",
+        "uses_fuel": true,
+        "fuel_capacity": 680.0,
+        "fuel_type": "diesel",
+        "name_ru": "Claas Cobra Hybrid",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ec250DL",
+        "name": "ec250DL",
+        "class": "Трактор",
+        "uses_fuel": true,
+        "fuel_capacity": 470.0,
+        "fuel_type": "diesel",
+        "name_ru": "Deutz-Fahr EC 250 DL",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tiger6S",
+        "name": "tiger6S",
+        "class": "Трактор",
+        "uses_fuel": true,
+        "fuel_capacity": 1320.0,
+        "fuel_type": "diesel",
+        "name_ru": "Case IH Tiger 6S",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "series8RX",
+        "name": "series8RX",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 851.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 8RX Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "series6C",
+        "name": "series6C",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 160.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 6C Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "vario500",
+        "name": "vario500",
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 298.0,
+        "fuel_type": "diesel",
+        "name_ru": "500 Vario",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "vario700",
+        "name": "vario700",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 450.0,
+        "fuel_type": "diesel",
+        "name_ru": "700 Vario",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "multiPurposeTruck",
+        "name": "multiPurposeTruck",
+        "class": "Грузовик",
+        "uses_fuel": true,
+        "fuel_capacity": 180.0,
+        "fuel_type": "diesel",
+        "name_ru": "Multi Purpose Truck",
+        "icon": "🚚"
+    },
+    {
+        "xml_key": "f20D",
+        "name": "f20D",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 210.0,
+        "fuel_type": "diesel",
+        "name_ru": "F20D",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "terraDosT540",
+        "name": "terraDosT540",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1150.0,
+        "fuel_type": "diesel",
+        "name_ru": "Holmer Terra Dos T4-40",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "epd540E",
+        "name": "epd540E",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 950.0,
+        "fuel_type": "diesel",
+        "name_ru": "Grimme EVO 290",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "arion400",
+        "name": "arion400",
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 140.0,
+        "fuel_type": "diesel",
+        "name_ru": "ARION 470-410",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "vario900",
+        "name": "vario900",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 625.0,
+        "fuel_type": "diesel",
+        "name_ru": "900 Vario",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "magnumT4B",
+        "name": "magnumT4B",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 647.0,
+        "fuel_type": "diesel",
+        "name_ru": "Case IH Magnum T4B",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "at5105",
+        "name": "at5105",
+        "class": "Цистерна",
+        "uses_fuel": true,
+        "fuel_capacity": 650.0,
+        "fuel_type": "diesel",
+        "name_ru": "AT5105",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "transtarIIEagle",
+        "name": "transtarIIEagle",
+        "class": "Грузовик",
+        "uses_fuel": true,
+        "fuel_capacity": 755.0,
+        "fuel_type": "diesel",
+        "name_ru": "International Transtar II Eagle",
+        "icon": "🚚"
+    },
+    {
+        "xml_key": "arion550",
+        "name": "arion550",
+        "class": "Трактор",
+        "uses_fuel": true,
+        "fuel_capacity": 245.0,
+        "fuel_type": "diesel",
+        "name_ru": "Claas Arion 550",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mt655",
+        "name": "mt655",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 454.0,
+        "fuel_type": "diesel",
+        "name_ru": "MT600 Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "evion450",
+        "name": "evion450",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 500.0,
+        "fuel_type": "diesel",
+        "name_ru": "EVION 450",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "series8",
+        "name": "series8",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 505.0,
+        "fuel_type": "diesel",
+        "name_ru": "Series 8 TTV",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "seriesM8",
+        "name": "seriesM8",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 375.0,
+        "fuel_type": "diesel",
+        "name_ru": "Kubota M8 Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "vnx300",
+        "name": "vnx300",
+        "class": "Грузовик",
+        "uses_fuel": true,
+        "fuel_capacity": 1075.0,
+        "fuel_type": "diesel",
+        "name_ru": "VNX 300",
+        "icon": "🚚"
+    },
+    {
+        "xml_key": "vario300",
+        "name": "vario300",
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 210.0,
+        "fuel_type": "diesel",
+        "name_ru": "300 Vario",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "l200H",
+        "name": "l200H",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 366.0,
+        "fuel_type": "diesel",
+        "name_ru": "Volvo L200H",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "series90",
+        "name": "series90",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 180.0,
+        "fuel_type": "diesel",
+        "name_ru": "160-90 DT",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "bison",
+        "name": "bison",
+        "class": "Форвардер",
+        "uses_fuel": true,
+        "fuel_capacity": 170.0,
+        "fuel_type": "diesel",
+        "name_ru": "Bison Active Frame",
+        "icon": "🌲"
+    },
+    {
+        "xml_key": "mach4R",
+        "name": "mach4R",
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 50.0,
+        "fuel_type": "diesel",
+        "name_ru": "Antonio Carraro Mach 4R",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "series9000",
+        "name": "series9000",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1500.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 9000 Series",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "bigX1180",
+        "name": "bigX1180",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1100.0,
+        "fuel_type": "diesel",
+        "name_ru": "Krone BigX 1180",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "series848L",
+        "name": "series848L",
+        "class": "Лесозаготовительная техника",
+        "uses_fuel": true,
+        "fuel_capacity": 392.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 848L",
+        "icon": "🌲"
+    },
+    {
+        "xml_key": "forterraHSX140",
+        "name": "forterraHSX140",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 270.0,
+        "fuel_type": "diesel",
+        "name_ru": "Zetor Forterra HSX 140",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "cp690",
+        "name": "cp690",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1400.0,
+        "fuel_type": "diesel",
+        "name_ru": "CP690",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "mf8570",
+        "name": "mf8570",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 378.0,
+        "fuel_type": "diesel",
+        "name_ru": "MF 8570",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "a8800MR",
+        "name": "a8800MR",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 480.0,
+        "fuel_type": "diesel",
+        "name_ru": "Case IH Austoft 8800 Multi-Row",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "l120H",
+        "name": "l120H",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 270.0,
+        "fuel_type": "diesel",
+        "name_ru": "Volvo L120H",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "grapeliner7000",
+        "name": "grapeliner7000",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 340.0,
+        "fuel_type": "diesel",
+        "name_ru": "Grapeliner Series 7000",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "t8",
+        "name": "t8",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 647.0,
+        "fuel_type": "diesel",
+        "name_ru": "T8 GENESIS Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "proximaHS120",
+        "name": "proximaHS120",
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 190.0,
+        "fuel_type": "diesel",
+        "name_ru": "Zetor Proxima HS 120",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "crystal",
+        "name": "crystal",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 300.0,
+        "fuel_type": "diesel",
+        "name_ru": "CRYSTAL HD",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "moduleExpress635",
+        "name": "moduleExpress635",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 757.0,
+        "fuel_type": "diesel",
+        "name_ru": "Case IH Module Express 635",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "lintrac130",
+        "name": "lintrac130",
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 120.0,
+        "fuel_type": "diesel",
+        "name_ru": "Lintrac 130",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "l180H",
+        "name": "l180H",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 366.0,
+        "fuel_type": "diesel",
+        "name_ru": "Volvo L180H",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "series8RT",
+        "name": "series8RT",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 764.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 8RT Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "agroStar831",
+        "name": "agroStar831",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 367.0,
+        "fuel_type": "diesel",
+        "name_ru": "Deutz-Fahr AgroStar 8.31",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "pf226",
+        "name": "pf226",
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 230.0,
+        "fuel_type": "diesel",
+        "name_ru": "Leader PF 2.26 Plus Ecomode",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gl86",
+        "name": "gl86",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 260.0,
+        "fuel_type": "diesel",
+        "name_ru": "GL",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "series835G",
+        "name": "series835G",
+        "class": "Неизвестная техника",
+        "uses_fuel": true,
+        "fuel_capacity": 650.0,
+        "fuel_type": "diesel",
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "spwIntense",
+        "name": "spwIntense",
+        "class": "Неизвестная техника",
+        "uses_fuel": true,
+        "fuel_capacity": 270.0,
+        "fuel_type": "diesel",
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "g340",
+        "name": "g340",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 160.0,
+        "fuel_type": "diesel",
+        "name_ru": "340 G",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "katana",
+        "name": "katana",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1225.0,
+        "fuel_type": "diesel",
+        "name_ru": "Katana",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "motorMower29EFI",
+        "name": "motorMower29EFI",
+        "class": "Косилка",
+        "uses_fuel": true,
+        "fuel_capacity": 10.0,
+        "fuel_type": "diesel",
+        "name_ru": "motorMower29EFI",
+        "icon": "🌿"
+    },
+    {
+        "xml_key": "prj8d",
+        "name": "prj8d",
+        "class": "Форвардер",
+        "uses_fuel": true,
+        "fuel_capacity": 28.0,
+        "fuel_type": "diesel",
+        "name_ru": "PRJ8D",
+        "icon": "🌲"
+    },
+    {
+        "xml_key": "rtvx1140",
+        "name": "rtvx1140",
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 30.0,
+        "fuel_type": "diesel",
+        "name_ru": "RTV-X1140W-H",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wheelLoader435S",
+        "name": "wheelLoader435S",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 400.0,
+        "fuel_type": "diesel",
+        "name_ru": "wheelLoader435S",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "fellerBuncher843L",
+        "name": "fellerBuncher843L",
+        "class": "Лесозаготовительная техника",
+        "uses_fuel": true,
+        "fuel_capacity": 396.0,
+        "fuel_type": "diesel",
+        "name_ru": "John Deere 843L Feller Buncher",
+        "icon": "🌲"
+    },
+    {
+        "xml_key": "vario200",
+        "name": "vario200",
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 68.0,
+        "fuel_type": "diesel",
+        "name_ru": "200 V Vario",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "axialFlow150",
+        "name": "axialFlow150",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 950.0,
+        "fuel_type": "diesel",
+        "name_ru": "Case IH Axial-Flow 150",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "mt1100",
+        "name": "mt1100",
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 1320.0,
+        "fuel_type": "diesel",
+        "name_ru": "1100 Vario MT",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "seriesREX4",
+        "name": "seriesREX4",
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 80.0,
+        "fuel_type": "diesel",
+        "name_ru": "Landini REX4 Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "series200",
+        "name": "series200",
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 121.0,
+        "fuel_type": "diesel",
+        "name_ru": "Series 200",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "seriesTJW",
+        "name": "seriesTJW",
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 190.0,
+        "fuel_type": "diesel",
+        "name_ru": "New Holland TJW Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "loader9660T",
+        "name": "loader9660T",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 185.0,
+        "fuel_type": "diesel",
+        "name_ru": "loader9660T",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "anthem",
+        "name": "anthem",
+        "class": "Грузовик",
+        "uses_fuel": true,
+        "fuel_capacity": 1075.0,
+        "fuel_type": "diesel",
+        "name_ru": "Anthem 6x4",
+        "icon": "🚚"
+    },
+    {
+        "xml_key": "braud9070L",
+        "name": "braud9070L",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 270.0,
+        "fuel_type": "diesel",
+        "name_ru": "New Holland Braud 9070L",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "mlt841",
+        "name": "mlt841",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 126.0,
+        "fuel_type": "diesel",
+        "name_ru": "MLT 841-145 PS+",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "leitwolf",
+        "name": "leitwolf",
+        "class": "Трактор",
+        "uses_fuel": true,
+        "fuel_capacity": 210.0,
+        "fuel_type": "diesel",
+        "name_ru": "Leitwolf Agripower",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "braud9090X",
+        "name": "braud9090X",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 270.0,
+        "fuel_type": "diesel",
+        "name_ru": "New Holland Braud 9090X",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "hj6130",
+        "name": "hj6130",
+        "class": "Форвардер",
+        "uses_fuel": true,
+        "fuel_capacity": 105.0,
+        "fuel_type": "diesel",
+        "name_ru": "HJ6130",
+        "icon": "🌲"
+    },
+    {
+        "xml_key": "m504",
+        "name": "m504",
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 85.0,
+        "fuel_type": "diesel",
+        "name_ru": "M50-4",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "r640",
+        "name": "r640",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 70.0,
+        "fuel_type": "diesel",
+        "name_ru": "R640",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "fr780",
+        "name": "fr780",
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 1200.0,
+        "fuel_type": "diesel",
+        "name_ru": "FR 780",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "superliner1979",
+        "name": "superliner1979",
+        "class": "Грузовик",
+        "uses_fuel": true,
+        "fuel_capacity": 400.0,
+        "fuel_type": "diesel",
+        "name_ru": "Super-Liner 6x4",
+        "icon": "🚚"
+    },
+    {
+        "xml_key": "pickup2017",
+        "name": "pickup2017",
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 120.0,
+        "fuel_type": "diesel",
+        "name_ru": "Pickup 2017",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "svl972",
+        "name": "svl972",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 111.0,
+        "fuel_type": "diesel",
+        "name_ru": "SVL 97-2",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "l318",
+        "name": "l318",
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 74.0,
+        "fuel_type": "diesel",
+        "name_ru": "L318",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "hannibalT50",
+        "name": null,
+        "class": "Оборудование",
+        "uses_fuel": true,
+        "fuel_capacity": 460.0,
+        "fuel_type": "diesel",
+        "name_ru": "hannibalT50",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "farmall120C",
+        "name": null,
+        "class": "Каток",
+        "uses_fuel": true,
+        "fuel_capacity": 130.0,
+        "fuel_type": "diesel",
+        "name_ru": "farmall120C",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "beta7360AL4",
+        "name": null,
+        "class": "Оборудование",
+        "uses_fuel": true,
+        "fuel_capacity": 620.0,
+        "fuel_type": "diesel",
+        "name_ru": "beta7360AL4",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "series7S",
+        "name": null,
+        "class": "Сеялка",
+        "uses_fuel": true,
+        "fuel_capacity": 305.0,
+        "fuel_type": "diesel",
+        "name_ru": "series7S",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "tSeries",
+        "name": null,
+        "class": "Суховорошилка",
+        "uses_fuel": true,
+        "fuel_capacity": 380.0,
+        "fuel_type": "diesel",
+        "name_ru": "tSeries",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "fst990",
+        "name": "fst990",
+        "class": "Цистерна",
+        "uses_fuel": true,
+        "fuel_capacity": 3750.0,
+        "fuel_type": "diesel",
+        "name_ru": "FST 990",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "dinoII",
+        "name": null,
+        "class": "Ворошилка",
+        "uses_fuel": true,
+        "fuel_capacity": 275.0,
+        "fuel_type": "diesel",
+        "name_ru": "dinoII",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "pmTraclll",
+        "name": null,
+        "class": "Прицеп",
+        "uses_fuel": true,
+        "fuel_capacity": 265.0,
+        "fuel_type": "diesel",
+        "name_ru": "pmTraclll",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "seriesX9",
+        "name": null,
+        "class": "Сеялка",
+        "uses_fuel": true,
+        "fuel_capacity": 1250.0,
+        "fuel_type": "diesel",
+        "name_ru": "seriesX9",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "seriesS7",
+        "name": null,
+        "class": "Сеялка",
+        "uses_fuel": true,
+        "fuel_capacity": 1155.0,
+        "fuel_type": "diesel",
+        "name_ru": "seriesS7",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "harvester951",
+        "name": null,
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 529.0,
+        "fuel_type": "diesel",
+        "name_ru": "951",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "ec380DL",
+        "name": null,
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 620.0,
+        "fuel_type": "diesel",
+        "name_ru": "ec380DL",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "chSeries",
+        "name": null,
+        "class": "Мульчировщик",
+        "uses_fuel": true,
+        "fuel_capacity": 670.0,
+        "fuel_type": "diesel",
+        "name_ru": "chSeries",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "zr5",
+        "name": null,
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 333.0,
+        "fuel_type": "diesel",
+        "name_ru": "ZR5-1200",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "series8R",
+        "name": null,
+        "class": "Сеялка",
+        "uses_fuel": true,
+        "fuel_capacity": 727.0,
+        "fuel_type": "diesel",
+        "name_ru": "series8R",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "series3650",
+        "name": null,
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 118.0,
+        "fuel_type": "diesel",
+        "name_ru": "3650",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "multifarmer449",
+        "name": null,
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 140.0,
+        "fuel_type": "diesel",
+        "name_ru": "MF44.9CS-170-CVTRONIC",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "quadtrac715",
+        "name": null,
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 1968.0,
+        "fuel_type": "diesel",
+        "name_ru": "Steiger 715 Quadtrac",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "series7R",
+        "name": null,
+        "class": "Сеялка",
+        "uses_fuel": true,
+        "fuel_capacity": 513.0,
+        "fuel_type": "diesel",
+        "name_ru": "series7R",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "tony10900TTR",
+        "name": null,
+        "class": "Погрузчик",
+        "uses_fuel": true,
+        "fuel_capacity": 80.0,
+        "fuel_type": "diesel",
+        "name_ru": "tony10900TTR",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "fh16",
+        "name": null,
+        "class": "Грузовик",
+        "uses_fuel": true,
+        "fuel_capacity": 755.0,
+        "fuel_type": "diesel",
+        "name_ru": "FH16",
+        "icon": "🚚"
+    },
+    {
+        "xml_key": "skh60",
+        "name": null,
+        "class": "Трактор (малый)",
+        "uses_fuel": true,
+        "fuel_capacity": 75.0,
+        "fuel_type": "diesel",
+        "name_ru": "SKH 60",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "vario1000",
+        "name": null,
+        "class": "Трактор (большой)",
+        "uses_fuel": true,
+        "fuel_capacity": 740.0,
+        "fuel_type": "diesel",
+        "name_ru": "1000 Vario",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "series5700S",
+        "name": null,
+        "class": "Сеялка",
+        "uses_fuel": true,
+        "fuel_capacity": 180.0,
+        "fuel_type": "diesel",
+        "name_ru": "series5700S",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "series7",
+        "name": null,
+        "class": "Трактор (средний)",
+        "uses_fuel": true,
+        "fuel_capacity": 505.0,
+        "fuel_type": "diesel",
+        "name_ru": "Series 7 TTV HD",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "x8VTDrive",
+        "name": null,
+        "class": "Прицеп",
+        "uses_fuel": true,
+        "fuel_capacity": 550.0,
+        "fuel_type": "diesel",
+        "name_ru": "x8VTDrive",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "ape50",
+        "name": null,
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 10.0,
+        "fuel_type": "diesel",
+        "name_ru": "50",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "kodiaq",
+        "name": null,
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 60.0,
+        "fuel_type": "diesel",
+        "name_ru": "Kodiaq",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "bigM450",
+        "name": null,
+        "class": "Косилка",
+        "uses_fuel": true,
+        "fuel_capacity": 780.0,
+        "fuel_type": "diesel",
+        "name_ru": "Krone Big M 450",
+        "icon": "🌿"
+    },
+    {
+        "xml_key": "ventor4150",
+        "name": null,
+        "class": "Комбайн",
+        "uses_fuel": true,
+        "fuel_capacity": 750.0,
+        "fuel_type": "diesel",
+        "name_ru": "Ventor 4150",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "rtvxg850",
+        "name": null,
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 33.0,
+        "fuel_type": "diesel",
+        "name_ru": "RTV-XG850 SIDEKICK",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tigrecar3200",
+        "name": null,
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 30.0,
+        "fuel_type": "diesel",
+        "name_ru": "Tigrecar 3200 GST",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rx125",
+        "name": null,
+        "class": "Неизвестно",
+        "uses_fuel": true,
+        "fuel_capacity": 7.0,
+        "fuel_type": "diesel",
+        "name_ru": "RX 125",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "vb3190",
+        "name": "vb3190",
+        "class": "Пресс-подборщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Kuhn VB 3190",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "maestro2450SV",
+        "name": "maestro2450SV",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Horsch Maestro 24.50 SV",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "cc1000",
+        "name": "cc1000",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Crop Chaser 1000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tForcePlus950",
+        "name": "tForcePlus950",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "superChisel",
+        "name": "superChisel",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "keiler2",
+        "name": "keiler2",
+        "class": "Комбайн",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Keiler 2 RK22 (картофелеуборочный)",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "sw4014",
+        "name": "sw4014",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SW 4014",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "g4010Q",
+        "name": "g4010Q",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "maestro975RX",
+        "name": "maestro975RX",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "top1403",
+        "name": "top1403",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TOP 1403 C",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ux5201Super",
+        "name": "ux5201Super",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "omega6000FL",
+        "name": "omega6000FL",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "super7",
+        "name": "super7",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Super 7",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "g1F125Kombi",
+        "name": "g1F125Kombi",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "matrix1800",
+        "name": "matrix1800",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "MATRIX 1800",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "aerostar2400",
+        "name": "aerostar2400",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "AEROSTAR-CLASSIC XXL 2400",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "g5020",
+        "name": "g5020",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "G5020",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tiger8MT",
+        "name": "tiger8MT",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "pw10012",
+        "name": "pw10012",
+        "class": "Плуг",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PW 100 - 12",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "c441R",
+        "name": "c441R",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "proTil4TX",
+        "name": "proTil4TX",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "aeon5200",
+        "name": "aeon5200",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Kverneland AEON 5200",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "orbis900",
+        "name": "orbis900",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Claas Orbis 900",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "terria6040",
+        "name": "terria6040",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TERRIA 6040",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "finer6SL",
+        "name": "finer6SL",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "prios440",
+        "name": "prios440",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Prios 440",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "aerosemVT5000DD",
+        "name": "aerosemVT5000DD",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "hit1618T",
+        "name": "hit1618T",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "topDown600",
+        "name": "topDown600",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "aquilaDrive400",
+        "name": "aquilaDrive400",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "planter4900",
+        "name": "planter4900",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "4905 Blue Drive",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "trius",
+        "name": "trius",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TRIUS",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "proBelt165",
+        "name": "proBelt165",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "aw2217",
+        "name": "aw2217",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Annaburger AW 22.17",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "bigPack1290HDPVC",
+        "name": "bigPack1290HDPVC",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "espro6000RC",
+        "name": "espro6000RC",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "jumbo8450DB",
+        "name": "jumbo8450DB",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "g1015",
+        "name": "g1015",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "G1015",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "maxima3TIL",
+        "name": "maxima3TIL",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "pgII28Genesis",
+        "name": "pgII28Genesis",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "miniairNova6m",
+        "name": "miniairNova6m",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "swifterdiscXEmega",
+        "name": "swifterdiscXEmega",
+        "class": "Дисковая борона",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "swifterdiscXEmega",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "dd24073",
+        "name": "dd24073",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "DD 24073/2 XXL",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "ddk2400",
+        "name": "ddk2400",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "DDK 2400",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "powerchain800",
+        "name": "powerchain800",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "POWERCHAIN 800",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "taifun900",
+        "name": "taifun900",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TAIFUN 900 RP58",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "nzExtreme1425",
+        "name": "nzExtreme1425",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "swadroTS970",
+        "name": "swadroTS970",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rwgP13",
+        "name": "rwgP13",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tigo75VR",
+        "name": "tigo75VR",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tracPack",
+        "name": "tracPack",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mergePro915",
+        "name": "mergePro915",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gbc",
+        "name": "gbc",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GBC",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "ultima800",
+        "name": "ultima800",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Ultima 800",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "cultro12TC",
+        "name": "cultro12TC",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "landRoller591A",
+        "name": "landRoller591A",
+        "class": "Каток",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "landRoller591A",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "koralin9840",
+        "name": "koralin9840",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Koralin 9-840",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "p8890Tedder",
+        "name": "p8890Tedder",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "grizzlyX4",
+        "name": "grizzlyX4",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "edk650",
+        "name": "edk650",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "EDK 650",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "vendroKW820Highland",
+        "name": "vendroKW820Highland",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "profiLiner",
+        "name": "profiLiner",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "sbh4_36",
+        "name": "sbh4_36",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SBH4 36",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "tga560",
+        "name": "tga560",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TGA 560",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus390",
+        "name": "plus390",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "390 Plus",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "pneumaticstarPro1200",
+        "name": "pneumaticstarPro1200",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "bigBodyS750",
+        "name": "bigBodyS750",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus375",
+        "name": "plus375",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "375 Plus",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "rbm2000",
+        "name": "rbm2000",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Anderson RBM2000",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "sks30_150",
+        "name": "sks30_150",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SKS 30/1050",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "multi4XL",
+        "name": "multi4XL",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "suw5000",
+        "name": "suw5000",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SUW 5000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "pq32000",
+        "name": "pq32000",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PQ 32.000",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "pfw18000MaxxLinePlus",
+        "name": "pfw18000MaxxLinePlus",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rotocareV12400",
+        "name": "rotocareV12400",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "softer11",
+        "name": "softer11",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Softer 11 PS",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "asw271",
+        "name": "asw271",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "ASW 271",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "kdd941STH",
+        "name": "kdd941STH",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "titan18",
+        "name": "titan18",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Annaburger HTS 11D",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "convioFlex1380",
+        "name": "convioFlex1380",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gl860",
+        "name": "gl860",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GL 860 Compacta",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "z2840",
+        "name": "z2840",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Z2-840 H",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "k105",
+        "name": "k105",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "K105",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "rapide580V",
+        "name": "rapide580V",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tdk301RA",
+        "name": "tdk301RA",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "nd144",
+        "name": "nd144",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "144ND",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "g1F125",
+        "name": "g1F125",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "evo290",
+        "name": "evo290",
+        "class": "Комбайн",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "EVO 290",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "z18051",
+        "name": "z18051",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Z 18051/2 XXL Power Flex",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "shuttle490S",
+        "name": "shuttle490S",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "dk280RP",
+        "name": "dk280RP",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "defoliator3750",
+        "name": "defoliator3750",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Amity 3750",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "trailedLine4System1000",
+        "name": "trailedLine4System1000",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "p3Profi",
+        "name": "p3Profi",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gx520",
+        "name": "gx520",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GX 520",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "tm1410",
+        "name": "tm1410",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TM 1410",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "quadrant5300",
+        "name": "quadrant5300",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "QUADRANT 5300 FC",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "convioFlex1080",
+        "name": "convioFlex1080",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "optimaRS9m",
+        "name": "optimaRS9m",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "servoT6000Plus",
+        "name": "servoT6000Plus",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "solitair12",
+        "name": "solitair12",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Solitair 12",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "tdk301RP",
+        "name": "tdk301RP",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "multiProfi",
+        "name": "multiProfi",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "fenix3000",
+        "name": "fenix3000",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "FENIX 3000/3",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "plus360",
+        "name": "plus360",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "360 Plus",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "rrw500",
+        "name": "rrw500",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "RRW 500",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mm7000",
+        "name": "mm7000",
+        "class": "Мульчировщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "MULCHER MM 7000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ramBodyAS750",
+        "name": "ramBodyAS750",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "btfr6030",
+        "name": "btfr6030",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "HR 6040 RCS + BTFR 6030",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "mega1200L",
+        "name": "mega1200L",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "seeder1500",
+        "name": "seeder1500",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SOLID STAND 1500",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "citan15001C",
+        "name": "citan15001C",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "lowloader4A",
+        "name": "lowloader4A",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "lowloader4A",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "bueffel",
+        "name": "bueffel",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Büffel",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "baler2370UHD",
+        "name": "baler2370UHD",
+        "class": "Пресс-подборщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "baler2370UHD",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "pwo24",
+        "name": "pwo24",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PWO 24",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "r7Rd",
+        "name": "r7Rd",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "precea4500",
+        "name": "precea4500",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Precea 4500-2C Super",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "enyaq",
+        "name": "enyaq",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Enyaq Coupé RS iV",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "faro4010D",
+        "name": "faro4010D",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "hybridX",
+        "name": "hybridX",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "conveyAllCST1550",
+        "name": "conveyAllCST1550",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tr34090",
+        "name": "tr34090",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TR 34090/2 PT+",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "hrv12R",
+        "name": "hrv12R",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "prolander7500",
+        "name": "prolander7500",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PROLANDER 7500",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "machTill401",
+        "name": "machTill401",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "maxiroll630Greenline",
+        "name": "maxiroll630Greenline",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus345",
+        "name": "plus345",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "345 Plus",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "moduleX",
+        "name": "moduleX",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rexius1230",
+        "name": "rexius1230",
+        "class": "Каток",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Rexius 1230",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "htw65",
+        "name": "htw65",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "HTW 65",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "fsx6372",
+        "name": "fsx6372",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Arcusin FSX 63.72",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "dts59",
+        "name": "dts59",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "DTS 5.9",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "sb1290ID",
+        "name": "sb1290ID",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "bossAlpin251",
+        "name": "bossAlpin251",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "katorKNProfi8000",
+        "name": "katorKNProfi8000",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "k307",
+        "name": "k307",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "K 307c-H + ECKO FLEX",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "x1112",
+        "name": "x1112",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "X-Tended Reach 1112",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "cultivator980",
+        "name": "cultivator980",
+        "class": "Культиватор",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "980",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "us235",
+        "name": "us235",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "US 235 Dynamic",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "scorpio550",
+        "name": "scorpio550",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Scorpio 550",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gmd8730",
+        "name": "gmd8730",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GMD 8730-FF",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "carrierXL625",
+        "name": "carrierXL625",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "motherBin4000",
+        "name": "motherBin4000",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ans1900",
+        "name": "ans1900",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "ANS-1900",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "haulMaster",
+        "name": "haulMaster",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "headerC16F",
+        "name": "headerC16F",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "headerC16F",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "multipackD14",
+        "name": "multipackD14",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "bioBalerWB55",
+        "name": "bioBalerWB55",
+        "class": "Пресс-подборщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "bioBalerWB55",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "smaragd9_500k",
+        "name": "smaragd9_500k",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Smaragd 9/500K",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "cottonTagTrailer",
+        "name": "cottonTagTrailer",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "cottonTagTrailer",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "miniairNova3m",
+        "name": "miniairNova3m",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Vaderstad Miniair Nova 3 m",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "kuw2000",
+        "name": "kuw2000",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "KUW 2000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "kExtreme500",
+        "name": "kExtreme500",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "distinctionTripleHopper",
+        "name": "distinctionTripleHopper",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rrXL9",
+        "name": "rrXL9",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gtw330",
+        "name": "gtw330",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GTW 330",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tk4",
+        "name": "tk4",
+        "class": "Трактор (малый)",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TK4.80 Methane Power",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "radium255",
+        "name": "radium255",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Radium 255",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "ta12050",
+        "name": "ta12050",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TA 12050 Power Spread +",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "renownTriAxleBeavertailLowDrop",
+        "name": "renownTriAxleBeavertailLowDrop",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tsw6240w",
+        "name": "tsw6240w",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TSW 6240 W",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "timberTrailer3A",
+        "name": "timberTrailer3A",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "timberTrailer3A",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "diamant8",
+        "name": "diamant8",
+        "class": "Плуг",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Lemken Diamant 8",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "duett7300",
+        "name": "duett7300",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Duett 7300",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "hts22b79",
+        "name": "hts22b79",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Annaburger HTS 22B.79",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "partner1600FT",
+        "name": "partner1600FT",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "dst16",
+        "name": "dst16",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "DST 16",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "loader23E",
+        "name": "loader23E",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Schäffer Loader 23E",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "singleRow",
+        "name": "singleRow",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "n3003",
+        "name": "n3003",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "3003",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "prestigeSuperB_front",
+        "name": "prestigeSuperB_front",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "baler1840",
+        "name": "baler1840",
+        "class": "Пресс-подборщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "MF 1840",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "silverstar",
+        "name": "silverstar",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Silverstar",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "cenio4000",
+        "name": "cenio4000",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Cenio 4000 Super",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "profi2",
+        "name": "profi2",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Profi II",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "twoRow",
+        "name": "twoRow",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "trailer12000L",
+        "name": "trailer12000L",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "trailer12000L",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "efgS50S",
+        "name": "efgS50S",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "conveyAll1690",
+        "name": "conveyAll1690",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "hr6040RCS",
+        "name": "hr6040RCS",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "kredo",
+        "name": "kredo",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Kredo 3",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "headerHD45X",
+        "name": "headerHD45X",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "headerHD45X",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "hp20",
+        "name": "hp20",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "HALFPIPE HP 20",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "gl420",
+        "name": "gl420",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GL 420",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "vibro",
+        "name": "vibro",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Vibro",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "terraFlex3050_28",
+        "name": "terraFlex3050_28",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "prestigeSuperB_back",
+        "name": "prestigeSuperB_back",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "headerHD50F",
+        "name": "headerHD50F",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "headerHD50F",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "hm10500KF",
+        "name": "hm10500KF",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "kdf341S",
+        "name": "kdf341S",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "variofex750",
+        "name": "variofex750",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Variofex 750",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "aw2227",
+        "name": "aw2227",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "AW 22.27",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "terraDosT540Header",
+        "name": "terraDosT540Header",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "terraDosT540Header",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "northStar1230FB",
+        "name": "northStar1230FB",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ga4731",
+        "name": "ga4731",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GA 4731",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "headerRD35F",
+        "name": "headerRD35F",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "headerRD35F",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "pov5xl",
+        "name": "pov5xl",
+        "class": "Плуг",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "POV 5 XL",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "colossus10000",
+        "name": "colossus10000",
+        "class": "Комбайн",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Colossus 10.000",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "xt390",
+        "name": "xt390",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "XT 390",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "module4",
+        "name": "module4",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Module 4",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "mf3012",
+        "name": "mf3012",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "MF 3012",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "versa",
+        "name": "versa",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Versa",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "tc816",
+        "name": "tc816",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TC 816",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ravage",
+        "name": "ravage",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Ravage (тюнингованный внедорожник)",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gf800",
+        "name": "gf800",
+        "class": "Ворошилка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GF 800",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "aw2216",
+        "name": "aw2216",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Annaburger AW 22.16",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "series850",
+        "name": "series850",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "850 Single Auger Grain Cart",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gf400",
+        "name": "gf400",
+        "class": "Ворошилка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GF 400",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "noahTTW140",
+        "name": "noahTTW140",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "aw2207",
+        "name": "aw2207",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Annaburger AW 22.07",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "pf224",
+        "name": "pf224",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PF 2.24 Plus",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "speedmax560",
+        "name": "speedmax560",
+        "class": "Мульчировщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SPEEDMAX 560",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "zgts10001",
+        "name": "zgts10001",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "ZG-TS 10001",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "sd700",
+        "name": "sd700",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SD 700",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "ra142",
+        "name": "ra142",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "RA 142",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "collect900_3",
+        "name": "collect900_3",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "X-Collect 900-3",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "h550",
+        "name": "h550",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "H550 Beavertail",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "k300",
+        "name": "k300",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "K 300-T + SKA 1-Z",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "primor15070",
+        "name": "primor15070",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PRIMOR 15070 M",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tsa",
+        "name": "tsa",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TSA 30000",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "n20T",
+        "name": "n20T",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "alpinHit44",
+        "name": "alpinHit44",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "steelDropDeck",
+        "name": "steelDropDeck",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "trailer6000L",
+        "name": "trailer6000L",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "trailer6000L",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "lt408L",
+        "name": "lt408L",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tl1239",
+        "name": "tl1239",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TL 12-39",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "dpw1800",
+        "name": "dpw1800",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "DPW 1800",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "rapidTrailed",
+        "name": "rapidTrailed",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ult24",
+        "name": "ult24",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "ULT 24",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "northStar1830",
+        "name": "northStar1830",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "supercis800",
+        "name": "supercis800",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Supercis 800",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "hdht52",
+        "name": "hdht52",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "HDHT 52",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "pickUp300",
+        "name": "pickUp300",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "vario620",
+        "name": "vario620",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "VARIO 620",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "n70_40",
+        "name": "n70_40",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "N70-40",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "ecoCultivator300",
+        "name": "ecoCultivator300",
+        "class": "Культиватор",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "ecoCultivator300",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wagonPlanksUS",
+        "name": "wagonPlanksUS",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "hmz3403000",
+        "name": "hmz3403000",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "HMZ 340/3000",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "n70_30",
+        "name": "n70_30",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "N70-30",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "g4Displays",
+        "name": "g4Displays",
+        "class": "Опрыскиватель",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "g4Displays",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "puler600",
+        "name": "puler600",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Puler 600",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "c550",
+        "name": "c550",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "WOODCRACKER® C550",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "jump320",
+        "name": "jump320",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "JUMP 320",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "gmd3123F",
+        "name": "gmd3123F",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "terraFlex3020",
+        "name": "terraFlex3020",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "frontloaderL630",
+        "name": "frontloaderL630",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderL630",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "miloStar1630",
+        "name": "miloStar1630",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mf8570Header",
+        "name": "mf8570Header",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "mf8570Header",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "rrXLTrailer",
+        "name": "rrXLTrailer",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "rrXLTrailer",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "frc65",
+        "name": "frc65",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "FRC 65",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "frontloader663R",
+        "name": "frontloader663R",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloader663R",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "tde220",
+        "name": "tde220",
+        "class": "Мульчировщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TDE-220",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "n60_45",
+        "name": "n60_45",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "N60-45",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "ult18",
+        "name": "ult18",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "ULT 18",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "n40bx",
+        "name": "n40bx",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "N40BX",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "air300FAlp",
+        "name": "air300FAlp",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "belvedere",
+        "name": "belvedere",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Belvedere",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "locomotiveEU",
+        "name": "locomotiveEU",
+        "class": "Локомотив",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "locomotiveEU",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "header4408",
+        "name": "header4408",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "4408 Corn Header",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "n60_35",
+        "name": "n60_35",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "N60-35",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "mercury4000L",
+        "name": "mercury4000L",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "servo25",
+        "name": "servo25",
+        "class": "Плуг",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SERVO 25",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "favorit254",
+        "name": "favorit254",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Favorit 254",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "comfortSupportWheel",
+        "name": "comfortSupportWheel",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "kForce400",
+        "name": "kForce400",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "frontLoader140",
+        "name": "frontLoader140",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontLoader140",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "sf900",
+        "name": "sf900",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SF900",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mks32",
+        "name": "mks32",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "MKS 32",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "g5Displays",
+        "name": "g5Displays",
+        "class": "Опрыскиватель",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "g5Displays",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mks8",
+        "name": "mks8",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "MKS 8",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "frontloader683R",
+        "name": "frontloader683R",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloader683R",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "zats3200",
+        "name": "zats3200",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "ZA-TS 3200",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "tfr250",
+        "name": "tfr250",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TFR 250",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "tornado251",
+        "name": "tornado251",
+        "class": "Разбрасыватель навоза",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Tornado 252",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "skb240A",
+        "name": "skb240A",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "f155A",
+        "name": "f155A",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "kDyno200",
+        "name": "kDyno200",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wagonFlatBedUS",
+        "name": "wagonFlatBedUS",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "lhII",
+        "name": "lhII",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tf1512",
+        "name": "tf1512",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TF 1512",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "crossmax300",
+        "name": "crossmax300",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "CROSSMAX 300",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "valtraDisplays",
+        "name": "valtraDisplays",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "valtraDisplays",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "combiplow",
+        "name": "combiplow",
+        "class": "Плуг",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Combiplow Gold",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "directDisc500Trailer",
+        "name": "directDisc500Trailer",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "directDisc500Trailer",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "frontloader700M",
+        "name": "frontloader700M",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloader700M",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "stego485Pro",
+        "name": "stego485Pro",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "header4418N",
+        "name": "header4418N",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "header4418N",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "tms2_300d",
+        "name": "tms2_300d",
+        "class": "Мульчировщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TMS2-300D",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "easyFlow300S",
+        "name": "easyFlow300S",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "s710",
+        "name": "s710",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "S-710",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "hds9184M",
+        "name": "hds9184M",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "q7M",
+        "name": "q7M",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "directDisc500",
+        "name": "directDisc500",
+        "class": "Дисковая борона",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "directDisc500",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "dolly10L",
+        "name": "dolly10L",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "thx180",
+        "name": "thx180",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "THX-180",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "q6M",
+        "name": "q6M",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mp122Ocea",
+        "name": "mp122Ocea",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "oneDisplays",
+        "name": "oneDisplays",
+        "class": "Опрыскиватель",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "oneDisplays",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "xDisc620Trailer",
+        "name": "xDisc620Trailer",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "xDisc620Trailer",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "q4M",
+        "name": "q4M",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "pl75",
+        "name": "pl75",
+        "class": "Плуг",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PL-75",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "sg",
+        "name": "sg",
+        "class": "Опрыскиватель",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Amazone SG 2000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "displays",
+        "name": "displays",
+        "class": "Опрыскиватель",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "displays",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rbg",
+        "name": "rbg",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "RBG",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "waterTrailer1600",
+        "name": "waterTrailer1600",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "waterTrailer1600",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "mes400",
+        "name": "mes400",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "MES 400",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "btgqu",
+        "name": "btgqu",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "BTGQU",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "xb150",
+        "name": "xb150",
+        "class": "Плуг",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "XB 150",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "xb190",
+        "name": "xb190",
+        "class": "Плуг",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "XB 190",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "sunLite40",
+        "name": "sunLite40",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "overtippingBucket",
+        "name": "overtippingBucket",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wheelLoaderSilageFork",
+        "name": "wheelLoaderSilageFork",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "wheelLoaderSilageFork",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "wagonVehiclesEU",
+        "name": "wagonVehiclesEU",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "akp122",
+        "name": "akp122",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "AKP-122",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l180HHighTipShovel",
+        "name": "l180HHighTipShovel",
+        "class": "Ковш",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "l180HHighTipShovel",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l120HHighTipShovel",
+        "name": "l120HHighTipShovel",
+        "class": "Ковш",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "l120HHighTipShovel",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rzk300H",
+        "name": "rzk300H",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "speedmax300",
+        "name": "speedmax300",
+        "class": "Мульчировщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SPEEDMAX 300",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "xDisc620",
+        "name": "xDisc620",
+        "class": "Дисковая борона",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "xDisc620",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "frontloaderManureGrab",
+        "name": "frontloaderManureGrab",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderManureGrab",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "fb130",
+        "name": "fb130",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "130FB",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "forestryLocomotive",
+        "name": "forestryLocomotive",
+        "class": "Локомотив",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "forestryLocomotive",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "manureFork",
+        "name": "manureFork",
+        "class": "Вилы",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "manureFork",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mf8570Trailer",
+        "name": "mf8570Trailer",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "mf8570Trailer",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "frontloaderSilageCutter",
+        "name": "frontloaderSilageCutter",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderSilageCutter",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "locomotiveAS",
+        "name": "locomotiveAS",
+        "class": "Локомотив",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "locomotiveAS",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wheelieGrab",
+        "name": "wheelieGrab",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "discOVigne",
+        "name": "discOVigne",
+        "class": "Дисковая борона",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "discOVigne",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "waterTrailer550",
+        "name": "waterTrailer550",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "waterTrailer550",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "eckoFlex",
+        "name": "eckoFlex",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rh2460",
+        "name": "rh2460",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "RH 24-60",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "fiatagri90",
+        "name": "fiatagri90",
+        "class": "Культиватор",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "fiatagri90",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "frontloaderRoundBaleFork",
+        "name": "frontloaderRoundBaleFork",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderRoundBaleFork",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "baleGrab",
+        "name": "baleGrab",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "baleGrab",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "frontloaderBaleKing",
+        "name": "frontloaderBaleKing",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderBaleKing",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "stumpGrinder",
+        "name": "stumpGrinder",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "butterfly",
+        "name": "butterfly",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Butterfly",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "w1800",
+        "name": "w1800",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "W 1800",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "highDumpBucket",
+        "name": "highDumpBucket",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "h550Gooseneck",
+        "name": "h550Gooseneck",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l180HPalletFork",
+        "name": "l180HPalletFork",
+        "class": "Вилы",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "l180HPalletFork",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wagonTimberEU",
+        "name": "wagonTimberEU",
+        "class": "Лесовоз",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "wagonTimberEU",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "telehandlerManureFork",
+        "name": "telehandlerManureFork",
+        "class": "Вилы",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "telehandlerManureFork",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l180HGrapple",
+        "name": "l180HGrapple",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ska1",
+        "name": "ska1",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SKA 1",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "g1650",
+        "name": "g1650",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "WOODCRACKER® G1650",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "baleHugger",
+        "name": "baleHugger",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "baleHugger",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "egv65AHK_SG",
+        "name": "egv65AHK_SG",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wagonTimberUS",
+        "name": "wagonTimberUS",
+        "class": "Лесовоз",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "wagonTimberUS",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "tpn140",
+        "name": "tpn140",
+        "class": "Мульчировщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TPN 140",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "ruby",
+        "name": "ruby",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Lemken Rubin 2000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mul1000",
+        "name": "mul1000",
+        "class": "Мульчировщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "MUL-1000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "dwp186",
+        "name": "dwp186",
+        "class": "Прицеп",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "DW P 186",
+        "icon": "🚛"
+    },
+    {
+        "xml_key": "utilityGrapple",
+        "name": "utilityGrapple",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "sfb750",
+        "name": "sfb750",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SFB 750",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "frontloaderSquareBaleGrab",
+        "name": "frontloaderSquareBaleGrab",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderSquareBaleGrab",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "tb100",
+        "name": "tb100",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "TB-100",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "mega1200LTank",
+        "name": "mega1200LTank",
+        "class": "Цистерна",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "mega1200LTank",
+        "icon": "🛢️"
+    },
+    {
+        "xml_key": "wagonGrainEU",
+        "name": "wagonGrainEU",
+        "class": "Зерновоз",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "wagonGrainEU",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wagonSugarbeetsEU",
+        "name": "wagonSugarbeetsEU",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l180HBagLifter",
+        "name": "l180HBagLifter",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "wheelLoaderLogFork",
+        "name": "wheelLoaderLogFork",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "wheelLoaderLogFork",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "frontloaderLogFork",
+        "name": "frontloaderLogFork",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderLogFork",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "l180HShovel",
+        "name": "l180HShovel",
+        "class": "Ковш",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "l180HShovel",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l180HRockShovel",
+        "name": "l180HRockShovel",
+        "class": "Ковш",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "l180HRockShovel",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l120HRockShovel",
+        "name": "l120HRockShovel",
+        "class": "Ковш",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "l120HRockShovel",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l120HShovel",
+        "name": "l120HShovel",
+        "class": "Ковш",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "l120HShovel",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l120HBagLifter",
+        "name": "l120HBagLifter",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "telehandlerBaleGrab",
+        "name": "telehandlerBaleGrab",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "telehandlerBaleGrab",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "frontloaderShovel",
+        "name": "frontloaderShovel",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderShovel",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "skodaEnyaq",
+        "name": "skodaEnyaq",
+        "class": "Ковш",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "skodaEnyaq",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "telehandlerShovel",
+        "name": "telehandlerShovel",
+        "class": "Ковш",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "telehandlerShovel",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "telehandlerLogFork",
+        "name": "telehandlerLogFork",
+        "class": "Вилы",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "telehandlerLogFork",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "series9RX",
+        "name": "series9RX",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "frontloaderManureFork",
+        "name": "frontloaderManureFork",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderManureFork",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "wagonWoodChipsEU",
+        "name": "wagonWoodChipsEU",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "w600",
+        "name": "w600",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "W 600",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "w900",
+        "name": "w900",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "W 900",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "locomotive01",
+        "name": "locomotive01",
+        "class": "Локомотив",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "locomotive01",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "gusscom1250",
+        "name": "gusscom1250",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "GUSSCOM 1250",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "palletFork",
+        "name": "palletFork",
+        "class": "Вилы",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "palletFork",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "l120HPalletFork",
+        "name": "l120HPalletFork",
+        "class": "Вилы",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "l120HPalletFork",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "fhElectric",
+        "name": "fhElectric",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "telehandlerFork",
+        "name": "telehandlerFork",
+        "class": "Вилы",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "telehandlerFork",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "series6R",
+        "name": "series6R",
+        "class": "Сеялка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "series6R",
+        "icon": "🌱"
+    },
+    {
+        "xml_key": "wheelLoaderFork",
+        "name": "wheelLoaderFork",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "wheelLoaderFork",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "t7",
+        "name": "t7",
+        "class": "Трактор (средний)",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "T7 LWB PLMI",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "frontloaderPalletFork",
+        "name": "frontloaderPalletFork",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderPalletFork",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "bagLifterDual",
+        "name": "bagLifterDual",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "lexion8000",
+        "name": "lexion8000",
+        "class": "Мигалка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "lexion8000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "transtarII",
+        "name": "transtarII",
+        "class": "Трактор",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "transtarII",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "locomotive04",
+        "name": "locomotive04",
+        "class": "Локомотив",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "locomotive04",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "bagLifter",
+        "name": "bagLifter",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "lexion6900",
+        "name": "lexion6900",
+        "class": "Комбайн",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "LEXION 6900",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "weight2500",
+        "name": "weight2500",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "B2500",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "baleSpear",
+        "name": "baleSpear",
+        "class": "Оборудование",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "baleSpear",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "top450",
+        "name": "top450",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Top 450",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "weight1500",
+        "name": "weight1500",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PAC-1500",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "weight2300",
+        "name": "weight2300",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "2300",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "weight650",
+        "name": "weight650",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "650",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "weight600",
+        "name": "weight600",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "FGB 600",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "weight1100",
+        "name": "weight1100",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "1100",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "frontloaderBaleSpike",
+        "name": "frontloaderBaleSpike",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "frontloaderBaleSpike",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "absolut",
+        "name": "absolut",
+        "class": "Трактор (средний)",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Absolut",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "weight750",
+        "name": "weight750",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PAC-750",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "telehandlerBaleFork",
+        "name": "telehandlerBaleFork",
+        "class": "Вилы",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "telehandlerBaleFork",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "pickUp1150",
+        "name": "pickUp1150",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "pickUp900",
+        "name": "pickUp900",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "pickUp1800",
+        "name": "pickUp1800",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "virtus135RVShift",
+        "name": "virtus135RVShift",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "weight3300",
+        "name": "weight3300",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "3300",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "bioBalerFrontTool",
+        "name": "bioBalerFrontTool",
+        "class": "Пресс-подборщик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "bioBalerFrontTool",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "laforgeEZ",
+        "name": "laforgeEZ",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus345_newHolland",
+        "name": "plus345_newHolland",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "fd250GoldEdition",
+        "name": "fd250GoldEdition",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus345_johnDeere",
+        "name": "plus345_johnDeere",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus360_newHolland",
+        "name": "plus360_newHolland",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus360_johnDeere",
+        "name": "plus360_johnDeere",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus375_newHolland",
+        "name": "plus375_newHolland",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus390_newHolland",
+        "name": "plus390_newHolland",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "fd250",
+        "name": "fd250",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "FD250 FlexDraper®",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "af11",
+        "name": "af11",
+        "class": "Комбайн",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "AF11",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "plus375_johnDeere",
+        "name": "plus375_johnDeere",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "plus390_johnDeere",
+        "name": "plus390_johnDeere",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "m77",
+        "name": "m77",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "M77",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "prestigeSuperB",
+        "name": "prestigeSuperB",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "rb456",
+        "name": "rb456",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "RB 456 HD Pro",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "cr11GoldEdition",
+        "name": "cr11GoldEdition",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "header639",
+        "name": "header639",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "639 Premium",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "versa3KR",
+        "name": "versa3KR",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "series8000",
+        "name": "series8000",
+        "class": "Трактор (средний)",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "8010 Series",
+        "icon": "🚜"
+    },
+    {
+        "xml_key": "anthemBlack",
+        "name": "anthemBlack",
+        "class": "Грузовик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Mack Anthem Black",
+        "icon": "🚚"
+    },
+    {
+        "xml_key": "sl8022",
+        "name": "sl8022",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "SL 80-22 Quantum",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "squadra1290",
+        "name": "squadra1290",
+        "class": "Неизвестно",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Squadra 1290 N UD",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "p3CLProfi",
+        "name": "p3CLProfi",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "series5275csl",
+        "name": "series5275csl",
+        "class": "Комбайн",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "5275 C SL",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "f155A_telehandler",
+        "name": "f155A_telehandler",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "f155A_telehandler",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "h550Bundle",
+        "name": "h550Bundle",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "f155A_wheelLoader",
+        "name": "f155A_wheelLoader",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "f155A_wheelLoader",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "l120HElectric",
+        "name": "l120HElectric",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "cargoT740",
+        "name": "cargoT740",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "cr980_1830",
+        "name": "cr980_1830",
+        "class": "Комбайн",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "New Holland CR980",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "cr980_830",
+        "name": "cr980_830",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "980CR 8-30",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "freeFlow25FT",
+        "name": "freeFlow25FT",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "superFlex25",
+        "name": "superFlex25",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "varifeed28",
+        "name": "varifeed28",
+        "class": "Жатка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "Varifeed 28FT",
+        "icon": "🌾"
+    },
+    {
+        "xml_key": "weight1000",
+        "name": "weight1000",
+        "class": "Балласт",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "PAC-1000",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "btgqu_telehandler",
+        "name": "btgqu_telehandler",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "BTGQU (Телескоп.)",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "rbg_telehandler",
+        "name": "rbg_telehandler",
+        "class": "Погрузчик",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "RBG (Телескоп.)",
+        "icon": "📦"
+    },
+    {
+        "xml_key": "inlineWrapper",
+        "name": "inlineWrapper",
+        "class": "Упаковщик рулонов",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "inlineWrapper",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "beaconLightValtra01",
+        "name": "beaconLightValtra01",
+        "class": "Мигалка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "beaconLightValtra01",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "beaconLightValtra02",
+        "name": "beaconLightValtra02",
+        "class": "Мигалка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "beaconLightValtra02",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "beaconLightValtra03",
+        "name": "beaconLightValtra03",
+        "class": "Мигалка",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "beaconLightValtra03",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "varipackV190XC",
+        "name": "varipackV190XC",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    },
+    {
+        "xml_key": "varioMaster",
+        "name": "varioMaster",
+        "class": "Неизвестная техника",
+        "uses_fuel": false,
+        "fuel_capacity": null,
+        "fuel_type": null,
+        "name_ru": "",
+        "icon": "🛠️"
+    }
+]
