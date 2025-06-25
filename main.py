@@ -4,7 +4,7 @@ import discord
 from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
-from vehicle_filter import needs_attention, format_status
+import json
 
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -18,6 +18,12 @@ FARM_ID = "1"
 
 client = discord.Client(intents=discord.Intents.default())
 last_messages = []
+
+with open("vehicle_names_cleaned_final.json", "r", encoding="utf-8") as f:
+    name_map = json.load(f)
+
+def get_readable_name(raw_name):
+    return name_map.get(raw_name.lower(), raw_name)
 
 def fetch_vehicles_xml():
     try:
@@ -56,14 +62,16 @@ def parse_vehicles(xml_data):
         for vehicle in root.findall("vehicle"):
             if vehicle.attrib.get("farmId") != FARM_ID:
                 continue
-            filename = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
-            dirt, damage, fuel = extract_vehicle_info(vehicle)
-            if not needs_attention(filename, dirt, damage, fuel):
+            filename_raw = vehicle.get("filename")
+            if not filename_raw:
                 continue
-            line = format_status(filename, dirt, damage, fuel)
+            filename = filename_raw.split("/")[-1].replace(".xml", "")
+            name = get_readable_name(filename)
+            dirt, damage, fuel = extract_vehicle_info(vehicle)
+            line = f"{name} | Dirt: {int(dirt*100)}% | Damage: {int(damage*100)}% | Fuel: {int(fuel)}L"
             vehicles.append(line)
     except Exception as e:
-        vehicles.append(f"Ошибка при разборе XML: {e}")
+        vehicles.append(f"Error parsing XML: {e}")
     return vehicles
 
 def split_messages(lines, max_length=2000):
@@ -97,14 +105,14 @@ async def start_reporting():
         if xml_data:
             lines = parse_vehicles(xml_data)
         else:
-            lines = ["Не удалось получить данные с FTP"]
+            lines = ["Could not fetch data from FTP"]
         blocks = split_messages(lines)
         for block in blocks:
             try:
                 sent = await channel.send(block)
                 last_messages.append(sent)
             except Exception as e:
-                print(f"Ошибка отправки: {e}")
+                print(f"Send error: {e}")
         await asyncio.sleep(30)
 
 client.run(TOKEN)
