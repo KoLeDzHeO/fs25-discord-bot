@@ -1,37 +1,39 @@
 
 import json
 
+# Загрузка информации о технике из JSON
 with open("fs25_vehicles.json", "r", encoding="utf-8") as f:
-    vehicle_data = json.load(f)
-    vehicle_map = {v["xml_key"].lower(): v for v in vehicle_data}
+    data = json.load(f)
 
-def get_vehicle_metadata(xml_key: str):
-    return vehicle_map.get(xml_key.lower())
+# Преобразуем список в словарь по xml_key
+vehicle_map = {entry["xml_key"]: entry for entry in data}
 
-def needs_attention(xml_key: str, dirt: float, damage: float, fuel: float) -> bool:
-    info = get_vehicle_metadata(xml_key)
-    if not info:
-        return True  # Показывать неизвестную технику
+def get_info_by_key(xml_key):
+    return vehicle_map.get(xml_key, {
+        "icon": "🛠️",
+        "name_ru": xml_key,
+        "class": "Неизвестная техника"
+    })
 
-    if info.get("uses_fuel"):
-        capacity = info.get("fuel_capacity", 0)
-        return dirt > 0.05 or damage > 0.05 or fuel < 0.8 * capacity
-    else:
-        return dirt > 0.05 or damage > 0.05
+def format_status(xml_key, dirt, damage, fuel):
+    info = get_info_by_key(xml_key)
+    icon = info.get("icon", "🛠️")
+    name_ru = info.get("name_ru") or xml_key
+    category = info.get("class") or "Неизвестная техника"
 
-def format_status(xml_key: str, dirt: float, damage: float, fuel: float) -> str:
-    info = get_vehicle_metadata(xml_key)
-    name = info.get("name_ru", xml_key)
-    icon = info.get("icon", "")
-    category = info.get("class", "Неизвестно")
-    parts = []
+    # Название техники
+    line = f"{icon} {name_ru} — {category}"
 
-    if dirt > 0.05:
-        parts.append(f"Грязь: {int(dirt * 100)}%")
-    if damage > 0.05:
-        parts.append(f"Повреждение: {int(damage * 100)}%")
-    if info.get("uses_fuel") and info.get("fuel_capacity"):
-        if fuel < 0.8 * info["fuel_capacity"]:
-            parts.append(f"Топливо: {int(fuel)}L")
+    # Параметры состояния
+    stats = []
+    if dirt > 0:
+        stats.append(f"Грязь: {int(dirt * 100)}%")
+    if damage > 0:
+        stats.append(f"Повреждение: {int(damage * 100)}%")
+    if fuel > 0:
+        stats.append(f"Топливо: {int(fuel)} L")
 
-    return f"{icon} {name} ({category}) | " + " | ".join(parts)
+    if stats:
+        line += "\n  ├ " + "  ".join(stats)
+
+    return line
