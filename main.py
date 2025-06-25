@@ -5,7 +5,7 @@ from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
 from collections import defaultdict
-from vehicle_filter import get_info_by_key
+from vehicle_filter import get_info_by_key, get_icon_by_class
 
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -53,6 +53,17 @@ def extract_vehicle_info(vehicle):
             break
     return dirt, damage, fuel
 
+def format_line(name, dirt, damage, fuel, max_fuel):
+    status = []
+    if dirt > 0.05:
+        status.append(f"грязь {int(dirt * 100)}%")
+    if damage > 0.05:
+        status.append(f"повреж. {int(damage * 100)}%")
+    if max_fuel and fuel < 0.99 * max_fuel:
+        status.append(f"топл. {int(fuel)}L")
+    stat_str = ", ".join(status)
+    return f"{name:<30}  {stat_str}" if status else name
+
 def parse_vehicles(xml_data):
     categories = defaultdict(list)
     try:
@@ -75,7 +86,8 @@ def parse_vehicles(xml_data):
 
             category = info.get("class") or "Разное"
             name = info.get("name_ru") or filename
-            categories[category].append(name)
+            line = format_line(name, dirt, damage, fuel, max_fuel)
+            categories[category].append(line)
     except Exception as e:
         return [f"Ошибка разбора XML: {e}"]
     return format_output(categories)
@@ -83,7 +95,8 @@ def parse_vehicles(xml_data):
 def format_output(groups):
     result = []
     for cat, items in sorted(groups.items()):
-        result.append(f"{cat}:")
+        icon = get_icon_by_class(cat)
+        result.append(f"{icon} {cat}:")
         result.append("```")
         result.extend(items)
         result.append("```")
