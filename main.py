@@ -19,7 +19,7 @@ FARM_ID = "1"
 client = discord.Client(intents=discord.Intents.default())
 last_messages = []
 
-with open("vehicle_names_cleaned_final.json", "r", encoding="utf-8") as f:
+with open("fs25_vehicles.json", "r", encoding="utf-8") as f:
     name_map = json.load(f)
 
 def get_readable_name(raw_name):
