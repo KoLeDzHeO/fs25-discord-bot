@@ -5,7 +5,8 @@ from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
 import json
-from vehicle_filter import format_status  # Используем форматированный вывод
+from collections import Counter
+from vehicle_filter import format_status
 
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -72,6 +73,8 @@ def parse_vehicles(xml_data):
             if not filename_raw:
                 continue
             filename = filename_raw.split("/")[-1].replace(".xml", "")
+            if filename in SKIP_OBJECTS:
+                continue
             dirt, damage, fuel = extract_vehicle_info(vehicle)
             line = format_status(filename, dirt, damage, fuel)
             vehicles.append(line)
@@ -91,6 +94,16 @@ def split_messages(lines, max_length=2000):
         blocks.append(current)
     return blocks
 
+def merge_duplicates(lines):
+    counter = Counter(lines)
+    result = []
+    for line, count in counter.items():
+        if count > 1:
+            result.append(f"{line} ×{count}")
+        else:
+            result.append(line)
+    return result
+
 @client.event
 async def on_ready():
     print(f"Bot started as {client.user}")
@@ -109,6 +122,7 @@ async def start_reporting():
         xml_data = fetch_vehicles_xml()
         if xml_data:
             lines = parse_vehicles(xml_data)
+            lines = merge_duplicates(lines)
         else:
             lines = ["Could not fetch data from FTP"]
         blocks = split_messages(lines)
