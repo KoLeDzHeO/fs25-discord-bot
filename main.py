@@ -5,7 +5,7 @@ from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
 from collections import defaultdict
-from vehicle_filter import get_info_by_key, get_icon_by_class
+from vehicle_filter import get_info_by_key, get_icon_by_class, format_status_line
 
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -18,18 +18,11 @@ FTP_PATH = os.getenv("FTP_PATH")
 FARM_ID = "1"
 
 client = discord.Client(intents=discord.Intents.default())
-last_messages = []
 
 SKIP_OBJECTS = {
-    "eggBoxPallet",
-    "cementBagsPallet",
-    "bigBag_seeds",
-    "bigBagHelm_fertilizer",
-    "bigBag_fertilizer",
-    "goatMilkCanPallet",
-    "roofPlatesPallet",
-    "cementBricksPallet",
-    "cementBoxPallet",
+    "eggBoxPallet", "cementBagsPallet", "bigBag_seeds", "bigBagHelm_fertilizer",
+    "bigBag_fertilizer", "goatMilkCanPallet", "roofPlatesPallet",
+    "cementBricksPallet", "cementBoxPallet"
 }
 
 def fetch_vehicles_xml():
@@ -77,41 +70,27 @@ def parse_vehicles(xml_data):
             dirt, damage, fuel = extract_vehicle_info(vehicle)
             info = get_info_by_key(filename)
             max_fuel = info.get("fuel_capacity") or 0
-            fuel_threshold = 0.8 * max_fuel if max_fuel else None
-
-            if damage <= 0.05 and dirt <= 0.05 and (not fuel_threshold or fuel >= fuel_threshold):
+            if damage <= 0.05 and dirt <= 0.05 and (not max_fuel or fuel >= 0.8 * max_fuel):
                 continue
 
-            icon = info.get("icon", "🛠️")
-            name = info.get("name_ru") or filename
             category = info.get("class") or "Разное"
-            status = []
-            if dirt > 0.05:
-                status.append(f"грязь {int(dirt * 100)}%")
-            if damage > 0.05:
-                status.append(f"повреж. {int(damage * 100)}%")
-            if fuel_threshold and fuel < fuel_threshold:
-                status.append(f"топл. {int(fuel)}L")
-            entry = f"{icon} {name}"
-            if status:
-                entry += f" ({', '.join(status)})"
-            categories[category].append(entry)
+            line = format_status_line(filename, dirt, damage, fuel)
+            categories[category].append(line)
     except Exception as e:
-        return [f"Error parsing XML: {e}"]
+        return [f"Ошибка разбора XML: {e}"]
     return format_grouped_output(categories)
 
 def format_grouped_output(groups):
     result = []
     for cat, items in sorted(groups.items()):
         icon = get_icon_by_class(cat)
-        result.append(f"{icon} **{cat}**:")
-        result.extend(f"- {item}" for item in items)
+        result.append(f"{icon} {cat}")
+        result.extend(items)
         result.append("")
     return result
 
 def split_messages(lines, max_length=2000):
-    blocks = []
-    current = ""
+    blocks, current = [], ""
     for line in lines:
         if len(current) + len(line) + 1 > max_length:
             blocks.append(current)
@@ -127,31 +106,21 @@ async def on_ready():
     await start_reporting()
 
 async def start_reporting():
-    global last_messages
     channel = client.get_channel(CHANNEL_ID)
-
-    # Удалить все предыдущие сообщения от бота
     async for msg in channel.history(limit=None):
         if msg.author == client.user:
             try:
                 await msg.delete()
             except:
                 pass
-    last_messages.clear()
-
     while True:
         xml_data = fetch_vehicles_xml()
-        if xml_data:
-            lines = parse_vehicles(xml_data)
-        else:
-            lines = ["Could not fetch data from FTP"]
-        blocks = split_messages(lines)
-        for block in blocks:
+        lines = parse_vehicles(xml_data) if xml_data else ["Ошибка получения данных с FTP"]
+        for block in split_messages(lines):
             try:
-                sent = await channel.send(block)
-                last_messages.append(sent)
+                await channel.send(block)
             except Exception as e:
-                print(f"Send error: {e}")
+                print(f"Ошибка отправки: {e}")
         await asyncio.sleep(30)
 
 client.run(TOKEN)
