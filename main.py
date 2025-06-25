@@ -5,7 +5,9 @@ from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
 import json
+from vehicle_filter import format_status  # Используем форматированный вывод
 
+# === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
 FTP_HOST = os.getenv("FTP_HOST")
@@ -17,13 +19,6 @@ FARM_ID = "1"
 
 client = discord.Client(intents=discord.Intents.default())
 last_messages = []
-
-with open("fs25_vehicles.json", "r", encoding="utf-8") as f:
-    vehicles = json.load(f)
-name_map = {v["xml_key"].lower(): v["name_ru"] for v in vehicles if v.get("name_ru")}
-
-def get_readable_name(raw_name):
-    return name_map.get(raw_name.lower(), raw_name)
 
 def fetch_vehicles_xml():
     try:
@@ -64,9 +59,8 @@ def parse_vehicles(xml_data):
             if not filename_raw:
                 continue
             filename = filename_raw.split("/")[-1].replace(".xml", "")
-            name = get_readable_name(filename)
             dirt, damage, fuel = extract_vehicle_info(vehicle)
-            line = f"{name} | Грязь: {int(dirt*100)}% | Повреждение: {int(damage*100)}% | Топливо: {int(fuel)}L"
+            line = format_status(filename, dirt, damage, fuel)
             vehicles.append(line)
     except Exception as e:
         vehicles.append(f"Error parsing XML: {e}")
