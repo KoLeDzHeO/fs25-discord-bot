@@ -123,12 +123,13 @@ async def start_reporting():
     global last_messages
     channel = client.get_channel(CHANNEL_ID)
     while True:
-        for msg in last_messages:
-            try:
-                await msg.delete()
-            except:
-                pass
-        last_messages.clear()
+        # Удалить все предыдущие сообщения от бота
+        async for msg in channel.history(limit=100):
+            if msg.author == client.user:
+                try:
+                    await msg.delete()
+                except:
+                    pass
         xml_data = fetch_vehicles_xml()
         if xml_data:
             lines = parse_vehicles(xml_data)
