@@ -108,7 +108,7 @@ def split_messages(lines, max_length=2000):
         if len(current) + len(section) + 2 > max_length:
             blocks.append(current.strip())
             current = ""
-        current += section + "\n\n"
+        current += section + "\n"
     if current.strip():
         blocks.append(current.strip())
     return blocks
