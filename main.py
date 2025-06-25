@@ -20,6 +20,19 @@ FARM_ID = "1"
 client = discord.Client(intents=discord.Intents.default())
 last_messages = []
 
+# Игнорируем эти объекты
+SKIP_OBJECTS = {
+    "eggBoxPallet",
+    "cementBagsPallet",
+    "bigBag_seeds",
+    "bigBagHelm_fertilizer",
+    "goatMilkCanPallet",
+    "roofPlatesPallet",
+    "cementBricksPallet",
+    "cementBoxPallet",
+    "bigBag_fertilizer",
+}
+
 def fetch_vehicles_xml():
     try:
         ftp = FTP()
