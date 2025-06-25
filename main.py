@@ -84,7 +84,9 @@ def format_grouped_output(groups):
     result = []
     for cat, items in sorted(groups.items()):
         icon = get_icon_by_class(cat)
-        result.append(f"{icon} {cat}")
+        result.append(f"{icon} **{cat}**")
+        result.append("| Название                          | Грязь   | Поврежд.  | Топливо   |")
+        result.append("|-----------------------------------|---------|-----------|-----------|")
         result.extend(items)
         result.append("")
     return result
