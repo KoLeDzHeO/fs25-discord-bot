@@ -4,9 +4,8 @@ import discord
 from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
-import json
 from collections import defaultdict
-from vehicle_filter import format_status, get_info_by_key
+from vehicle_filter import get_info_by_key, get_icon_by_class
 
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -74,17 +73,24 @@ def parse_vehicles(xml_data):
             filename = filename_raw.split("/")[-1].replace(".xml", "")
             if filename in SKIP_OBJECTS:
                 continue
+
             dirt, damage, fuel = extract_vehicle_info(vehicle)
             info = get_info_by_key(filename)
+            max_fuel = info.get("fuel_capacity") or 0
+            fuel_threshold = 0.8 * max_fuel if max_fuel else None
+
+            if damage <= 0.05 and dirt <= 0.05 and (not fuel_threshold or fuel >= fuel_threshold):
+                continue
+
             icon = info.get("icon", "🛠️")
             name = info.get("name_ru") or filename
             category = info.get("class") or "Разное"
             status = []
-            if dirt > 0:
+            if dirt > 0.05:
                 status.append(f"грязь {int(dirt * 100)}%")
-            if damage > 0:
+            if damage > 0.05:
                 status.append(f"повреж. {int(damage * 100)}%")
-            if fuel > 0:
+            if fuel_threshold and fuel < fuel_threshold:
                 status.append(f"топл. {int(fuel)}L")
             entry = f"{icon} {name}"
             if status:
@@ -97,9 +103,10 @@ def parse_vehicles(xml_data):
 def format_grouped_output(groups):
     result = []
     for cat, items in sorted(groups.items()):
-        result.append(f"**{cat}**:")
+        icon = get_icon_by_class(cat)
+        result.append(f"{icon} **{cat}**:")
         result.extend(f"- {item}" for item in items)
-        result.append("")  # empty line between categories
+        result.append("")
     return result
 
 def split_messages(lines, max_length=2000):
@@ -122,14 +129,17 @@ async def on_ready():
 async def start_reporting():
     global last_messages
     channel = client.get_channel(CHANNEL_ID)
+
+    # Удалить все предыдущие сообщения от бота
+    async for msg in channel.history(limit=None):
+        if msg.author == client.user:
+            try:
+                await msg.delete()
+            except:
+                pass
+    last_messages.clear()
+
     while True:
-        # Удалить все предыдущие сообщения от бота
-        async for msg in channel.history(limit=100):
-            if msg.author == client.user:
-                try:
-                    await msg.delete()
-                except:
-                    pass
         xml_data = fetch_vehicles_xml()
         if xml_data:
             lines = parse_vehicles(xml_data)
