@@ -7,8 +7,6 @@ from io import BytesIO
 from collections import defaultdict
 from vehicle_filter import get_info_by_key, get_icon_by_class
 
-last_messages = []
-
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
@@ -120,10 +118,12 @@ async def on_ready():
     print(f"Бот запущен как {client.user}")
     await start_reporting()
 
+
 async def start_reporting():
+    global last_messages
     channel = client.get_channel(CHANNEL_ID)
 
-    # Удаление сообщений только от бота и только с контентом
+    # Удаляем все предыдущие сообщения от бота в начале
     async for msg in channel.history(limit=None):
         if msg.author == client.user:
             try:
@@ -131,8 +131,8 @@ async def start_reporting():
             except:
                 pass
 
-        while True:
-        # Удаляем все прошлые отправленные ботом сообщения
+    while True:
+        # Удаляем ранее отправленные сообщения
         for msg in last_messages:
             try:
                 await msg.delete()
@@ -141,18 +141,13 @@ async def start_reporting():
         last_messages.clear()
 
         xml_data = fetch_vehicles_xml()
-        if not xml_data:
-            await channel.send("Ошибка получения XML с FTP.")
-            await asyncio.sleep(30)
-            continue
+        lines = parse_vehicles(xml_data) if xml_data else ["Ошибка получения данных с FTP"]
 
-        lines = parse_vehicles(xml_data)
         for block in split_messages(lines):
             try:
                 sent = await channel.send(block)
-            last_messages.append(sent)
+                last_messages.append(sent)
             except Exception as e:
-                print(f"Ошибка отправки сообщения: {e}")
-        await asyncio.sleep(30)
+                print(f"Ошибка отправки: {e}")
 
-client.run(TOKEN)
+        await asyncio.sleep(30)
