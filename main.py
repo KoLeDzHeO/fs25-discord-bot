@@ -7,6 +7,8 @@ from io import BytesIO
 from collections import defaultdict
 from vehicle_filter import get_info_by_key, get_icon_by_class
 
+last_messages = []
+
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
@@ -129,7 +131,15 @@ async def start_reporting():
             except:
                 pass
 
-    while True:
+        while True:
+        # Удаляем все прошлые отправленные ботом сообщения
+        for msg in last_messages:
+            try:
+                await msg.delete()
+            except:
+                pass
+        last_messages.clear()
+
         xml_data = fetch_vehicles_xml()
         if not xml_data:
             await channel.send("Ошибка получения XML с FTP.")
@@ -139,7 +149,8 @@ async def start_reporting():
         lines = parse_vehicles(xml_data)
         for block in split_messages(lines):
             try:
-                await channel.send(block)
+                sent = await channel.send(block)
+            last_messages.append(sent)
             except Exception as e:
                 print(f"Ошибка отправки сообщения: {e}")
         await asyncio.sleep(30)
