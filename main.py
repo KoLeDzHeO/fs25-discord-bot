@@ -158,6 +158,7 @@ async def start_reporting():
             print("✅ XML получен")
 
         lines = parse_vehicles(xml_data)
+        lines.insert(0, '```\n{:^64}\n```'.format("ТЕХНИКА НУЖДАЮЩАЯСЯ В ОБСЛУЖИВАНИИ"))
         if not lines:
             print("ℹ️ Нет техники для обслуживания")
             await channel.send("ℹ️ Нет техники для обслуживания")
