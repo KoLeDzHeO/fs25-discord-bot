@@ -1,11 +1,10 @@
-
 import os
 import asyncio
 import discord
 from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
-import json
+from vehicle_filter import needs_attention, format_status
 
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -19,17 +18,6 @@ FARM_ID = "1"
 
 client = discord.Client(intents=discord.Intents.default())
 last_messages = []
-
-with open("fs25_vehicles.json", "r", encoding="utf-8") as f:
-    vehicle_data = json.load(f)
-    vehicle_map = {v["xml_key"].lower(): v for v in vehicle_data}
-
-def get_readable_vehicle_info(raw_name):
-    key = raw_name.lower()
-    data = vehicle_map.get(key)
-    if not data:
-        return raw_name, "", ""
-    return data.get("name_ru", raw_name), data.get("icon", ""), data.get("class", "")
 
 def fetch_vehicles_xml():
     try:
@@ -69,9 +57,10 @@ def parse_vehicles(xml_data):
             if vehicle.attrib.get("farmId") != FARM_ID:
                 continue
             filename = vehicle.get("filename", "").split("/")[-1].replace(".xml", "")
-            name_ru, icon, _ = get_readable_vehicle_info(filename)
             dirt, damage, fuel = extract_vehicle_info(vehicle)
-            line = f"{icon} {name_ru} | Грязь: {int(dirt*100)}% | Повреждение: {int(damage*100)}% | Топливо: {int(fuel)}L"
+            if not needs_attention(filename, dirt, damage, fuel):
+                continue
+            line = format_status(filename, dirt, damage, fuel)
             vehicles.append(line)
     except Exception as e:
         vehicles.append(f"Ошибка при разборе XML: {e}")
