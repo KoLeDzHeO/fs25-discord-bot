@@ -5,7 +5,7 @@ from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
 from collections import defaultdict
-from vehicle_filter import get_info_by_key, get_icon_by_class, format_status_line
+from vehicle_filter import get_info_by_key
 
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -74,21 +74,19 @@ def parse_vehicles(xml_data):
                 continue
 
             category = info.get("class") or "Разное"
-            line = format_status_line(filename, dirt, damage, fuel)
-            categories[category].append(line)
+            name = info.get("name_ru") or filename
+            categories[category].append(name)
     except Exception as e:
         return [f"Ошибка разбора XML: {e}"]
-    return format_grouped_output(categories)
+    return format_output(categories)
 
-def format_grouped_output(groups):
+def format_output(groups):
     result = []
     for cat, items in sorted(groups.items()):
-        icon = get_icon_by_class(cat)
-        result.append(f"{icon} **{cat}**")
-        result.append("| Название                          | Грязь   | Поврежд.  | Топливо   |")
-        result.append("|-----------------------------------|---------|-----------|-----------|")
+        result.append(f"{cat}:")
+        result.append("```")
         result.extend(items)
-        result.append("")
+        result.append("```")
     return result
 
 def split_messages(lines, max_length=2000):
@@ -104,7 +102,7 @@ def split_messages(lines, max_length=2000):
 
 @client.event
 async def on_ready():
-    print(f"Bot started as {client.user}")
+    print(f"Bot started как {client.user}")
     await start_reporting()
 
 async def start_reporting():
