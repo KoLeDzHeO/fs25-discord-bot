@@ -6,7 +6,6 @@ import xml.etree.ElementTree as ET
 from io import BytesIO
 import json
 
-# === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID"))
 FTP_HOST = os.getenv("FTP_HOST")
@@ -20,7 +19,8 @@ client = discord.Client(intents=discord.Intents.default())
 last_messages = []
 
 with open("fs25_vehicles.json", "r", encoding="utf-8") as f:
-    name_map = json.load(f)
+    vehicles = json.load(f)
+name_map = {v["xml_key"].lower(): v["name_ru"] for v in vehicles if v.get("name_ru")}
 
 def get_readable_name(raw_name):
     return name_map.get(raw_name.lower(), raw_name)
@@ -40,9 +40,7 @@ def fetch_vehicles_xml():
         return None
 
 def extract_vehicle_info(vehicle):
-    dirt = 0
-    damage = 0
-    fuel = 0
+    dirt = damage = fuel = 0
     dirt_elem = vehicle.find(".//washable/dirtNode")
     if dirt_elem is not None:
         dirt = float(dirt_elem.attrib.get("amount", 0))
@@ -68,7 +66,7 @@ def parse_vehicles(xml_data):
             filename = filename_raw.split("/")[-1].replace(".xml", "")
             name = get_readable_name(filename)
             dirt, damage, fuel = extract_vehicle_info(vehicle)
-            line = f"{name} | Dirt: {int(dirt*100)}% | Damage: {int(damage*100)}% | Fuel: {int(fuel)}L"
+            line = f"{name} | Грязь: {int(dirt*100)}% | Повреждение: {int(damage*100)}% | Топливо: {int(fuel)}L"
             vehicles.append(line)
     except Exception as e:
         vehicles.append(f"Error parsing XML: {e}")
