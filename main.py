@@ -172,7 +172,7 @@ async def start_reporting():
             except Exception as e:
                 print(f"Ошибка отправки: {e}")
 
-        await asyncio.sleep(60)
+        await asyncio.sleep(600)
 
 @client.event
 async def on_ready():
