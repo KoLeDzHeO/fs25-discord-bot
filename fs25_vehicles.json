@@ -671,24 +671,24 @@
     },
     {
         "xml_key": "series835G",
-        "name": "series835G",
-        "class": "Неизвестная техника",
-        "uses_fuel": true,
-        "fuel_capacity": 650.0,
-        "fuel_type": "diesel",
-        "name_ru": "",
-        "icon": "🛠️"
+		"name": "series835G",
+		"class": "Трактор (средний)",
+		"uses_fuel": true,
+		"fuel_capacity": 650.0,
+		"fuel_type": "diesel",
+		"name_ru": "John Deere 835G",
+		"icon": "🚜"
     },
     {
-        "xml_key": "spwIntense",
-        "name": "spwIntense",
-        "class": "Неизвестная техника",
-        "uses_fuel": true,
-        "fuel_capacity": 270.0,
-        "fuel_type": "diesel",
-        "name_ru": "",
-        "icon": "🛠️"
-    },
+		"xml_key": "spwIntense",
+		"name": "spwIntense",
+		"class": "Комбайн",
+		"uses_fuel": true,
+		"fuel_capacity": 270.0,
+		"fuel_type": "diesel",
+		"name_ru": "SPW Intense",
+		"icon": "🌾"
+	},
     {
         "xml_key": "g340",
         "name": "g340",
@@ -1320,25 +1320,25 @@
         "icon": "🛠️"
     },
     {
-        "xml_key": "tForcePlus950",
-        "name": "tForcePlus950",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
-    },
+		"xml_key": "tForcePlus950",
+		"name": "tForcePlus950",
+		"class": "Сеялка‑высевашка",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Novag T‑Force Plus 950",
+		"icon": "🌾"
+	},
     {
-        "xml_key": "superChisel",
-        "name": "superChisel",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
-    },
+		"xml_key": "superChisel",
+		"name": "superChisel",
+		"class": "Глубокорыхлитель",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Agro-Masz Super Chisel 11 SH",
+		"icon": "🛠️"
+	},
     {
         "xml_key": "keiler2",
         "name": "keiler2",
@@ -1360,24 +1360,24 @@
         "icon": "🛠️"
     },
     {
-        "xml_key": "g4010Q",
-        "name": "g4010Q",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "g4010Q",
+		"name": "g4010Q",
+		"class": "Обмотчик тюков",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Göweil G4010 Q Profi",
+		"icon": "📦"
     },
     {
-        "xml_key": "maestro975RX",
-        "name": "maestro975RX",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "maestro975RX",
+		"name": "maestro975RX",
+		"class": "Сеялка",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Horsch Maestro 9.75 RX",
+		"icon": "🌱"
     },
     {
         "xml_key": "top1403",
@@ -1390,24 +1390,24 @@
         "icon": "🛠️"
     },
     {
-        "xml_key": "ux5201Super",
-        "name": "ux5201Super",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "ux5201Super",
+		"name": "ux5201Super",
+		"class": "Опрыскиватель",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Amazone UX 5201 Super",
+		"icon": "🧴"
     },
     {
-        "xml_key": "omega6000FL",
-        "name": "omega6000FL",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "omega6000FL",
+		"name": "omega6000FL",
+		"class": "Сеялка прямого высева",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Bednar Omega OO 6000 FL",
+		"icon": "🌱"
     },
     {
         "xml_key": "super7",
@@ -1420,14 +1420,14 @@
         "icon": "🛠️"
     },
     {
-        "xml_key": "g1F125Kombi",
-        "name": "g1F125Kombi",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "g1F125Kombi",
+		"name": "g1F125Kombi",
+		"class": "Пресс‑обмотчик тюков",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Göweil G1 F125 Kombi",
+		"icon": "📦"
     },
     {
         "xml_key": "matrix1800",
@@ -1460,14 +1460,14 @@
         "icon": "🛠️"
     },
     {
-        "xml_key": "tiger8MT",
-        "name": "tiger8MT",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "tiger8MT",
+		"name": "tiger8MT",
+		"class": "Культиватор",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Horsch Tiger 8 MT",
+		"icon": "🌱"
     },
     {
         "xml_key": "pw10012",
@@ -1480,24 +1480,24 @@
         "icon": "🛠️"
     },
     {
-        "xml_key": "c441R",
-        "name": "c441R",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "c441R",
+		"name": "c441R",
+		"class": "Тюковый пресс",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "John Deere C441R",
+		"icon": "📦"
     },
     {
-        "xml_key": "proTil4TX",
-        "name": "proTil4TX",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "proTil4TX",
+		"name": "proTil4TX",
+		"class": "Сеялка‑культиватор",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Mzuri Pro‑Til 4Tx",
+		"icon": "🌱"
     },
     {
         "xml_key": "aeon5200",
@@ -1530,14 +1530,14 @@
         "icon": "🛠️"
     },
     {
-        "xml_key": "finer6SL",
-        "name": "finer6SL",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "finer6SL",
+		"name": "finer6SL",
+		"class": "Культиватор",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Horsch Finer 6 SL",
+		"icon": "🛠️"
     },
     {
         "xml_key": "prios440",
@@ -1550,44 +1550,44 @@
         "icon": "🌱"
     },
     {
-        "xml_key": "aerosemVT5000DD",
-        "name": "aerosemVT5000DD",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "aerosemVT5000DD",
+		"name": "aerosemVT5000DD",
+		"class": "Сеялка прямого высева",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Pöttinger AEROSEM VT 5000 DD",
+		"icon": "🌱"
     },
     {
-        "xml_key": "hit1618T",
-        "name": "hit1618T",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "hit1618T",
+		"name": "hit1618T",
+		"class": "Валкователь сена",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Pöttinger HIT 16.18 T Tedder",
+		"icon": "🌾"
     },
     {
-        "xml_key": "topDown600",
-        "name": "topDown600",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "topDown600",
+		"name": "topDown600",
+		"class": "Культиватор",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Väderstad TopDown 600",
+		"icon": "🛠️"
     },
     {
-        "xml_key": "aquilaDrive400",
-        "name": "aquilaDrive400",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "aquilaDrive400",
+		"name": "aquilaDrive400",
+		"class": "Сеялка прямого высева",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Agro‑Masz Aquila Drive 400",
+		"icon": "🌱"
     },
     {
         "xml_key": "planter4900",
@@ -1610,14 +1610,14 @@
         "icon": "🛠️"
     },
     {
-        "xml_key": "proBelt165",
-        "name": "proBelt165",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "proBelt165",
+		"name": "proBelt165",
+		"class": "Круглый тюковый пресс",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "New Holland Pro‑Belt 165",
+		"icon": "📦"
     },
     {
         "xml_key": "aw2217",
@@ -1630,54 +1630,54 @@
         "icon": "🚛"
     },
     {
-        "xml_key": "bigPack1290HDPVC",
-        "name": "bigPack1290HDPVC",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "bigPack1290HDPVC",
+		"name": "bigPack1290HDPVC",
+		"class": "Квадратный тюковый пресс",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Krone BigPack 1290 HDP VC",
+		"icon": "📦"
     },
     {
-        "xml_key": "espro6000RC",
-        "name": "espro6000RC",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "espro6000RC",
+		"name": "espro6000RC",
+		"class": "Сеялка прямого высева",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "KUHN ESPRO 6000 RC",
+		"icon": "🌱"
     },
     {
-        "xml_key": "jumbo8450DB",
-        "name": "jumbo8450DB",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "bigPack1290HDPVC",
+		"name": "bigPack1290HDPVC",
+		"class": "Силосный погрузчик",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "Pöttinger Jumbo 8450 DB+",
+		"icon": "🚜"
     },
     {
-        "xml_key": "g1015",
-        "name": "g1015",
-        "class": "Неизвестно",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "G1015",
-        "icon": "🛠️"
+		"xml_key": "g1015",
+		"name": "g1015",
+		"class": "Обмотчик тюков",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "GÖWEIL G1015",
+		"icon": "📦"
     },
     {
-        "xml_key": "maxima3TIL",
-        "name": "maxima3TIL",
-        "class": "Неизвестная техника",
-        "uses_fuel": false,
-        "fuel_capacity": null,
-        "fuel_type": null,
-        "name_ru": "",
-        "icon": "🛠️"
+		"xml_key": "maxima3TIL",
+		"name": "maxima3TIL",
+		"class": "Сеялка‑точного высева",
+		"uses_fuel": false,
+		"fuel_capacity": null,
+		"fuel_type": null,
+		"name_ru": "KUHN MAXIMA 3 TIL",
+		"icon": "🌱"
     },
     {
         "xml_key": "pgII28Genesis",
