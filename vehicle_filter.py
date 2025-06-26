@@ -1,11 +1,22 @@
 import json
 
-with open("fs25_vehicles.json", "r", encoding="utf-8") as f:
+# Load vehicle information from the filtered list shipped with the bot
+with open("filtered_vehicles.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
-vehicle_map = {entry["xml_key"]: entry for entry in data}
-# Build a mapping from class name to icon for quick lookup
-class_icon_map = {entry["class"]: entry.get("icon") for entry in data if entry.get("class")}
+# Map XML file key to the corresponding info dictionary
+vehicle_map = {}
+for entry in data:
+    key = entry.get("nameXML") or entry.get("xml_key")
+    if key:
+        vehicle_map[key] = entry
+
+# Build a mapping from class name to icon for quick lookup (may be empty)
+class_icon_map = {
+    entry["class"]: entry.get("icon")
+    for entry in data
+    if entry.get("class")
+}
 
 CATEGORY_ORDER = [
     "Трактор", "Комбайн", "Жатка", "Культиватор", "Сеялка", "Опрыскиватель",
@@ -14,11 +25,12 @@ CATEGORY_ORDER = [
 ]
 
 def get_info_by_key(xml_key):
+    """Return info for the given XML key or sensible defaults."""
     return vehicle_map.get(xml_key, {
         "icon": "🛠️",
-        "name_ru": xml_key,
+        "name": xml_key,
         "class": "Неизвестная техника",
-        "fuel_capacity": None
+        "fuel_capacity": None,
     })
 
 def get_icon_by_class(class_name):
