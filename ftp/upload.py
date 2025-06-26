@@ -1,6 +1,5 @@
 import argparse
 import asyncio
-import os
 
 import aioftp
 from config import config
