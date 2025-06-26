@@ -8,39 +8,6 @@ from typing import Iterable
 from vehicle_filter import get_info_by_key
 from classify_vehicles import classify_vehicles
 from models import Vehicle
-from discord import Embed
-
-def create_vehicle_embed(vehicle: Vehicle) -> Embed:
-    fuel_ratio = (vehicle.fuel_fill_level or 0) / (vehicle.fuel_capacity or 1)
-    condition_critical = vehicle.damage > 0.5
-    fuel_low = fuel_ratio < 0.8
-
-    if condition_critical:
-        color = 0xFF0000  # Красный
-    elif fuel_low:
-        color = 0xFFA500  # Оранжевый
-    else:
-        color = 0x00FF00  # Зелёный
-
-    embed = Embed(title=vehicle.name or "Без названия", color=color)
-    embed.add_field(name="Класс", value=vehicle.class_name or "Неизвестно", inline=True)
-
-    if vehicle.uses_fuel:
-        embed.add_field(
-            name="Топливо",
-            value=f"{vehicle.fuel_fill_level:.1f} / {vehicle.fuel_capacity:.1f} л",
-            inline=True
-        )
-    else:
-        embed.add_field(name="Топливо", value="Не используется", inline=True)
-
-    embed.add_field(
-        name="Повреждения",
-        value=f"{vehicle.damage * 100:.0f}%",
-        inline=True
-    )
-
-    return embed
 
 last_messages: list[discord.Message] = []
 
