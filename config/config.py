@@ -3,8 +3,14 @@ import os
 
 def _get_env(name: str, default: str = "") -> str:
     """Return an environment variable without surrounding quotes."""
-    value = os.getenv(name, default)
-    return value.strip().strip('"').strip("'")
+    value = os.getenv(name, default).strip()
+    if (
+        len(value) >= 2
+        and value[0] == value[-1]
+        and value[0] in {'"', "'"}
+    ):
+        return value[1:-1]
+    return value
 
 
 DISCORD_TOKEN = _get_env("DISCORD_TOKEN")
