@@ -108,10 +108,8 @@ def format_output(groups):
     )
     result = []
     for cat, items in sorted_items:
-        icon = get_icon_by_class(cat)
-        block = [f"{icon} {cat}:", "```"]
+        block = [f"{cat}:"]
         block.extend(items)
-        block.append("```")
         result.append("\n".join(block))
     return result
 
@@ -179,14 +177,11 @@ async def start_reporting():
 
         if critical:
             crit_block = [
-                "❗ Техника в критическом состоянии:",
-                "```",
+                "Техника в критическом состоянии:",
             ]
             crit_block.extend(critical)
-            crit_block.append("```")
             output_lines.append("\n".join(crit_block))
 
-        lines.insert(0, "**──────────────────────────────────────── ТЕХНИКА НУЖДАЮЩАЯСЯ В ОБСЛУЖИВАНИИ ────────────────────────────────────────**")
 
         output_lines.extend(lines)
 
