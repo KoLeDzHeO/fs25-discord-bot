@@ -1,2 +1,2 @@
 py-cord==2.4.1
-aioftp>=0.22,<0.23
+aiohttp==3.9.5
