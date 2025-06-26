@@ -1,7 +1,7 @@
 import os
 import asyncio
 import discord
-import aioftp
+import ftplib
 import xml.etree.ElementTree as ET
 from io import BytesIO
 from collections import defaultdict
@@ -29,7 +29,7 @@ SKIP_OBJECTS = {
 
 async def fetch_vehicles_xml():
     def _download():
-        ftp = FTP()
+        ftp = ftplib.FTP()
         try:
             ftp.connect(FTP_HOST, FTP_PORT)
             ftp.login(FTP_USER, FTP_PASS)
