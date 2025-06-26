@@ -29,13 +29,13 @@ async def fetch_file(path: str) -> Optional[bytes]:
             # BytesIO``. To avoid this error we download the file to a temporary
             # location and then read the contents back into memory.
             with tempfile.NamedTemporaryFile() as tmp:
-                await ftp.download(path, tmp.name)
+                await ftp.download(path, tmp.name, write_into=True)
                 print(f"Downloaded to {tmp.name}")
                 tmp.seek(0)
                 data = tmp.read()
                 print(f"Read {len(data)} bytes")
                 return data
     except Exception as exc:
-        print(f"FTP error: {exc}")
+        print(f"FTP error ({type(exc).__name__}): {exc}")
         traceback.print_exc()
         return None
