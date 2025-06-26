@@ -4,8 +4,8 @@ import discord
 import ftplib
 import xml.etree.ElementTree as ET
 from io import BytesIO
-from collections import defaultdict
-from vehicle_filter import get_info_by_key, get_icon_by_class, CATEGORY_ORDER
+from vehicle_filter import get_info_by_key
+from classify_vehicles import classify_vehicles
 
 last_messages = []
 
@@ -56,20 +56,10 @@ def extract_vehicle_info(vehicle):
             break
     return dirt, damage, fuel
 
-def format_line(name, dirt, damage, fuel, max_fuel):
-    status = []
-    if dirt > 0.05:
-        status.append(f"грязь {int(dirt * 100)}%")
-    if damage > 0.05:
-        status.append(f"повреж. {int(damage * 100)}%")
-    if max_fuel and fuel < 0.80 * max_fuel:
-        status.append(f"топл. {int(fuel)}L")
-    stat_str = ", ".join(status)
-    return f"{name:<32} {stat_str}" if status else name
 
-def parse_vehicles(xml_data):
-    categories = defaultdict(list)
-    critical = []
+def collect_vehicles(xml_data):
+    """Return a list of vehicle dictionaries for classification."""
+    result = []
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
@@ -89,29 +79,19 @@ def parse_vehicles(xml_data):
             if damage <= 0.05 and dirt <= 0.05 and (not max_fuel or fuel >= 0.8 * max_fuel):
                 continue
 
-            category = info.get("class") or "Разное"
-            name = info.get("name") or filename
-            line = format_line(name, dirt, damage, fuel, max_fuel)
-            categories[category].append(line)
-
-            if damage > 0.5 or dirt > 0.5 or (max_fuel and fuel < 0.3 * max_fuel):
-                critical.append(line)
+            result.append(
+                {
+                    "name": info.get("name") or filename,
+                    "dirt": dirt * 100,
+                    "damage": damage * 100,
+                    "fuel": fuel,
+                    "fuel_capacity": max_fuel,
+                }
+            )
     except Exception as e:
-        return [], [f"Ошибка разбора XML: {e}"]
-    return critical, format_output(categories)
-
-def format_output(groups):
-    order_map = {name: idx for idx, name in enumerate(CATEGORY_ORDER)}
-    sorted_items = sorted(
-        groups.items(),
-        key=lambda kv: (order_map.get(kv[0], len(CATEGORY_ORDER)), kv[0]),
-    )
-    result = []
-    for cat, items in sorted_items:
-        block = [f"{cat}:"]
-        block.extend(items)
-        result.append("\n".join(block))
+        print(f"Ошибка разбора XML: {e}")
     return result
+
 
 def split_messages(lines, max_length=2000):
     """Split a list of text sections into messages <= max_length."""
@@ -171,26 +151,16 @@ async def start_reporting():
         else:
             print("✅ XML получен")
 
-        critical, lines = parse_vehicles(xml_data)
-        if not lines and not critical:
+        vehicles = collect_vehicles(xml_data)
+        if not vehicles:
             print("ℹ️ Нет техники для обслуживания")
             await channel.send("ℹ️ Нет техники для обслуживания")
             await asyncio.sleep(30)
             continue
 
-        output_lines = []
+        markdown = classify_vehicles(vehicles)
 
-        if critical:
-            crit_block = [
-                "Техника в критическом состоянии:",
-            ]
-            crit_block.extend(critical)
-            output_lines.append("\n".join(crit_block))
-
-
-        output_lines.extend(lines)
-
-        for block in split_messages(output_lines):
+        for block in split_messages([markdown]):
             try:
                 sent = await channel.send(block)
                 last_messages.append(sent)
