@@ -75,6 +75,7 @@ def format_line(name, dirt, damage, fuel, max_fuel):
 
 def parse_vehicles(xml_data):
     categories = defaultdict(list)
+    critical = []
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
@@ -90,6 +91,7 @@ def parse_vehicles(xml_data):
             dirt, damage, fuel = extract_vehicle_info(vehicle)
             info = get_info_by_key(filename)
             max_fuel = info.get("fuel_capacity") or 0
+
             if damage <= 0.05 and dirt <= 0.05 and (not max_fuel or fuel >= 0.8 * max_fuel):
                 continue
 
@@ -97,9 +99,12 @@ def parse_vehicles(xml_data):
             name = info.get("name_ru") or filename
             line = format_line(name, dirt, damage, fuel, max_fuel)
             categories[category].append(line)
+
+            if damage > 0.5 or dirt > 0.5 or (max_fuel and fuel < 0.3 * max_fuel):
+                critical.append(line)
     except Exception as e:
-        return [f"Ошибка разбора XML: {e}"]
-    return format_output(categories)
+        return [], [f"Ошибка разбора XML: {e}"]
+    return critical, format_output(categories)
 
 def format_output(groups):
     order_map = {name: idx for idx, name in enumerate(CATEGORY_ORDER)}
@@ -169,16 +174,29 @@ async def start_reporting():
         else:
             print("✅ XML получен")
 
-        lines = parse_vehicles(xml_data)
-        if not lines:
+        critical, lines = parse_vehicles(xml_data)
+        if not lines and not critical:
             print("ℹ️ Нет техники для обслуживания")
             await channel.send("ℹ️ Нет техники для обслуживания")
             await asyncio.sleep(30)
             continue
-            
+
+        output_lines = []
+
+        if critical:
+            crit_block = [
+                "❗ Техника в критическом состоянии:",
+                "```",
+            ]
+            crit_block.extend(critical)
+            crit_block.append("```")
+            output_lines.append("\n".join(crit_block))
+
         lines.insert(0, "**──────────────────────────────────────── ТЕХНИКА НУЖДАЮЩАЯСЯ В ОБСЛУЖИВАНИИ ────────────────────────────────────────**")
-        
-        for block in split_messages(lines):
+
+        output_lines.extend(lines)
+
+        for block in split_messages(output_lines):
             try:
                 sent = await channel.send(block)
                 last_messages.append(sent)
