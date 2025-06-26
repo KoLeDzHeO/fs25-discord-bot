@@ -28,17 +28,25 @@ SKIP_OBJECTS = {
 }
 
 async def fetch_vehicles_xml():
-    try:
-        async with aioftp.Client.context(
-            FTP_HOST,
-            FTP_PORT,
-            FTP_USER,
-            FTP_PASS,
-        ) as client:
+        codex/replace-ftplib-with-aioftp-and-add-async-handling
+    def _download():
+        ftp = FTP()
+        try:
+            ftp.connect(FTP_HOST, FTP_PORT)
+            ftp.login(FTP_USER, FTP_PASS)
             buffer = BytesIO()
-            await client.download(FTP_PATH, buffer)
+            ftp.retrbinary(f"RETR {FTP_PATH}", buffer.write)
             buffer.seek(0)
             return buffer.getvalue()
+        finally:
+            try:
+                ftp.quit()
+            except Exception:
+                pass
+
+    try:
+        return await asyncio.to_thread(_download)
+        main
     except Exception as e:
         print(f"FTP Error: {e}")
         return None
