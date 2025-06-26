@@ -16,14 +16,6 @@ fs25-discord-bot
 При указании переменных окружения значения не нужно брать в кавычки. Пример конфигурации:
 
 ```bash
-DISCORD_TOKEN=your_token
-DISCORD_CHANNEL_ID=123456789012345678
-FTP_HOST=195.179.229.189
-FTP_PORT=50061
-FTP_USER=gpftp305104017254318640
-FTP_PASS=your_password
-FTP_PATH=/profile/savegame1/vehicles.xml
-```
 
 Если значение всё же содержит кавычки, бот удалит их автоматически при загрузке настроек.
 
