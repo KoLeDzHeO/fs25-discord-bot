@@ -28,7 +28,6 @@ SKIP_OBJECTS = {
 }
 
 async def fetch_vehicles_xml():
-        codex/replace-ftplib-with-aioftp-and-add-async-handling
     def _download():
         ftp = FTP()
         try:
@@ -46,7 +45,6 @@ async def fetch_vehicles_xml():
 
     try:
         return await asyncio.to_thread(_download)
-        main
     except Exception as e:
         print(f"FTP Error: {e}")
         return None
