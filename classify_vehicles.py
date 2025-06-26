@@ -1,19 +1,21 @@
-from typing import List, Dict
+from typing import Iterable
+
+from models import Vehicle
 
 
-def classify_vehicles(vehicles: List[Dict]) -> str:
-    """Return formatted markdown with vehicle statuses."""
-    damaged = []
-    dirty = []
-    other = []
+def classify_vehicles(vehicles: Iterable[Vehicle]) -> str:
+    """Return formatted markdown describing vehicle statuses."""
+    damaged: list[str] = []
+    dirty: list[str] = []
+    other: list[str] = []
 
     for v in vehicles:
-        name = v.get("name", "?")
-        dirt = float(v.get("dirt", 0))
-        damage = float(v.get("damage", 0))
-        fuel = float(v.get("fuel", 0))
-        capacity = float(v.get("fuel_capacity", 0)) or 1
-        uses_fuel = v.get("uses_fuel", capacity > 0)
+        name = v.name
+        dirt = float(v.dirt)
+        damage = float(v.damage)
+        fuel = float(v.fuel)
+        capacity = float(v.fuel_capacity) or 1
+        uses_fuel = v.uses_fuel
 
         is_damaged = damage > 50 or (uses_fuel and fuel < 0.4 * capacity)
         is_dirty = dirt > 50
@@ -65,24 +67,3 @@ def classify_vehicles(vehicles: List[Dict]) -> str:
 
     return "\n".join(lines)
 
-
-if __name__ == "__main__":
-    example = [
-        {
-            "name": "Техника 1",
-            "dirt": 60,
-            "damage": 70,
-            "fuel": 10,
-            "fuel_capacity": 100,
-        },
-        {
-            "name": "Техника 2",
-            "dirt": 55,
-            "damage": 10,
-            "fuel": 80,
-            "fuel_capacity": 120,
-        },
-        {"name": "Техника 3", "dirt": 10, "damage": 0, "fuel": 0, "fuel_capacity": 0},
-    ]
-    markdown = classify_vehicles(example)
-    print(markdown)
