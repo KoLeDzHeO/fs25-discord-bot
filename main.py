@@ -114,14 +114,19 @@ def format_output(groups):
     return result
 
 def split_messages(lines, max_length=2000):
+    """Split a list of text sections into messages <= max_length."""
     blocks, current = [], ""
     for section in lines:
-        if len(current) + len(section) + 2 > max_length:
-            blocks.append(current.strip())
+        for line in section.splitlines(keepends=True):
+            if len(current) + len(line) > max_length:
+                blocks.append(current.rstrip())
+                current = ""
+            current += line
+        if len(current) > max_length:
+            blocks.append(current.rstrip())
             current = ""
-        current += section + "\n"
     if current.strip():
-        blocks.append(current.strip())
+        blocks.append(current.rstrip())
     return blocks
 
 @client.event
