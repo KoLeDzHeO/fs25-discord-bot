@@ -147,7 +147,8 @@ async def start_reporting():
         xml_data = await fetch_vehicles_xml()
         if not xml_data:
             print("❌ Не удалось получить XML с FTP")
-            await channel.send("❌ Не удалось подключиться к FTP")
+            msg = await channel.send("❌ Не удалось подключиться к FTP")
+            last_messages.append(msg)
             await asyncio.sleep(30)
             continue
         else:
@@ -156,7 +157,8 @@ async def start_reporting():
         vehicles = collect_vehicles(xml_data)
         if not vehicles:
             print("ℹ️ Нет техники для обслуживания")
-            await channel.send("ℹ️ Нет техники для обслуживания")
+            msg = await channel.send("ℹ️ Нет техники для обслуживания")
+            last_messages.append(msg)
             await asyncio.sleep(30)
             continue
 
