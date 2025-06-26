@@ -1871,7 +1871,7 @@
     {
         "nameXML": "efgS50S",
         "name": "EFG S50",
-        "uses_fuel": true,
+        "uses_fuel": false,
         "fuel_capacity": 23.0,
         "fuel_type": "electricCharge"
     },
