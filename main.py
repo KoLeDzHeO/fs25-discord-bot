@@ -4,10 +4,12 @@ import discord
 import ftplib
 import xml.etree.ElementTree as ET
 from io import BytesIO
+from typing import Iterable
 from vehicle_filter import get_info_by_key
 from classify_vehicles import classify_vehicles
+from models import Vehicle
 
-last_messages = []
+last_messages: list[discord.Message] = []
 
 # === CONFIG ===
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -34,8 +36,10 @@ SKIP_OBJECTS = {
 }
 
 
-async def fetch_vehicles_xml():
-    def _download():
+async def fetch_vehicles_xml() -> bytes | None:
+    """Download the vehicles XML via FTP."""
+
+    def _download() -> bytes:
         with ftplib.FTP() as ftp:
             ftp.connect(FTP_HOST, FTP_PORT)
             ftp.login(FTP_USER, FTP_PASS)
@@ -51,8 +55,9 @@ async def fetch_vehicles_xml():
         return None
 
 
-def extract_vehicle_info(vehicle):
-    dirt = damage = fuel = 0
+def extract_vehicle_info(vehicle) -> tuple[float, float, float]:
+    """Return dirt, damage and fuel levels for the given XML element."""
+    dirt = damage = fuel = 0.0
     dirt_elem = vehicle.find(".//washable/dirtNode")
     if dirt_elem is not None:
         dirt = float(dirt_elem.attrib.get("amount", 0))
@@ -66,9 +71,9 @@ def extract_vehicle_info(vehicle):
     return dirt, damage, fuel
 
 
-def collect_vehicles(xml_data):
-    """Return a list of vehicle dictionaries for classification."""
-    result = []
+def collect_vehicles(xml_data: bytes) -> list[Vehicle]:
+    """Parse XML data into a list of :class:`Vehicle` objects."""
+    result: list[Vehicle] = []
     try:
         root = ET.fromstring(xml_data)
         for vehicle in root.findall("vehicle"):
@@ -94,23 +99,25 @@ def collect_vehicles(xml_data):
                 continue
 
             result.append(
-                {
-                    "name": info.get("name") or filename,
-                    "dirt": dirt * 100,
-                    "damage": damage * 100,
-                    "fuel": fuel,
-                    "fuel_capacity": max_fuel,
-                    "uses_fuel": uses_fuel,
-                }
+                Vehicle(
+                    name=info.get("name") or filename,
+                    dirt=dirt * 100,
+                    damage=damage * 100,
+                    fuel=fuel,
+                    fuel_capacity=max_fuel,
+                    uses_fuel=uses_fuel,
+                )
             )
     except Exception as e:
         print(f"Ошибка разбора XML: {e}")
     return result
 
 
-def split_messages(lines, max_length=2000):
-    """Split a list of text sections into messages <= max_length."""
-    blocks, current = [], ""
+def split_messages(lines: Iterable[str], max_length: int = 2000) -> list[str]:
+    """Split text into Discord-friendly messages."""
+    blocks: list[str] = []
+    current = ""
+
     for section in lines:
         for line in section.splitlines(keepends=True):
             if len(current) + len(line) > max_length:
@@ -120,8 +127,10 @@ def split_messages(lines, max_length=2000):
         if len(current) > max_length:
             blocks.append(current.rstrip())
             current = ""
+
     if current.strip():
         blocks.append(current.rstrip())
+
     return blocks
 
 
