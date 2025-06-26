@@ -1,7 +1,7 @@
 import os
 import asyncio
 import discord
-from ftplib import FTP
+import ftplib
 import xml.etree.ElementTree as ET
 from io import BytesIO
 from collections import defaultdict
@@ -27,16 +27,24 @@ SKIP_OBJECTS = {
     "cementBricksPallet", "cementBoxPallet"
 }
 
-def fetch_vehicles_xml():
+async def fetch_vehicles_xml():
+    def _download():
+        ftp = ftplib.FTP()
+        try:
+            ftp.connect(FTP_HOST, FTP_PORT)
+            ftp.login(FTP_USER, FTP_PASS)
+            buffer = BytesIO()
+            ftp.retrbinary(f"RETR {FTP_PATH}", buffer.write)
+            buffer.seek(0)
+            return buffer.getvalue()
+        finally:
+            try:
+                ftp.quit()
+            except Exception:
+                pass
+
     try:
-        ftp = FTP()
-        ftp.connect(FTP_HOST, FTP_PORT)
-        ftp.login(FTP_USER, FTP_PASS)
-        buffer = BytesIO()
-        ftp.retrbinary(f"RETR {FTP_PATH}", buffer.write)
-        buffer.seek(0)
-        ftp.quit()
-        return buffer.getvalue()
+        return await asyncio.to_thread(_download)
     except Exception as e:
         print(f"FTP Error: {e}")
         return None
@@ -153,7 +161,7 @@ async def start_reporting():
                 pass
         last_messages.clear()
 
-        xml_data = fetch_vehicles_xml()
+        xml_data = await fetch_vehicles_xml()
         if not xml_data:
             print("❌ Не удалось получить XML с FTP")
             await channel.send("❌ Не удалось подключиться к FTP")
