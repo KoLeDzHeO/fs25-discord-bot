@@ -15,17 +15,25 @@ def classify_vehicles(vehicles: List[Dict]) -> str:
         capacity = float(v.get("fuel_capacity", 0)) or 1
         uses_fuel = v.get("uses_fuel", capacity > 0)
 
-        if damage > 50 and fuel < 0.4 * capacity:
+        is_damaged = damage > 50 or (uses_fuel and fuel < 0.4 * capacity)
+        is_dirty = dirt > 50
+        is_other = (
+            damage > 5
+            or dirt > 5
+            or (uses_fuel and fuel < 0.8 * capacity)
+        )
+
+        if is_damaged:
             msg = f"• {name} — поврежд. {int(damage)}%"
             if uses_fuel:
                 msg += f", топливо: {int(fuel)}"
             damaged.append(msg)
-        elif dirt > 50:
+        elif is_dirty:
             msg = f"• {name} — грязь: {int(dirt)}%"
             if uses_fuel and fuel < 0.8 * capacity:
                 msg += f", топливо: {int(fuel)}"
             dirty.append(msg)
-        elif damage > 5 or dirt > 5 or fuel < 0.8 * capacity:
+        elif is_other:
             msg = f"• {name} — грязь: {int(dirt)}%, поврежд.: {int(damage)}%"
             if uses_fuel and fuel < 0.8 * capacity:
                 msg += f", топливо: {int(fuel)}"
@@ -35,7 +43,7 @@ def classify_vehicles(vehicles: List[Dict]) -> str:
 
     if damaged:
         prefix = "" if not lines else "\n"
-        lines.append(f"{prefix}🛠️ **Повреждённая техника (низкое топливо + повреждение):**")
+        lines.append(f"{prefix}🛠️ **Сильно повреждённая техника:**")
         lines.extend(damaged)
 
     if dirty:
