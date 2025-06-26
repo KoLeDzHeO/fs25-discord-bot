@@ -27,16 +27,24 @@ SKIP_OBJECTS = {
     "cementBricksPallet", "cementBoxPallet"
 }
 
-def fetch_vehicles_xml():
-    try:
+async def fetch_vehicles_xml():
+    def _download():
         ftp = FTP()
-        ftp.connect(FTP_HOST, FTP_PORT)
-        ftp.login(FTP_USER, FTP_PASS)
-        buffer = BytesIO()
-        ftp.retrbinary(f"RETR {FTP_PATH}", buffer.write)
-        buffer.seek(0)
-        ftp.quit()
-        return buffer.getvalue()
+        try:
+            ftp.connect(FTP_HOST, FTP_PORT)
+            ftp.login(FTP_USER, FTP_PASS)
+            buffer = BytesIO()
+            ftp.retrbinary(f"RETR {FTP_PATH}", buffer.write)
+            buffer.seek(0)
+            return buffer.getvalue()
+        finally:
+            try:
+                ftp.quit()
+            except Exception:
+                pass
+
+    try:
+        return await asyncio.to_thread(_download)
     except Exception as e:
         print(f"FTP Error: {e}")
         return None
@@ -153,7 +161,7 @@ async def start_reporting():
                 pass
         last_messages.clear()
 
-        xml_data = fetch_vehicles_xml()
+        xml_data = await fetch_vehicles_xml()
         if not xml_data:
             print("❌ Не удалось получить XML с FTP")
             await channel.send("❌ Не удалось подключиться к FTP")
