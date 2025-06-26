@@ -90,7 +90,7 @@ def parse_vehicles(xml_data):
                 continue
 
             category = info.get("class") or "Разное"
-            name = info.get("name_ru") or filename
+            name = info.get("name") or filename
             line = format_line(name, dirt, damage, fuel, max_fuel)
             categories[category].append(line)
 
