@@ -14,7 +14,7 @@ fs25-discord-bot
 Запуск бота:
 
 ```bash
-python -m bot.main
+python main.py
 ```
 
 Загрузка файлов на FTP сервер:
