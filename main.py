@@ -95,7 +95,7 @@ def parse_vehicles(xml_data):
     return format_output(categories)
 
 def format_output(groups):
-     order_map = {name: idx for idx, name in enumerate(CATEGORY_ORDER)}
+    order_map = {name: idx for idx, name in enumerate(CATEGORY_ORDER)}
     sorted_items = sorted(
         groups.items(),
         key=lambda kv: (order_map.get(kv[0], len(CATEGORY_ORDER)), kv[0]),
