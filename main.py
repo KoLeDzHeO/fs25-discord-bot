@@ -75,6 +75,7 @@ def collect_vehicles(xml_data):
             dirt, damage, fuel = extract_vehicle_info(vehicle)
             info = get_info_by_key(filename)
             max_fuel = info.get("fuel_capacity") or 0
+            uses_fuel = info.get("uses_fuel", bool(max_fuel))
 
             if damage <= 0.05 and dirt <= 0.05 and (not max_fuel or fuel >= 0.8 * max_fuel):
                 continue
@@ -86,6 +87,7 @@ def collect_vehicles(xml_data):
                     "damage": damage * 100,
                     "fuel": fuel,
                     "fuel_capacity": max_fuel,
+                    "uses_fuel": uses_fuel,
                 }
             )
     except Exception as e:
