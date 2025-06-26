@@ -29,19 +29,13 @@ SKIP_OBJECTS = {
 
 async def fetch_vehicles_xml():
     def _download():
-        ftp = ftplib.FTP()
-        try:
+        with ftplib.FTP() as ftp:
             ftp.connect(FTP_HOST, FTP_PORT)
             ftp.login(FTP_USER, FTP_PASS)
             buffer = BytesIO()
             ftp.retrbinary(f"RETR {FTP_PATH}", buffer.write)
             buffer.seek(0)
             return buffer.getvalue()
-        finally:
-            try:
-                ftp.quit()
-            except Exception:
-                pass
     try:
         return await asyncio.to_thread(_download)
     except Exception as e:

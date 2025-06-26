@@ -2,7 +2,6 @@ import os
 import argparse
 import ftplib
 
-
 def ensure_remote_dir(ftp: ftplib.FTP, path: str) -> None:
     """Create remote directories if they do not exist."""
     if not path:
@@ -21,8 +20,7 @@ def ensure_remote_dir(ftp: ftplib.FTP, path: str) -> None:
 
 def upload_file(host: str, port: int, user: str, password: str,
                 local_file: str, remote_path: str) -> None:
-    ftp = ftplib.FTP()
-    try:
+    with ftplib.FTP() as ftp:
         ftp.connect(host, port)
         ftp.login(user, password)
         remote_dir, remote_name = os.path.split(remote_path)
@@ -32,11 +30,6 @@ def upload_file(host: str, port: int, user: str, password: str,
         with open(local_file, 'rb') as f:
             ftp.storbinary(f'STOR {remote_name}', f)
         print(f'Uploaded {local_file} to {remote_path}')
-    finally:
-        try:
-            ftp.quit()
-        except Exception:
-            pass
 
 
 def main() -> None:
@@ -56,7 +49,6 @@ def main() -> None:
 
     upload_file(args.host, args.port, args.user, args.password,
                 args.local_file, args.remote_path)
-
 
 if __name__ == '__main__':
     main()
