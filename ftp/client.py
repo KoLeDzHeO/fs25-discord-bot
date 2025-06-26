@@ -2,6 +2,7 @@ from typing import Optional
 import tempfile
 
 import aioftp
+import traceback
 
 from config import config
 
@@ -21,9 +22,15 @@ async def fetch_file(path: str) -> Optional[bytes]:
             # BytesIO``. To avoid this error we download the file to a temporary
             # location and then read the contents back into memory.
             with tempfile.NamedTemporaryFile() as tmp:
-                await ftp.download(path, tmp.name)
+                # ``aioftp`` treats the second argument as a **directory** by
+                # default and tries to create it. Since we pass a file path from
+                # ``NamedTemporaryFile`` this results in ``FileExistsError``.
+                # ``write_into=True`` tells ``aioftp`` to use the given path as
+                # the final file instead of creating a directory.
+                await ftp.download(path, tmp.name, write_into=True)
                 tmp.seek(0)
                 return tmp.read()
     except Exception as exc:
         print(f"FTP error: {exc}")
+        traceback.print_exc()
         return None
