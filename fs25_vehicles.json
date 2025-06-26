@@ -42,7 +42,7 @@
     {
         "xml_key": "series9R",
         "name": "series9R",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 1490.0,
         "fuel_type": "diesel",
@@ -62,7 +62,7 @@
     {
         "xml_key": "puma",
         "name": "puma",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 390.0,
         "fuel_type": "diesel",
@@ -92,7 +92,7 @@
     {
         "xml_key": "xerion12",
         "name": "xerion12",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 1400.0,
         "fuel_type": "diesel",
@@ -127,7 +127,7 @@
         "fuel_capacity": 610.0,
         "fuel_type": "diesel",
         "name_ru": "Valtra S Series",
-        "icon": "🛠️"
+        "icon": "🚜️"
     },
     {
         "xml_key": "felix",
@@ -142,7 +142,7 @@
     {
         "xml_key": "series6RLarge",
         "name": "series6RLarge",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 322.0,
         "fuel_type": "diesel",
@@ -157,12 +157,12 @@
         "fuel_capacity": 900.0,
         "fuel_type": "diesel",
         "name_ru": "lightOptitraxx",
-        "icon": "🛠️"
+        "icon": "💡"
     },
     {
         "xml_key": "series9S",
         "name": "series9S",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 660.0,
         "fuel_type": "diesel",
@@ -172,7 +172,7 @@
     {
         "xml_key": "series6RExtraLarge",
         "name": "series6RExtraLarge",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 470.0,
         "fuel_type": "diesel",
@@ -207,7 +207,7 @@
         "fuel_capacity": 246.0,
         "fuel_type": "diesel",
         "name_ru": "CV Series",
-        "icon": "🛠️"
+        "icon": "🚜️"
     },
     {
         "xml_key": "cobraHybrid",
@@ -217,7 +217,7 @@
         "fuel_capacity": 680.0,
         "fuel_type": "diesel",
         "name_ru": "Claas Cobra Hybrid",
-        "icon": "🛠️"
+        "icon": "🚜️"
     },
     {
         "xml_key": "ec250DL",
@@ -227,7 +227,7 @@
         "fuel_capacity": 470.0,
         "fuel_type": "diesel",
         "name_ru": "Deutz-Fahr EC 250 DL",
-        "icon": "🛠️"
+        "icon": "🚜️"
     },
     {
         "xml_key": "tiger6S",
@@ -237,12 +237,12 @@
         "fuel_capacity": 1320.0,
         "fuel_type": "diesel",
         "name_ru": "Case IH Tiger 6S",
-        "icon": "🛠️"
+        "icon": "🚜"
     },
     {
         "xml_key": "series8RX",
         "name": "series8RX",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 851.0,
         "fuel_type": "diesel",
@@ -252,7 +252,7 @@
     {
         "xml_key": "series6C",
         "name": "series6C",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 160.0,
         "fuel_type": "diesel",
@@ -262,7 +262,7 @@
     {
         "xml_key": "vario500",
         "name": "vario500",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 298.0,
         "fuel_type": "diesel",
@@ -272,7 +272,7 @@
     {
         "xml_key": "vario700",
         "name": "vario700",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 450.0,
         "fuel_type": "diesel",
@@ -322,7 +322,7 @@
     {
         "xml_key": "arion400",
         "name": "arion400",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 140.0,
         "fuel_type": "diesel",
@@ -332,7 +332,7 @@
     {
         "xml_key": "vario900",
         "name": "vario900",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 625.0,
         "fuel_type": "diesel",
@@ -342,7 +342,7 @@
     {
         "xml_key": "magnumT4B",
         "name": "magnumT4B",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 647.0,
         "fuel_type": "diesel",
@@ -377,12 +377,12 @@
         "fuel_capacity": 245.0,
         "fuel_type": "diesel",
         "name_ru": "Claas Arion 550",
-        "icon": "🛠️"
+        "icon": "🚜️"
     },
     {
         "xml_key": "mt655",
         "name": "mt655",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 454.0,
         "fuel_type": "diesel",
@@ -402,7 +402,7 @@
     {
         "xml_key": "series8",
         "name": "series8",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 505.0,
         "fuel_type": "diesel",
@@ -412,7 +412,7 @@
     {
         "xml_key": "seriesM8",
         "name": "seriesM8",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 375.0,
         "fuel_type": "diesel",
@@ -432,7 +432,7 @@
     {
         "xml_key": "vario300",
         "name": "vario300",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 210.0,
         "fuel_type": "diesel",
@@ -452,7 +452,7 @@
     {
         "xml_key": "series90",
         "name": "series90",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 180.0,
         "fuel_type": "diesel",
@@ -472,7 +472,7 @@
     {
         "xml_key": "mach4R",
         "name": "mach4R",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 50.0,
         "fuel_type": "diesel",
@@ -512,7 +512,7 @@
     {
         "xml_key": "forterraHSX140",
         "name": "forterraHSX140",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 270.0,
         "fuel_type": "diesel",
@@ -572,7 +572,7 @@
     {
         "xml_key": "t8",
         "name": "t8",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 647.0,
         "fuel_type": "diesel",
@@ -582,7 +582,7 @@
     {
         "xml_key": "proximaHS120",
         "name": "proximaHS120",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 190.0,
         "fuel_type": "diesel",
@@ -592,7 +592,7 @@
     {
         "xml_key": "crystal",
         "name": "crystal",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 300.0,
         "fuel_type": "diesel",
@@ -612,7 +612,7 @@
     {
         "xml_key": "lintrac130",
         "name": "lintrac130",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 120.0,
         "fuel_type": "diesel",
@@ -632,7 +632,7 @@
     {
         "xml_key": "series8RT",
         "name": "series8RT",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 764.0,
         "fuel_type": "diesel",
@@ -642,7 +642,7 @@
     {
         "xml_key": "agroStar831",
         "name": "agroStar831",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 367.0,
         "fuel_type": "diesel",
@@ -672,7 +672,7 @@
     {
         "xml_key": "series835G",
 		"name": "series835G",
-		"class": "Трактор (средний)",
+		"class": "Трактор",
 		"uses_fuel": true,
 		"fuel_capacity": 650.0,
 		"fuel_type": "diesel",
@@ -762,7 +762,7 @@
     {
         "xml_key": "vario200",
         "name": "vario200",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 68.0,
         "fuel_type": "diesel",
@@ -782,7 +782,7 @@
     {
         "xml_key": "mt1100",
         "name": "mt1100",
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 1320.0,
         "fuel_type": "diesel",
@@ -792,7 +792,7 @@
     {
         "xml_key": "seriesREX4",
         "name": "seriesREX4",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 80.0,
         "fuel_type": "diesel",
@@ -802,7 +802,7 @@
     {
 		"xml_key": "series200",
 		"name": "series200",
-		"class": "Трактор (компактный)",
+		"class": "Трактор",
 		"uses_fuel": true,
 		"fuel_capacity": 121.0,
 		"fuel_type": "diesel",
@@ -812,7 +812,7 @@
     {
         "xml_key": "seriesTJW",
         "name": "seriesTJW",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 190.0,
         "fuel_type": "diesel",
@@ -1112,7 +1112,7 @@
     {
         "xml_key": "series3650",
         "name": null,
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 118.0,
         "fuel_type": "diesel",
@@ -1132,7 +1132,7 @@
     {
         "xml_key": "quadtrac715",
         "name": null,
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 1968.0,
         "fuel_type": "diesel",
@@ -1172,7 +1172,7 @@
     {
         "xml_key": "skh60",
         "name": null,
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 75.0,
         "fuel_type": "diesel",
@@ -1182,7 +1182,7 @@
     {
         "xml_key": "vario1000",
         "name": null,
-        "class": "Трактор (большой)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 740.0,
         "fuel_type": "diesel",
@@ -1202,7 +1202,7 @@
     {
         "xml_key": "series7",
         "name": null,
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": true,
         "fuel_capacity": 505.0,
         "fuel_type": "diesel",
@@ -1282,12 +1282,12 @@
 	{
 		"xml_key": "rx125",
 		"name": "rx125",
-		"class": "Легкий транспорт",
+		"class": "Легковой транспорт",
 		"uses_fuel": true,
 		"fuel_capacity": 7.0,
 		"fuel_type": "diesel",
 		"name_ru": "RX 125",
-		"icon": "🏍️"
+		"icon": "️🚙"
     },
     {
         "xml_key": "vb3190",
@@ -1322,12 +1322,12 @@
     {
 		"xml_key": "tForcePlus950",
 		"name": "tForcePlus950",
-		"class": "Сеялка‑высевашка",
+		"class": "Сеялка",
 		"uses_fuel": false,
 		"fuel_capacity": null,
 		"fuel_type": null,
 		"name_ru": "Novag T‑Force Plus 950",
-		"icon": "🌾"
+		"icon": "🌱"
 	},
     {
 		"xml_key": "superChisel",
@@ -1402,7 +1402,7 @@
     {
 		"xml_key": "omega6000FL",
 		"name": "omega6000FL",
-		"class": "Сеялка прямого высева",
+		"class": "Сеялка",
 		"uses_fuel": false,
 		"fuel_capacity": null,
 		"fuel_type": null,
@@ -1492,7 +1492,7 @@
     {
 		"xml_key": "proTil4TX",
 		"name": "proTil4TX",
-		"class": "Сеялка‑культиватор",
+		"class": "Сеялка",
 		"uses_fuel": false,
 		"fuel_capacity": null,
 		"fuel_type": null,
@@ -1552,7 +1552,7 @@
     {
 		"xml_key": "aerosemVT5000DD",
 		"name": "aerosemVT5000DD",
-		"class": "Сеялка прямого высева",
+		"class": "Сеялка",
 		"uses_fuel": false,
 		"fuel_capacity": null,
 		"fuel_type": null,
@@ -1582,7 +1582,7 @@
     {
 		"xml_key": "aquilaDrive400",
 		"name": "aquilaDrive400",
-		"class": "Сеялка прямого высева",
+		"class": "Сеялка",
 		"uses_fuel": false,
 		"fuel_capacity": null,
 		"fuel_type": null,
@@ -1642,7 +1642,7 @@
     {
 		"xml_key": "espro6000RC",
 		"name": "espro6000RC",
-		"class": "Сеялка прямого высева",
+		"class": "Сеялка",
 		"uses_fuel": false,
 		"fuel_capacity": null,
 		"fuel_type": null,
@@ -1672,7 +1672,7 @@
     {
 		"xml_key": "maxima3TIL",
 		"name": "maxima3TIL",
-		"class": "Сеялка‑точного высева",
+		"class": "Сеялка",
 		"uses_fuel": false,
 		"fuel_capacity": null,
 		"fuel_type": null,
@@ -2862,7 +2862,7 @@
     {
         "xml_key": "tk4",
         "name": "tk4",
-        "class": "Трактор (малый)",
+        "class": "Трактор",
         "uses_fuel": false,
         "fuel_capacity": null,
         "fuel_type": null,
@@ -5162,7 +5162,7 @@
     {
         "xml_key": "t7",
         "name": "t7",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": false,
         "fuel_capacity": null,
         "fuel_type": null,
@@ -5207,7 +5207,7 @@
         "fuel_capacity": null,
         "fuel_type": null,
         "name_ru": "transtarII",
-        "icon": "🛠️"
+        "icon": "🚜️"
     },
     {
         "xml_key": "locomotive04",
@@ -5332,7 +5332,7 @@
     {
         "xml_key": "absolut",
         "name": "absolut",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": false,
         "fuel_capacity": null,
         "fuel_type": null,
@@ -5602,7 +5602,7 @@
     {
         "xml_key": "series8000",
         "name": "series8000",
-        "class": "Трактор (средний)",
+        "class": "Трактор",
         "uses_fuel": false,
         "fuel_capacity": null,
         "fuel_type": null,
