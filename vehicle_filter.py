@@ -4,6 +4,8 @@ with open("fs25_vehicles.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 vehicle_map = {entry["xml_key"]: entry for entry in data}
+# Build a mapping from class name to icon for quick lookup
+class_icon_map = {entry["class"]: entry.get("icon") for entry in data if entry.get("class")}
 
 CATEGORY_ORDER = [
     "Трактор", "Комбайн", "Жатка", "Культиватор", "Сеялка", "Опрыскиватель",
@@ -20,10 +22,8 @@ def get_info_by_key(xml_key):
     })
 
 def get_icon_by_class(class_name):
-    for v in vehicle_map.values():
-        if v["class"] == class_name and v.get("icon"):
-            return v["icon"]
-    return "🛠️"
+    """Return icon for the given class name."""
+    return class_icon_map.get(class_name, "🛠️")
 
 def format_status_line(xml_key, dirt, damage, fuel):
     info = get_info_by_key(xml_key)
