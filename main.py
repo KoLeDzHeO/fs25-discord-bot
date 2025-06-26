@@ -5,7 +5,7 @@ from ftplib import FTP
 import xml.etree.ElementTree as ET
 from io import BytesIO
 from collections import defaultdict
-from vehicle_filter import get_info_by_key, get_icon_by_class
+from vehicle_filter import get_info_by_key, get_icon_by_class, CATEGORY_ORDER
 
 last_messages = []
 
@@ -95,8 +95,13 @@ def parse_vehicles(xml_data):
     return format_output(categories)
 
 def format_output(groups):
+     order_map = {name: idx for idx, name in enumerate(CATEGORY_ORDER)}
+    sorted_items = sorted(
+        groups.items(),
+        key=lambda kv: (order_map.get(kv[0], len(CATEGORY_ORDER)), kv[0]),
+    )
     result = []
-    for cat, items in sorted(groups.items()):
+    for cat, items in sorted_items:
         icon = get_icon_by_class(cat)
         block = [f"{icon} {cat}:", "```"]
         block.extend(items)
