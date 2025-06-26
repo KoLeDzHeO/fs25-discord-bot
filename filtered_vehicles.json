@@ -1,0 +1,4041 @@
+[
+    {
+        "nameXML": "waterTrailer1600",
+        "name": "1600",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "waterTrailer550",
+        "name": "550",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "series8000",
+        "name": "8010 Series",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight1100",
+        "name": "1100",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight1500",
+        "name": "1500",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight2300",
+        "name": "2300",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight650",
+        "name": "650",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "condorEndurance2",
+        "name": "Condor Endurance II",
+        "uses_fuel": true,
+        "fuel_capacity": 160.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "lightOptitraxx",
+        "name": "LightTraxx",
+        "uses_fuel": true,
+        "fuel_capacity": 234.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "dinoII",
+        "name": "DINO II",
+        "uses_fuel": true,
+        "fuel_capacity": 114.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "combiplow",
+        "name": "Combiplow Gold",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "discOVigne",
+        "name": "Disc-O-Vigne V",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "aquilaDrive400",
+        "name": "AQUILA DRIVE 400",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "grizzlyX4",
+        "name": "GRIZZLY X4",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pov5xl",
+        "name": "POV 5 XL",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "f155A",
+        "name": "%s %s (%s)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "f155A_telehandler",
+        "name": "F155A (Telehandler)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "f155A_wheelLoader",
+        "name": "F155A (Wheel Loader)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderBaleKing",
+        "name": "Bale King",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderBaleSpike",
+        "name": "$l10n_shopItem_frontloaderBaleFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderLogFork",
+        "name": "$l10n_shopItem_frontloaderLogFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderManureFork",
+        "name": "$l10n_shopItem_frontloaderManureFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderManureGrab",
+        "name": "$l10n_shopItem_frontloaderManureGrabFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderPalletFork",
+        "name": "$l10n_shopItem_frontloaderPalletFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderRoundBaleFork",
+        "name": "$l10n_shopItem_frontloaderRoundBaleFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderShovel",
+        "name": "$l10n_shopItem_frontloaderShovel",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderSilageCutter",
+        "name": "$l10n_shopItem_frontloaderSilageCutter",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderSquareBaleGrab",
+        "name": "$l10n_shopItem_frontloaderBaleGrab",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wheelLoaderLogFork",
+        "name": "SitePro",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wheelLoaderSilageFork",
+        "name": "$l10n_shopItem_wheelLoaderSilageFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "kDyno200",
+        "name": "K-Dyno 5-200",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "kExtreme500",
+        "name": "K-Extreme 11-500",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "kForce400",
+        "name": "K-Force 400",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "cenio4000",
+        "name": "Cenio 4000 Super",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "citan15001C",
+        "name": "Citan 15001-C",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "precea4500",
+        "name": "Precea 4500-2C Super",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ux5201Super",
+        "name": "UX 5201 Super",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "zats3200",
+        "name": "ZA-TS 3200",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "zgts10001",
+        "name": "ZG-TS 10001",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "cc1000",
+        "name": "Crop Chaser 1000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "defoliator3750",
+        "name": "3750 Defoliator",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hrv12R",
+        "name": "2720 Harvester Scrub",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bioBalerFrontTool",
+        "name": "Bumper",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bioBalerWB55",
+        "name": "BioBaler WB-55",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hybridX",
+        "name": "HYBRID X XTRACTOR",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mergePro915",
+        "name": "MERGEPRO 915",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rbm2000",
+        "name": "RBM2000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "aw2207",
+        "name": "AW 22.07",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "aw2216",
+        "name": "AW 22.16",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "aw2217",
+        "name": "AW 22.17",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "aw2227",
+        "name": "AW 22.27",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hts22b79",
+        "name": "HTS 22B.79",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mach4R",
+        "name": "Mach 4R",
+        "uses_fuel": true,
+        "fuel_capacity": 39.2,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "tigrecar3200",
+        "name": "Tigrecar 3200 GST",
+        "uses_fuel": true,
+        "fuel_capacity": 7.6,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "tony10900TTR",
+        "name": "Tony 10900 TTR",
+        "uses_fuel": true,
+        "fuel_capacity": 29.4,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "rx125",
+        "name": "RX 125",
+        "uses_fuel": true,
+        "fuel_capacity": 3.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "fsx6372",
+        "name": "FSX 63.72",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "multipackD14",
+        "name": "Multipack D14",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "katorKNProfi8000",
+        "name": "KATOR KN 8000Q PROFI",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mm7000",
+        "name": "MULCHER MM 7000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "omega6000FL",
+        "name": "OMEGA OO 6000 FL",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "swifterdiscXEmega",
+        "name": "SWIFTERDISC XE 18400 MEGA",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gtw330",
+        "name": "GTW 330",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "htw65",
+        "name": "HTW 65",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rrw500",
+        "name": "RRW 500",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "shuttle490S",
+        "name": "SHUTTLE 490 S",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tsw6240w",
+        "name": "TSW 6240 W",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "multi4XL",
+        "name": "Multi 4XL",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "multiProfi",
+        "name": "Multi Profi 21/15",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tracPack",
+        "name": "Trac-Pack",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "h550",
+        "name": "H550 Beavertail",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "h550Bundle",
+        "name": "H550 Beavertail",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "h550Gooseneck",
+        "name": "H550 Gooseneck",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "landRoller591A",
+        "name": "LandRoller 591A",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "dd24073",
+        "name": "DD 24073/2 XXL",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ta12050",
+        "name": "TA 12050 Power Spread +",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tr34090",
+        "name": "TR 34090/2 PT+",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "z18051",
+        "name": "Z 18051/2 XXL Power Flex",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "k105",
+        "name": "K105",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sg",
+        "name": "SG2000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "motorMower29EFI",
+        "name": "29 EFI",
+        "uses_fuel": true,
+        "fuel_capacity": 10.4,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "diamant8",
+        "name": "Diamant 8",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "a8800MR",
+        "name": "Austoft 8800 Multi-Row",
+        "uses_fuel": true,
+        "fuel_capacity": 176.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "af11",
+        "name": "AF11",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "axialFlow150",
+        "name": "Axial-Flow 7150",
+        "uses_fuel": true,
+        "fuel_capacity": 224.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "farmall120C",
+        "name": "Farmall C Series",
+        "uses_fuel": true,
+        "fuel_capacity": 36.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "fd250",
+        "name": "FD250 FlexDraper®",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloaderL630",
+        "name": "L630",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "header4408",
+        "name": "4408",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "header4418N",
+        "name": "4418 N",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "magnumT4B",
+        "name": "Magnum AFS Connect Series",
+        "uses_fuel": true,
+        "fuel_capacity": 149.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "moduleExpress635",
+        "name": "Module Express 635",
+        "uses_fuel": true,
+        "fuel_capacity": 207.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "puma",
+        "name": "Puma AFS Connect",
+        "uses_fuel": true,
+        "fuel_capacity": 89.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "quadtrac715",
+        "name": "Steiger 715 Quadtrac",
+        "uses_fuel": true,
+        "fuel_capacity": 311.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "rb456",
+        "name": "RB 456 HD Pro",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "terraFlex3020",
+        "name": "3020 TerraFlex 25FT",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "terraFlex3050_28",
+        "name": "3050 TerraFlex 28FT",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight1000",
+        "name": "1000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mt655",
+        "name": "MT600 Series",
+        "uses_fuel": true,
+        "fuel_capacity": 64.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "arion400",
+        "name": "ARION 470-410",
+        "uses_fuel": true,
+        "fuel_capacity": 140.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "arion550",
+        "name": "ARION 570-530",
+        "uses_fuel": true,
+        "fuel_capacity": 58.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "convioFlex1080",
+        "name": "CONVIO FLEX 1080",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "convioFlex1380",
+        "name": "CONVIO FLEX 1380",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "directDisc500",
+        "name": "DIRECT DISC 500",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "directDisc500Trailer",
+        "name": "DIRECT DISC 500 %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "evion450",
+        "name": "EVION 450",
+        "uses_fuel": true,
+        "fuel_capacity": 129.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "frontLoader140",
+        "name": "FL 140",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "jaguar990TT",
+        "name": "JAGUAR 990 TERRA TRAC",
+        "uses_fuel": true,
+        "fuel_capacity": 462.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "lexion6900",
+        "name": "LEXION 6900",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "lexion8900",
+        "name": "LEXION 8000",
+        "uses_fuel": true,
+        "fuel_capacity": 253.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "orbis900",
+        "name": "ORBIS 900",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pickUp300",
+        "name": "PICK UP 300",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "quadrant5300",
+        "name": "QUADRANT 5300 FC",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "vario620",
+        "name": "VARIO 620",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "w1800",
+        "name": "W 1800",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "w600",
+        "name": "W 600",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "w900",
+        "name": "W 900",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "xerion12",
+        "name": "XERION 12",
+        "uses_fuel": true,
+        "fuel_capacity": 234.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "maxiroll630Greenline",
+        "name": "MaxiRoll 630 Greenline",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "powerchain800",
+        "name": "POWERCHAIN 800",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pl75",
+        "name": "PL-75",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hdht52",
+        "name": "HDHT 52",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "series850",
+        "name": "850 Single Auger Grain Cart",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "steelDropDeck",
+        "name": "Steel Drop Deck",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "agroStar831",
+        "name": "AgroStar 8.31",
+        "uses_fuel": true,
+        "fuel_capacity": 92.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series6C",
+        "name": "6C RVshift",
+        "uses_fuel": true,
+        "fuel_capacity": 50.4,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series7",
+        "name": "Series 7 TTV HD",
+        "uses_fuel": true,
+        "fuel_capacity": 98.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series8",
+        "name": "Series 8 TTV",
+        "uses_fuel": true,
+        "fuel_capacity": 114.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "gbc",
+        "name": "GBC",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "p3CLProfi",
+        "name": "P3CL Profi",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "p3Profi",
+        "name": "P3K Profi",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "zkivSe",
+        "name": "ZKIVSE",
+        "uses_fuel": true,
+        "fuel_capacity": 225.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "aerostar2400",
+        "name": "AEROSTAR-CLASSIC XXL 2400",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pneumaticstarPro1200",
+        "name": "PNEUMATICSTAR-PRO 1200",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "taifun900",
+        "name": "TAIFUN 900 RP58",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "duett7300",
+        "name": "Duett 7300",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "scorpio550",
+        "name": "Scorpio 550",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "haulMaster",
+        "name": "HaulMaster",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ravage",
+        "name": "Ravage",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "super7",
+        "name": "Super 7",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "grapeliner7000",
+        "name": "Grapeliner Series 7000",
+        "uses_fuel": true,
+        "fuel_capacity": 70.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "pf224",
+        "name": "PF 2.24 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pf226",
+        "name": "Leader PF 2.26 Plus Ecomode",
+        "uses_fuel": true,
+        "fuel_capacity": 82.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "rapidTrailed",
+        "name": "Rapide 450 Trailed",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "softer11",
+        "name": "Softer 11 PS",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ddk2400",
+        "name": "DDK 2400",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "dpw1800",
+        "name": "DPW 1800",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "edk650",
+        "name": "EDK 650",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "supercis800",
+        "name": "Supercis 800",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "variofex750",
+        "name": "Variofex 750",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "cargoT740",
+        "name": "Cargo T740",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "freeFlow25FT",
+        "name": "FreeFlow 25FT",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "katana",
+        "name": "Katana",
+        "uses_fuel": true,
+        "fuel_capacity": 325.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "mt1100",
+        "name": "1100 Vario MT",
+        "uses_fuel": true,
+        "fuel_capacity": 204.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series5275csl",
+        "name": "5275 C SL",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "squadra1290",
+        "name": "Squadra 1290 N UD",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tigo75VR",
+        "name": "Tigo 75 VR D",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "vario1000",
+        "name": "1000 Vario",
+        "uses_fuel": true,
+        "fuel_capacity": 158.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "vario200",
+        "name": "200 V Vario",
+        "uses_fuel": true,
+        "fuel_capacity": 31.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "vario300",
+        "name": "300 Vario",
+        "uses_fuel": true,
+        "fuel_capacity": 45.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "vario500",
+        "name": "500 Vario",
+        "uses_fuel": true,
+        "fuel_capacity": 52.4,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "vario700",
+        "name": "700 Vario",
+        "uses_fuel": true,
+        "fuel_capacity": 81.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "vario900",
+        "name": "900 Vario",
+        "uses_fuel": true,
+        "fuel_capacity": 118.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "weight3300",
+        "name": "3300",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "series90",
+        "name": "160-90 DT",
+        "uses_fuel": true,
+        "fuel_capacity": 64.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "asw271",
+        "name": "ASW 271",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bueffel",
+        "name": "Büffel",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "butterfly",
+        "name": "Schmetterling",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "dts59",
+        "name": "DTS 5.9",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "noahTTW140",
+        "name": "Noah TTW 140",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pfw18000MaxxLinePlus",
+        "name": "PFW 18000 MaxxLine Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ruby",
+        "name": "Ruby 2000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "trailer12000L",
+        "name": "LWS 12000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "trailer6000L",
+        "name": "MRWK 6000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "miloStar1630",
+        "name": "MiloStar 1630",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "northStar1230FB",
+        "name": "NorthStar 1230 FB",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "northStar1830",
+        "name": "NorthStar 1830",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sunLite40",
+        "name": "SunLite 40",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "singleRow",
+        "name": "Single Row Billet Planter",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "twoRow",
+        "name": "Two Row Billet Planter",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "btgqu",
+        "name": "%s %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "btgqu_telehandler",
+        "name": "BTGQU (Telehandler)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "g1015",
+        "name": "G1015",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "g1F125",
+        "name": "G-1 F125",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "g1F125Kombi",
+        "name": "G-1 F125 Kombi",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "g4010Q",
+        "name": "G4010 Q Profi",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "g5020",
+        "name": "G5020",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rbg",
+        "name": "%s %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rbg_telehandler",
+        "name": "RBG (Telehandler)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "varioMaster",
+        "name": "VARIO-Master V140",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "puler600",
+        "name": "Puler 600",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "seeder1500",
+        "name": "SOLID STAND 1500",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gl86",
+        "name": "GL",
+        "uses_fuel": true,
+        "fuel_capacity": 95.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "evo290",
+        "name": "Evo 290",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gf400",
+        "name": "GF 400",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gf800",
+        "name": "GF 800",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gl420",
+        "name": "GL 420",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gl860",
+        "name": "GL 860 Compacta",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "matrix1800",
+        "name": "MATRIX 1800",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "prios440",
+        "name": "Prios 440",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rh2460",
+        "name": "RH 24-60",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sl8022",
+        "name": "SL 80-22 Quantum",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tc816",
+        "name": "TC 816",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ventor4150",
+        "name": "Ventor 4150",
+        "uses_fuel": true,
+        "fuel_capacity": 265.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "aeon5200",
+        "name": "AEON 5200 DELTA FORCE",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mega1200L",
+        "name": "MEGA 1200L",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mega1200LTank",
+        "name": "MEGA 1200L TANK",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mercury4000L",
+        "name": "MERCURY 4000L",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "xb150",
+        "name": "XB 150",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "xb190",
+        "name": "XB 190",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "dst16",
+        "name": "DST 16",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "kuw2000",
+        "name": "KUW 2000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "suw5000",
+        "name": "SUW 5000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hm10500KF",
+        "name": "HM 10-500 KF",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mes400",
+        "name": "MES 400",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "stego485Pro",
+        "name": "Stego 485 Pro",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "terraDosT540",
+        "name": "Terra Dos 5‑40",
+        "uses_fuel": true,
+        "fuel_capacity": 326.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "terraDosT540Header",
+        "name": "HR 6",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "cultro12TC",
+        "name": "Cultro 12 TC",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "finer6SL",
+        "name": "Finer 6 SL",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "maestro2450SV",
+        "name": "Maestro 24.50 SV",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "maestro975RX",
+        "name": "Maestro 9.75 RX",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "partner1600FT",
+        "name": "Partner 1600 FT",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tiger8MT",
+        "name": "Tiger 8 MT",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "kredo",
+        "name": "Kredo 3",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "versa",
+        "name": "Versa",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "versa3KR",
+        "name": "Versa 3 KR",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hannibalT50",
+        "name": "Hannibal T50",
+        "uses_fuel": true,
+        "fuel_capacity": 160.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "cvSeries",
+        "name": "CV Series",
+        "uses_fuel": true,
+        "fuel_capacity": 140.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series200",
+        "name": "Series 200",
+        "uses_fuel": true,
+        "fuel_capacity": 71.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "transtarIIEagle",
+        "name": "Transtar II Eagle",
+        "uses_fuel": true,
+        "fuel_capacity": 160.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "hj6130",
+        "name": "HJ6130",
+        "uses_fuel": true,
+        "fuel_capacity": 52.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "prj8d",
+        "name": "PRJ8D",
+        "uses_fuel": true,
+        "fuel_capacity": 10.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "seriesTJW",
+        "name": "TJW",
+        "uses_fuel": true,
+        "fuel_capacity": 49.2,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "wheelLoader435S",
+        "name": "435S",
+        "uses_fuel": true,
+        "fuel_capacity": 100.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "cobraHybrid",
+        "name": "HEM 922 DQ Cobra hybrid",
+        "uses_fuel": true,
+        "fuel_capacity": 330.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "x1112",
+        "name": "X-Tended Reach 1112",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "c441R",
+        "name": "C441R",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "cp690",
+        "name": "CP690",
+        "uses_fuel": true,
+        "fuel_capacity": 295.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "cultivator980",
+        "name": "980",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "fellerBuncher843L",
+        "name": "843L-II",
+        "uses_fuel": true,
+        "fuel_capacity": 108.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "frontloader663R",
+        "name": "663R",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloader683R",
+        "name": "683R",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "frontloader700M",
+        "name": "700M",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "harvester1270G",
+        "name": "1270G",
+        "uses_fuel": true,
+        "fuel_capacity": 108.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "header639",
+        "name": "639 Premium",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "headerC16F",
+        "name": "C16F",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "headerHD45X",
+        "name": "HD45X",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "headerHD50F",
+        "name": "HD50F",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "headerRD35F",
+        "name": "RDF35",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "laforgeEZ",
+        "name": "Laforge EZ 1700",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pickUp1150",
+        "name": "PickUp 1150",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pickUp1800",
+        "name": "PickUp 1800",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pickUp900",
+        "name": "PickUp 900",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "series3650",
+        "name": "3650",
+        "uses_fuel": true,
+        "fuel_capacity": 46.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series6RExtraLarge",
+        "name": "$l10n_shopItem_seriesXAdd",
+        "uses_fuel": true,
+        "fuel_capacity": 112.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series6RLarge",
+        "name": "$l10n_shopItem_seriesXAdd",
+        "uses_fuel": true,
+        "fuel_capacity": 76.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series7R",
+        "name": "$l10n_shopItem_seriesX",
+        "uses_fuel": true,
+        "fuel_capacity": 122.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series848L",
+        "name": "848L-II",
+        "uses_fuel": true,
+        "fuel_capacity": 112.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series8R",
+        "name": "$l10n_shopItem_seriesX",
+        "uses_fuel": true,
+        "fuel_capacity": 130.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series8RT",
+        "name": "$l10n_shopItem_seriesX",
+        "uses_fuel": true,
+        "fuel_capacity": 142.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series8RX",
+        "name": "$l10n_shopItem_seriesX",
+        "uses_fuel": true,
+        "fuel_capacity": 142.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series9000",
+        "name": "$l10n_shopItem_seriesX",
+        "uses_fuel": true,
+        "fuel_capacity": 462.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series9R",
+        "name": "$l10n_shopItem_seriesX",
+        "uses_fuel": true,
+        "fuel_capacity": 193.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series9RX",
+        "name": "9RX Series",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "seriesS7",
+        "name": "S7",
+        "uses_fuel": true,
+        "fuel_capacity": 273.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "seriesX9",
+        "name": "X9 1100",
+        "uses_fuel": true,
+        "fuel_capacity": 345.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "efgS50S",
+        "name": "EFG S50",
+        "uses_fuel": true,
+        "fuel_capacity": 23.0,
+        "fuel_type": "electricCharge"
+    },
+    {
+        "nameXML": "hds9184M",
+        "name": "HDS 9/18-4 M",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "profi2",
+        "name": "Profi II",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "radium255",
+        "name": "Radium 255",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "comfortSupportWheel",
+        "name": "$l10n_shopItem_comfortSupportWheel",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "n3003",
+        "name": "3003",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus345",
+        "name": "345 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus345_johnDeere",
+        "name": "345 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus345_newHolland",
+        "name": "450 SFI",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus360",
+        "name": "360 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus360_johnDeere",
+        "name": "360 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus360_newHolland",
+        "name": "600 SFI",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus375",
+        "name": "375 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus375_johnDeere",
+        "name": "375 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus375_newHolland",
+        "name": "750 SFI",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus390",
+        "name": "390 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus390_johnDeere",
+        "name": "390 Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "plus390_newHolland",
+        "name": "900 SFI",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "nd144",
+        "name": "144ND",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "belvedere",
+        "name": "Belvedere",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "machTill401",
+        "name": "Mach Till 412",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "planter4900",
+        "name": "4905 Blue Drive",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "crossmax300",
+        "name": "CROSSMAX 300",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ecoCultivator300",
+        "name": "ECO-CULTIVATOR 300",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "speedmax300",
+        "name": "SPEEDMAX 300",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "speedmax560",
+        "name": "SPEEDMAX 560",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ultima800",
+        "name": "Ultima 800",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "eckoFlex",
+        "name": "ECKO FLEX",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "k300",
+        "name": "K 300-T + SKA 1-Z",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "k307",
+        "name": "K 307c-H + ECKO FLEX",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ska1",
+        "name": "SKA1",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "harvester951",
+        "name": "951",
+        "uses_fuel": true,
+        "fuel_capacity": 116.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "frc65",
+        "name": "FRC 65",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pq32000",
+        "name": "PQ 32.000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tsa",
+        "name": "TSA 30000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bigBodyS750",
+        "name": "Big Body 750 S",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "dolly10L",
+        "name": "Dolly 10 L",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hp20",
+        "name": "HALFPIPE HP 20",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ramBodyAS750",
+        "name": "RamBody AS 750+",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sks30_150",
+        "name": "SKS 30/1050",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pwo24",
+        "name": "PWO 24",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bigM450",
+        "name": "BiG M 450",
+        "uses_fuel": true,
+        "fuel_capacity": 224.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "bigPack1290HDPVC",
+        "name": "BiG Pack 1290 HDP VC",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bigX1180",
+        "name": "BiG X 1180",
+        "uses_fuel": true,
+        "fuel_capacity": 578.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "collect900_3",
+        "name": "X-Collect 900-3",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "easyFlow300S",
+        "name": "EasyFlow 300 S",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gx520",
+        "name": "GX 520",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "profiLiner",
+        "name": "Profi Liner",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "swadroTS970",
+        "name": "Swadro TS 970",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "varipackV190XC",
+        "name": "VariPack V 190 XC Plus",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "vendroKW820Highland",
+        "name": "Vendro 820 Highland",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "xDisc620",
+        "name": "XDisc 620",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "xDisc620Trailer",
+        "name": "XDisc 620 %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "m77",
+        "name": "M77",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "r640",
+        "name": "R640",
+        "uses_fuel": true,
+        "fuel_capacity": 24.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "rtvx1140",
+        "name": "RTV-X1140W-H",
+        "uses_fuel": true,
+        "fuel_capacity": 10.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "rtvxg850",
+        "name": "RTV-XG850 SIDEKICK",
+        "uses_fuel": true,
+        "fuel_capacity": 14.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "seriesM8",
+        "name": "$l10n_shopItem_seriesXUpper",
+        "uses_fuel": true,
+        "fuel_capacity": 72.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "svl972",
+        "name": "SVL 97-2",
+        "uses_fuel": true,
+        "fuel_capacity": 38.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "btfr6030",
+        "name": "HR 6040 RCS + BTFR 6030",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "espro6000RC",
+        "name": "ESPRO 6000 RC",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ga4731",
+        "name": "GA 4731",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gmd3123F",
+        "name": "GMD 3123 F",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gmd8730",
+        "name": "GMD 8730-FF",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hr6040RCS",
+        "name": "HR 6040 RCS",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "maxima3TIL",
+        "name": "MAXIMA 3 TI L",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "primor15070",
+        "name": "PRIMOR 15070 M",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "prolander7500",
+        "name": "PROLANDER 7500",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ra142",
+        "name": "RA 142",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sb1290ID",
+        "name": "SB 1290 iD",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "spwIntense",
+        "name": "SPW INTENSE 25.2 CL",
+        "uses_fuel": true,
+        "fuel_capacity": 100.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "sw4014",
+        "name": "SW 4014",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tf1512",
+        "name": "TF 1512",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "vb3190",
+        "name": "VB 3190",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "miniairNova3m",
+        "name": "Miniair Nova %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "miniairNova6m",
+        "name": "Miniair Nova %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "optimaRS9m",
+        "name": "Optima RS",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pw10012",
+        "name": "PW 100 - 12",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "lhII",
+        "name": "LH II",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "seriesREX4",
+        "name": "REX 4 GT",
+        "uses_fuel": true,
+        "fuel_capacity": 28.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "koralin9840",
+        "name": "Koralin 9-840",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "smaragd9_500k",
+        "name": "Smaragd 9/500K",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "solitair12",
+        "name": "Solitair 12",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "titan18",
+        "name": "Titan 18",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "lintrac130",
+        "name": "Lintrac 130",
+        "uses_fuel": true,
+        "fuel_capacity": 54.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "mks32",
+        "name": "MKS 32",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mks8",
+        "name": "MKS 8",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "module4",
+        "name": "Module 4",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "moduleX",
+        "name": "Module X Semi",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "multiPurposeTruck",
+        "name": "Dragon",
+        "uses_fuel": true,
+        "fuel_capacity": 68.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "pickup2017",
+        "name": "Pickup 2017",
+        "uses_fuel": true,
+        "fuel_capacity": 60.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "s710",
+        "name": "S-710",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "distinctionTripleHopper",
+        "name": "Distinction Triple Hopper",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "prestigeSuperB",
+        "name": "Prestige Super-B",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "prestigeSuperB_back",
+        "name": "Prestige Super-B Pull trailer",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "prestigeSuperB_front",
+        "name": "Prestige Super-B Pull trailer",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "renownTriAxleBeavertailLowDrop",
+        "name": "Renown Drop Deck",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "fd250",
+        "name": "FD250 FlexDraper®",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "anthem",
+        "name": "Anthem 6x4",
+        "uses_fuel": true,
+        "fuel_capacity": 170.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "anthemBlack",
+        "name": "Mack Black Anthem",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "superliner1979",
+        "name": "Super-Liner 6x4",
+        "uses_fuel": true,
+        "fuel_capacity": 200.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "telehandlerBaleFork",
+        "name": "$l10n_shopItem_telehandlerBaleFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "telehandlerBaleGrab",
+        "name": "$l10n_shopItem_telehandlerBaleGrab",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "telehandlerFork",
+        "name": "$l10n_shopItem_telehandlerFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "telehandlerLogFork",
+        "name": "$l10n_shopItem_telehandlerLogFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "telehandlerManureFork",
+        "name": "$l10n_shopItem_telehandlerManureFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "telehandlerShovel",
+        "name": "$l10n_shopItem_telehandlerShovel",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wheelLoaderFork",
+        "name": "$l10n_shopItem_wheelLoaderFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wheelLoaderLogFork",
+        "name": "$l10n_shopItem_wheelLoaderLogFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "m504",
+        "name": "M50-4",
+        "uses_fuel": true,
+        "fuel_capacity": 30.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "mlt841",
+        "name": "MLT 841-145 PS+",
+        "uses_fuel": true,
+        "fuel_capacity": 56.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "baler1840",
+        "name": "MF 1840",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "baler2370UHD",
+        "name": "MF 2370 Ultra HD",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "beta7360AL4",
+        "name": "MF Beta 7360 AL4",
+        "uses_fuel": true,
+        "fuel_capacity": 153.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "freeFlow25FT",
+        "name": "MF FreeFlow 25FT",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mf3012",
+        "name": "MF 3012",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mf8570",
+        "name": "MF 8570",
+        "uses_fuel": true,
+        "fuel_capacity": 125.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "mf8570Header",
+        "name": "MF 8570 %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mf8570Trailer",
+        "name": "MF 8570 %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "series5700S",
+        "name": "MF 5700 S",
+        "uses_fuel": true,
+        "fuel_capacity": 38.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series7S",
+        "name": "MF 7S",
+        "uses_fuel": true,
+        "fuel_capacity": 62.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series9S",
+        "name": "MF 9S",
+        "uses_fuel": true,
+        "fuel_capacity": 114.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "baleGrab",
+        "name": "$l10n_shopItem_telehandlerBaleFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "cottonTagTrailer",
+        "name": "Cotton Tag Trailer",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "overtippingBucket",
+        "name": "$l10n_shopItem_wheelLoaderHighDumpBucket",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wheelieGrab",
+        "name": "Cotton Wheelie Grab",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "x8VTDrive",
+        "name": "X8 VT-Drive",
+        "uses_fuel": true,
+        "fuel_capacity": 105.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "conveyAll1690",
+        "name": "1690",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "conveyAllCST1550",
+        "name": "CST 1550",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tl1239",
+        "name": "TL 12-39",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "multifarmer449",
+        "name": "MF44.9CS-170-CVTRONIC",
+        "uses_fuel": true,
+        "fuel_capacity": 68.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "proTil4TX",
+        "name": "PRO-TIL 4T Xzact",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "n20T",
+        "name": "N20T",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "n40bx",
+        "name": "N40BX",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "n60_35",
+        "name": "N60-35",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "n60_45",
+        "name": "N60-45",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "n70_30",
+        "name": "N70-30",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "n70_40",
+        "name": "N70-40",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "braud9070L",
+        "name": "Braud 9070L",
+        "uses_fuel": true,
+        "fuel_capacity": 82.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "braud9090X",
+        "name": "Braud 9090X Olive",
+        "uses_fuel": true,
+        "fuel_capacity": 91.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "chSeries",
+        "name": "CH7.70",
+        "uses_fuel": true,
+        "fuel_capacity": 187.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "cr11",
+        "name": "CR11",
+        "uses_fuel": true,
+        "fuel_capacity": 388.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "cr11GoldEdition",
+        "name": "CR11 Gold Edition",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "cr980_1830",
+        "name": "980CR 18-30",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "cr980_830",
+        "name": "980CR 8-30",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "fb130",
+        "name": "130FB",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "fd250",
+        "name": "FD250 FlexDraper®",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "fd250GoldEdition",
+        "name": "FD250 FlexDraper® Gold Edition",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "fr780",
+        "name": "FR 780",
+        "uses_fuel": true,
+        "fuel_capacity": 387.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "l318",
+        "name": "L318",
+        "uses_fuel": true,
+        "fuel_capacity": 27.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "proBelt165",
+        "name": "Pro-Belt 165",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "superFlex25",
+        "name": "SuperFlex 25FT",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "t7",
+        "name": "T7 LWB PLMI",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "t8",
+        "name": "T8 GENESIS Series",
+        "uses_fuel": true,
+        "fuel_capacity": 140.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "tk4",
+        "name": "TK4.80 Methane Power",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "varifeed28",
+        "name": "Varifeed 28FT",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight1000",
+        "name": "1000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tForcePlus950",
+        "name": "T-ForcePlus 950",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "at5105",
+        "name": "AT5105",
+        "uses_fuel": true,
+        "fuel_capacity": 220.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "bp2140e",
+        "name": "BP2140e",
+        "uses_fuel": true,
+        "fuel_capacity": 157.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "epd540E",
+        "name": "EPD540e",
+        "uses_fuel": true,
+        "fuel_capacity": 198.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "mkb4TR",
+        "name": "MKB-4TR",
+        "uses_fuel": true,
+        "fuel_capacity": 200.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "baleHugger",
+        "name": "$l10n_shopItem_telehandlerBaleGrab",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "baleSpear",
+        "name": "$l10n_shopItem_skidSteerBaleFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "highDumpBucket",
+        "name": "$l10n_shopItem_skidSteerHighDumpBucket",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "manureFork",
+        "name": "$l10n_shopItem_skidSteerManureFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "palletFork",
+        "name": "$l10n_shopItem_frontloaderPalletFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sfb750",
+        "name": "SFB 750",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "stumpGrinder",
+        "name": "$l10n_shopItem_skidSteerStumpCutter",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "utilityGrapple",
+        "name": "$l10n_shopItem_skidSteerLogFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "dwp186",
+        "name": "DW P 186",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "felix",
+        "name": "Felix",
+        "uses_fuel": true,
+        "fuel_capacity": 72.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "pmTraclll",
+        "name": "Pm Trac III",
+        "uses_fuel": true,
+        "fuel_capacity": 72.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "rwgP13",
+        "name": "P13 4272",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ape50",
+        "name": "50",
+        "uses_fuel": true,
+        "fuel_capacity": 2.5,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "lt408L",
+        "name": "LT40-8L",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "aerosemVT5000DD",
+        "name": "Aerosem VT 5000 DD",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "alpinHit44",
+        "name": "ALPINHIT 4.4 H",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bossAlpin251",
+        "name": "BOSS ALPIN 251",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "faro4010D",
+        "name": "FARO 4010 D",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hit1618T",
+        "name": "HIT 16.18 T",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "jumbo8450DB",
+        "name": "JUMBO 8450 DB",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rotocareV12400",
+        "name": "ROTOCARE V 12400",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "servo25",
+        "name": "SERVO 25",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "servoT6000Plus",
+        "name": "SERVO T 6000 P",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "terria6040",
+        "name": "TERRIA 6040",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "top1403",
+        "name": "TOP 1403 C",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bison",
+        "name": "Bison Active Frame",
+        "uses_fuel": true,
+        "fuel_capacity": 114.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "leitwolf",
+        "name": "Leitwolf Agripower",
+        "uses_fuel": true,
+        "fuel_capacity": 174.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "sf900",
+        "name": "SF900",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mp122Ocea",
+        "name": "MP 122 OCEA",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bagLifter",
+        "name": "BIG BAG LIFTER - SINGLE",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "bagLifterDual",
+        "name": "BIG BAG LIFTER - DUAL",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "q4M",
+        "name": "Q4M",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "q6M",
+        "name": "Q6M",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "q7M",
+        "name": "Q7M",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "r7Rd",
+        "name": "RESPIRO R7 rd",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "timberFrameFH16",
+        "name": "FH16 RUL-HKR",
+        "uses_fuel": true,
+        "fuel_capacity": 240.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "timberTrailer3A",
+        "name": "RUH327",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "skh60",
+        "name": "SKH 60",
+        "uses_fuel": true,
+        "fuel_capacity": 30.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "skb240A",
+        "name": "SKB-240",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "keiler2",
+        "name": "KEILER 2 RK22",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "maus5",
+        "name": "Maus 5",
+        "uses_fuel": true,
+        "fuel_capacity": 177.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "nawaRoMaus",
+        "name": "NawaRo-Maus",
+        "uses_fuel": true,
+        "fuel_capacity": 177.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "rrXL9",
+        "name": "RR-XL 9x45",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rrXLTrailer",
+        "name": "RR-XL 9x45 %s",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tiger6S",
+        "name": "Tiger 6S",
+        "uses_fuel": true,
+        "fuel_capacity": 384.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "f20D",
+        "name": "F20D",
+        "uses_fuel": true,
+        "fuel_capacity": 111.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "dk280RP",
+        "name": "DK 280 RP",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tdk301RA",
+        "name": "TDK 301 RA",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tdk301RP",
+        "name": "TDK 301 RP",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "akp122",
+        "name": "AKP-122",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ans1900",
+        "name": "ANS-1900",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "mul1000",
+        "name": "MUL-1000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rzk300H",
+        "name": "RZK 300H",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tb100",
+        "name": "TB-100",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "jump320",
+        "name": "JUMP 320",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "kdd941STH",
+        "name": "KDD 941 STH",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "kdf341S",
+        "name": "KDF 341 S",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "p8890Tedder",
+        "name": "P8 - 890",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tornado251",
+        "name": "Tornado 252",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "xt390",
+        "name": "XT 390",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "z2840",
+        "name": "Z2-840 H",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "virtus135RVShift",
+        "name": "Virtus 135 RVshift",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "pgII28Genesis",
+        "name": "PG II 28 Genesis",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sbh4_36",
+        "name": "SBH4 36",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sd700",
+        "name": "SD 700",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "us235",
+        "name": "US 235 Dynamic",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "loader23E",
+        "name": "23E",
+        "uses_fuel": true,
+        "fuel_capacity": 8.4,
+        "fuel_type": "electricCharge"
+    },
+    {
+        "nameXML": "loader9660T",
+        "name": "9660 T-2",
+        "uses_fuel": true,
+        "fuel_capacity": 70.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "rapide580V",
+        "name": "Rapide 580V",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "lowloader4A",
+        "name": "%s 4A",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "g340",
+        "name": "340 G",
+        "uses_fuel": true,
+        "fuel_capacity": 54.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "series835G",
+        "name": "835 G Hybrid",
+        "uses_fuel": true,
+        "fuel_capacity": 114.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "trailedLine4System1000",
+        "name": "TrailedLine 4.0 System 1000+",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "air300FAlp",
+        "name": "Air 300 F Alp",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "favorit254",
+        "name": "Favorit 254",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "enyaq",
+        "name": "Enyaq Coupé RS iV",
+        "uses_fuel": true,
+        "fuel_capacity": 41.0,
+        "fuel_type": "electricCharge"
+    },
+    {
+        "nameXML": "kodiaq",
+        "name": "Kodiaq",
+        "uses_fuel": true,
+        "fuel_capacity": 19.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "trius",
+        "name": "TRIUS",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "absolut",
+        "name": "Absolut",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight1000",
+        "name": "1000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "superChisel",
+        "name": "Superchisel CP2050",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "egv65AHK_SG",
+        "name": "EGV 65 AHK SG",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "gusscom1250",
+        "name": "GUSSCOM 1250",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "top450",
+        "name": "Top 450",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight1000",
+        "name": "PAC-1000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight1500",
+        "name": "PAC-1500",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight2500",
+        "name": "B2500",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight600",
+        "name": "FGB 600",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "weight750",
+        "name": "PAC-750",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "fst990",
+        "name": "FST 990",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tde220",
+        "name": "TDE-220",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tfr250",
+        "name": "TFR 250",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "thx180",
+        "name": "THX-180",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tms2_300d",
+        "name": "TMS2-300D",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tpn140",
+        "name": "TPN 140",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "locomotiveAS",
+        "name": "$l10n_storeItem_train",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "locomotiveEU",
+        "name": "$l10n_storeItem_train",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "forestryLocomotive",
+        "name": "$l10n_storeItem_train",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wagonFlatBedUS",
+        "name": "Flatbed Wagon",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wagonGrainEU",
+        "name": "Grain Wagon",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wagonPlanksUS",
+        "name": "Planks Wagon",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wagonSugarbeetsEU",
+        "name": "Sugarbeet Wagon",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wagonTimberEU",
+        "name": "Timber Wagon",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wagonTimberUS",
+        "name": "Timber Wagon",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wagonVehiclesEU",
+        "name": "Vehicle Wagon",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "wagonWoodChipsEU",
+        "name": "Woodchips Wagon",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "tga560",
+        "name": "TGA 560",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "colossus10000",
+        "name": "Colossus 10.000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "fenix3000",
+        "name": "FENIX 3000/3",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "carrierXL625",
+        "name": "Carrier XL 625",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "nzExtreme1425",
+        "name": "NZ Extreme 1425",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "rexius1230",
+        "name": "Rexius 1230",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "topDown600",
+        "name": "TopDown 600",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "sSeries",
+        "name": "$l10n_shopItem_seriesX",
+        "uses_fuel": true,
+        "fuel_capacity": 112.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "tSeries",
+        "name": "T Series",
+        "uses_fuel": true,
+        "fuel_capacity": 84.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "tm1410",
+        "name": "TM 1410",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "zr5",
+        "name": "ZR5-1200",
+        "uses_fuel": true,
+        "fuel_capacity": 70.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "ec250DL",
+        "name": "EC250DL",
+        "uses_fuel": true,
+        "fuel_capacity": 75.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "ec380DL",
+        "name": "EC380DL",
+        "uses_fuel": true,
+        "fuel_capacity": 117.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "fh16",
+        "name": "FH16",
+        "uses_fuel": true,
+        "fuel_capacity": 240.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "fhElectric",
+        "name": "FH Electric",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l120H",
+        "name": "L120H",
+        "uses_fuel": true,
+        "fuel_capacity": 110.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "l120HElectric",
+        "name": "L120H Electric Conversion",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l120HBagLifter",
+        "name": "$l10n_storeItem_bagLifter",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l120HHighTipShovel",
+        "name": "$l10n_storeItem_wheelLoaderHighTipBucket",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l120HPalletFork",
+        "name": "$l10n_shopItem_wheelLoaderFork",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l120HRockShovel",
+        "name": "$l10n_storeItem_wheelLoaderRockBucket",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l120HShovel",
+        "name": "$l10n_storeItem_wheelLoaderGeneralPurposeBucket",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l180H",
+        "name": "L180H",
+        "uses_fuel": true,
+        "fuel_capacity": 133.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "l180HBagLifter",
+        "name": "%s (%s)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l180HGrapple",
+        "name": "%s (%s)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l180HHighTipShovel",
+        "name": "%s (%s)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l180HPalletFork",
+        "name": "%s (%s)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l180HRockShovel",
+        "name": "%s (%s)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l180HShovel",
+        "name": "%s (%s)",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "l200H",
+        "name": "L200H High Lift",
+        "uses_fuel": true,
+        "fuel_capacity": 136.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "vnx300",
+        "name": "VNX 300",
+        "uses_fuel": true,
+        "fuel_capacity": 200.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "motherBin4000",
+        "name": "WMB 4000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "c550",
+        "name": "WOODCRACKER® C550",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "g1650",
+        "name": "WOODCRACKER® G1650",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "hmz3403000",
+        "name": "HMZ 340/3000",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "silverstar",
+        "name": "Silverstar",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "crystal",
+        "name": "CRYSTAL HD",
+        "uses_fuel": true,
+        "fuel_capacity": 68.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "forterraHSX140",
+        "name": "FORTERRA HSX",
+        "uses_fuel": true,
+        "fuel_capacity": 46.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "proximaHS120",
+        "name": "PROXIMA HS",
+        "uses_fuel": true,
+        "fuel_capacity": 30.0,
+        "fuel_type": "diesel"
+    },
+    {
+        "nameXML": "ult18",
+        "name": "ULT 18",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "ult24",
+        "name": "ULT 24",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    },
+    {
+        "nameXML": "vibro",
+        "name": "Vibro",
+        "uses_fuel": false,
+        "fuel_capacity": 0.0,
+        "fuel_type": ""
+    }
+]
