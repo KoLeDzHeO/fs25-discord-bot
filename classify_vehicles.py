@@ -9,6 +9,10 @@ def classify_vehicles(vehicles: Iterable[Vehicle]) -> str:
     dirty: list[str] = []
     other: list[str] = []
 
+    names = [v.name for v in vehicles]
+    max_name_len = max((len(n) for n in names), default=0)
+    indent = "    "
+
     for v in vehicles:
         name = v.name
         dirt = float(v.dirt)
@@ -21,11 +25,13 @@ def classify_vehicles(vehicles: Iterable[Vehicle]) -> str:
         is_dirty = dirt > 50
         is_other = damage > 5 or dirt > 5
 
+        formatted_name = f"{name:<{max_name_len}}"
+
         if is_damaged:
             msg_parts = [f"поврежд. {int(damage)}%"]
             if uses_fuel:
                 msg_parts.append(f"топливо: {int(fuel)}")
-            msg = f"• {name} — " + ", ".join(msg_parts)
+            msg = f"{indent}• {formatted_name} — " + ", ".join(msg_parts)
             damaged.append(msg)
         elif is_dirty:
             msg_parts = [f"грязь: {int(dirt)}%"]
@@ -33,7 +39,7 @@ def classify_vehicles(vehicles: Iterable[Vehicle]) -> str:
                 msg_parts.append(f"поврежд.: {int(damage)}%")
             if uses_fuel and fuel < 0.8 * capacity:
                 msg_parts.append(f"топливо: {int(fuel)}")
-            msg = f"• {name} — " + ", ".join(msg_parts)
+            msg = f"{indent}• {formatted_name} — " + ", ".join(msg_parts)
             dirty.append(msg)
         elif is_other:
             msg_parts = []
@@ -43,7 +49,7 @@ def classify_vehicles(vehicles: Iterable[Vehicle]) -> str:
                 msg_parts.append(f"поврежд.: {int(damage)}%")
             if uses_fuel and fuel < 0.8 * capacity:
                 msg_parts.append(f"топливо: {int(fuel)}")
-            msg = f"• {name} — " + ", ".join(msg_parts)
+            msg = f"{indent}• {formatted_name} — " + ", ".join(msg_parts)
             other.append(msg)
 
     lines = []
