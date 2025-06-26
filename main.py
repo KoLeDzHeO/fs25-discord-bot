@@ -42,7 +42,6 @@ async def fetch_vehicles_xml():
                 ftp.quit()
             except Exception:
                 pass
-
     try:
         return await asyncio.to_thread(_download)
     except Exception as e:
