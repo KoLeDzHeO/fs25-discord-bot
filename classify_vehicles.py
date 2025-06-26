@@ -48,7 +48,9 @@ def classify_vehicles(vehicles: List[Dict]) -> str:
 
     if damaged:
         prefix = "" if not lines else "\n"
-        lines.append(f"{prefix}🛠️ **Повреждённая техника (низкое топливо + повреждение):**")
+        lines.append(
+            f"{prefix}🛠️ **Повреждённая техника (низкое топливо + повреждение):**"
+        )
         lines.extend(damaged)
 
     if dirty:
@@ -66,10 +68,21 @@ def classify_vehicles(vehicles: List[Dict]) -> str:
 
 if __name__ == "__main__":
     example = [
-        {"name": "Техника 1", "dirt": 60, "damage": 70, "fuel": 10, "fuel_capacity": 100},
-        {"name": "Техника 2", "dirt": 55, "damage": 10, "fuel": 80, "fuel_capacity": 120},
+        {
+            "name": "Техника 1",
+            "dirt": 60,
+            "damage": 70,
+            "fuel": 10,
+            "fuel_capacity": 100,
+        },
+        {
+            "name": "Техника 2",
+            "dirt": 55,
+            "damage": 10,
+            "fuel": 80,
+            "fuel_capacity": 120,
+        },
         {"name": "Техника 3", "dirt": 10, "damage": 0, "fuel": 0, "fuel_capacity": 0},
     ]
     markdown = classify_vehicles(example)
     print(markdown)
-

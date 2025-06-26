@@ -22,10 +22,17 @@ FARM_ID = "1"
 client = discord.Client(intents=discord.Intents.default())
 
 SKIP_OBJECTS = {
-    "eggBoxPallet", "cementBagsPallet", "bigBag_seeds", "bigBagHelm_fertilizer",
-    "bigBag_fertilizer", "goatMilkCanPallet", "roofPlatesPallet",
-    "cementBricksPallet", "cementBoxPallet"
+    "eggBoxPallet",
+    "cementBagsPallet",
+    "bigBag_seeds",
+    "bigBagHelm_fertilizer",
+    "bigBag_fertilizer",
+    "goatMilkCanPallet",
+    "roofPlatesPallet",
+    "cementBricksPallet",
+    "cementBoxPallet",
 }
+
 
 async def fetch_vehicles_xml():
     def _download():
@@ -36,11 +43,13 @@ async def fetch_vehicles_xml():
             ftp.retrbinary(f"RETR {FTP_PATH}", buffer.write)
             buffer.seek(0)
             return buffer.getvalue()
+
     try:
         return await asyncio.to_thread(_download)
     except Exception as e:
         print(f"FTP Error: {e}")
         return None
+
 
 def extract_vehicle_info(vehicle):
     dirt = damage = fuel = 0
@@ -77,7 +86,11 @@ def collect_vehicles(xml_data):
             max_fuel = info.get("fuel_capacity") or 0
             uses_fuel = info.get("uses_fuel", bool(max_fuel))
 
-            if damage <= 0.05 and dirt <= 0.05 and (not max_fuel or fuel >= 0.8 * max_fuel):
+            if (
+                damage <= 0.05
+                and dirt <= 0.05
+                and (not max_fuel or fuel >= 0.8 * max_fuel)
+            ):
                 continue
 
             result.append(
@@ -111,11 +124,11 @@ def split_messages(lines, max_length=2000):
         blocks.append(current.rstrip())
     return blocks
 
+
 @client.event
 async def on_ready():
     print(f"Бот запущен как {client.user}")
     await start_reporting()
-
 
 
 async def start_reporting():
@@ -123,7 +136,9 @@ async def start_reporting():
     channel = client.get_channel(CHANNEL_ID)
 
     if not channel:
-        print(f"❌ Канал с ID {CHANNEL_ID} не найден! Проверь переменную DISCORD_CHANNEL_ID.")
+        print(
+            f"❌ Канал с ID {CHANNEL_ID} не найден! Проверь переменную DISCORD_CHANNEL_ID."
+        )
         return
     else:
         print(f"✅ Канал найден: {channel.name} ({channel.id})")
@@ -172,5 +187,6 @@ async def start_reporting():
                 print(f"Ошибка отправки: {e}")
 
         await asyncio.sleep(600)
+
 
 client.run(TOKEN)
