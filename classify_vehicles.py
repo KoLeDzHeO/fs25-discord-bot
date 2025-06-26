@@ -17,26 +17,31 @@ def classify_vehicles(vehicles: List[Dict]) -> str:
 
         is_damaged = damage > 50 or (uses_fuel and fuel < 0.4 * capacity)
         is_dirty = dirt > 50
-        is_other = (
-            damage > 5
-            or dirt > 5
-            or (uses_fuel and fuel < 0.8 * capacity)
-        )
+        is_other = damage > 5 or dirt > 5
 
         if is_damaged:
-            msg = f"• {name} — поврежд. {int(damage)}%"
+            msg_parts = [f"поврежд. {int(damage)}%"]
             if uses_fuel:
-                msg += f", топливо: {int(fuel)}"
+                msg_parts.append(f"топливо: {int(fuel)}")
+            msg = f"• {name} — " + ", ".join(msg_parts)
             damaged.append(msg)
         elif is_dirty:
-            msg = f"• {name} — грязь: {int(dirt)}%"
+            msg_parts = [f"грязь: {int(dirt)}%"]
+            if damage >= 5:
+                msg_parts.append(f"поврежд.: {int(damage)}%")
             if uses_fuel and fuel < 0.8 * capacity:
-                msg += f", топливо: {int(fuel)}"
+                msg_parts.append(f"топливо: {int(fuel)}")
+            msg = f"• {name} — " + ", ".join(msg_parts)
             dirty.append(msg)
         elif is_other:
-            msg = f"• {name} — грязь: {int(dirt)}%, поврежд.: {int(damage)}%"
+            msg_parts = []
+            if dirt > 5:
+                msg_parts.append(f"грязь: {int(dirt)}%")
+            if damage > 5:
+                msg_parts.append(f"поврежд.: {int(damage)}%")
             if uses_fuel and fuel < 0.8 * capacity:
-                msg += f", топливо: {int(fuel)}"
+                msg_parts.append(f"топливо: {int(fuel)}")
+            msg = f"• {name} — " + ", ".join(msg_parts)
             other.append(msg)
 
     lines = []
