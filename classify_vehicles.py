@@ -43,7 +43,7 @@ def classify_vehicles(vehicles: List[Dict]) -> str:
 
     if damaged:
         prefix = "" if not lines else "\n"
-        lines.append(f"{prefix}🛠️ **Сильно повреждённая техника:**")
+        lines.append(f"{prefix}🛠️ **Повреждённая техника (низкое топливо + повреждение):**")
         lines.extend(damaged)
 
     if dirty:
