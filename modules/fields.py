@@ -4,8 +4,7 @@ from config import config
 
 def parse_field_statuses(xml_bytes: bytes) -> list[str]:
     """
-    Разбирает fields.xml и возвращает список строк со статусами полей.
-    Фильтрует по farmId, если атрибут присутствует.
+    Разбирает fields.xml и возвращает список читабельных строк со статусами полей.
     """
     tree = ET.fromstring(xml_bytes)
     fields = tree.findall(".//field")
@@ -32,20 +31,27 @@ def parse_field_statuses(xml_bytes: bytes) -> list[str]:
 
         # Определяем статус по росту
         if fruit_type == "UNKNOWN":
-            status = "🟫 Пустое | можно сеять"
+            growth_status = "Пустое | можно сеять"
         elif growth >= max_stage:
-            status = f"{emoji} {name} | урожай готов 🧺"
+            growth_status = "Урожай готов"
         else:
-            status = f"{emoji} {name} | стадия: {growth}/{max_stage}"
+            growth_status = f"Стадия {growth}/{max_stage}"
 
-        # Добавляем дополнительные состояния
+        # Состояния поля
+        flags: list[str] = []
         if weed > 0:
-            status += " | 🌱 сорняки"
+            flags.append("🌱 Сорняки")
         if lime == 0:
-            status += " | 🧂 известь ❌"
+            flags.append("🧂 Нет извести")
         if spray == 0:
-            status += " | 💧 удобрение ❌"
+            flags.append("💧 Нет удобрения")
 
-        results.append(f"# {field_id} {status}")
+        # Собираем компоненты статуса
+        parts = [f"{emoji} {name}", growth_status]
+        if flags:
+            parts.append(" | ".join(flags))
+
+        status_line = f"# {field_id} — " + " | ".join(parts)
+        results.append(status_line)
 
     return results
