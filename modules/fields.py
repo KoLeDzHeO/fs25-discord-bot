@@ -2,6 +2,8 @@ import json
 import xml.etree.ElementTree as ET
 from typing import Dict, List
 
+from config import config
+
 # Загрузка JSON с каталогом культур
 with open("data/crops_catalog.json", "r", encoding="utf-8") as f:
     _CATALOG: Dict[str, dict] = {c["nameXML"]: c for c in json.load(f)}
@@ -30,7 +32,7 @@ def parse_field_statuses(xml_bytes: bytes) -> List[str]:
     results = []
 
     for field in fields:
-        if field.get("farmId") != "1":
+        if field.get("farmId") != config.FARM_ID:
             continue
 
         field_id = field.get("id")
