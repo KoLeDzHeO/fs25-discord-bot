@@ -9,14 +9,13 @@ from utils.helpers import split_messages
 from .discord_ui import create_report_embed
 
 intents = discord.Intents.default()
-client = discord.Client(intents=intents)
-tree = discord.app_commands.CommandTree(client)
+client = discord.Bot(intents=intents)
 
 _last_messages: list[discord.Message] = []
 
 
-@tree.command(name="поля", description="Показать статус всех полей")
-async def show_fields(interaction: discord.Interaction):
+@client.slash_command(name="поля", description="Показать статус всех полей")
+async def show_fields(ctx: discord.ApplicationContext):
     xml_bytes = await ftp_client.fetch_fields_file()
     statuses = parse_field_statuses(xml_bytes)
 
@@ -24,7 +23,7 @@ async def show_fields(interaction: discord.Interaction):
     for line in statuses:
         embed.add_field(name="\u200b", value=line, inline=False)
 
-    await interaction.response.send_message(embed=embed)
+    await ctx.respond(embed=embed)
 
 
 @client.event
