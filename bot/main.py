@@ -31,9 +31,9 @@ async def show_fields(ctx: discord.ApplicationContext):
             embed.add_field(name="\u200b", value=line, inline=False)
 
         if i == 0:
-            await ctx.respond(embed=embed)
-        else:
-            await ctx.send(embed=embed)
+             await ctx.defer()
+        await ctx.send(embed=embed)
+
 
 @client.event
 async def on_ready():
