@@ -29,7 +29,6 @@ async def show_fields(ctx: discord.ApplicationContext):
 @client.event
 async def on_ready():
     print(f"Бот запущен как {client.user}")
-    await tree.sync()
     await start_reporting()
 
 
