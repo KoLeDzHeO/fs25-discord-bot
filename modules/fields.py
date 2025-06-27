@@ -1,42 +1,41 @@
-"""Placeholder for field analysis logic."""
-
-import xml.etree.ElementTree as ET
-
+from xml.etree import ElementTree as ET
+from modules.crops import get_crop_name, get_crop_emoji, get_crop_growth_max
 
 def parse_field_statuses(xml_bytes: bytes) -> list[str]:
-    """Parse fields.xml and return formatted status lines."""
-    result: list[str] = []
-    try:
-        root = ET.fromstring(xml_bytes)
-        for elem in root.findall(".//field"):
-            num = elem.get("number") or elem.get("id") or "?"
-            fruit = (elem.get("fruitType") or "").upper()
-            growth = int(elem.get("growthState", "0"))
-            weeds = int(elem.get("weedState", "0"))
-            lime = float(elem.get("limeLevel", "0"))
-            plow = float(elem.get("plowLevel", "0"))
-            spray = float(elem.get("sprayLevel", "0"))
+    tree = ET.fromstring(xml_bytes)
+    fields = tree.findall(".//field")
 
-            if not fruit or fruit == "NONE":
-                result.append(f"#{num} 🟫 Пустое | можно сеять")
-                continue
+    results = []
 
-            parts = [f"#{num} 🌾 {fruit}"]
-            if growth >= 7:
-                parts.append("🧺 Урожай готов")
-            else:
-                parts.append(f"стадия: {growth}/7")
+    for field in fields:
+        field_id = field.get("id")
+        fruit_type = field.get("fruitType", "UNKNOWN")
+        growth = int(field.get("growthState", 0))
+        weed = int(field.get("weed", 0))
+        lime = int(field.get("lime", 0))
+        spray = int(field.get("spray", 0))
 
-            parts.append(f"💧 удобрение: {int(spray * 100)}%")
-            parts.append(f"🌱 сорняки: {'✅' if weeds else '❌'}")
-            parts.append(f"🧂 известь: {'✅' if lime else '❌'}")
-            parts.append(f"🔨 вспашка: {'✅' if plow else '❌'}")
+        # Имя и эмодзи
+        name = get_crop_name(fruit_type)
+        emoji = get_crop_emoji(fruit_type)
+        max_stage = get_crop_growth_max(fruit_type)
 
-            result.append(" | ".join(parts))
-    except Exception as exc:
-        print(f"XML parse error: {exc}")
-    return result
+        # Выводим стадию
+        if fruit_type == "UNKNOWN":
+            status = "🟫 Пустое | можно сеять"
+        elif growth >= max_stage:
+            status = f"{emoji} {name} | урожай готов 🧺"
+        else:
+            status = f"{emoji} {name} | стадия: {growth}/{max_stage}"
 
+        # Добавим состояния
+        if weed > 0:
+            status += " | 🌱 сорняки"
+        if lime == 0:
+            status += " | 🧂 известь ❌"
+        if spray == 0:
+            status += " | 💧 удобрение ❌"
 
-def analyze_fields(data: bytes) -> str:
-    return "Анализ полей пока не реализован"
+        results.append(f"# {field_id} {status}")
+
+    return results
