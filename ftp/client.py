@@ -18,11 +18,11 @@ async def fetch_file(path: str) -> Optional[bytes]:
         ) as ftp:
             # Download the file to a temporary location.
             with tempfile.NamedTemporaryFile() as tmp:
-                # ``write_into=True`` avoids treating ``tmp.name`` as a directory.
                 await ftp.download(path, tmp.name, write_into=True)
+                print(f"Downloaded to {tmp.name}")
                 tmp.seek(0)
                 return tmp.read()
     except Exception as exc:
-        print(f"FTP error: {exc}")
+        print(f"FTP error ({type(exc).__name__}): {exc}")
         traceback.print_exc()
         return None
