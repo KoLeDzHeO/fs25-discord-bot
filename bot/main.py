@@ -16,10 +16,11 @@ _last_messages: list[discord.Message] = []
 
 @client.slash_command(name="поля", description="Показать статус всех полей")
 async def show_fields(ctx: discord.ApplicationContext):
+    await ctx.defer()  # ← Должен быть в самом начале
+
     xml_bytes = await ftp_client.fetch_fields_file()
     statuses = parse_field_statuses(xml_bytes)
 
-    # Разбиваем по 25 строк на Embed
     chunks = [statuses[i:i+25] for i in range(0, len(statuses), 25)]
 
     for i, chunk in enumerate(chunks):
@@ -30,9 +31,8 @@ async def show_fields(ctx: discord.ApplicationContext):
         for line in chunk:
             embed.add_field(name="\u200b", value=line, inline=False)
 
-        if i == 0:
-             await ctx.defer()
-        await ctx.send(embed=embed)
+        await ctx.send(embed=embed)  # Ответ на slash-команду
+
 
 
 @client.event
