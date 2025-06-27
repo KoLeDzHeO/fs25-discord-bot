@@ -1,28 +1,27 @@
-import xml.etree.ElementTree as ET
-from typing import List
 import json
+import xml.etree.ElementTree as ET
+from typing import Dict, List
 
 # Загрузка JSON с каталогом культур
 with open("data/crops_catalog.json", "r", encoding="utf-8") as f:
-    crops_catalog = json.load(f)
+    _CATALOG: Dict[str, dict] = {c["nameXML"]: c for c in json.load(f)}
 
-def get_crop_name(code):
-    for crop in crops_catalog:
-        if crop["nameXML"] == code:
-            return crop["name"]
-    return "UNKNOWN"
 
-def get_crop_emoji(code):
-    for crop in crops_catalog:
-        if crop["nameXML"] == code:
-            return crop["emoji"]
-    return "❓"
+def _lookup(code: str) -> dict:
+    return _CATALOG.get(code, {})
 
-def get_crop_growth_max(code):
-    for crop in crops_catalog:
-        if crop["nameXML"] == code:
-            return crop["growth_stages"]
-    return 0
+
+def get_crop_name(code: str) -> str:
+    return _lookup(code).get("name", "UNKNOWN")
+
+
+def get_crop_emoji(code: str) -> str:
+    return _lookup(code).get("emoji", "❓")
+
+
+def get_crop_growth_max(code: str) -> int:
+    return int(_lookup(code).get("growth_stages", 0))
+
 
 # Основной разбор статуса полей
 def parse_field_statuses(xml_bytes: bytes) -> List[str]:
