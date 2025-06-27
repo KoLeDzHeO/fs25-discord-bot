@@ -1,0 +1,152 @@
+[
+  {
+    "nameXML": "wheat",
+    "name": "Пшеница",
+    "emoji": "🌾",
+    "growth_stages": 7
+  },
+  {
+    "nameXML": "barley",
+    "name": "Ячмень",
+    "emoji": "🌾",
+    "growth_stages": 7
+  },
+  {
+    "nameXML": "oat",
+    "name": "Овёс",
+    "emoji": "🌾",
+    "growth_stages": 7
+  },
+  {
+    "nameXML": "sorghum",
+    "name": "Сорго",
+    "emoji": "🌾",
+    "growth_stages": 6
+  },
+  {
+    "nameXML": "canola",
+    "name": "Рапс",
+    "emoji": "🌻",
+    "growth_stages": 7
+  },
+  {
+    "nameXML": "sunflower",
+    "name": "Подсолнечник",
+    "emoji": "🌻",
+    "growth_stages": 6
+  },
+  {
+    "nameXML": "soybean",
+    "name": "Соя",
+    "emoji": "🫘",
+    "growth_stages": 6
+  },
+  {
+    "nameXML": "maize",
+    "name": "Кукуруза",
+    "emoji": "🌽",
+    "growth_stages": 6
+  },
+  {
+    "nameXML": "rice",
+    "name": "Рис",
+    "emoji": "🍚",
+    "growth_stages": 6
+  },
+  {
+    "nameXML": "riceLongGrain",
+    "name": "Рис (длиннозерный)",
+    "emoji": "🍚",
+    "growth_stages": 6
+  },
+  {
+    "nameXML": "potato",
+    "name": "Картофель",
+    "emoji": "🥔",
+    "growth_stages": 5
+  },
+  {
+    "nameXML": "sugarbeet",
+    "name": "Сахарная свёкла",
+    "emoji": "🍠",
+    "growth_stages": 5
+  },
+  {
+    "nameXML": "beetRoot",
+    "name": "Столовая свёкла",
+    "emoji": "🥬",
+    "growth_stages": 5
+  },
+  {
+    "nameXML": "carrot",
+    "name": "Морковь",
+    "emoji": "🥕",
+    "growth_stages": 5
+  },
+  {
+    "nameXML": "parsnip",
+    "name": "Пастернак",
+    "emoji": "⚪️",
+    "growth_stages": 5
+  },
+  {
+    "nameXML": "spinach",
+    "name": "Шпинат",
+    "emoji": "🥬",
+    "growth_stages": 4
+  },
+  {
+    "nameXML": "greenBean",
+    "name": "Зелёная фасоль",
+    "emoji": "🫘",
+    "growth_stages": 4
+  },
+  {
+    "nameXML": "pea",
+    "name": "Горошек",
+    "emoji": "🟢",
+    "growth_stages": 4
+  },
+  {
+    "nameXML": "grass",
+    "name": "Трава",
+    "emoji": "🌱",
+    "growth_stages": 3
+  },
+  {
+    "nameXML": "oilseedRadish",
+    "name": "Масличная редька",
+    "emoji": "🌱",
+    "growth_stages": 3
+  },
+  {
+    "nameXML": "cotton",
+    "name": "Хлопок",
+    "emoji": "🧵",
+    "growth_stages": 5
+  },
+  {
+    "nameXML": "poplar",
+    "name": "Тополь",
+    "emoji": "🌳",
+    "growth_stages": 4
+  },
+  {
+    "nameXML": "sugarcane",
+    "name": "Сахарный тростник",
+    "emoji": "🎋",
+    "growth_stages": 5
+  },
+  {
+    "nameXML": "grape",
+    "name": "Виноград",
+    "emoji": "🍇",
+    "growth_stages": 4
+  },
+  {
+    "nameXML": "olive",
+    "name": "Олива",
+    "emoji": "🫒",
+    "growth_stages": 4
+  }
+]
