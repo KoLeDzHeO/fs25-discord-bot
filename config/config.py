@@ -21,6 +21,7 @@ FTP_PORT = int(_get_env("FTP_PORT", "21"))
 FTP_USER = _get_env("FTP_USER")
 FTP_PASS = _get_env("FTP_PASS")
 FTP_PATH = _get_env("FTP_PATH")
+FTP_PATH_FIELDS = _get_env("FTP_PATH_FIELDS")
 
 FARM_ID = os.getenv("FARM_ID", "1")
 
