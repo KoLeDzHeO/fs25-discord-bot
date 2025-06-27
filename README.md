@@ -23,6 +23,7 @@ FTP_PORT=21
 FTP_USER=username
 FTP_PASS=secret
 FTP_PATH=/profile/savegame1/vehicles.xml
+FTP_PATH_FIELDS=/profile/savegame1/fields.xml
 ```
 
 Если значение всё же содержит кавычки, бот удалит их автоматически при загрузке настроек.
