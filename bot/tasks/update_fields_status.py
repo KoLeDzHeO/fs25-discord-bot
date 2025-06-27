@@ -3,6 +3,7 @@ from modules.fields import parse_field_statuses
 from config import config
 from utils.message_tracker import get_id, set_id
 
+
 async def update_fields_status(client, ftp_client):
     """
     Обновляет или создаёт сообщение со статусом полей
@@ -17,7 +18,7 @@ async def update_fields_status(client, ftp_client):
 
         # Берём только первую страницу (до 25 строк)
         chunk = statuses[:25]
-        embed = discord.Embed(title="🗺️ Статус полей", color=0x27ae60)
+        embed = discord.Embed(title="🗺️ Статус полей", color=0x27AE60)
         for line in chunk:
             embed.add_field(name="\u200b", value=line, inline=False)
 
@@ -42,4 +43,3 @@ async def update_fields_status(client, ftp_client):
 
     except Exception as e:
         print(f"[Поля] Ошибка обновления: {e}")
-
