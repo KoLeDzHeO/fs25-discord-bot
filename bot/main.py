@@ -19,12 +19,21 @@ async def show_fields(ctx: discord.ApplicationContext):
     xml_bytes = await ftp_client.fetch_fields_file()
     statuses = parse_field_statuses(xml_bytes)
 
-    embed = discord.Embed(title="🗺️ Статус полей", color=0x2ecc71)
-    for line in statuses:
-        embed.add_field(name="\u200b", value=line, inline=False)
+    # Разбиваем по 25 строк на Embed
+    chunks = [statuses[i:i+25] for i in range(0, len(statuses), 25)]
 
-    await ctx.respond(embed=embed)
+    for i, chunk in enumerate(chunks):
+        embed = discord.Embed(
+            title=f"🗺️ Статус полей (страница {i+1}/{len(chunks)})" if len(chunks) > 1 else "🗺️ Статус полей",
+            color=0x2ecc71
+        )
+        for line in chunk:
+            embed.add_field(name="\u200b", value=line, inline=False)
 
+        if i == 0:
+            await ctx.respond(embed=embed)
+        else:
+            await ctx.send(embed=embed)
 
 @client.event
 async def on_ready():
