@@ -26,3 +26,9 @@ async def fetch_file(path: str) -> Optional[bytes]:
         print(f"FTP error ({type(exc).__name__}): {exc}")
         traceback.print_exc()
         return None
+
+
+async def fetch_fields_file() -> bytes:
+    """Download fields.xml via FTP and return as bytes."""
+    data = await fetch_file(config.FTP_PATH_FIELDS)
+    return data or b""
