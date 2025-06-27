@@ -1,51 +1,64 @@
-from xml.etree import ElementTree as ET
-from modules.crops import get_crop_name, get_crop_emoji, get_crop_growth_max
-from config import config
+import xml.etree.ElementTree as ET
+from typing import List
+import json
 
-def parse_field_statuses(xml_bytes: bytes) -> list[str]:
-    """
-    Возвращает список строк: "#ID Emoji Название: текущая/макс [| флаги]".
-    """
-    root = ET.fromstring(xml_bytes)
-    fields = root.findall(".//field")
-    results: list[str] = []
+# Загрузка JSON с каталогом культур
+with open("data/crops_catalog.json", "r", encoding="utf-8") as f:
+    crops_catalog = json.load(f)
+
+def get_crop_name(code):
+    for crop in crops_catalog:
+        if crop["nameXML"] == code:
+            return crop["name"]
+    return "UNKNOWN"
+
+def get_crop_emoji(code):
+    for crop in crops_catalog:
+        if crop["nameXML"] == code:
+            return crop["emoji"]
+    return "❓"
+
+def get_crop_growth_max(code):
+    for crop in crops_catalog:
+        if crop["nameXML"] == code:
+            return crop["growth_stages"]
+    return 0
+
+# Основной разбор статуса полей
+def parse_field_statuses(xml_bytes: bytes) -> List[str]:
+    tree = ET.fromstring(xml_bytes)
+    fields = tree.findall(".//field")
+    results = []
 
     for field in fields:
-        # фильтрация по farmId
-        farm_id = field.get("farmId")
-        if farm_id is not None and farm_id != config.FARM_ID:
+        if field.get("farmId") != "1":
             continue
 
-        fid = field.get("id")
-        ftype = field.get("fruitType", "UNKNOWN").upper()
-        growth = int(field.get("growthState", "0"))
+        field_id = field.get("id")
+        fruit_type = field.get("fruitType", "UNKNOWN")
+        growth = int(field.get("growthState", 0))
+        weed = int(field.get("weed", 0))
+        lime = int(field.get("lime", 0))
+        spray = int(field.get("spray", 0))
 
-        # получаем данные из crops
-        name = get_crop_name(ftype)
-        emoji = get_crop_emoji(ftype)
-        max_stage = get_crop_growth_max(ftype)
+        name = get_crop_name(fruit_type)
+        emoji = get_crop_emoji(fruit_type)
+        max_stage = get_crop_growth_max(fruit_type)
 
-        # формируем базовую часть
-        # если нет культуры
-        if name == "Неизвестно":
-            base = f"{emoji} Пустое: 0/{max_stage}"
+        if fruit_type == "UNKNOWN":
+            status = f"{emoji} UNKNOWN | Пустое | можно сеять"
+        elif growth >= max_stage:
+            status = f"{emoji} {name} | Урожай готов"
         else:
-            base = f"{emoji} {name}: {growth}/{max_stage}"
+            status = f"{emoji} {name} | Стадия {growth}/{max_stage}"
 
-        # собираем флаги
-        flags = []
-        if int(field.get("weedState", "0")) > 0:
-            flags.append("🌱")
-        if int(field.get("limeLevel", "0")) == 0:
-            flags.append("🧂")
-        if int(field.get("sprayLevel", "0")) == 0:
-            flags.append("💧")
+        if weed > 0:
+            status += " | 🌱 Сорняки"
+        if lime == 0:
+            status += " | 🧂 Нет извести"
+        if spray == 0:
+            status += " | 💧 Нет удобрения"
 
-        # итоговая строка
-        line = f"#{fid} {base}"
-        if flags:
-            line += " | " + " ".join(flags)
-
-        results.append(line)
+        results.append(f"# {field_id} — {status}")
 
     return results
