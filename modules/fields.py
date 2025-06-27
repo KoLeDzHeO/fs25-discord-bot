@@ -8,6 +8,9 @@ def parse_field_statuses(xml_bytes: bytes) -> list[str]:
     results = []
 
     for field in fields:
+        farm_id = field.get("farmId")
+        if farm_id != "1":
+            continue
         field_id = field.get("id")
         fruit_type = field.get("fruitType", "UNKNOWN")
         growth = int(field.get("growthState", 0))
