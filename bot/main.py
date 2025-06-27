@@ -7,6 +7,7 @@ from modules.vehicles import parse_vehicles, classify_vehicles
 from modules.fields import parse_field_statuses
 from utils.helpers import split_messages
 from .discord_ui import create_report_embed
+from bot.tasks.update_fields_status import update_fields_status
 
 intents = discord.Intents.default()
 client = discord.Bot(intents=intents)
@@ -16,23 +17,18 @@ _last_messages: list[discord.Message] = []
 
 @client.slash_command(name="поля", description="Показать статус всех полей")
 async def show_fields(ctx: discord.ApplicationContext):
-    await ctx.defer()  # ← Должен быть в самом начале
+    await ctx.defer()
 
     xml_bytes = await ftp_client.fetch_fields_file()
     statuses = parse_field_statuses(xml_bytes)
 
     chunks = [statuses[i:i+25] for i in range(0, len(statuses), 25)]
 
-    for i, chunk in enumerate(chunks):
-        embed = discord.Embed(
-            title=f"🗺️ Статус полей (страница {i+1}/{len(chunks)})" if len(chunks) > 1 else "🗺️ Статус полей",
-            color=0x2ecc71
-        )
+    for chunk in chunks:
+        embed = discord.Embed(title="🗺️ Статус полей", color=0x2ecc71)
         for line in chunk:
-            embed.add_field(name="\u200b", value=line, inline=False)
-
-        await ctx.send(embed=embed)  # Ответ на slash-команду
-
+            embed.add_field(name="​", value=line, inline=False)
+        await ctx.send(embed=embed)
 
 
 @client.event
@@ -81,6 +77,9 @@ async def start_reporting() -> None:
             embed = create_report_embed(block)
             sent = await channel.send(embed=embed)
             _last_messages.append(sent)
+
+        # Обновляем статус полей после техники
+        await update_fields_status(client, ftp_client)
 
         await asyncio.sleep(config.CHECK_INTERVAL)
 
