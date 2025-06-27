@@ -31,7 +31,7 @@ def parse_field_statuses(xml_bytes: bytes) -> List[str]:
     results = []
 
     for field in fields:
-        #if field.get("farmId") != "1":
+        if field.get("farmId") != "1":
             continue
 
         field_id = field.get("id")
