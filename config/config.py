@@ -21,7 +21,8 @@ FTP_PATH_FIELDS = _get_env("FTP_PATH_FIELDS")
 
 FARM_ID = os.getenv("FARM_ID", "1")
 
-CHECK_INTERVAL = int(os.getenv("CHECK_INTERVAL", "600"))
+# Interval between FTP polling requests in seconds
+FTP_POLL_INTERVAL = int(os.getenv("FTP_POLL_INTERVAL", "300"))
 
 DATA_DIR = os.getenv("DATA_DIR", "data")
 VEHICLES_FILE = os.getenv("VEHICLES_FILE", "filtered_vehicles.json")
