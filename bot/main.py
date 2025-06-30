@@ -62,26 +62,22 @@ async def start_reporting() -> None:
         if not xml_data:
             msg = await channel.send("❌ Не удалось подключиться к FTP")
             _last_messages.append(msg)
-            await asyncio.sleep(30)
-            continue
+        else:
+            vehicles = parse_vehicles(xml_data)
+            if not vehicles:
+                msg = await channel.send("ℹ️ Нет техники для обслуживания")
+                _last_messages.append(msg)
+            else:
+                markdown = classify_vehicles(vehicles)
+                for block in split_messages([markdown]):
+                    embed = create_report_embed(block)
+                    sent = await channel.send(embed=embed)
+                    _last_messages.append(sent)
 
-        vehicles = parse_vehicles(xml_data)
-        if not vehicles:
-            msg = await channel.send("ℹ️ Нет техники для обслуживания")
-            _last_messages.append(msg)
-            await asyncio.sleep(900)
-            continue
+                # Обновляем статус полей после техники
+                await update_fields_status(client, ftp_client)
 
-        markdown = classify_vehicles(vehicles)
-        for block in split_messages([markdown]):
-            embed = create_report_embed(block)
-            sent = await channel.send(embed=embed)
-            _last_messages.append(sent)
-
-        # Обновляем статус полей после техники
-        await update_fields_status(client, ftp_client)
-
-        await asyncio.sleep(config.CHECK_INTERVAL)
+        await asyncio.sleep(config.FTP_POLL_INTERVAL)
 
 
 if __name__ == "__main__":
