@@ -69,7 +69,7 @@ async def start_reporting() -> None:
         if not vehicles:
             msg = await channel.send("ℹ️ Нет техники для обслуживания")
             _last_messages.append(msg)
-            await asyncio.sleep(30)
+            await asyncio.sleep(900)
             continue
 
         markdown = classify_vehicles(vehicles)
