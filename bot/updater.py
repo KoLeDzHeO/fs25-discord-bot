@@ -24,18 +24,27 @@ async def update_message(bot: discord.Client):
             economy_xml = await fetch_economy(session)
 
             if career_xml and vehicles_xml and economy_xml:
-                map_name, day, time_str = parse_career_savegame(career_xml)
+                # Получаем название карты, остальные параметры нам не нужны
+                map_name, _, _ = parse_career_savegame(career_xml)
                 vehicle_count = parse_vehicles_count(vehicles_xml)
                 balance, diff = parse_economy(economy_xml)
 
-                embed = build_embed(
-                    map_name or "?",
-                    day or 0,
-                    time_str or "?",
-                    vehicle_count,
-                    balance or 0,
-                    diff or 0,
-                )
+                # Формируем структуру данных для embed
+                data = {
+                    "server_name": None,
+                    "map_name": map_name,
+                    "slots_used": None,
+                    "slots_max": None,
+                    "farm_money": balance,
+                    "profit": diff,
+                    "profit_positive": diff >= 0 if diff is not None else None,
+                    "fields_owned": None,
+                    "fields_total": None,
+                    "vehicles_owned": vehicle_count,
+                    "last_updated": None,
+                }
+
+                embed = build_embed(data)
 
                 # Удаляем все предыдущие сообщения в канале
                 async for msg in channel.history(limit=None):
