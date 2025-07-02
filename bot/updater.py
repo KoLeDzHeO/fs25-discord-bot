@@ -3,8 +3,9 @@ import asyncio
 import discord
 
 from config.config import config
-from .fetchers import fetch_career_savegame, fetch_vehicles, fetch_economy
-from .parsers import parse_career_savegame, parse_vehicles_count, parse_economy
+from .fetchers import fetch_career_savegame, fetch_vehicles, fetch_economy, fetch_xml
+from ftp.fetcher import fetch_file
+from .parsers import parse_all
 from .discord_ui import build_embed
 
 
@@ -19,30 +20,33 @@ async def update_message(bot: discord.Client):
 
     async with aiohttp.ClientSession() as session:
         while not bot.is_closed():
+            # Загружаем XML-файлы с API
+            stats_xml = await fetch_xml(session, "serverStats")
             career_xml = await fetch_career_savegame(session)
             vehicles_xml = await fetch_vehicles(session)
             economy_xml = await fetch_economy(session)
 
-            if career_xml and vehicles_xml and economy_xml:
-                # Получаем название карты, остальные параметры нам не нужны
-                map_name, _, _ = parse_career_savegame(career_xml)
-                vehicle_count = parse_vehicles_count(vehicles_xml)
-                balance, diff = parse_economy(economy_xml)
+            # Загружаем файлы с FTP
+            career_ftp = await fetch_file("careerSavegame.xml")
+            farmland_ftp = await fetch_file("farmland.xml")
 
-                # Формируем структуру данных для embed
-                data = {
-                    "server_name": None,
-                    "map_name": map_name,
-                    "slots_used": None,
-                    "slots_max": None,
-                    "farm_money": balance,
-                    "profit": diff,
-                    "profit_positive": diff >= 0 if diff is not None else None,
-                    "fields_owned": None,
-                    "fields_total": None,
-                    "vehicles_owned": vehicle_count,
-                    "last_updated": None,
-                }
+            # Если все необходимые данные получены, разбираем их одной функцией
+            if (
+                stats_xml
+                and career_xml
+                and vehicles_xml
+                and economy_xml
+                and career_ftp
+                and farmland_ftp
+            ):
+                data = parse_all(
+                    server_stats=stats_xml,
+                    career_savegame_api=career_xml,
+                    vehicles_api=vehicles_xml,
+                    economy_api=economy_xml,
+                    career_savegame_ftp=career_ftp,
+                    farmland_ftp=farmland_ftp,
+                )
 
                 embed = build_embed(data)
 
