@@ -14,6 +14,12 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     slots_used = data.get("slots_used")
     slots_max = data.get("slots_max")
     farm_money = data.get("farm_money")
+    def format_money(amount):
+        try:
+            amount = int(amount)
+        except Exception:
+            return str(amount)
+        return f"{amount:,} $".replace(",", " ")
     profit = data.get("profit")
     profit_positive = data.get("profit_positive")
     fields_owned = data.get("fields_owned")
@@ -30,7 +36,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
         emoji = "🟢" if profit_positive is True else "🔴" if profit_positive is False else "—"
         profit_str = f"{profit:+} {emoji}"
 
-    money_str = f"{farm_money if farm_money is not None else '—'} / {profit_str}"
+    money_str = f"{format_money(farm_money) if farm_money is not None else '—'} / {profit_str}"
     fields_str = f"{fields_owned if fields_owned is not None else '—'} / {fields_total if fields_total is not None else '—'}"
     vehicles_str = f"{vehicles_owned if vehicles_owned is not None else '—'}"
 
