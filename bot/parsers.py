@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Dict
 
 
 def parse_career_savegame(xml_text: str) -> Tuple[Optional[str], Optional[int], Optional[str]]:
@@ -59,3 +59,145 @@ def parse_economy(xml_text: str) -> Tuple[Optional[int], Optional[int]]:
         except (ValueError, TypeError):
             pass
     return current_balance, money_change
+
+
+def parse_server_stats(xml_text: str) -> Tuple[Optional[str], Optional[str], Optional[int], Optional[int], Optional[str]]:
+    """Извлекает общую информацию о сервере."""
+    root = ET.fromstring(xml_text)
+
+    server_elem = root.find('.//Server')
+    server_name = server_elem.get('name') if server_elem is not None else None
+    map_name = server_elem.get('mapName') if server_elem is not None else None
+
+    slots_elem = root.find('.//Slots')
+    slots_max = None
+    slots_used = None
+    if slots_elem is not None:
+        cap = slots_elem.get('capacity')
+        used = slots_elem.get('numUsed')
+        if cap is not None:
+            try:
+                slots_max = int(cap)
+            except ValueError:
+                pass
+        if used is not None:
+            try:
+                slots_used = int(used)
+            except ValueError:
+                pass
+
+    stats_elem = root.find('.//Stats')
+    last_updated = stats_elem.get('saveDateFormatted') if stats_elem is not None else None
+
+    return server_name, map_name, slots_used, slots_max, last_updated
+
+
+def parse_farm_money(xml_text: str) -> Optional[int]:
+    """Получает баланс фермы из careerSavegame.xml на FTP."""
+    root = ET.fromstring(xml_text)
+    elem = root.find('.//statistics/money')
+    if elem is not None and elem.text:
+        try:
+            return int(float(elem.text))
+        except (ValueError, TypeError):
+            return None
+    return None
+
+
+def parse_daily_profit(xml_text: str) -> Tuple[Optional[int], Optional[bool]]:
+    """Возвращает прибыль последнего дня и флаг её знака."""
+    root = ET.fromstring(xml_text)
+    stats = root.findall('.//dailyStat')
+    if not stats:
+        return None, None
+
+    last = stats[-1]
+    income = last.get('income') or last.get('earnings')
+    expenses = last.get('expenses') or last.get('costs')
+
+    try:
+        inc = int(float(income)) if income is not None else 0
+    except (ValueError, TypeError):
+        inc = 0
+    try:
+        exp = int(float(expenses)) if expenses is not None else 0
+    except (ValueError, TypeError):
+        exp = 0
+
+    profit = inc - exp
+    return profit, profit >= 0
+
+
+def _count_vehicles(xml_text: str, farm_id: str) -> Optional[int]:
+    """Подсчёт техники в файле vehicles."""
+    root = ET.fromstring(xml_text)
+    vehicles = root.findall('.//vehicle')
+    if not vehicles:
+        return 0
+
+    keywords = ['pallet', 'tree', 'wood', 'object', 'trailerWood', 'camera']
+
+    has_farmid = any(v.get('farmId') is not None for v in vehicles)
+    if not has_farmid:
+        return None
+
+    count = 0
+    for v in vehicles:
+        if v.get('farmId') == farm_id:
+            filename = v.get('filename', '')
+            if not any(k in filename for k in keywords):
+                count += 1
+    return count
+
+
+def parse_farmland(xml_text: str, farm_id: str) -> Tuple[int, int]:
+    """Подсчитывает количество полей у фермы."""
+    root = ET.fromstring(xml_text)
+    farmlands = root.findall('.//Farmland') or root.findall('.//farmland')
+    total = len(farmlands)
+    owned = len([f for f in farmlands if f.get('owner') == farm_id])
+    return owned, total
+
+
+def parse_all(
+    server_stats: str,
+    career_savegame_api: str,
+    vehicles_api: str,
+    economy_api: str,
+    career_savegame_ftp: str,
+    farmland_ftp: str,
+    vehicles_ftp: Optional[str] = None,
+    farms_xml: Optional[str] = None,
+    farm_id: str = '1'
+) -> Dict[str, Optional[int]]:
+    """Собирает все данные из разных источников и возвращает единую структуру."""
+
+    server_name, map_name, slots_used, slots_max, last_updated = parse_server_stats(server_stats)
+
+    farm_money = parse_farm_money(career_savegame_ftp)
+
+    profit, positive = parse_daily_profit(economy_api)
+
+    fields_owned, fields_total = parse_farmland(farmland_ftp, farm_id)
+
+    vehicles_owned = _count_vehicles(vehicles_api, farm_id)
+    if vehicles_owned is None and vehicles_ftp is not None:
+        vehicles_owned = _count_vehicles(vehicles_ftp, farm_id)
+    if vehicles_owned is None:
+        vehicles_owned = 0
+
+    result = {
+        'server_name': server_name,
+        'map_name': map_name,
+        'slots_used': slots_used,
+        'slots_max': slots_max,
+        'farm_money': farm_money,
+        'profit': profit,
+        'profit_positive': positive,
+        'fields_owned': fields_owned,
+        'fields_total': fields_total,
+        'vehicles_owned': vehicles_owned,
+        'last_updated': last_updated,
+    }
+
+    return result
