@@ -158,6 +158,46 @@ def parse_farmland(xml_text: str, farm_id: str) -> Tuple[int, int]:
     owned = len([f for f in farmlands if f.get('owner') == farm_id])
     return owned, total
 
+def parse_month_profit(farms_xml: str, farm_id: str = '1', days_per_month: int = 30) -> Tuple[int, str]:
+    """
+    Считает суммарную прибыль/убыток за игровой месяц по farms.xml.
+    Возвращает (прибыль, диапазон дней или название месяца).
+    """
+    root = ET.fromstring(farms_xml)
+    farm_elem = None
+    for farm in root.findall('.//farm'):
+        if farm.get('farmId') == farm_id:
+            farm_elem = farm
+            break
+    if farm_elem is None:
+        return 0, "?"
+
+    finances = farm_elem.find('finances')
+    if finances is None:
+        return 0, "?"
+
+    stats_elems = finances.findall('stats')
+    if not stats_elems:
+        return 0, "?"
+
+    # определяем последний игровой день
+    last_day = int(stats_elems[-1].attrib["day"])
+    # начало месяца (каждые 30 дней)
+    month_start = ((last_day - 1) // days_per_month) * days_per_month + 1
+    month_end = month_start + days_per_month - 1
+
+    profit = 0.0
+    for stats in stats_elems:
+        day = int(stats.attrib["day"])
+        if month_start <= day <= month_end:
+            for child in stats:
+                try:
+                    profit += float(child.text)
+                except (TypeError, ValueError):
+                    continue
+    month_name = f"дни {month_start}-{min(month_end, last_day)}"
+    return int(profit), month_name
+
 
 def parse_all(
     server_stats: str,
