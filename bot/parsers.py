@@ -186,6 +186,8 @@ def parse_all(
     if vehicles_owned is None:
         vehicles_owned = 0
 
+    print(f"[DEBUG PARSE_ALL] Сервер: {server_name}, Карта: {map_name}")
+
     result = {
         'server_name': server_name,
         'map_name': map_name,
