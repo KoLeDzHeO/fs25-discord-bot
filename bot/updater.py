@@ -54,10 +54,19 @@ async def update_message(bot: discord.Client):
 
                 embed = build_embed(map_name or "?", day or 0, time_str or "?", vehicle_count, balance or 0, diff or 0)
 
-                if message is None:
-                    message = await channel.send(embed=embed)
-                    save_message_id(message.id)
-                else:
-                    await message.edit(embed=embed)
+                # Если есть предыдущее сообщение, пытаемся удалить его
+                if message is not None:
+                    try:
+                        await message.delete()
+                    except discord.NotFound:
+                        # Сообщение уже удалено или не существует
+                        pass
+                    except Exception as e:
+                        # Логируем ошибку, но продолжаем работу цикла
+                        print(f"⚠ Не удалось удалить сообщение: {e}")
+
+                # Отправляем новый embed и сохраняем его ID
+                message = await channel.send(embed=embed)
+                save_message_id(message.id)
 
             await asyncio.sleep(config.ftp_poll_interval)
