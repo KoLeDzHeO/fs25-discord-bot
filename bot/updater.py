@@ -1,3 +1,12 @@
+import aiohttp
+import asyncio
+import discord         # <--- ВОТ ЭТА СТРОКА!
+from config.config import config
+from ftp.fetcher import fetch_file
+from .fetchers import fetch_stats_xml, fetch_api_file
+from .parsers import parse_all
+from .discord_ui import build_embed
+
 async def update_message(bot: discord.Client):
     await bot.wait_until_ready()
     channel = await bot.fetch_channel(config.channel_id)
