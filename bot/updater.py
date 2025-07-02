@@ -9,6 +9,7 @@ from .discord_ui import build_embed
 
 async def update_message(bot: discord.Client):
     await bot.wait_until_ready()
+    # Получаем канал для отправки сообщений
     channel = await bot.fetch_channel(config.channel_id)
     if channel is None:
         print("❌ Канал не найден!")
@@ -16,6 +17,7 @@ async def update_message(bot: discord.Client):
 
     async with aiohttp.ClientSession() as session:
         while not bot.is_closed():
+            # Загружаем данные с API и FTP
             stats_xml = await fetch_stats_xml(session)
             vehicles_xml = await fetch_api_file(session, "vehicles")
             economy_xml = await fetch_api_file(session, "economy")
@@ -35,12 +37,14 @@ async def update_message(bot: discord.Client):
                 )
                 embed = build_embed(data)
 
+                # Удаляем все старые сообщения в канале
                 async for msg in channel.history(limit=None):
                     try:
                         await msg.delete()
                     except Exception as e:
                         print(f"[Discord] Не удалось удалить сообщение: {e}")
 
+                # Отправляем новое сообщение с embed
                 await channel.send(embed=embed)
                 print("[Discord] ✅ Embed успешно отправлен.")
             else:
