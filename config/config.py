@@ -12,5 +12,9 @@ class Config:
     api_secret_code: str = os.getenv('API_SECRET_CODE')
     ftp_poll_interval: int = int(os.getenv('FTP_POLL_INTERVAL', 60))
     message_id_file: str = os.getenv('MESSAGE_ID_FILE', 'message_id.json')
+    ftp_host: str = os.getenv('FTP_HOST', '')
+    ftp_port: int = int(os.getenv('FTP_PORT', 21))
+    ftp_user: str = os.getenv('FTP_USER', '')
+    ftp_pass: str = os.getenv('FTP_PASS', '')
 
 config = Config()

@@ -15,6 +15,10 @@ Discord-бот, который отображает информацию о со
 - `FTP_POLL_INTERVAL` — интервал опроса API (сек)
 - `API_BASE_URL` — базовый URL API
 - `API_SECRET_CODE` — секретный код API
+- `FTP_HOST` — адрес FTP-сервера
+- `FTP_PORT` — порт FTP-сервера
+- `FTP_USER` — имя пользователя FTP
+- `FTP_PASS` — пароль FTP
 
 ## Railway
 
