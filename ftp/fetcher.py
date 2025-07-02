@@ -11,10 +11,8 @@ async def fetch_file(file_name: str) -> Optional[str]:
             user=config.ftp_user,
             password=config.ftp_pass,
         ) as ftp_client:
-            print("[FTP] Успешное подключение. Пробуем войти в папку savegame1...")
-            await ftp_client.change_directory("savegame1")
+            # Не делай change_directory!
             print(f"[FTP] Содержимое папки: {[f async for f in ftp_client.list()]}")
-
             print(f"[FTP] Пробуем скачать файл: {file_name}")
             async with ftp_client.download_stream(file_name) as stream:
                 content = await stream.read()
