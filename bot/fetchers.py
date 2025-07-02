@@ -4,10 +4,12 @@ from config.config import config
 
 # Загружает XML-файл с сервера Farming Simulator по имени файла (например, "vehicles")
 async def fetch_xml(session: aiohttp.ClientSession, file: str) -> Optional[str]:
-    """
-    Загружает XML по ссылке: BASE_URL?code=...&file=...
-    """
-    url = f"{config.api_base_url}?code={config.api_secret_code}&file={file}"
+    """Загружает XML по ссылке BASE_URL?code=...&file=..."""
+
+    if file:
+        url = f"{config.api_base_url}?code={config.api_secret_code}&file={file}"
+    else:
+        url = f"{config.api_base_url}?code={config.api_secret_code}"
 
     try:
         async with session.get(url) as resp:
