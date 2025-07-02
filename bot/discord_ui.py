@@ -36,7 +36,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
         emoji = "🟢" if profit_positive is True else "🔴" if profit_positive is False else "—"
         profit_str = f"{profit:+} {emoji}"
 
-    money_str = f"{format_money(farm_money) if farm_money is not None else '—'} / {profit_str}"
+    money_str = f"{format_money(farm_money)} / {format_money(month_profit)} ({month_period})"
     fields_str = f"{fields_owned if fields_owned is not None else '—'} / {fields_total if fields_total is not None else '—'}"
     vehicles_str = f"{vehicles_owned if vehicles_owned is not None else '—'}"
 
