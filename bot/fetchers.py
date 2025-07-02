@@ -2,7 +2,7 @@ import aiohttp
 from config.config import config
 
 async def fetch_stats_xml(session):
-    url = f"http://{config.api_base_url.replace('dedicated-server-savegame.html','dedicated-server-stats.xml')}?code={config.api_secret_code}"
+    url = f"{config.api_base_url.replace('dedicated-server-savegame.html', 'dedicated-server-stats.xml')}?code={config.api_secret_code}"
     print(f"[API] Загружаем stats.xml по адресу: {url}")
     try:
         async with session.get(url) as resp:
