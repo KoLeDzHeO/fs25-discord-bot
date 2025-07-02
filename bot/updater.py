@@ -12,10 +12,11 @@ from .discord_ui import build_embed
 async def update_message(bot: discord.Client):
     """Периодически обновляет сообщение в канале."""
     await bot.wait_until_ready()
+
     # Получаем объект канала через fetch_channel
     channel = await bot.fetch_channel(config.channel_id)
     if channel is None:
-        print("Channel not found")
+        print("❌ Канал не найден")
         return
 
     async with aiohttp.ClientSession() as session:
@@ -57,7 +58,13 @@ async def update_message(bot: discord.Client):
                     except Exception as e:
                         print(f"Не удалось удалить сообщение: {e}")
 
-                # Отправляем новый embed
+                # Отправляем новое embed-сообщение
                 await channel.send(embed=embed)
+                print("✅ Обновление сообщения завершено")
+
+            else:
+                print("⚠️ Данные не загружены полностью. Пропускаем обновление.")
+                print("career_xml:", bool(career_xml), "| vehicles_xml:", bool(vehicles_xml), "| economy_xml:", bool(economy_xml))
+                print("career_ftp:", bool(career_ftp), "| farmland_ftp:", bool(farmland_ftp), "| stats_xml:", bool(stats_xml))
 
             await asyncio.sleep(config.ftp_poll_interval)
