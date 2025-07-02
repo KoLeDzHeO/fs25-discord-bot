@@ -64,12 +64,12 @@ def parse_economy(xml_text: str) -> Tuple[Optional[int], Optional[int]]:
 def parse_server_stats(xml_text: str) -> Tuple[Optional[str], Optional[str], Optional[int], Optional[int], Optional[str]]:
     """Извлекает общую информацию о сервере."""
     root = ET.fromstring(xml_text)
+    server_elem = root  # <Server> — корень
 
-    server_elem = root.find('.//Server')
-    server_name = server_elem.get('name') if server_elem is not None else None
-    map_name = server_elem.get('mapName') if server_elem is not None else None
+    server_name = server_elem.get('name')
+    map_name = server_elem.get('mapName')
 
-    slots_elem = root.find('.//Slots')
+    slots_elem = server_elem.find('.//Slots')
     slots_max = None
     slots_used = None
     if slots_elem is not None:
