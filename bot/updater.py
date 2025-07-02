@@ -22,7 +22,7 @@ async def update_message(bot: discord.Client):
     async with aiohttp.ClientSession() as session:
         while not bot.is_closed():
             # Загружаем XML-файлы с API
-            stats_xml = await fetch_xml(session, "serverStats")
+            stats_xml = await fetch_xml(session, "")
             career_xml = await fetch_career_savegame(session)
             vehicles_xml = await fetch_vehicles(session)
             economy_xml = await fetch_economy(session)
