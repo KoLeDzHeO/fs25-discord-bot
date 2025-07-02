@@ -10,6 +10,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     # Извлекаем данные из словаря или ставим прочерк, если их нет
     server_name = data.get("server_name") or "—"
     map_name = data.get("map_name") or "—"
+    print(f"[DEBUG PARSE_ALL] Сервер: {server_name}, Карта: {map_name}")
     slots_used = data.get("slots_used")
     slots_max = data.get("slots_max")
     farm_money = data.get("farm_money")
