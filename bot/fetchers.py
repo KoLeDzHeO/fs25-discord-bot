@@ -2,21 +2,27 @@ import aiohttp
 from typing import Optional
 from config.config import config
 
-# Загружает XML-файл с сервера Farming Simulator по имени файла (например, "vehicles")
-async def fetch_xml(session: aiohttp.ClientSession, file: str) -> Optional[str]:
-    """Загружает XML по ссылке BASE_URL?code=...&file=..."""
+# Загружает XML-файл с сервера Farming Simulator
+async def fetch_xml(session: aiohttp.ClientSession, endpoint: str) -> Optional[str]:
+    """Возвращает XML по указанному эндпойнту."""
 
-    if file:
-        url = f"{config.api_base_url}?code={config.api_secret_code}&file={file}"
+    # Для stats.xml нужно заменить savegame.html на stats.xml
+    if endpoint == "":
+        url = (
+            f"{config.api_base_url.replace('dedicated-server-savegame.html', 'dedicated-server-stats.xml')}"
+            f"?code={config.api_secret_code}"
+        )
     else:
-        url = f"{config.api_base_url}?code={config.api_secret_code}"
+        # Для остальных файлов используем параметр file
+        url = f"{config.api_base_url}?file={endpoint}&code={config.api_secret_code}"
 
     try:
         async with session.get(url) as resp:
             resp.raise_for_status()
             return await resp.text()
     except aiohttp.ClientError as e:
-        print(f"❌ Ошибка загрузки файла '{file}': {e}")
+        # Сообщаем в консоль об ошибке загрузки
+        print(f"❌ Ошибка загрузки файла '{endpoint}': {e}")
         return None
 
 
