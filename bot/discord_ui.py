@@ -56,7 +56,6 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
             f"💰 **Деньги фермы:** {money_str}",
             f"🌾 **Поля во владении:** {fields_str}",
             f"🚜 **Техника:** {vehicles_str} единиц",
-            f"📅 **Обновлено:** {last_updated}",
         ]
     )
 
