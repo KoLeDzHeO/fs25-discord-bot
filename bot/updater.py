@@ -6,32 +6,31 @@ from ftp.fetcher import fetch_file
 from .fetchers import fetch_stats_xml, fetch_api_file
 from .parsers import parse_all
 from .discord_ui import build_embed
+from .logger import log_debug
 
 async def update_message(bot: discord.Client):
     await bot.wait_until_ready()
     channel = await bot.fetch_channel(config.channel_id)
     if channel is None:
-        print("❌ Канал не найден!")
+        log_debug("❌ Канал не найден!")
         return
 
     async with aiohttp.ClientSession() as session:
         while not bot.is_closed():
             stats_xml = await fetch_stats_xml(session)
             vehicles_xml = await fetch_api_file(session, "vehicles")
-            economy_xml = await fetch_api_file(session, "economy")
-            career_api = await fetch_api_file(session, "careerSavegame")
             career_ftp = await fetch_file("careerSavegame.xml")
             farmland_ftp = await fetch_file("farmland.xml")
             farms_ftp = await fetch_file("farms.xml")
 
-            print(f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, economy={bool(economy_xml)}, careerAPI={bool(career_api)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}")
-            
-            if all([stats_xml, vehicles_xml, economy_xml, career_api, career_ftp, farmland_ftp, farms_ftp]):
+            log_debug(
+                f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}, farms={bool(farms_ftp)}"
+            )
+
+            if all([stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp]):
                 data = parse_all(
                     server_stats=stats_xml,
                     vehicles_api=vehicles_xml,
-                    economy_api=economy_xml,
-                    career_savegame_api=career_api,
                     career_savegame_ftp=career_ftp,
                     farmland_ftp=farmland_ftp,
                     farms_xml=farms_ftp,
@@ -42,11 +41,11 @@ async def update_message(bot: discord.Client):
                     try:
                         await msg.delete()
                     except Exception as e:
-                        print(f"[Discord] Не удалось удалить сообщение: {e}")
+                        log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
 
                 await channel.send(embed=embed)
-                print("[Discord] ✅ Embed успешно отправлен.")
+                log_debug("[Discord] ✅ Embed успешно отправлен.")
             else:
-                print("[DEBUG] Не все данные загружены, пропускаем обновление.")
+                log_debug("[DEBUG] Не все данные загружены, пропускаем обновление.")
 
             await asyncio.sleep(config.ftp_poll_interval)

@@ -3,6 +3,7 @@ import asyncio
 
 from config.config import config
 from bot.updater import update_message
+from bot.logger import log_debug
 
 
 # Собственный класс клиента, где мы можем запускать фоновые задачи
@@ -14,7 +15,7 @@ class MyBot(discord.Client):
 
     async def on_ready(self):
         # Сообщаем в консоль, что бот успешно авторизовался
-        print(f"Logged in as {self.user}")
+        log_debug(f"Logged in as {self.user}")
 
 
 if __name__ == "__main__":
