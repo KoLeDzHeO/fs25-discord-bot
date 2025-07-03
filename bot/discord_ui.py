@@ -29,13 +29,14 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
 
     slots_str = f"{slots_used if slots_used is not None else '—'} / {slots_max if slots_max is not None else '—'}"
 
-    # Форматируем прибыль с учётом знака и emoji
+# Форматируем прибыль с учётом знака и emoji
     if profit is None:
         profit_str = "—"
     else:
         emoji = "🟢" if profit_positive is True else "🔴" if profit_positive is False else "—"
         profit_str = f"{profit:+} {emoji}"
 
+# Формируем строку для денег фермы и прибыли за последний месяц
     last_month_profit = data.get("last_month_profit")
     if last_month_profit is not None:
         sign = "+" if last_month_profit >= 0 else "−"
@@ -43,8 +44,9 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
         money_str = f"{format_money(data.get('farm_money'))} / {formatted_profit} (за последний месяц)"
     else:
         money_str = f"{format_money(data.get('farm_money'))} / —"
-        fields_str = f"{fields_owned if fields_owned is not None else '—'} / {fields_total if fields_total is not None else '—'}"
-        vehicles_str = f"{vehicles_owned if vehicles_owned is not None else '—'}"
+
+    fields_str = f"{fields_owned if fields_owned is not None else '—'} / {fields_total if fields_total is not None else '—'}"
+    vehicles_str = f"{vehicles_owned if vehicles_owned is not None else '—'}"
 
     # Текст embed'a формируем единой строкой
     description = "\n".join(
