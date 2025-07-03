@@ -19,9 +19,10 @@ async def update_message(bot: discord.Client):
             stats_xml = await fetch_stats_xml(session)
             vehicles_xml = await fetch_api_file(session, "vehicles")
             economy_xml = await fetch_api_file(session, "economy")
-            career_api = await fetch_api_file(session, "careerSavegame")    # <-- ДОБАВЬ ЭТУ СТРОКУ
+            career_api = await fetch_api_file(session, "careerSavegame")
             career_ftp = await fetch_file("careerSavegame.xml")
             farmland_ftp = await fetch_file("farmland.xml")
+            farms_ftp = await fetch_file("farms.xml")
 
             print(f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, economy={bool(economy_xml)}, careerAPI={bool(career_api)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}")
             
@@ -30,9 +31,10 @@ async def update_message(bot: discord.Client):
                     server_stats=stats_xml,
                     vehicles_api=vehicles_xml,
                     economy_api=economy_xml,
-                    career_savegame_api=career_api,        # <-- И ЭТУ СТРОКУ
+                    career_savegame_api=career_api,
                     career_savegame_ftp=career_ftp,
                     farmland_ftp=farmland_ftp,
+                    farms_xml=farms_ftp,
                 )
                 embed = build_embed(data)
 
