@@ -26,7 +26,7 @@ async def update_message(bot: discord.Client):
 
             print(f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, economy={bool(economy_xml)}, careerAPI={bool(career_api)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}")
             
-            if all([stats_xml, vehicles_xml, economy_xml, career_api, career_ftp, farmland_ftp]):
+            if all([stats_xml, vehicles_xml, economy_xml, career_api, career_ftp, farmland_ftp, farms_ftp]):
                 data = parse_all(
                     server_stats=stats_xml,
                     vehicles_api=vehicles_xml,
