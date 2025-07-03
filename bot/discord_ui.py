@@ -40,7 +40,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     last_month_profit = data.get("last_month_profit")
     if last_month_profit is not None:
         sign = "+" if last_month_profit >= 0 else "−"
-        formatted_profit = f"{sign}{abs(last_month_profit):,} €".replace(",", " ")
+        formatted_profit = f"{sign}{abs(last_month_profit):,} $".replace(",", " ")
         money_str = f"{format_money(data.get('farm_money'))} / {formatted_profit} (за последний месяц)"
     else:
         money_str = f"{format_money(data.get('farm_money'))} / —"
