@@ -61,4 +61,15 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     # Добавляем информацию о времени обновления бота
     embed.set_footer(text=f"Последнее обновление: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
+    last_month_profit = data.get("last_month_profit")
+    if last_month_profit is not None:
+        sign = "+" if last_month_profit >= 0 else "−"
+        profit_text = f"{sign}{abs(last_month_profit):,} €".replace(",", " ")
+        embed.add_field(
+            name="📊 Доход за последний месяц",
+            value=f"**{profit_text}**",
+            inline=False
+        )
+        embed.color = discord.Color.green() if last_month_profit >= 0 else discord.Color.red()
+
     return embed
