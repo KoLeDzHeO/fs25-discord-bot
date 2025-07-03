@@ -198,6 +198,23 @@ def parse_month_profit(farms_xml: str, farm_id: str = '1', days_per_month: int =
     month_name = f"дни {month_start}-{min(month_end, last_day)}"
     return int(profit), month_name
 
+def parse_last_month_profit(xml_text: str) -> Optional[int]:
+    """Возвращает округлённую прибыль за последний месяц (day=0) из farms.xml"""
+    root = ET.fromstring(xml_text)
+    stats = root.find(".//farm[@farmId='1']/finances/stats[@day='0']")
+    if stats is None:
+        return None
+
+    profit = 0.0
+    for elem in stats:
+        try:
+            profit += float(elem.text)
+        except (ValueError, TypeError):
+            pass
+
+    return round(profit)
+
+
 
 def parse_all(
     server_stats: str,
