@@ -249,10 +249,12 @@ def parse_all(
     month_profit, month_period = 0, "-"
     if farms_xml is not None:
         month_profit, month_period = parse_month_profit(farms_xml, farm_id)
+        last_month_profit = parse_last_month_profit(farms_xml)
 
     result = {
         'month_profit': month_profit,
         'month_period': month_period,
+        'last_month_profit': last_month_profit,
         'server_name': server_name,
         'map_name': map_name,
         'slots_used': slots_used,
