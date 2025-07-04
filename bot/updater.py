@@ -22,6 +22,7 @@ async def update_message(bot: discord.Client):
             career_ftp = await fetch_file("careerSavegame.xml")
             farmland_ftp = await fetch_file("farmland.xml")
             farms_ftp = await fetch_file("farms.xml")
+            dedicated_server_stats_ftp = await fetch_file("dedicated-server-stats.xml")
 
             log_debug(
                 f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}, farms={bool(farms_ftp)}"
@@ -34,6 +35,7 @@ async def update_message(bot: discord.Client):
                     career_savegame_ftp=career_ftp,
                     farmland_ftp=farmland_ftp,
                     farms_xml=farms_ftp,
+                    dedicated_server_stats=dedicated_server_stats_ftp,
                 )
                 embed = build_embed(data)
 
