@@ -43,7 +43,8 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     # Текст embed'a формируем единой строкой
     description = "\n".join(
         [
-            f"🧷 **Сервер:** {server_name} | {map_name}",
+            f"🧷 **Сервер:** {server_name}",
+            f"🗺️ **Карта:** {map_name}",
             f"👥 **Слоты:** {slots_str}",
             f"💰 **Деньги фермы:** {money_str}",
             f"🌾 **Поля во владении:** {fields_str}",
