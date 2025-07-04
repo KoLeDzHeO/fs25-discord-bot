@@ -7,6 +7,10 @@ from .fetchers import fetch_stats_xml, fetch_api_file
 from .parsers import parse_all
 from .discord_ui import build_embed
 from .logger import log_debug
+from .online_history import (
+    update_online_history_hourly,
+    make_online_graph,
+)
 
 async def fetch_dedicated_server_stats(session):
     url = "http://195.179.229.189:8120/feed/dedicated-server-stats.xml?code=DsPF35gzLKvJNG8k"
@@ -44,6 +48,8 @@ async def update_message(bot: discord.Client):
                     farms_xml=farms_ftp,
                     dedicated_server_stats=dedicated_server_stats_ftp,
                 )
+                # Логируем онлайн раз в час
+                new_record = await update_online_history_hourly(len(data.get("players_online", [])))
                 embed = build_embed(data)
 
                 async for msg in channel.history(limit=None):
@@ -54,6 +60,14 @@ async def update_message(bot: discord.Client):
 
                 await channel.send(embed=embed)
                 log_debug("[Discord] ✅ Embed успешно отправлен.")
+                if new_record:
+                    graph_file = await make_online_graph()
+                    if graph_file:
+                        with open(graph_file, "rb") as f:
+                            await channel.send(
+                                "\U0001F4CA График онлайна за сутки (по часам)",
+                                file=discord.File(f, filename=graph_file),
+                            )
             else:
                 log_debug("[DEBUG] Не все данные загружены, пропускаем обновление.")
 

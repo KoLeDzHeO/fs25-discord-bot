@@ -2,3 +2,5 @@ discord.py
 aiohttp
 python-dotenv
 aioftp
+matplotlib
+aiofiles
