@@ -26,6 +26,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     fields_total = data.get("fields_total")
     vehicles_owned = data.get("vehicles_owned")
     last_month_profit = data.get("last_month_profit")
+    players_online = data.get("players_online", [])
 
     slots_str = f"{slots_used if slots_used is not None else '—'} / {slots_max if slots_max is not None else '—'}"
 
@@ -49,6 +50,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
             f"🌾 **Поля во владении:** {fields_str}",
             f"🚜 **Техника:** {vehicles_str} единиц",
             f"👥 **Слоты:** {slots_str}",
+            f"👥 **Онлайн:** {', '.join(players_online) if players_online else 'никого нет'}",
         ]
     )
 
