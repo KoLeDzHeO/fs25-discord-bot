@@ -8,6 +8,13 @@ from .parsers import parse_all
 from .discord_ui import build_embed
 from .logger import log_debug
 
+async def fetch_dedicated_server_stats(session):
+    url = "http://195.179.229.189:8120/feed/dedicated-server-stats.xml?code=DsPF35gzLKvJNG8k"
+    async with session.get(url) as resp:
+        if resp.status == 200:
+            return await resp.text()
+        return None
+
 async def update_message(bot: discord.Client):
     await bot.wait_until_ready()
     channel = await bot.fetch_channel(config.channel_id)
@@ -22,7 +29,7 @@ async def update_message(bot: discord.Client):
             career_ftp = await fetch_file("careerSavegame.xml")
             farmland_ftp = await fetch_file("farmland.xml")
             farms_ftp = await fetch_file("farms.xml")
-            dedicated_server_stats_ftp = await fetch_file("dedicated-server-stats.xml")
+            dedicated_server_stats_ftp = await fetch_dedicated_server_stats(session)
 
             log_debug(
                 f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}, farms={bool(farms_ftp)}"
