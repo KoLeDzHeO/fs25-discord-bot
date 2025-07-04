@@ -76,7 +76,7 @@ def parse_farmland(xml_text: str, farm_id: str) -> Tuple[int, int]:
     root = ET.fromstring(xml_text)
     farmlands = root.findall('.//Farmland') or root.findall('.//farmland')
     total = len(farmlands)
-    owned = len([f for f in farmlands if f.get('owner') == farm_id])
+    owned = len([f for f in farmlands if f.get('farmId') == farm_id])
     return owned, total
 
 
