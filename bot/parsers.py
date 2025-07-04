@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from typing import Tuple, Optional, Dict
+import xml.etree.ElementTree as ET
 
 from .logger import log_debug
 
@@ -79,6 +80,19 @@ def parse_farmland(xml_text: str, farm_id: str) -> Tuple[int, int]:
     owned = len([f for f in farmlands if f.get('farmId') == farm_id])
     return owned, total
 
+def parse_players_online(xml_text: str) -> list:
+    """Возвращает список имён онлайн-игроков из dedicated-server-stats.xml."""
+    root = ET.fromstring(xml_text)
+    players = []
+    slots = root.find(".//Slots")
+    if slots is not None:
+        for player in slots.findall("Player"):
+            if player.get("isUsed") == "true":
+                name = (player.text or '').strip()
+                if name:
+                    players.append(name)
+    return players
+
 
 def parse_last_month_profit(xml_text: str) -> Optional[int]:
     """Возвращает округлённую прибыль за последний месяц (day=0) из farms.xml"""
@@ -105,6 +119,7 @@ def parse_all(
     farmland_ftp: str,
     vehicles_ftp: Optional[str] = None,
     farms_xml: Optional[str] = None,
+    dedicated_server_stats: Optional[str] = None,
     farm_id: str = '1'
 ) -> Dict[str, Optional[int]]:
     """Собирает все данные из разных источников и возвращает единую структуру."""
@@ -124,6 +139,10 @@ def parse_all(
 
     last_month_profit = parse_last_month_profit(farms_xml) if farms_xml is not None else None
 
+    players_online = []
+    if dedicated_server_stats is not None:
+        players_online = parse_players_online(dedicated_server_stats)
+
     return {
         'last_month_profit': last_month_profit,
         'server_name': server_name,
@@ -134,5 +153,6 @@ def parse_all(
         'fields_owned': fields_owned,
         'fields_total': fields_total,
         'vehicles_owned': vehicles_owned,
+        "players_online": players_online,
     }
 
