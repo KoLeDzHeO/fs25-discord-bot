@@ -49,8 +49,9 @@ async def update_message(bot: discord.Client):
                     dedicated_server_stats=dedicated_server_stats_ftp,
                 )
                 # Логируем онлайн раз в час
-                new_record = await update_online_history_hourly(len(data.get("players_online", [])))
+                await update_online_history_hourly(len(data.get("players_online", [])))
                 embed = build_embed(data)
+                graph_file = await make_online_graph()
 
                 async for msg in channel.history(limit=None):
                     try:
@@ -58,16 +59,16 @@ async def update_message(bot: discord.Client):
                     except Exception as e:
                         log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
 
-                await channel.send(embed=embed)
+                if graph_file:
+                    embed.set_image(url="attachment://online_graph.png")
+                    with open(graph_file, "rb") as f:
+                        await channel.send(
+                            embed=embed,
+                            file=discord.File(f, filename="online_graph.png"),
+                        )
+                else:
+                    await channel.send(embed=embed)
                 log_debug("[Discord] ✅ Embed успешно отправлен.")
-                if new_record:
-                    graph_file = await make_online_graph()
-                    if graph_file:
-                        with open(graph_file, "rb") as f:
-                            await channel.send(
-                                "\U0001F4CA График онлайна за сутки (по часам)",
-                                file=discord.File(f, filename=graph_file),
-                            )
             else:
                 log_debug("[DEBUG] Не все данные загружены, пропускаем обновление.")
 
