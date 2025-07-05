@@ -42,17 +42,17 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     vehicles_str = f"{vehicles_owned if vehicles_owned is not None else '—'}"
 
     # Текст embed'a формируем единой строкой
-    description = "\n".join(
-        [
-            f"🧷 **Сервер:** {server_name}",
-            f"🗺️ **Карта:** {map_name}",
-            f"💰 **Деньги фермы:** {money_str}",
-            f"🌾 **Поля во владении:** {fields_str}",
-            f"🚜 **Техника:** {vehicles_str} единиц",
-            f"👥 **Слоты:** {slots_str}",
-            f"👥 **Онлайн:** {', '.join(players_online) if players_online else 'никого нет'}",
-        ]
-    )
+    lines = [
+        data.get("server_status", "—"),
+        f"🧷 **Сервер:** {server_name}",
+        f"🗺️ **Карта:** {map_name}",
+        f"💰 **Деньги фермы:** {money_str}",
+        f"🌾 **Поля во владении:** {fields_str}",
+        f"🚜 **Техника:** {vehicles_str} единиц",
+        f"👥 **Слоты:** {slots_str}",
+        f"👥 **Онлайн:** {', '.join(players_online) if players_online else 'никого нет'}",
+    ]
+    description = "\n".join(lines)
 
     if last_month_profit is not None:
         color = discord.Color.green() if last_month_profit >= 0 else discord.Color.red()
