@@ -47,7 +47,9 @@ async def update_message(bot: discord.Client):
                 f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}, farms={bool(farms_ftp)}"
             )
 
-            if all([stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp]):
+            all_files_loaded = all([stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp])
+            if all_files_loaded:
+                server_status = "🟢 Сервер работает"
                 print("=== [LOG] Все необходимые файлы успешно загружены ===")
                 data = parse_all(
                     server_stats=stats_xml,
@@ -61,30 +63,48 @@ async def update_message(bot: discord.Client):
                 history_updated = await update_online_history_hourly(
                     len(data.get("players_online", []))
                 )
-                embed = build_embed(data)
+            else:
+                server_status = "🔴 Сервер недоступен"
+                data = {
+                    "last_month_profit": None,
+                    "server_name": None,
+                    "map_name": None,
+                    "slots_used": None,
+                    "slots_max": None,
+                    "farm_money": None,
+                    "fields_owned": None,
+                    "fields_total": None,
+                    "vehicles_owned": None,
+                    "players_online": [],
+                }
+                history_updated = False
+
+            data["server_status"] = server_status
+            embed = build_embed(data)
+
+            graph_file = None
+            if all_files_loaded:
                 if history_updated or not Path("online_graph.png").exists():
                     graph_file = await make_online_graph()
                 else:
                     graph_file = "online_graph.png"
 
-                async for msg in channel.history(limit=None):
-                    try:
-                        await msg.delete()
-                    except Exception as e:
-                        log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
+            async for msg in channel.history(limit=None):
+                try:
+                    await msg.delete()
+                except Exception as e:
+                    log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
 
-                print("=== [LOG] Публикуем embed в Discord-канале ===")
-                if graph_file:
-                    embed.set_image(url="attachment://online_graph.png")
-                    with open(graph_file, "rb") as f:
-                        await channel.send(
-                            embed=embed,
-                            file=discord.File(f, filename="online_graph.png"),
-                        )
-                else:
-                    await channel.send(embed=embed)
-                log_debug("[Discord] ✅ Embed успешно отправлен.")
+            print("=== [LOG] Публикуем embed в Discord-канале ===")
+            if graph_file:
+                embed.set_image(url="attachment://online_graph.png")
+                with open(graph_file, "rb") as f:
+                    await channel.send(
+                        embed=embed,
+                        file=discord.File(f, filename="online_graph.png"),
+                    )
             else:
-                log_debug("[DEBUG] Не все данные загружены, пропускаем обновление.")
+                await channel.send(embed=embed)
+            log_debug("[Discord] ✅ Embed успешно отправлен.")
 
             await asyncio.sleep(config.ftp_poll_interval)
