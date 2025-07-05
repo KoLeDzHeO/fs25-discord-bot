@@ -1,5 +1,6 @@
 import aiohttp
 import asyncio
+from pathlib import Path
 import discord         # <--- ВОТ ЭТА СТРОКА!
 from config.config import config
 from ftp.fetcher import fetch_file
@@ -49,9 +50,14 @@ async def update_message(bot: discord.Client):
                     dedicated_server_stats=dedicated_server_stats_ftp,
                 )
                 # Логируем онлайн раз в час
-                await update_online_history_hourly(len(data.get("players_online", [])))
+                history_updated = await update_online_history_hourly(
+                    len(data.get("players_online", []))
+                )
                 embed = build_embed(data)
-                graph_file = await make_online_graph()
+                if history_updated or not Path("online_graph.png").exists():
+                    graph_file = await make_online_graph()
+                else:
+                    graph_file = "online_graph.png"
 
                 async for msg in channel.history(limit=None):
                     try:
