@@ -43,6 +43,9 @@ def _plot(times, online, image_file):
     ax.set_xticklabels(times, rotation=45, ha="right", fontsize=8)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     
+    # ГЛАВНОЕ ДОБАВЛЕНИЕ — фиксируем X от 0 до N-1
+    ax.set_xlim(0, len(times) - 1)
+    
     # ВСЕГДА показываем минимум 5 делений по Y
     ymax = max(online)
     ax.set_ylim(bottom=0, top=max(5, ymax))
