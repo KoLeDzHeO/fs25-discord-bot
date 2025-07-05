@@ -54,15 +54,10 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     ]
     description = "\n".join(lines)
 
-    if last_month_profit is not None:
-        color = discord.Color.green() if last_month_profit >= 0 else discord.Color.red()
-    else:
-        color = discord.Color.blue()
-
     embed = discord.Embed(
         title="Состояние сервера Farming Simulator",
         description=description,
-        color=color,
+        color=discord.Color.green(),
     )
 
     # Добавляем информацию о времени обновления бота
