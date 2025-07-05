@@ -42,12 +42,15 @@ def _plot(times, online, image_file):
     ax.set_xticks(range(len(times)))
     ax.set_xticklabels(times, rotation=45, ha="right", fontsize=8)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-    ax.set_ylim(bottom=0)
+    
+    # ВСЕГДА показываем минимум 5 делений по Y
+    ymax = max(online)
+    ax.set_ylim(bottom=0, top=max(5, ymax))
+    
     ax.grid(True)
     plt.tight_layout()
     plt.savefig(image_file)
     plt.close()
-
 
 async def make_online_graph(history_file: str = "online_stats.json", image_file: str = "online_graph.png") -> str | None:
     """Строит график и возвращает путь к файлу, либо None."""
