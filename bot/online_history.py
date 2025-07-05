@@ -10,23 +10,36 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-async def update_online_history_hourly(current_online: int, history_file: str = "online_stats.json") -> bool:
-    """Сохраняет онлайн раз в час. Возвращает True, если добавлена новая запись."""
-    now_str = datetime.now().strftime("%Y-%m-%d %H:00")
+async def update_online_history(current_players: list[str], history_file: str = "online_stats.json") -> bool:
+    """Сохраняет список уникальных ников для текущего часа.
+
+    Возвращает ``True``, если данные для часа были изменены (добавлены новые
+    ники или создана новая запись)."""
+
+    hour_key = datetime.now().strftime("%Y-%m-%d %H")
+
     try:
         async with aiofiles.open(history_file, "r", encoding="utf-8") as f:
             content = await f.read()
-            history = json.loads(content)
+            history: dict[str, list[str]] = json.loads(content)
     except Exception:
-        history = []
-    if history and history[-1].get("time") == now_str:
-        return False
-    history.append({"time": now_str, "online": int(current_online)})
-    if len(history) > 24:
-        history = history[-24:]
+        history = {}
+
+    old_players = set(history.get(hour_key, []))
+    new_players = set(current_players)
+    merged_players = sorted(old_players.union(new_players))
+
+    changed = hour_key not in history or merged_players != history.get(hour_key, [])
+    history[hour_key] = merged_players
+
+    # Оставляем только последние 24 часа
+    last_hours = sorted(history.keys())[-24:]
+    history = {h: history[h] for h in last_hours}
+
     async with aiofiles.open(history_file, "w", encoding="utf-8") as f:
         await f.write(json.dumps(history, ensure_ascii=False, indent=2))
-    return True
+
+    return changed
 
 
 from matplotlib.ticker import MaxNLocator
@@ -60,21 +73,18 @@ async def make_online_graph(history_file: str = "online_stats.json", image_file:
     try:
         async with aiofiles.open(history_file, "r", encoding="utf-8") as f:
             content = await f.read()
-            history = json.loads(content)
+            history: dict[str, list[str]] = json.loads(content)
     except Exception:
-        history = []
-
-    # Формируем словарь исторических значений
-    history_dict = {h["time"]: int(h.get("online", 0)) for h in history}
+        history = {}
 
     now = datetime.now().replace(minute=0, second=0, microsecond=0)
     times = []
     online = []
     for i in range(23, -1, -1):
         point_time = now - timedelta(hours=i)
-        key = point_time.strftime("%Y-%m-%d %H:00")
+        key = point_time.strftime("%Y-%m-%d %H")
         times.append(point_time.strftime("%H:00"))
-        online.append(history_dict.get(key, 0))
+        online.append(len(history.get(key, [])))
 
     loop = asyncio.get_event_loop()
     await loop.run_in_executor(None, _plot, times, online, image_file)
