@@ -1,6 +1,7 @@
 import json
 from datetime import datetime, timedelta
 import asyncio
+from pathlib import Path
 
 import aiofiles
 import matplotlib
@@ -10,19 +11,34 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-async def update_online_history(current_players: list[str], history_file: str = "online_stats.json") -> bool:
-    """Сохраняет список уникальных ников для текущего часа.
+async def update_online_history(current_players: list[str], history_file: str = "online_history.json") -> bool:
+    """Обновляет историю онлайна за месяц.
 
-    Возвращает ``True``, если данные для часа были изменены (добавлены новые
-    ники или создана новая запись)."""
+    При смене месяца архивирует предыдущий ``history_file`` в папку ``history``
+    и очищает его. Возвращает ``True``, если данные для текущего часа были
+    изменены (добавлены новые ники или создана новая запись)."""
 
-    hour_key = datetime.now().strftime("%Y-%m-%d %H")
+    now = datetime.now()
+    hour_key = now.strftime("%Y-%m-%d %H")
+    current_month = now.strftime("%Y-%m")
 
     try:
         async with aiofiles.open(history_file, "r", encoding="utf-8") as f:
             content = await f.read()
-            history: dict[str, list[str]] = json.loads(content)
+            history: dict[str, list[str]] = json.loads(content) if content else {}
     except Exception:
+        history = {}
+
+    stored_month = current_month
+    if history:
+        first_key = next(iter(history))
+        stored_month = first_key[:7]
+
+    if stored_month != current_month:
+        Path("history").mkdir(exist_ok=True)
+        archive_path = Path("history") / f"online_history_{stored_month}.json"
+        async with aiofiles.open(archive_path, "w", encoding="utf-8") as f:
+            await f.write(json.dumps(history, ensure_ascii=False, indent=2))
         history = {}
 
     old_players = set(history.get(hour_key, []))
@@ -32,9 +48,7 @@ async def update_online_history(current_players: list[str], history_file: str = 
     changed = hour_key not in history or merged_players != history.get(hour_key, [])
     history[hour_key] = merged_players
 
-    # Оставляем только последние 24 часа
-    last_hours = sorted(history.keys())[-24:]
-    history = {h: history[h] for h in last_hours}
+
 
     async with aiofiles.open(history_file, "w", encoding="utf-8") as f:
         await f.write(json.dumps(history, ensure_ascii=False, indent=2))
@@ -68,7 +82,7 @@ def _plot(times, online, image_file):
     plt.savefig(image_file)
     plt.close()
 
-async def make_online_graph(history_file: str = "online_stats.json", image_file: str = "online_graph.png") -> str | None:
+async def make_online_graph(history_file: str = "online_history.json", image_file: str = "online_graph.png") -> str | None:
     """Строит график и возвращает путь к файлу, либо None."""
     try:
         async with aiofiles.open(history_file, "r", encoding="utf-8") as f:
