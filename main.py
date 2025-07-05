@@ -1,6 +1,8 @@
 import discord
 import asyncio
 
+print("=== [LOG] main.py стартовал ===")
+
 from config.config import config
 from bot.updater import update_message
 from bot.logger import log_debug
@@ -15,7 +17,7 @@ class MyBot(discord.Client):
 
     async def on_ready(self):
         # Сообщаем в консоль, что бот успешно авторизовался
-        log_debug(f"Logged in as {self.user}")
+        print(f"=== [LOG] Discord-бот авторизован как {self.user} ===")
 
 
 if __name__ == "__main__":
@@ -26,4 +28,5 @@ if __name__ == "__main__":
 
     # Инициализируем бота и запускаем его
     bot = MyBot(intents=intents)
+    print("=== [LOG] Попытка запустить Discord-бота... ===")
     bot.run(config.discord_token)

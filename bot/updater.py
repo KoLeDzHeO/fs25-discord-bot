@@ -21,6 +21,7 @@ async def fetch_dedicated_server_stats(session):
         return None
 
 async def update_message(bot: discord.Client):
+    print("=== [LOG] Фоновый таск update_message стартовал ===")
     await bot.wait_until_ready()
     channel = await bot.fetch_channel(config.channel_id)
     if channel is None:
@@ -29,11 +30,17 @@ async def update_message(bot: discord.Client):
 
     async with aiohttp.ClientSession() as session:
         while not bot.is_closed():
+            print("=== [LOG] Пробуем скачать файл: dedicated-server-stats.xml ===")
             stats_xml = await fetch_stats_xml(session)
+            print("=== [LOG] Пробуем скачать файл: vehicles ===")
             vehicles_xml = await fetch_api_file(session, "vehicles")
+            print("=== [LOG] Пробуем скачать файл: careerSavegame.xml ===")
             career_ftp = await fetch_file("careerSavegame.xml")
+            print("=== [LOG] Пробуем скачать файл: farmland.xml ===")
             farmland_ftp = await fetch_file("farmland.xml")
+            print("=== [LOG] Пробуем скачать файл: farms.xml ===")
             farms_ftp = await fetch_file("farms.xml")
+            print("=== [LOG] Пробуем скачать файл: dedicated-server-stats.xml (ftp) ===")
             dedicated_server_stats_ftp = await fetch_dedicated_server_stats(session)
 
             log_debug(
@@ -41,6 +48,7 @@ async def update_message(bot: discord.Client):
             )
 
             if all([stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp]):
+                print("=== [LOG] Все необходимые файлы успешно загружены ===")
                 data = parse_all(
                     server_stats=stats_xml,
                     vehicles_api=vehicles_xml,
@@ -65,6 +73,7 @@ async def update_message(bot: discord.Client):
                     except Exception as e:
                         log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
 
+                print("=== [LOG] Публикуем embed в Discord-канале ===")
                 if graph_file:
                     embed.set_image(url="attachment://online_graph.png")
                     with open(graph_file, "rb") as f:
