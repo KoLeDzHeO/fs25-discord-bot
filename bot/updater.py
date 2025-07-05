@@ -9,7 +9,7 @@ from .parsers import parse_all
 from .discord_ui import build_embed
 from .logger import log_debug
 from .online_history import (
-    update_online_history_hourly,
+    update_online_history,
     make_online_graph,
 )
 
@@ -59,9 +59,9 @@ async def update_message(bot: discord.Client):
                     farms_xml=farms_ftp,
                     dedicated_server_stats=dedicated_server_stats_ftp,
                 )
-                # Логируем онлайн раз в час
-                history_updated = await update_online_history_hourly(
-                    len(data.get("players_online", []))
+                # Фиксируем онлайн каждого часа
+                history_updated = await update_online_history(
+                    data.get("players_online", [])
                 )
             else:
                 server_status = "🔴 Сервер недоступен"
