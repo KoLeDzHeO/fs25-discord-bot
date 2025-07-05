@@ -119,11 +119,11 @@ def parse_players_online(xml_text: str) -> list:
 
 
 def parse_last_month_profit(xml_text: str) -> Optional[int]:
-    """Возвращает округлённую прибыль за последний месяц (day=0) из farms.xml"""
+    """Возвращает округлённую прибыль за последний месяц (day=1) из farms.xml"""
     print("=== [LOG] Парсим данные parse_last_month_profit ===")
     try:
         root = ET.fromstring(xml_text)
-        stats = root.find(".//farm[@farmId='1']/finances/stats[@day='0']")
+        stats = root.find(".//farm[@farmId='1']/finances/stats[@day='1']")
         if stats is None:
             return None
 
