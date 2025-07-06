@@ -100,7 +100,13 @@ def parse_farmland(xml_text: str, farm_id: str) -> Tuple[int, int]:
         return 0, 0
 
 def parse_players_online(xml_text: str) -> list:
-    """Возвращает список имён онлайн-игроков из dedicated-server-stats.xml."""
+    """Возвращает список ников онлайн-игроков из dedicated-server-stats.xml.
+
+    Если функция возвращает пустой список, проверьте:
+      * актуальность файла dedicated-server-stats.xml;
+      * вызывается ли эта функция при обновлении статистики (обычно раз в час);
+      * нет ли ошибок в логах.
+    """
     print("=== [LOG] Парсим данные parse_players_online ===")
     try:
         root = ET.fromstring(xml_text)
@@ -109,9 +115,11 @@ def parse_players_online(xml_text: str) -> list:
         if slots is not None:
             for player in slots.findall("Player"):
                 if player.get("isUsed") == "true":
-                    name = (player.text or '').strip()
+                    # Имя игрока находится между тегами <Player>name</Player>
+                    name = (player.text or "").strip()
                     if name:
                         players.append(name)
+        print(players)  # временный вывод списка ников для отладки
         return players
     except Exception as e:
         print(f"=== [ERROR] Ошибка в parse_players_online: {e}")
