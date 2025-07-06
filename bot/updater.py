@@ -4,24 +4,14 @@ from pathlib import Path
 import discord         # <--- ВОТ ЭТА СТРОКА!
 from config.config import config
 from ftp.fetcher import fetch_file
-from .fetchers import fetch_stats_xml, fetch_api_file
-from .parsers import parse_all
+from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
+from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
 from .logger import log_debug
-from .online_history import (
-    update_online_history,
-    make_online_graph,
-)
+from .online_history import insert_online_players, make_online_graph
 
-async def fetch_dedicated_server_stats(session):
-    url = "http://195.179.229.189:8120/feed/dedicated-server-stats.xml?code=DsPF35gzLKvJNG8k"
-    async with session.get(url) as resp:
-        if resp.status == 200:
-            return await resp.text()
-        return None
-
-async def update_message(bot: discord.Client):
-    print("=== [LOG] Фоновый таск update_message стартовал ===")
+async def ftp_polling_task(bot: discord.Client, db_pool):
+    print("=== [LOG] Фоновый таск ftp_polling_task стартовал ===")
     await bot.wait_until_ready()
     channel = await bot.fetch_channel(config.channel_id)
     if channel is None:
@@ -59,10 +49,7 @@ async def update_message(bot: discord.Client):
                     farms_xml=farms_ftp,
                     dedicated_server_stats=dedicated_server_stats_ftp,
                 )
-                # Фиксируем онлайн каждого часа
-                history_updated = await update_online_history(
-                    data.get("players_online", [])
-                )
+                # данные успешно загружены
             else:
                 server_status = "🔴 Сервер недоступен"
                 data = {
@@ -77,17 +64,13 @@ async def update_message(bot: discord.Client):
                     "vehicles_owned": None,
                     "players_online": [],
                 }
-                history_updated = False
 
             data["server_status"] = server_status
             embed = build_embed(data)
 
             graph_file = None
             if all_files_loaded:
-                if history_updated or not Path("online_graph.png").exists():
-                    graph_file = await make_online_graph()
-                else:
-                    graph_file = "online_graph.png"
+                graph_file = await make_online_graph(db_pool)
 
             async for msg in channel.history(limit=None):
                 try:
@@ -108,3 +91,14 @@ async def update_message(bot: discord.Client):
             log_debug("[Discord] ✅ Embed успешно отправлен.")
 
             await asyncio.sleep(config.ftp_poll_interval)
+
+
+async def api_polling_task(db_pool):
+    """Периодически опрашивает API и сохраняет онлайн игроков."""
+    async with aiohttp.ClientSession() as session:
+        while True:
+            stats_xml = await fetch_dedicated_server_stats(session)
+            if stats_xml:
+                players = parse_players_online(stats_xml)
+                await insert_online_players(db_pool, players)
+            await asyncio.sleep(config.api_poll_interval)

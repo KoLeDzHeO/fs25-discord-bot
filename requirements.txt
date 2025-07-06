@@ -4,3 +4,4 @@ python-dotenv
 aioftp
 matplotlib
 aiofiles
+asyncpg
