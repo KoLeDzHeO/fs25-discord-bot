@@ -10,6 +10,23 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+# Максимальное количество почасовых записей в истории (31 день)
+MAX_HISTORY_RECORDS = 31 * 24
+
+
+def clean_old_history(history: dict, max_records: int = MAX_HISTORY_RECORDS) -> dict:
+    """Удаляет старые записи, оставляя только ``max_records`` последних.
+
+    Порядок ключей соответствует хронологии, поэтому сортировки достаточно,
+    чтобы найти самые старые элементы.
+    """
+
+    sorted_keys = sorted(history.keys())
+    if len(sorted_keys) > max_records:
+        keys_to_keep = sorted_keys[-max_records:]
+        return {k: history[k] for k in keys_to_keep}
+    return history
+
 
 async def update_online_history(current_players: list[str], history_file: str = "online_history.json") -> bool:
     """Обновляет историю онлайна за месяц.
@@ -48,7 +65,8 @@ async def update_online_history(current_players: list[str], history_file: str = 
     changed = hour_key not in history or merged_players != history.get(hour_key, [])
     history[hour_key] = merged_players
 
-
+    # Очищаем историю, оставляя только последние записи
+    history = clean_old_history(history, MAX_HISTORY_RECORDS)
 
     async with aiofiles.open(history_file, "w", encoding="utf-8") as f:
         await f.write(json.dumps(history, ensure_ascii=False, indent=2))
