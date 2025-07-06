@@ -4,7 +4,8 @@ import asyncio
 print("=== [LOG] main.py стартовал ===")
 
 from config.config import config
-from bot.updater import update_message
+import asyncpg
+from bot.updater import ftp_polling_task, api_polling_task
 from bot.logger import log_debug
 
 
@@ -12,8 +13,9 @@ from bot.logger import log_debug
 class MyBot(discord.Client):
     async def setup_hook(self) -> None:
         """Вызывается Discord.py при подготовке клиента."""
-        # Запускаем обновление сообщения как отдельную асинхронную задачу
-        asyncio.create_task(update_message(self))
+        self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
+        asyncio.create_task(api_polling_task(self.db_pool))
+        asyncio.create_task(ftp_polling_task(self, self.db_pool))
 
     async def on_ready(self):
         # Сообщаем в консоль, что бот успешно авторизовался

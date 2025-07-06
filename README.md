@@ -12,13 +12,15 @@ Discord-бот, который отображает информацию о со
 
 - `DISCORD_TOKEN` — токен Discord-бота
 - `DISCORD_CHANNEL_ID` — ID канала для обновления сообщения
-- `FTP_POLL_INTERVAL` — интервал опроса API (сек)
+- `API_POLL_INTERVAL` — интервал опроса API (сек)
+- `FTP_POLL_INTERVAL` — интервал опроса FTP (сек)
 - `API_BASE_URL` — базовый URL API
 - `API_SECRET_CODE` — секретный код API
 - `FTP_HOST` — адрес FTP-сервера
 - `FTP_PORT` — порт FTP-сервера
 - `FTP_USER` — имя пользователя FTP
 - `FTP_PASS` — пароль FTP
+- `POSTGRES_URL` — строка подключения к PostgreSQL
 
 ## Railway
 
