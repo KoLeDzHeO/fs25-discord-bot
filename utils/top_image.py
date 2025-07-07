@@ -50,7 +50,13 @@ def draw_top_image(rows: List[Dict], title: str, size: int, key: str) -> io.Byte
 
         draw.text((10, y + 10), f"{place}. {name}", font=FONT, fill="black")
         hours_text = f"{hours} ч" if hours != "-" else "-"
-        text_w, _ = draw.textsize(hours_text, font=FONT)
+        try:
+            bbox = draw.textbbox((0, 0), hours_text, font=FONT)
+            text_w = bbox[2] - bbox[0]
+        except AttributeError:
+            # Pillow<10
+            text_w, _ = draw.textsize(hours_text, font=FONT)
+
         draw.text((width - text_w - 10, y + 10), hours_text, font=FONT, fill="black")
 
     buf = io.BytesIO()
