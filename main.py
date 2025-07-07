@@ -22,6 +22,7 @@ class MyBot(discord.Client):
         self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
         asyncio.create_task(api_polling_task(self.db_pool))
         asyncio.create_task(ftp_polling_task(self, self.db_pool))
+        log_debug("[SETUP] Background tasks started")
 
         await self.tree.sync()
         log_debug("[Slash] Команды синхронизированы")
@@ -35,17 +36,21 @@ async def cmd_top7(interaction: discord.Interaction):
     """Slash-команда для вывода недельного топа игроков."""
     log_debug("[/top7] invoked")
     try:
+        await interaction.response.defer(thinking=True)
         rows = await interaction.client.db_pool.fetch(
             "SELECT player_name, activity_hours FROM player_top_week ORDER BY activity_hours DESC LIMIT 10"
         )
+        if not rows:
+            await interaction.followup.send("Данных нет", ephemeral=True)
+            return
         img = draw_top_image(list(rows), title="ТОП-10 за неделю", size=10, key="activity_hours")
         file = discord.File(fp=img, filename="top7.png")
         embed = discord.Embed(title="ТОП-10 активных игроков за неделю")
         embed.set_image(url="attachment://top7.png")
-        await interaction.response.send_message(embed=embed, file=file)
+        await interaction.followup.send(embed=embed, file=file)
     except Exception as e:
         log_debug(f"[ERROR] /top7: {e}")
-        await interaction.response.send_message("Произошла ошибка при выполнении команды.", ephemeral=True)
+        await interaction.followup.send("Произошла ошибка при выполнении команды.", ephemeral=True)
 
 
 @app_commands.command(name="top", description="Топ-50 по общему времени на сервере")
@@ -53,15 +58,19 @@ async def cmd_top(interaction: discord.Interaction):
     """Slash-команда для вывода общего топа игроков."""
     log_debug("[/top] invoked")
     try:
+        await interaction.response.defer(thinking=True)
         rows = await get_player_total_top(interaction.client.db_pool, limit=50)
+        if not rows:
+            await interaction.followup.send("Данных нет", ephemeral=True)
+            return
         img = draw_top_image(list(rows), title="ТОП-50 по общему времени", size=50, key="total_hours")
         file = discord.File(fp=img, filename="top.png")
         embed = discord.Embed(title="ТОП-50 по общему времени на сервере")
         embed.set_image(url="attachment://top.png")
-        await interaction.response.send_message(embed=embed, file=file)
+        await interaction.followup.send(embed=embed, file=file)
     except Exception as e:
         log_debug(f"[ERROR] /top: {e}")
-        await interaction.response.send_message("Произошла ошибка при выполнении команды.", ephemeral=True)
+        await interaction.followup.send("Произошла ошибка при выполнении команды.", ephemeral=True)
 
 
 if __name__ == "__main__":
@@ -73,5 +82,8 @@ if __name__ == "__main__":
     bot.tree.add_command(cmd_top7)
     bot.tree.add_command(cmd_top)
     log_debug("Запускаем Discord-бота")
-    bot.run(config.discord_token)
+    try:
+        bot.run(config.discord_token)
+    finally:
+        log_debug("Discord-бот остановлен")
 

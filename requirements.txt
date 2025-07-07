@@ -1,8 +1,7 @@
-discord.py
-aiohttp
-python-dotenv
-aioftp
-matplotlib
-aiofiles
-asyncpg
-Pillow
+discord.py>=2.3
+aiohttp>=3.8
+python-dotenv>=0.21
+aioftp>=0.21
+matplotlib>=3.5
+asyncpg>=0.27
+Pillow>=9
