@@ -30,7 +30,7 @@ async def fetch_api_file(session, filename):
 async def fetch_dedicated_server_stats(session):
     """Загружает feed/dedicated-server-stats.xml"""
     url = (
-        f"{config.api_base_url.replace('dedicated-server-savegame.html', 'feed/dedicated-server-stats.xml')}?code={config.api_secret_code}"
+        f"{config.api_base_url.replace('dedicated-server-savegame.html', 'dedicated-server-stats.xml')}?code={config.api_secret_code}"
     )
     return await _fetch(session, url, "dedicated-server-stats.xml")
 
