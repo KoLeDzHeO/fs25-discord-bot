@@ -1,6 +1,7 @@
 from typing import Any, Dict
 
 from utils.helpers import get_moscow_time
+from datetime import datetime
 
 import discord
 
@@ -64,4 +65,17 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     # Добавляем информацию о времени обновления бота (московское время)
     embed.set_footer(text=f"Последнее обновление: {get_moscow_time()}")
 
+    return embed
+
+
+def build_top_week_embed(top: list[tuple[str, int]], updated_at: datetime) -> discord.Embed:
+    """Формирует embed для недельного топа игроков."""
+    lines = [f"{i}. {name} — {hours} часов" for i, (name, hours) in enumerate(top, start=1)]
+    description = "\n".join(lines)
+    embed = discord.Embed(
+        title="Топ-10 самых активных игроков недели",
+        description=description,
+        color=discord.Color.blue(),
+    )
+    embed.set_footer(text=f"Обновлено: {updated_at.strftime('%d.%m.%Y %H:%M')} по Москве")
     return embed
