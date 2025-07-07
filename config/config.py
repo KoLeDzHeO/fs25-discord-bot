@@ -1,3 +1,5 @@
+"""Загрузка конфигурации из переменных окружения."""
+
 from dataclasses import dataclass
 from dotenv import load_dotenv
 import os
@@ -20,13 +22,3 @@ class Config:
 
 config = Config()
 
-print("=== [LOG] Конфиг успешно загружен ===")
-print(f"=== [LOG] Канал для публикации: {config.channel_id}")
-print(f"=== [LOG] discord_token: {'OK' if config.discord_token else 'None'}")
-print(f"=== [LOG] channel_id: {config.channel_id}")
-print(f"=== [LOG] ftp_host: {config.ftp_host}")
-print(f"=== [LOG] ftp_user: {config.ftp_user}")
-print(f"=== [LOG] ftp_port: {config.ftp_port}")
-print(f"=== [LOG] api_poll_interval: {config.api_poll_interval}")
-print(f"=== [LOG] ftp_poll_interval: {config.ftp_poll_interval}")
-print(f"=== [LOG] postgres_url: {bool(config.postgres_url)}")
