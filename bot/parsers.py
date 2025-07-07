@@ -110,11 +110,10 @@ def parse_players_online(xml_text: str) -> list:
         if slots is not None:
             for player in slots.findall("Player"):
                 if player.get("isUsed") == "true":
-                    # Имя игрока находится между тегами <Player>name</Player>
                     name = (player.text or "").strip()
                     if name:
                         players.append(name)
-                        print(f"[DEBUG] Добавлен игрок: {name}")
+                        print(f"[DEBUG] Добавлен игрок: {name}")  # Можно убрать после теста
         return players
     except Exception as e:
         log_debug(f"[ERROR] parse_players_online: {e}")
