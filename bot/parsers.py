@@ -1,12 +1,11 @@
 import xml.etree.ElementTree as ET
 from typing import Tuple, Optional, Dict
 
-from .logger import log_debug
+from utils.logger import log_debug
 
 
 def parse_server_stats(xml_text: str) -> Tuple[Optional[str], Optional[str], Optional[int], Optional[int], Optional[str]]:
     """Извлекает общую информацию о сервере."""
-    print("=== [LOG] Парсим данные parse_server_stats ===")
     try:
         root = ET.fromstring(xml_text)
         server_elem = root  # <Server> — корень
@@ -36,13 +35,12 @@ def parse_server_stats(xml_text: str) -> Tuple[Optional[str], Optional[str], Opt
 
         return server_name, map_name, slots_used, slots_max, last_updated
     except Exception as e:
-        print(f"=== [ERROR] Ошибка в parse_server_stats: {e}")
+        log_debug(f"[ERROR] parse_server_stats: {e}")
         return None, None, None, None, None
 
 
 def parse_farm_money(xml_text: str) -> Optional[int]:
     """Получает баланс фермы из careerSavegame.xml на FTP."""
-    print("=== [LOG] Парсим данные parse_farm_money ===")
     try:
         root = ET.fromstring(xml_text)
         elem = root.find('.//statistics/money')
@@ -53,7 +51,7 @@ def parse_farm_money(xml_text: str) -> Optional[int]:
                 return None
         return None
     except Exception as e:
-        print(f"=== [ERROR] Ошибка в parse_farm_money: {e}")
+        log_debug(f"[ERROR] parse_farm_money: {e}")
         return None
 
 
@@ -61,7 +59,6 @@ def parse_farm_money(xml_text: str) -> Optional[int]:
 
 def _count_vehicles(xml_text: str, farm_id: str) -> Optional[int]:
     """Подсчёт техники в файле vehicles."""
-    print("=== [LOG] Парсим данные _count_vehicles ===")
     try:
         root = ET.fromstring(xml_text)
         vehicles = root.findall('.//vehicle')
@@ -82,13 +79,12 @@ def _count_vehicles(xml_text: str, farm_id: str) -> Optional[int]:
                     count += 1
         return count
     except Exception as e:
-        print(f"=== [ERROR] Ошибка в _count_vehicles: {e}")
+        log_debug(f"[ERROR] _count_vehicles: {e}")
         return None
 
 
 def parse_farmland(xml_text: str, farm_id: str) -> Tuple[int, int]:
     """Подсчитывает количество полей у фермы."""
-    print("=== [LOG] Парсим данные parse_farmland ===")
     try:
         root = ET.fromstring(xml_text)
         farmlands = root.findall('.//Farmland') or root.findall('.//farmland')
@@ -96,7 +92,7 @@ def parse_farmland(xml_text: str, farm_id: str) -> Tuple[int, int]:
         owned = len([f for f in farmlands if f.get('farmId') == farm_id])
         return owned, total
     except Exception as e:
-        print(f"=== [ERROR] Ошибка в parse_farmland: {e}")
+        log_debug(f"[ERROR] parse_farmland: {e}")
         return 0, 0
 
 def parse_players_online(xml_text: str) -> list:
@@ -107,7 +103,6 @@ def parse_players_online(xml_text: str) -> list:
       * вызывается ли эта функция при обновлении статистики (обычно раз в час);
       * нет ли ошибок в логах.
     """
-    print("=== [LOG] Парсим данные parse_players_online ===")
     try:
         root = ET.fromstring(xml_text)
         players = []
@@ -119,16 +114,14 @@ def parse_players_online(xml_text: str) -> list:
                     name = (player.text or "").strip()
                     if name:
                         players.append(name)
-        print(players)  # временный вывод списка ников для отладки
         return players
     except Exception as e:
-        print(f"=== [ERROR] Ошибка в parse_players_online: {e}")
+        log_debug(f"[ERROR] parse_players_online: {e}")
         return []
 
 
 def parse_last_month_profit(xml_text: str) -> Optional[int]:
     """Возвращает округлённую прибыль за последний месяц (day=1) из farms.xml"""
-    print("=== [LOG] Парсим данные parse_last_month_profit ===")
     try:
         root = ET.fromstring(xml_text)
         stats = root.find(".//farm[@farmId='1']/finances/stats[@day='1']")
@@ -144,7 +137,7 @@ def parse_last_month_profit(xml_text: str) -> Optional[int]:
 
         return round(profit)
     except Exception as e:
-        print(f"=== [ERROR] Ошибка в parse_last_month_profit: {e}")
+        log_debug(f"[ERROR] parse_last_month_profit: {e}")
         return None
 
 
@@ -160,7 +153,6 @@ def parse_all(
     farm_id: str = '1'
 ) -> Dict[str, Optional[int]]:
     """Собирает все данные из разных источников и возвращает единую структуру."""
-    print("=== [LOG] Парсим данные parse_all ===")
     try:
         server_name, map_name, slots_used, slots_max, _ = parse_server_stats(server_stats)
 
@@ -194,6 +186,6 @@ def parse_all(
             "players_online": players_online,
         }
     except Exception as e:
-        print(f"=== [ERROR] Ошибка в parse_all: {e}")
+        log_debug(f"[ERROR] parse_all: {e}")
         return {}
 

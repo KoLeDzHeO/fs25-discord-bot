@@ -1,3 +1,5 @@
+"""Функции для хранения и визуализации истории онлайна."""
+
 import asyncio
 from datetime import datetime, timedelta
 
@@ -73,3 +75,4 @@ async def make_online_graph(db_pool: asyncpg.Pool, image_file: str = "online_gra
     loop = asyncio.get_event_loop()
     await loop.run_in_executor(None, _plot, times, online, image_file)
     return image_file
+

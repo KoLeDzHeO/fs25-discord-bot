@@ -1,17 +1,16 @@
 import aiohttp
 import asyncio
-from pathlib import Path
-import discord         # <--- ВОТ ЭТА СТРОКА!
+import discord
 from config.config import config
 from ftp.fetcher import fetch_file
 from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
 from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
-from .logger import log_debug
-from .online_history import insert_online_players, make_online_graph
+from utils.logger import log_debug
+from utils.online_history import insert_online_players, make_online_graph
 
 async def ftp_polling_task(bot: discord.Client, db_pool):
-    print("=== [LOG] Фоновый таск ftp_polling_task стартовал ===")
+    log_debug("[TASK] Запущен ftp_polling_task")
     await bot.wait_until_ready()
     channel = await bot.fetch_channel(config.channel_id)
     if channel is None:
@@ -20,17 +19,17 @@ async def ftp_polling_task(bot: discord.Client, db_pool):
 
     async with aiohttp.ClientSession() as session:
         while not bot.is_closed():
-            print("=== [LOG] Пробуем скачать файл: dedicated-server-stats.xml ===")
+            log_debug("[FTP] Получаем dedicated-server-stats.xml")
             stats_xml = await fetch_stats_xml(session)
-            print("=== [LOG] Пробуем скачать файл: vehicles ===")
+            log_debug("[API] Получаем vehicles")
             vehicles_xml = await fetch_api_file(session, "vehicles")
-            print("=== [LOG] Пробуем скачать файл: careerSavegame.xml ===")
+            log_debug("[FTP] Получаем careerSavegame.xml")
             career_ftp = await fetch_file("careerSavegame.xml")
-            print("=== [LOG] Пробуем скачать файл: farmland.xml ===")
+            log_debug("[FTP] Получаем farmland.xml")
             farmland_ftp = await fetch_file("farmland.xml")
-            print("=== [LOG] Пробуем скачать файл: farms.xml ===")
+            log_debug("[FTP] Получаем farms.xml")
             farms_ftp = await fetch_file("farms.xml")
-            print("=== [LOG] Пробуем скачать файл: dedicated-server-stats.xml (ftp) ===")
+            log_debug("[FTP] Получаем dedicated-server-stats.xml (feed)")
             dedicated_server_stats_ftp = await fetch_dedicated_server_stats(session)
 
             log_debug(
@@ -40,7 +39,7 @@ async def ftp_polling_task(bot: discord.Client, db_pool):
             all_files_loaded = all([stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp])
             if all_files_loaded:
                 server_status = "🟢 Сервер работает"
-                print("=== [LOG] Все необходимые файлы успешно загружены ===")
+                log_debug("[FTP] Все необходимые файлы загружены")
                 data = parse_all(
                     server_stats=stats_xml,
                     vehicles_api=vehicles_xml,
@@ -78,7 +77,7 @@ async def ftp_polling_task(bot: discord.Client, db_pool):
                 except Exception as e:
                     log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
 
-            print("=== [LOG] Публикуем embed в Discord-канале ===")
+            log_debug("[Discord] Отправляем сообщение")
             if graph_file:
                 embed.set_image(url="attachment://online_graph.png")
                 with open(graph_file, "rb") as f:

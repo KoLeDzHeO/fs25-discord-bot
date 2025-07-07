@@ -1,11 +1,11 @@
 # Farming Simulator Discord Bot
 
-Discord-бот, который отображает информацию о состоянии сервера Farming Simulator.
+Небольшой Discord-бот для отслеживания состояния сервера Farming Simulator.
 
 ## Запуск локально
 
-1. Скопируйте `.env.example` в `.env` и заполните значения.
-2. Установите зависимости `pip install -r requirements.txt`.
+1. Скопируйте `.env.example` в `.env` и укажите параметры подключения.
+2. Установите зависимости командой `pip install -r requirements.txt`.
 3. Запустите `python main.py`.
 
 ## Переменные окружения

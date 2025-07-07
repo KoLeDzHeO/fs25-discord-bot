@@ -1,8 +1,10 @@
+"""Получение файлов по FTP."""
+
 import aioftp
 from typing import Optional
 
 from config.config import config
-from bot.logger import log_debug
+from utils.logger import log_debug
 
 async def fetch_file(file_name: str) -> Optional[str]:
     log_debug(f"[FTP] Пробуем подключиться к {config.ftp_host}:{config.ftp_port} как {config.ftp_user}")
@@ -26,3 +28,4 @@ async def fetch_file(file_name: str) -> Optional[str]:
     except Exception as e:
         log_debug(f"[FTP] ❌ Ошибка загрузки файла '{file_name}': {e}")
         return None
+
