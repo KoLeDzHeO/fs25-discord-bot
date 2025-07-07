@@ -9,7 +9,8 @@ from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
 from utils.logger import log_debug
 from utils.online_history import insert_online_players, make_online_graph
-from utils.helpers import get_moscow_datetime
+from utils.total_time import update_player_total_time
+from utils.top_week import update_player_top_week
 
 async def ftp_polling_task(bot: discord.Client, db_pool):
     log_debug("[TASK] Запущен ftp_polling_task")
@@ -107,6 +108,8 @@ async def api_polling_task(db_pool):
                 if stats_xml:
                     players = parse_players_online(stats_xml)
                     await insert_online_players(db_pool, players)
+                    await update_player_total_time(db_pool)
+                    await update_player_top_week(db_pool)
                 await asyncio.sleep(config.api_poll_interval)
             except Exception as e:
                 log_debug(f"[TASK] api_polling_task error: {e}")
