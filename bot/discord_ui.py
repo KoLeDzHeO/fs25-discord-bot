@@ -1,5 +1,6 @@
-from datetime import datetime
 from typing import Any, Dict
+
+from utils.helpers import get_moscow_time
 
 import discord
 
@@ -60,7 +61,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
         color=discord.Color.green(),
     )
 
-    # Добавляем информацию о времени обновления бота
-    embed.set_footer(text=f"Последнее обновление: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    # Добавляем информацию о времени обновления бота (московское время)
+    embed.set_footer(text=f"Последнее обновление: {get_moscow_time()}")
 
     return embed

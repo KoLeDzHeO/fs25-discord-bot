@@ -1,7 +1,9 @@
 """Функции для хранения и визуализации истории онлайна."""
 
 import asyncio
-from datetime import datetime, timedelta
+from datetime import timedelta
+
+from utils.helpers import get_moscow_datetime
 
 import asyncpg
 import matplotlib
@@ -13,7 +15,8 @@ from matplotlib.ticker import MaxNLocator
 
 async def insert_online_players(db_pool: asyncpg.Pool, players: list[str]) -> None:
     """Сохраняет онлайн игроков в таблицу ``player_online_history``."""
-    now = datetime.now()
+    # Текущее время в Москве
+    now = get_moscow_datetime()
     slot_start = now - timedelta(
         minutes=now.minute % 15, seconds=now.second, microseconds=now.microsecond
     )
@@ -64,7 +67,8 @@ async def make_online_graph(db_pool: asyncpg.Pool, image_file: str = "online_gra
         )
 
     data = {r["hour"].replace(minute=0, second=0, microsecond=0): r["cnt"] for r in rows}
-    now = datetime.now().replace(minute=0, second=0, microsecond=0)
+    # Текущее московское время без минут и секунд
+    now = get_moscow_datetime().replace(minute=0, second=0, microsecond=0)
     times = []
     online = []
     for i in range(23, -1, -1):
