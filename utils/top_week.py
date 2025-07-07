@@ -10,20 +10,35 @@ from utils.helpers import get_moscow_datetime
 
 async def update_player_top_week(db_pool: asyncpg.Pool) -> None:
     """Пересчитывает топ активных игроков за неделю."""
-    period = f"{config.weekly_top_days} days"
     threshold = config.weekly_top_threshold
     top_size = config.weekly_top_size
+
+    # Текущее московское время
+    now = get_moscow_datetime()
+    # Находим ближайший прошедший понедельник 12:00
+    start = now - timedelta(
+        days=now.weekday(),
+        hours=now.hour - 12,
+        minutes=now.minute,
+        seconds=now.second,
+        microseconds=now.microsecond,
+    )
+    if now.hour < 12:
+        start -= timedelta(days=7)
+    # Конец недели — следующий понедельник 12:00
+    end = start + timedelta(days=7)
 
     async with db_pool.acquire() as conn:
         rows = await conn.fetch(
             """
             SELECT player_name, DATE_TRUNC('hour', check_time) AS hour, COUNT(*) AS cnt
             FROM player_online_history
-            WHERE check_time >= NOW() - $1::interval
+            WHERE check_time >= $1 AND check_time < $2
             GROUP BY player_name, hour
-            HAVING COUNT(*) >= $2
+            HAVING COUNT(*) >= $3
             """,
-            period,
+            start,
+            end,
             threshold,
         )
 
