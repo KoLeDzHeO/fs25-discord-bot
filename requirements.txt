@@ -5,3 +5,4 @@ aioftp
 matplotlib
 aiofiles
 asyncpg
+Pillow
