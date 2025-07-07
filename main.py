@@ -28,7 +28,7 @@ class MyBot(discord.Client):
         content = message.content.lower()
 
         # Команда топа за 7 дней
-        if content.startswith('!top7'):
+        if content.startswith('/top7'):
             rows = await self.db_pool.fetch(
                 "SELECT player_name, activity_hours FROM player_top_week "
                 "ORDER BY activity_hours DESC LIMIT 10"
@@ -41,7 +41,7 @@ class MyBot(discord.Client):
             return
 
         # Команда топа за всё время
-        if content.startswith('!top'):
+        if content.startswith('/top'):
             rows = await get_player_total_top(self.db_pool, limit=50)
             img = draw_top_image(list(rows), title='ТОП-50 по общему времени', size=50, key='total_hours')
             file = discord.File(fp=img, filename='top.png')
