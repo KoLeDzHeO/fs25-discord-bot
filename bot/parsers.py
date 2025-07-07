@@ -114,6 +114,7 @@ def parse_players_online(xml_text: str) -> list:
                     name = (player.text or "").strip()
                     if name:
                         players.append(name)
+                        print(f"[DEBUG] Добавлен игрок: {name}")
         return players
     except Exception as e:
         log_debug(f"[ERROR] parse_players_online: {e}")
