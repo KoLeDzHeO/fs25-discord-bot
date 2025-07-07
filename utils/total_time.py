@@ -59,3 +59,13 @@ async def update_player_total_time(db_pool: asyncpg.Pool) -> None:
                 increment,
             )
 
+
+async def get_player_total_top(db_pool: asyncpg.Pool, limit: int = 50):
+    """Возвращает топ игроков по общему времени."""
+    async with db_pool.acquire() as conn:
+        rows = await conn.fetch(
+            "SELECT player_name, total_hours FROM player_total_time "
+            "ORDER BY total_hours DESC LIMIT $1",
+            limit,
+        )
+    return rows

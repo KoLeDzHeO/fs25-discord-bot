@@ -6,10 +6,9 @@ from config.config import config
 from ftp.fetcher import fetch_file
 from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
 from .parsers import parse_all, parse_players_online
-from .discord_ui import build_embed, build_top_week_embed
+from .discord_ui import build_embed
 from utils.logger import log_debug
 from utils.online_history import insert_online_players, make_online_graph
-from utils.top_week import update_player_top_week, get_player_top_week
 from utils.helpers import get_moscow_datetime
 
 async def ftp_polling_task(bot: discord.Client, db_pool):
@@ -106,25 +105,3 @@ async def api_polling_task(db_pool):
             await asyncio.sleep(config.api_poll_interval)
 
 
-async def weekly_top_task(bot: discord.Client, db_pool):
-    """Раз в неделю пересчитывает топ игроков и отправляет его в Discord."""
-    log_debug("[TASK] Запущен weekly_top_task")
-    await bot.wait_until_ready()
-    channel = await bot.fetch_channel(config.channel_id)
-    if channel is None:
-        log_debug("❌ Канал не найден!")
-        return
-
-    while not bot.is_closed():
-        now = get_moscow_datetime()
-        target = now.replace(hour=23, minute=59, second=0, microsecond=0)
-        days_ahead = (6 - now.weekday()) % 7
-        target += timedelta(days=days_ahead)
-        if target <= now:
-            target += timedelta(days=7)
-        await asyncio.sleep((target - now).total_seconds())
-
-        await update_player_top_week(db_pool)
-        top, updated_at = await get_player_top_week(db_pool)
-        embed = build_top_week_embed(top, updated_at)
-        await channel.send(embed=embed)
