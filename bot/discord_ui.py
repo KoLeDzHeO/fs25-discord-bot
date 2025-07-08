@@ -70,12 +70,38 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
 
 def build_top_week_embed(top: list[tuple[str, int]], updated_at: datetime) -> discord.Embed:
     """Формирует embed для недельного топа игроков."""
-    lines = [f"{i}. {name} — {hours} часов" for i, (name, hours) in enumerate(top, start=1)]
+
+    lines = [f"{i}. {name} — {hours} ч." for i, (name, hours) in enumerate(top, start=1)]
     description = "\n".join(lines)
+
     embed = discord.Embed(
         title="Топ-10 самых активных игроков недели",
         description=description,
         color=discord.Color.blue(),
     )
     embed.set_footer(text=f"Обновлено: {updated_at.strftime('%d.%m.%Y %H:%M')} по Москве")
+    return embed
+
+
+def build_total_top_embed(top: list[tuple[str, int]]) -> discord.Embed:
+    """Формирует embed для общего топа игроков."""
+
+    lines = [f"{i}. {name} — {hours} ч." for i, (name, hours) in enumerate(top, start=1)]
+
+    embed = discord.Embed(
+        title="Топ-50 по общему времени на сервере",
+        color=discord.Color.orange(),
+    )
+
+    if len(lines) <= 25:
+        # Если строк немного, выводим одним списком
+        embed.description = "\n".join(lines)
+    else:
+        # Иначе делим на две колонки для компактности
+        half = (len(lines) + 1) // 2
+        left = "\n".join(lines[:half])
+        right = "\n".join(lines[half:])
+        embed.add_field(name="\u200b", value=left, inline=True)
+        embed.add_field(name="\u200b", value=right, inline=True)
+
     return embed
