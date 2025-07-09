@@ -34,3 +34,12 @@ MONTHLY_GRAPH_OUTPUT_PATH = "output/monthly_online_graph.png"
 # Заголовок для месячного графика онлайна
 MONTHLY_GRAPH_TITLE = "Онлайн игроков за последние 30 дней"
 
+# Количество дней для команды /online_month
+ONLINE_MONTH_DAYS = 30
+
+# Путь для сохранения графика из /online_month
+ONLINE_MONTH_GRAPH_PATH = "output/online_month_graph.png"
+
+# Заголовок для графика из /online_month
+ONLINE_MONTH_GRAPH_TITLE = "Онлайн по дням (последние 30 дней)"
+

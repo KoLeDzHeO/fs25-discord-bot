@@ -7,7 +7,7 @@ from discord import app_commands
 
 from config.config import (
     config,
-    MONTHLY_GRAPH_TITLE,
+    ONLINE_MONTH_GRAPH_TITLE,
 )
 import asyncpg
 from bot.updater import (
@@ -16,7 +16,7 @@ from bot.updater import (
     save_online_history_task,
     cleanup_old_online_history_task,
 )
-from utils.monthly_online_graph import generate_monthly_online_graph
+from utils.online_month_graph import generate_online_month_graph
 from utils.logger import log_debug
 
 
@@ -62,15 +62,15 @@ if __name__ == "__main__":
     bot = MyBot(intents=intents)
     tree = bot.tree
 
-    @tree.command(name="online_month", description="График онлайна за последние 30 дней")
+    @tree.command(name="online_month", description="График онлайна по дням за последние 30 дней")
     async def online_month_command(interaction: discord.Interaction):
         await interaction.response.defer()
         try:
-            path = await generate_monthly_online_graph(interaction.client.db_pool)
+            path = await generate_online_month_graph(interaction.client.db_pool)
             if not path:
                 await interaction.followup.send("Нет данных за последний месяц.")
                 return
-            embed = discord.Embed(title=MONTHLY_GRAPH_TITLE)
+            embed = discord.Embed(title=ONLINE_MONTH_GRAPH_TITLE)
             embed.set_image(url=f"attachment://{os.path.basename(path)}")
             await interaction.followup.send(
                 embed=embed,
