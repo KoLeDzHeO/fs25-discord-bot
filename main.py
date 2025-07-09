@@ -15,9 +15,19 @@ class MyBot(discord.Client):
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
 
+    async def _ensure_indexes(self) -> None:
+        """Creates required database indexes if they do not exist."""
+        await self.db_pool.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_online_name_date_hour
+            ON player_online_history (player_name, date, hour)
+            """
+        )
+
     async def setup_hook(self) -> None:
         """Вызывается Discord.py при подготовке клиента."""
         self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
+        await self._ensure_indexes()
         asyncio.create_task(api_polling_task())
         asyncio.create_task(ftp_polling_task(self))
         asyncio.create_task(save_online_history_task(self))
