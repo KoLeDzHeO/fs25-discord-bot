@@ -119,7 +119,7 @@ async def save_online_history_task(bot: discord.Client):
                                 "INSERT INTO player_online_history (player_name, check_time, date, hour, dow)"
                                 " VALUES ($1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2));",
                                 name,
-                                now,
+                                now_utc,
                             )
                         except Exception as db_e:
                             log_debug(f"[DB] Ошибка записи игрока: {db_e}")
