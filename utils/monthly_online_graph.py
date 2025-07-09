@@ -2,16 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 import os
 from datetime import datetime, timedelta
 
 import matplotlib.pyplot as plt
 
-from config.config import MONTHLY_GRAPH_OUTPUT_PATH, MONTHLY_GRAPH_TITLE
+from config.config import MONTHLY_GRAPH_TITLE
+from utils.logger import log_debug
 
 
-async def generate_monthly_online_graph(db_pool) -> str:
+async def generate_monthly_online_graph(db_pool) -> Optional[str]:
     """Создаёт PNG-график активности игроков за месяц.
 
     Args:
@@ -21,17 +22,24 @@ async def generate_monthly_online_graph(db_pool) -> str:
         Путь к сохранённому изображению.
     """
 
-    rows = await db_pool.fetch(
-        """
-        SELECT DATE(check_time) AS date,
-               hour,
-               COUNT(DISTINCT player_name) AS count
-        FROM player_online_history
-        WHERE check_time >= NOW() - INTERVAL '30 days'
-        GROUP BY date, hour
-        ORDER BY date, hour
-        """
-    )
+    try:
+        rows = await db_pool.fetch(
+            """
+            SELECT DATE(check_time) AS date,
+                   hour,
+                   COUNT(DISTINCT player_name) AS count
+            FROM player_online_history
+            WHERE check_time >= NOW() - INTERVAL '30 days'
+            GROUP BY date, hour
+            ORDER BY date, hour
+            """
+        )
+    except Exception as e:
+        log_debug(f"[DB] Error fetching monthly online data: {e}")
+        raise
+
+    if not rows:
+        return None
 
     data: Dict[str, List[int]] = {}
     for row in rows:
@@ -48,6 +56,16 @@ async def generate_monthly_online_graph(db_pool) -> str:
     combined: List[int] = []
     for d in dates:
         combined.extend(data.get(d.isoformat(), [0] * 24))
+
+    # Удаляем пустые дни в начале и в конце
+    day_data = [data.get(d.isoformat(), [0] * 24) for d in dates]
+    first = next((i for i, vals in enumerate(day_data) if any(vals)), 0)
+    last = len(day_data) - next(
+        (i for i, vals in enumerate(reversed(day_data)) if any(vals)), 1
+    )
+    dates = dates[first:last]
+    day_data = day_data[first:last]
+    combined = [val for day in day_data for val in day]
 
     plt.figure(figsize=(12, 4))
     plt.plot(range(len(combined)), combined, color="tab:blue")
@@ -66,9 +84,11 @@ async def generate_monthly_online_graph(db_pool) -> str:
     plt.grid(axis="both", linestyle="--", alpha=0.5)
     plt.tight_layout()
 
-    os.makedirs(os.path.dirname(MONTHLY_GRAPH_OUTPUT_PATH), exist_ok=True)
-    plt.savefig(MONTHLY_GRAPH_OUTPUT_PATH)
+    output_dir = os.path.join(os.getcwd(), "output")
+    os.makedirs(output_dir, exist_ok=True)
+    file_path = os.path.join(output_dir, "monthly_online_graph.png")
+    plt.savefig(file_path)
     plt.close()
 
-    return MONTHLY_GRAPH_OUTPUT_PATH
+    return file_path
 
