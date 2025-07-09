@@ -77,7 +77,7 @@ async def ftp_polling_task(bot: discord.Client):
                 # Получаем суточную статистику количества игроков
                 rows = await bot.db_pool.fetch(
                     """
-                    SELECT hour, COUNT(*) AS count
+                    SELECT hour, COUNT(DISTINCT player_name) AS count
                     FROM player_online_history
                     WHERE date = CURRENT_DATE
                     GROUP BY hour
