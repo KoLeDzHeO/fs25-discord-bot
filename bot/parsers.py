@@ -123,7 +123,7 @@ def parse_last_month_profit(xml_text: str) -> Optional[int]:
     """Возвращает округлённую прибыль за последний месяц (day=1) из farms.xml"""
     try:
         root = ET.fromstring(xml_text)
-        stats = root.find(".//farm[@farmId='1']/finances/stats[@day='1']")
+        stats = root.find(".//farm[@farmId='1']/finances/stats[@day='4']")
         if stats is None:
             return None
 
