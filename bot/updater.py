@@ -12,7 +12,7 @@ from datetime import timedelta
 from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
 from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
-from utils.online_graph import draw_online_graph
+from utils.online_daily_graph import save_daily_online_graph
 from utils.logger import log_debug
 
 async def ftp_polling_task(bot: discord.Client):
@@ -74,27 +74,22 @@ async def ftp_polling_task(bot: discord.Client):
                 data["server_status"] = server_status
                 embed = build_embed(data)
 
-                # Получаем почасовой онлайн за текущий день
+                # Получаем суточную статистику количества игроков
                 rows = await bot.db_pool.fetch(
                     """
-                    SELECT player_name, hour, COUNT(*) AS count
+                    SELECT hour, COUNT(*) AS count
                     FROM player_online_history
                     WHERE date = CURRENT_DATE
-                    GROUP BY player_name, hour
-                    ORDER BY player_name, hour
+                    GROUP BY hour
                     """
                 )
 
-                online_data = {}
+                hourly_counts = [0] * 24
                 for row in rows:
-                    name = row["player_name"]
-                    hour = row["hour"]
-                    if name not in online_data:
-                        online_data[name] = [0] * 24
-                    online_data[name][hour] = row["count"]
+                    hourly_counts[int(row["hour"])] = row["count"]
 
-                image_buf = draw_online_graph(online_data)
-                embed.set_image(url="attachment://online_day.png")
+                image_path = save_daily_online_graph(hourly_counts)
+                embed.set_image(url="attachment://online_daily_graph.png")
 
                 async for msg in channel.history(limit=None):
                     try:
@@ -105,7 +100,7 @@ async def ftp_polling_task(bot: discord.Client):
                 log_debug("[Discord] Отправляем сообщение")
                 await channel.send(
                     embed=embed,
-                    files=[discord.File(fp=image_buf, filename="online_day.png")],
+                    files=[discord.File(image_path, filename="online_daily_graph.png")],
                 )
                 log_debug("[Discord] ✅ Embed успешно отправлен.")
 
