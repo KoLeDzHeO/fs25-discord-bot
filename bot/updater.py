@@ -111,6 +111,7 @@ async def save_online_history_task(bot: discord.Client):
                 minute = now.minute
 
                 now_utc = datetime.utcnow().replace(tzinfo=None)
+                now_moscow = now_utc + timedelta(hours=3)
 
                 if minute % 15 == 0:
                     log_debug("[ONLINE] Время среза, получаем список игроков")
@@ -123,7 +124,7 @@ async def save_online_history_task(bot: discord.Client):
                                 "INSERT INTO player_online_history (player_name, check_time, date, hour, dow)"
                                 " VALUES ($1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2));",
                                 name,
-                                now_utc,
+                                now_moscow,
                             )
                         except Exception as db_e:
                             log_debug(f"[DB] Ошибка записи игрока: {db_e}")
