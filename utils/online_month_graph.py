@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Optional, List
 
 import matplotlib.pyplot as plt
 
@@ -14,6 +14,34 @@ from config.config import (
     ONLINE_MONTH_GRAPH_TITLE,
 )
 from utils.logger import log_debug
+
+
+def save_monthly_online_graph(dates: List[str], counts: List[int]) -> str:
+    """Сохраняет PNG-график уникальных игроков по дням."""
+
+    plt.figure(figsize=(10, 4))
+    plt.bar(range(len(counts)), counts, color="tab:blue")
+
+    plt.xticks(ticks=range(len(dates)), labels=dates)
+    plt.xlim(-0.5, len(dates) - 0.5)
+
+    plt.xlabel("Дата")
+    plt.ylabel("Уникальные игроки")
+    plt.title(ONLINE_MONTH_GRAPH_TITLE)
+
+    max_val = max(counts) if counts else 0
+    tick_count = max(max_val + 1, 6)
+    plt.yticks(range(tick_count))
+
+    plt.grid(axis="y", linestyle="--", alpha=0.5)
+    plt.tight_layout()
+
+    output_path = os.path.join(os.getcwd(), ONLINE_MONTH_GRAPH_PATH)
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    plt.savefig(output_path)
+    plt.close()
+
+    return output_path
 
 
 async def generate_online_month_graph(db_pool) -> Optional[str]:
@@ -52,28 +80,8 @@ async def generate_online_month_graph(db_pool) -> Optional[str]:
     values = [counts.get(d, 0) for d in dates]
 
     try:
-        plt.figure(figsize=(10, 4))
-        plt.plot(range(len(values)), values, marker="o", color="tab:blue")
-
         tick_labels = [d.strftime("%d.%m") for d in dates]
-        plt.xticks(ticks=range(len(dates)), labels=tick_labels, rotation=45)
-        plt.xlabel("Дата")
-        plt.ylabel("Уникальные игроки")
-        plt.title(ONLINE_MONTH_GRAPH_TITLE)
-
-        max_val = max(values) if values else 0
-        tick_count = max(max_val + 1, 6)
-        plt.yticks(range(tick_count))
-
-        plt.grid(axis="both", linestyle="--", alpha=0.5)
-        plt.tight_layout()
-
-        output_path = os.path.join(os.getcwd(), ONLINE_MONTH_GRAPH_PATH)
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        plt.savefig(output_path)
-        plt.close()
-
-        return output_path
+        return save_monthly_online_graph(tick_labels, values)
     except Exception as e:
         log_debug(f"[GRAPH] Error building online month graph: {e}")
         raise
