@@ -11,6 +11,7 @@ from ftp.fetcher import fetch_file
 from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
 from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
+from utils.online_graph import draw_online_graph
 from utils.logger import log_debug
 
 async def ftp_polling_task(bot: discord.Client):
@@ -72,6 +73,28 @@ async def ftp_polling_task(bot: discord.Client):
                 data["server_status"] = server_status
                 embed = build_embed(data)
 
+                # Получаем почасовой онлайн за текущий день
+                rows = await bot.db_pool.fetch(
+                    """
+                    SELECT player_name, hour, COUNT(*) AS count
+                    FROM player_online_history
+                    WHERE date = CURRENT_DATE
+                    GROUP BY player_name, hour
+                    ORDER BY player_name, hour
+                    """
+                )
+
+                online_data = {}
+                for row in rows:
+                    name = row["player_name"]
+                    hour = row["hour"]
+                    if name not in online_data:
+                        online_data[name] = [0] * 24
+                    online_data[name][hour] = row["count"]
+
+                image_buf = draw_online_graph(online_data)
+                embed.set_image(url="attachment://online_day.png")
+
                 async for msg in channel.history(limit=None):
                     try:
                         await msg.delete()
@@ -79,7 +102,10 @@ async def ftp_polling_task(bot: discord.Client):
                         log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
 
                 log_debug("[Discord] Отправляем сообщение")
-                await channel.send(embed=embed)
+                await channel.send(
+                    embed=embed,
+                    files=[discord.File(fp=image_buf, filename="online_day.png")],
+                )
                 log_debug("[Discord] ✅ Embed успешно отправлен.")
 
                 await asyncio.sleep(config.ftp_poll_interval)
