@@ -22,6 +22,8 @@ async def insert_online_players(db_pool: asyncpg.Pool, players: list[str]) -> No
     )
     async with db_pool.acquire() as conn:
         for player in players:
+            if not player or player == "-":
+                continue
             await conn.execute(
                 """
                 INSERT INTO player_online_history (player_name, check_time)

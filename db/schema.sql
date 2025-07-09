@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS player_online_history (
 
 -- Таблица недельного топа
 CREATE TABLE IF NOT EXISTS player_top_week (
-    player_name TEXT NOT NULL,
+    player_name TEXT UNIQUE NOT NULL,
     activity_hours INTEGER NOT NULL,
     updated_at TIMESTAMP NOT NULL
 );

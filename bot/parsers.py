@@ -111,9 +111,8 @@ def parse_players_online(xml_text: str) -> list:
             for player in slots.findall("Player"):
                 if player.get("isUsed") == "true":
                     name = (player.text or "").strip()
-                    if name:
+                    if name and name != "-":
                         players.append(name)
-                        print(f"[DEBUG] Добавлен игрок: {name}")  # Можно убрать после теста
         return players
     except Exception as e:
         log_debug(f"[ERROR] parse_players_online: {e}")
