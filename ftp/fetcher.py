@@ -19,7 +19,6 @@ async def fetch_file(file_name: str) -> Optional[str]:
             await ftp_client.change_directory("profile")
             log_debug("[FTP] Заходим в папку savegame1...")
             await ftp_client.change_directory("savegame1")
-            log_debug(f"[FTP] Содержимое папки: {[f async for f in ftp_client.list()]}")
             log_debug(f"[FTP] Пробуем скачать файл: {file_name}")
             async with ftp_client.download_stream(file_name) as stream:
                 content = await stream.read()
