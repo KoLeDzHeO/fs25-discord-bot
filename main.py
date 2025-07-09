@@ -6,7 +6,7 @@ from discord import app_commands
 
 from config.config import config
 import asyncpg
-from bot.updater import ftp_polling_task, api_polling_task
+from bot.updater import ftp_polling_task, api_polling_task, save_online_history_task
 from utils.logger import log_debug
 
 
@@ -20,6 +20,7 @@ class MyBot(discord.Client):
         self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
         asyncio.create_task(api_polling_task())
         asyncio.create_task(ftp_polling_task(self))
+        asyncio.create_task(save_online_history_task(self))
         log_debug("[SETUP] Background tasks started")
 
         await self.tree.sync()
