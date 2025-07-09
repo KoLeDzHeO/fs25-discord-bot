@@ -103,20 +103,32 @@ async def save_online_history_task(bot: discord.Client):
     async with aiohttp.ClientSession() as session:
         while not bot.is_closed():
             try:
-                xml = await fetch_dedicated_server_stats(session)
-                players = parse_players_online(xml) if xml else []
-                now = datetime.utcnow()
-                for name in players:
-                    try:
-                        await bot.db_pool.execute(
-                            "INSERT INTO player_online_history (player_name, check_time, date, hour, dow)"
-                            " VALUES ($1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2));",
-                            name,
-                            now,
-                        )
-                    except Exception as db_e:
-                        log_debug(f"[DB] Ошибка записи игрока: {db_e}")
-                await asyncio.sleep(900)
+                now = datetime.now()
+                minute = now.minute
+
+                if minute % 15 == 0:
+                    log_debug("[ONLINE] Время среза, получаем список игроков")
+                    xml = await fetch_dedicated_server_stats(session)
+                    players = parse_players_online(xml) if xml else []
+                    log_debug(f"[ONLINE] Игроков онлайн: {len(players)}")
+                    for name in players:
+                        try:
+                            await bot.db_pool.execute(
+                                "INSERT INTO player_online_history (player_name, check_time, date, hour, dow)"
+                                " VALUES ($1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2));",
+                                name,
+                                now,
+                            )
+                        except Exception as db_e:
+                            log_debug(f"[DB] Ошибка записи игрока: {db_e}")
+
+                    await asyncio.sleep(60)
+                else:
+                    wait_seconds = ((15 - (minute % 15)) * 60) - now.second
+                    if wait_seconds <= 0:
+                        wait_seconds = 1
+                    log_debug(f"[ONLINE] Не время среза, ждём {wait_seconds} секунд")
+                    await asyncio.sleep(wait_seconds)
             except Exception as e:
                 log_debug(f"[TASK] save_online_history_task error: {e}")
                 await asyncio.sleep(5)
