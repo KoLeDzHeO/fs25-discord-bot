@@ -2,7 +2,11 @@ import aiohttp
 import asyncio
 import discord
 from datetime import datetime
-from config.config import config
+from config.config import (
+    config,
+    cleanup_history_days,
+    cleanup_task_interval_seconds,
+)
 from ftp.fetcher import fetch_file
 from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
 from .parsers import parse_all, parse_players_online
@@ -144,9 +148,9 @@ async def cleanup_old_online_history_task(bot: discord.Client):
         try:
             log_debug("[DB] Удаляем старые записи из player_online_history")
             await bot.db_pool.execute(
-                "DELETE FROM player_online_history WHERE check_time < NOW() - INTERVAL '30 days'"
+                f"DELETE FROM player_online_history WHERE check_time < NOW() - INTERVAL '{cleanup_history_days} days'"
             )
-            await asyncio.sleep(86400)
+            await asyncio.sleep(cleanup_task_interval_seconds)
         except Exception as e:
             log_debug(f"[TASK] cleanup_old_online_history_task error: {e}")
             await asyncio.sleep(5)

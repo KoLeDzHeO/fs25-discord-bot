@@ -22,3 +22,9 @@ class Config:
 
 config = Config()
 
+# Сколько дней хранить записи об онлайне
+cleanup_history_days = 30
+
+# Интервал запуска задачи очистки (в секундах)
+cleanup_task_interval_seconds = 86400
+
