@@ -106,6 +106,8 @@ async def save_online_history_task(bot: discord.Client):
                 now = datetime.now()
                 minute = now.minute
 
+                now_utc = datetime.utcnow().replace(tzinfo=None)
+
                 if minute % 15 == 0:
                     log_debug("[ONLINE] Время среза, получаем список игроков")
                     xml = await fetch_dedicated_server_stats(session)
