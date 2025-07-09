@@ -28,7 +28,7 @@ async def insert_online_players(db_pool: asyncpg.Pool, players: list[str]) -> No
                 """
                 INSERT INTO player_online_history (player_name, check_time)
                 VALUES ($1, $2)
-                ON CONFLICT DO NOTHING
+                ON CONFLICT (player_name, check_time) DO NOTHING
                 """,
                 player,
                 slot_start,
