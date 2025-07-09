@@ -130,9 +130,25 @@ async def save_online_history_task(bot: discord.Client):
                     if wait_seconds <= 0:
                         wait_seconds = 1
                     log_debug(f"[ONLINE] Не время среза, ждём {wait_seconds} секунд")
-                    await asyncio.sleep(wait_seconds)
+                await asyncio.sleep(wait_seconds)
             except Exception as e:
                 log_debug(f"[TASK] save_online_history_task error: {e}")
                 await asyncio.sleep(5)
+
+
+async def cleanup_old_online_history_task(bot: discord.Client):
+    """Удаляет записи старше 30 дней из player_online_history."""
+    log_debug("[TASK] Запущен cleanup_old_online_history_task")
+    await bot.wait_until_ready()
+    while not bot.is_closed():
+        try:
+            log_debug("[DB] Удаляем старые записи из player_online_history")
+            await bot.db_pool.execute(
+                "DELETE FROM player_online_history WHERE check_time < NOW() - INTERVAL '30 days'"
+            )
+            await asyncio.sleep(86400)
+        except Exception as e:
+            log_debug(f"[TASK] cleanup_old_online_history_task error: {e}")
+            await asyncio.sleep(5)
 
 
