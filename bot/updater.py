@@ -1,18 +1,14 @@
 import aiohttp
 import asyncio
-from datetime import timedelta
 import discord
 from config.config import config
 from ftp.fetcher import fetch_file
 from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
-from .parsers import parse_all, parse_players_online
+from .parsers import parse_all
 from .discord_ui import build_embed
 from utils.logger import log_debug
-from utils.online_history import insert_online_players, make_online_graph
-from utils.total_time import update_player_total_time
-from utils.top_week import update_player_top_week
 
-async def ftp_polling_task(bot: discord.Client, db_pool):
+async def ftp_polling_task(bot: discord.Client):
     log_debug("[TASK] Запущен ftp_polling_task")
     await bot.wait_until_ready()
     channel = await bot.fetch_channel(config.channel_id)
@@ -71,10 +67,6 @@ async def ftp_polling_task(bot: discord.Client, db_pool):
                 data["server_status"] = server_status
                 embed = build_embed(data)
 
-                graph_file = None
-                if all_files_loaded:
-                    graph_file = await make_online_graph(db_pool)
-
                 async for msg in channel.history(limit=None):
                     try:
                         await msg.delete()
@@ -82,15 +74,7 @@ async def ftp_polling_task(bot: discord.Client, db_pool):
                         log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
 
                 log_debug("[Discord] Отправляем сообщение")
-                if graph_file:
-                    embed.set_image(url="attachment://online_graph.png")
-                    with open(graph_file, "rb") as f:
-                        await channel.send(
-                            embed=embed,
-                            file=discord.File(f, filename="online_graph.png"),
-                        )
-                else:
-                    await channel.send(embed=embed)
+                await channel.send(embed=embed)
                 log_debug("[Discord] ✅ Embed успешно отправлен.")
 
                 await asyncio.sleep(config.ftp_poll_interval)
@@ -99,17 +83,12 @@ async def ftp_polling_task(bot: discord.Client, db_pool):
                 await asyncio.sleep(5)
 
 
-async def api_polling_task(db_pool):
+async def api_polling_task():
     """Периодически опрашивает API и сохраняет онлайн игроков."""
     async with aiohttp.ClientSession() as session:
         while True:
             try:
-                stats_xml = await fetch_dedicated_server_stats(session)
-                if stats_xml:
-                    players = parse_players_online(stats_xml)
-                    await insert_online_players(db_pool, players)
-                    await update_player_total_time(db_pool)
-                    await update_player_top_week(db_pool)
+                await fetch_dedicated_server_stats(session)
                 await asyncio.sleep(config.api_poll_interval)
             except Exception as e:
                 log_debug(f"[TASK] api_polling_task error: {e}")

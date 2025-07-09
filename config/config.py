@@ -19,9 +19,6 @@ class Config:
     ftp_user: str = os.getenv('FTP_USER', '')
     ftp_pass: str = os.getenv('FTP_PASS', '')
     postgres_url: str = os.getenv('POSTGRES_URL', '')
-    weekly_top_days: int = int(os.getenv('WEEKLY_TOP_DAYS', 7))
-    weekly_top_size: int = int(os.getenv('WEEKLY_TOP_SIZE', 10))
-    weekly_top_threshold: int = int(os.getenv('WEEKLY_TOP_THRESHOLD', 3))
 
 config = Config()
 

@@ -23,9 +23,6 @@
 - `FTP_USER` — имя пользователя FTP
 - `FTP_PASS` — пароль FTP
 - `POSTGRES_URL` — строка подключения к PostgreSQL
-- `WEEKLY_TOP_DAYS` — период расчёта топа (дней)
-- `WEEKLY_TOP_SIZE` — размер таблицы топа
-- `WEEKLY_TOP_THRESHOLD` — минимум срезов за час
 
 ## Railway
 
