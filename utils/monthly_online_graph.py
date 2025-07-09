@@ -72,7 +72,12 @@ async def generate_monthly_online_graph(db_pool) -> Optional[str]:
 
     tick_positions = [i * 24 for i in range(len(dates))]
     tick_labels = [d.strftime("%d.%m") for d in dates]
-    plt.xticks(ticks=tick_positions, labels=tick_labels, rotation=45)
+    plt.xticks(
+        ticks=tick_positions,
+        labels=tick_labels,
+        rotation=90,
+        ha="center",
+    )
     plt.xlabel("Дата")
     plt.ylabel("Игроки")
     plt.title(MONTHLY_GRAPH_TITLE)
