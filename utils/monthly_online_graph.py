@@ -75,7 +75,7 @@ async def generate_monthly_online_graph(db_pool) -> Optional[str]:
     plt.xticks(
         ticks=tick_positions,
         labels=tick_labels,
-        rotation=90,
+        rotation=45,
         ha="center",
     )
     plt.xlabel("Дата")
