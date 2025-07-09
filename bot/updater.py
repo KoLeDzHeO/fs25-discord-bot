@@ -1,10 +1,11 @@
 import aiohttp
 import asyncio
 import discord
+from datetime import datetime
 from config.config import config
 from ftp.fetcher import fetch_file
 from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
-from .parsers import parse_all
+from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
 from utils.logger import log_debug
 
@@ -92,6 +93,32 @@ async def api_polling_task():
                 await asyncio.sleep(config.api_poll_interval)
             except Exception as e:
                 log_debug(f"[TASK] api_polling_task error: {e}")
+                await asyncio.sleep(5)
+
+
+async def save_online_history_task(bot: discord.Client):
+    """Сохраняет список онлайн-игроков каждые 15 минут."""
+    log_debug("[TASK] Запущен save_online_history_task")
+    await bot.wait_until_ready()
+    async with aiohttp.ClientSession() as session:
+        while not bot.is_closed():
+            try:
+                xml = await fetch_dedicated_server_stats(session)
+                players = parse_players_online(xml) if xml else []
+                now = datetime.utcnow()
+                for name in players:
+                    try:
+                        await bot.db_pool.execute(
+                            "INSERT INTO player_online_history (player_name, check_time, date, hour, dow)"
+                            " VALUES ($1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2));",
+                            name,
+                            now,
+                        )
+                    except Exception as db_e:
+                        log_debug(f"[DB] Ошибка записи игрока: {db_e}")
+                await asyncio.sleep(900)
+            except Exception as e:
+                log_debug(f"[TASK] save_online_history_task error: {e}")
                 await asyncio.sleep(5)
 
 
