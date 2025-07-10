@@ -87,6 +87,19 @@ async def ftp_polling_task(bot: discord.Client):
                     moscow_date,
                 )
 
+                # Если за сегодня нет данных, берем статистику за вчера
+                if not rows:
+                    prev_date = moscow_date - timedelta(days=1)
+                    rows = await bot.db_pool.fetch(
+                        """
+                        SELECT hour, COUNT(DISTINCT player_name) AS count
+                        FROM player_online_history
+                        WHERE date = $1
+                        GROUP BY hour
+                        """,
+                        prev_date,
+                    )
+
                 hourly_counts = [0] * 24
                 for row in rows:
                     hourly_counts[int(row["hour"])] = row["count"]
