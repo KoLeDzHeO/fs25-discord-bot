@@ -13,6 +13,7 @@ from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_st
 from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
 from utils.online_daily_graph import save_daily_online_graph
+from utils.helpers import get_moscow_datetime
 from utils.logger import log_debug
 
 async def ftp_polling_task(bot: discord.Client):
@@ -75,13 +76,15 @@ async def ftp_polling_task(bot: discord.Client):
                 embed = build_embed(data)
 
                 # Получаем суточную статистику количества игроков
+                moscow_date = get_moscow_datetime().date()
                 rows = await bot.db_pool.fetch(
                     """
                     SELECT hour, COUNT(DISTINCT player_name) AS count
                     FROM player_online_history
-                    WHERE date = CURRENT_DATE
+                    WHERE date = $1
                     GROUP BY hour
-                    """
+                    """,
+                    moscow_date,
                 )
 
                 hourly_counts = [0] * 24
