@@ -10,13 +10,16 @@ from config.config import (
     config,
     cleanup_history_days,
     cleanup_task_interval_seconds,
+    ONLINE_DAILY_GRAPH_FILENAME,
 )
 from ftp.fetcher import fetch_file
 from .fetchers import fetch_api_file, fetch_dedicated_server_stats
 from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
-from utils.online_daily_graph import save_daily_online_graph
-from utils.helpers import get_moscow_datetime
+from utils.online_daily_graph import (
+    save_daily_online_graph,
+    fetch_daily_online_counts,
+)
 from utils.logger import log_debug
 
 
@@ -78,33 +81,10 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 data["server_status"] = server_status
                 embed = build_embed(data)
 
-                now = get_moscow_datetime()
-                start_datetime = (now - timedelta(hours=24)).replace(
-                    minute=0, second=0, microsecond=0
-                )
-                end_datetime = now.replace(
-                    minute=59, second=59, microsecond=999999
-                )
-
-                rows = await bot.db_pool.fetch(
-                    """
-                    SELECT EXTRACT(HOUR FROM check_time) AS hour,
-                           COUNT(DISTINCT player_name) AS count
-                    FROM player_online_history
-                    WHERE check_time BETWEEN $1 AND $2
-                    GROUP BY hour
-                    ORDER BY hour
-                    """,
-                    start_datetime,
-                    end_datetime,
-                )
-
-                hourly_counts = [0] * 24
-                for row in rows:
-                    hourly_counts[int(row["hour"])] = row["count"]
+                hourly_counts = await fetch_daily_online_counts(bot.db_pool)
 
                 image_path = save_daily_online_graph(hourly_counts)
-                embed.set_image(url="attachment://online_daily_graph.png")
+                embed.set_image(url=f"attachment://{ONLINE_DAILY_GRAPH_FILENAME}")
 
                 async for msg in channel.history(limit=None):
                     try:
@@ -115,7 +95,7 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 log_debug("[Discord] Отправляем сообщение")
                 await channel.send(
                     embed=embed,
-                    files=[discord.File(image_path, filename="online_daily_graph.png")],
+                    files=[discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)],
                 )
                 log_debug("[Discord] ✅ Embed успешно отправлен.")
 
