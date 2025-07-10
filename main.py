@@ -51,9 +51,6 @@ class MyBot(discord.Client):
     async def on_ready(self):
         log_debug(f"Discord-бот авторизован как {self.user}")
 
-
-
-
 if __name__ == "__main__":
     intents = discord.Intents.default()
     intents.messages = True

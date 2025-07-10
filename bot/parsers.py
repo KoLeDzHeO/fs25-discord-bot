@@ -54,9 +54,6 @@ def parse_farm_money(xml_text: str) -> Optional[int]:
         log_debug(f"[ERROR] parse_farm_money: {e}")
         return None
 
-
-
-
 def _count_vehicles(xml_text: str, farm_id: str) -> Optional[int]:
     """Подсчёт техники в файле vehicles."""
     try:
