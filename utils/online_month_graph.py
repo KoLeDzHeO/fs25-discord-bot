@@ -22,7 +22,7 @@ def save_monthly_online_graph(dates: List[str], counts: List[int]) -> str:
     plt.figure(figsize=(10, 4))
     plt.bar(range(len(counts)), counts, color="tab:blue")
 
-    plt.xticks(ticks=range(len(dates)), labels=dates, rotation=90, ha="center")
+    plt.xticks(ticks=range(len(dates)), labels=dates, rotation=45, ha="right")
     plt.xlim(-0.5, len(dates) - 0.5)
 
     plt.xlabel("Дата")
