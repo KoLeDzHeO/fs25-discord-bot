@@ -1,11 +1,15 @@
+"""Helpers for fetching files from the API."""
+
+from typing import Optional
+
 import aiohttp
 
 from config.config import config
 from utils.logger import log_debug
 
 
-async def _fetch(session: aiohttp.ClientSession, url: str, desc: str) -> str | None:
-    """Загружает файл по указанному URL."""
+async def _fetch(session: aiohttp.ClientSession, url: str, desc: str) -> Optional[str]:
+    """Fetch a file from the given ``url`` using the provided session."""
     log_debug(f"[API] Загружаем {desc} по адресу: {url}")
     try:
         async with session.get(url) as resp:
@@ -17,20 +21,16 @@ async def _fetch(session: aiohttp.ClientSession, url: str, desc: str) -> str | N
         log_debug(f"[API] ❌ Ошибка загрузки {desc}: {e}")
         return None
 
-async def fetch_stats_xml(session):
-    url = (
-        f"{config.api_base_url.replace('dedicated-server-savegame.html', 'dedicated-server-stats.xml')}?code={config.api_secret_code}"
-    )
-    return await _fetch(session, url, "stats.xml")
 
-async def fetch_api_file(session, filename):
+async def fetch_api_file(session: aiohttp.ClientSession, filename: str) -> Optional[str]:
+    """Download a file from the API by name."""
     url = f"{config.api_base_url}?file={filename}&code={config.api_secret_code}"
     return await _fetch(session, url, filename)
 
-async def fetch_dedicated_server_stats(session):
-    """Загружает feed/dedicated-server-stats.xml"""
+
+async def fetch_dedicated_server_stats(session: aiohttp.ClientSession) -> Optional[str]:
+    """Download ``dedicated-server-stats.xml`` from the API feed."""
     url = (
         f"{config.api_base_url.replace('dedicated-server-savegame.html', 'dedicated-server-stats.xml')}?code={config.api_secret_code}"
     )
     return await _fetch(session, url, "dedicated-server-stats.xml")
-

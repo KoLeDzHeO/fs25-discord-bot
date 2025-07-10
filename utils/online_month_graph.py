@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import os
 from datetime import datetime, timedelta
-from typing import Optional, List
+from pathlib import Path
+from typing import List, Optional
 
 import matplotlib.pyplot as plt
 
@@ -36,24 +36,16 @@ def save_monthly_online_graph(dates: List[str], counts: List[int]) -> str:
     plt.grid(axis="y", linestyle="--", alpha=0.5)
     plt.tight_layout()
 
-    output_path = os.path.join(os.getcwd(), ONLINE_MONTH_GRAPH_PATH)
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    output_path = Path(ONLINE_MONTH_GRAPH_PATH)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(output_path)
     plt.close()
 
-    return output_path
+    return str(output_path)
 
 
 async def generate_online_month_graph(db_pool) -> Optional[str]:
-    """Создаёт PNG-график уникальных игроков по дням.
-
-    Args:
-        db_pool: Пул подключений к базе данных.
-
-    Returns:
-        Путь к сохранённому изображению или ``None`` при отсутствии данных.
-    """
-
+    """Создаёт PNG-график уникальных игроков по дням."""
     try:
         rows = await db_pool.fetch(
             f"""

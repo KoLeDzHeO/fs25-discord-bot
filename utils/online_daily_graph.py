@@ -1,9 +1,11 @@
 """Генерация суточного графика количества игроков."""
 
+from pathlib import Path
 from typing import List
-import os
+
 import matplotlib.pyplot as plt
 
+from config.config import ONLINE_DAILY_GRAPH_PATH
 from utils.helpers import get_moscow_datetime
 
 
@@ -31,8 +33,8 @@ def save_daily_online_graph(counts: List[int]) -> str:
     plt.grid(axis="y", linestyle="--", alpha=0.5)
     plt.tight_layout()
 
-    os.makedirs("output", exist_ok=True)
-    file_path = "output/online_daily_graph.png"
-    plt.savefig(file_path)
+    output_path = Path(ONLINE_DAILY_GRAPH_PATH)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(output_path)
     plt.close()
-    return file_path
+    return str(output_path)
