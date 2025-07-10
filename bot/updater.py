@@ -1,21 +1,27 @@
-import aiohttp
+"""Background tasks for updating and storing server information."""
+
 import asyncio
-import discord
 from datetime import datetime, timedelta
+
+import aiohttp
+import discord
+
 from config.config import (
     config,
     cleanup_history_days,
     cleanup_task_interval_seconds,
 )
 from ftp.fetcher import fetch_file
-from .fetchers import fetch_stats_xml, fetch_api_file, fetch_dedicated_server_stats
+from .fetchers import fetch_api_file, fetch_dedicated_server_stats
 from .parsers import parse_all, parse_players_online
 from .discord_ui import build_embed
 from utils.online_daily_graph import save_daily_online_graph
 from utils.helpers import get_moscow_datetime
 from utils.logger import log_debug
 
-async def ftp_polling_task(bot: discord.Client):
+
+async def ftp_polling_task(bot: discord.Client) -> None:
+    """Periodically updates the Discord message with server stats."""
     log_debug("[TASK] Запущен ftp_polling_task")
     await bot.wait_until_ready()
     channel = await bot.fetch_channel(config.channel_id)
@@ -27,7 +33,7 @@ async def ftp_polling_task(bot: discord.Client):
         while not bot.is_closed():
             try:
                 log_debug("[FTP] Получаем dedicated-server-stats.xml")
-                stats_xml = await fetch_stats_xml(session)
+                stats_xml = await fetch_dedicated_server_stats(session)
                 log_debug("[API] Получаем vehicles")
                 vehicles_xml = await fetch_api_file(session, "vehicles")
                 log_debug("[FTP] Получаем careerSavegame.xml")
@@ -36,8 +42,7 @@ async def ftp_polling_task(bot: discord.Client):
                 farmland_ftp = await fetch_file("farmland.xml")
                 log_debug("[FTP] Получаем farms.xml")
                 farms_ftp = await fetch_file("farms.xml")
-                log_debug("[FTP] Получаем dedicated-server-stats.xml (feed)")
-                dedicated_server_stats_ftp = await fetch_dedicated_server_stats(session)
+                dedicated_server_stats_ftp = stats_xml
 
                 log_debug(
                     f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}, farms={bool(farms_ftp)}"
@@ -55,7 +60,6 @@ async def ftp_polling_task(bot: discord.Client):
                         farms_xml=farms_ftp,
                         dedicated_server_stats=dedicated_server_stats_ftp,
                     )
-                    # данные успешно загружены
                 else:
                     server_status = "🔴 Сервер недоступен"
                     data = {
@@ -74,7 +78,6 @@ async def ftp_polling_task(bot: discord.Client):
                 data["server_status"] = server_status
                 embed = build_embed(data)
 
-                # Получаем суточную статистику количества игроков
                 moscow_date = get_moscow_datetime().date()
                 rows = await bot.db_pool.fetch(
                     """
@@ -86,7 +89,6 @@ async def ftp_polling_task(bot: discord.Client):
                     moscow_date,
                 )
 
-                # Если за сегодня нет данных, берем статистику за вчера
                 if not rows:
                     prev_date = moscow_date - timedelta(days=1)
                     rows = await bot.db_pool.fetch(
@@ -125,7 +127,7 @@ async def ftp_polling_task(bot: discord.Client):
                 await asyncio.sleep(5)
 
 
-async def api_polling_task():
+async def api_polling_task() -> None:
     """Периодически опрашивает API и сохраняет онлайн игроков."""
     async with aiohttp.ClientSession() as session:
         while True:
@@ -137,7 +139,7 @@ async def api_polling_task():
                 await asyncio.sleep(5)
 
 
-async def save_online_history_task(bot: discord.Client):
+async def save_online_history_task(bot: discord.Client) -> None:
     """Сохраняет список онлайн-игроков каждые 15 минут."""
     log_debug("[TASK] Запущен save_online_history_task")
     await bot.wait_until_ready()
@@ -148,7 +150,7 @@ async def save_online_history_task(bot: discord.Client):
                 minute = now.minute
 
                 now_utc = datetime.utcnow().replace(tzinfo=None)
-                now_moscow = now_utc + timedelta(hours=3)
+                now_moscow = now_utc + timedelta(hours=config.timezone_offset)
 
                 if minute % 15 == 0:
                     log_debug("[ONLINE] Время среза, получаем список игроков")
@@ -178,7 +180,7 @@ async def save_online_history_task(bot: discord.Client):
                 await asyncio.sleep(5)
 
 
-async def cleanup_old_online_history_task(bot: discord.Client):
+async def cleanup_old_online_history_task(bot: discord.Client) -> None:
     """Удаляет записи старше 30 дней из player_online_history."""
     log_debug("[TASK] Запущен cleanup_old_online_history_task")
     await bot.wait_until_ready()
@@ -192,5 +194,3 @@ async def cleanup_old_online_history_task(bot: discord.Client):
         except Exception as e:
             log_debug(f"[TASK] cleanup_old_online_history_task error: {e}")
             await asyncio.sleep(5)
-
-

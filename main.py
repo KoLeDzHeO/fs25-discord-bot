@@ -1,15 +1,13 @@
-"""Запуск Discord-бота."""
+"""Entry point for launching the Discord bot."""
 
 import asyncio
 import os
+
+import asyncpg
 import discord
 from discord import app_commands
 
-from config.config import (
-    config,
-    ONLINE_MONTH_GRAPH_TITLE,
-)
-import asyncpg
+from config.config import config, ONLINE_MONTH_GRAPH_TITLE
 from bot.updater import (
     ftp_polling_task,
     api_polling_task,
@@ -21,13 +19,14 @@ from utils.logger import log_debug
 
 
 class MyBot(discord.Client):
+    """Discord bot client with background tasks."""
+
     def __init__(self, *, intents: discord.Intents) -> None:
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
 
-
     async def _ensure_indexes(self) -> None:
-        """Creates required database indexes if they do not exist."""
+        """Create required database indexes if they do not exist."""
         await self.db_pool.execute(
             """
             CREATE INDEX IF NOT EXISTS idx_online_name_date_hour
@@ -36,7 +35,7 @@ class MyBot(discord.Client):
         )
 
     async def setup_hook(self) -> None:
-        """Вызывается Discord.py при подготовке клиента."""
+        """Called by discord.py when the client is ready."""
         self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
         await self._ensure_indexes()
         asyncio.create_task(api_polling_task())
@@ -48,8 +47,10 @@ class MyBot(discord.Client):
         await self.tree.sync()
         log_debug("[Slash] Команды синхронизированы")
 
-    async def on_ready(self):
+    async def on_ready(self) -> None:
+        """Log successful authorization."""
         log_debug(f"Discord-бот авторизован как {self.user}")
+
 
 if __name__ == "__main__":
     intents = discord.Intents.default()
@@ -60,7 +61,8 @@ if __name__ == "__main__":
     tree = bot.tree
 
     @tree.command(name="online_month", description="График онлайна по дням за последние 30 дней")
-    async def online_month_command(interaction: discord.Interaction):
+    async def online_month_command(interaction: discord.Interaction) -> None:
+        """Handle `/online_month` command."""
         await interaction.response.defer()
         try:
             path = await generate_online_month_graph(interaction.client.db_pool)
@@ -84,4 +86,3 @@ if __name__ == "__main__":
         bot.run(config.discord_token)
     finally:
         log_debug("Discord-бот остановлен")
-

@@ -1,13 +1,18 @@
-"""Получение файлов по FTP."""
+"""Utility for fetching files via FTP."""
+
+from typing import Optional
 
 import aioftp
-from typing import Optional
 
 from config.config import config
 from utils.logger import log_debug
 
+
 async def fetch_file(file_name: str) -> Optional[str]:
-    log_debug(f"[FTP] Пробуем подключиться к {config.ftp_host}:{config.ftp_port} как {config.ftp_user}")
+    """Download a file from the configured FTP server."""
+    log_debug(
+        f"[FTP] Connecting to {config.ftp_host}:{config.ftp_port} as {config.ftp_user}"
+    )
     try:
         async with aioftp.Client.context(
             config.ftp_host,
@@ -15,16 +20,17 @@ async def fetch_file(file_name: str) -> Optional[str]:
             user=config.ftp_user,
             password=config.ftp_pass,
         ) as ftp_client:
-            log_debug("[FTP] Заходим в папку profile...")
-            await ftp_client.change_directory("profile")
-            log_debug("[FTP] Заходим в папку savegame1...")
-            await ftp_client.change_directory("savegame1")
-            log_debug(f"[FTP] Пробуем скачать файл: {file_name}")
+            log_debug(f"[FTP] Entering {config.ftp_profile_dir}...")
+            await ftp_client.change_directory(config.ftp_profile_dir)
+            log_debug(f"[FTP] Entering {config.ftp_savegame_dir}...")
+            await ftp_client.change_directory(config.ftp_savegame_dir)
+            log_debug(f"[FTP] Downloading file: {file_name}")
             async with ftp_client.download_stream(file_name) as stream:
                 content = await stream.read()
-                log_debug(f"[FTP] Файл {file_name} скачан успешно. Размер: {len(content)} байт")
+                log_debug(
+                    f"[FTP] File {file_name} downloaded. Size: {len(content)} bytes"
+                )
                 return content.decode("utf-8")
     except Exception as e:
-        log_debug(f"[FTP] ❌ Ошибка загрузки файла '{file_name}': {e}")
+        log_debug(f"[FTP] ❌ Error downloading file '{file_name}': {e}")
         return None
-
