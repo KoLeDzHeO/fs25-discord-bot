@@ -42,6 +42,7 @@ ONLINE_MONTH_DAYS = 30
 ONLINE_MONTH_GRAPH_FILENAME = "online_month_graph.png"
 ONLINE_DAILY_GRAPH_FILENAME = "online_daily_graph.png"
 ONLINE_MONTH_GRAPH_TITLE = "Онлайн по дням (последние 30 дней)"
+ONLINE_DAILY_GRAPH_TITLE = "Количество игроков по часам (сегодня)"
 
 ONLINE_MONTH_GRAPH_PATH = config.output_dir / ONLINE_MONTH_GRAPH_FILENAME
 ONLINE_DAILY_GRAPH_PATH = config.output_dir / ONLINE_DAILY_GRAPH_FILENAME
