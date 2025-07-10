@@ -28,11 +28,6 @@ cleanup_history_days = 30
 # Интервал запуска задачи очистки (в секундах)
 cleanup_task_interval_seconds = 86400
 
-# Путь для сохранения месячного графика онлайна
-MONTHLY_GRAPH_OUTPUT_PATH = "output/monthly_online_graph.png"
-
-# Заголовок для месячного графика онлайна
-MONTHLY_GRAPH_TITLE = "Онлайн игроков за последние 30 дней"
 
 # Количество дней для команды /online_month
 ONLINE_MONTH_DAYS = 30

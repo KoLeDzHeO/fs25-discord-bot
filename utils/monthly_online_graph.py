@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 import matplotlib.pyplot as plt
 
-from config.config import MONTHLY_GRAPH_TITLE
+MONTHLY_GRAPH_TITLE = "Онлайн игроков за последние 30 дней"
 from utils.logger import log_debug
 
 
