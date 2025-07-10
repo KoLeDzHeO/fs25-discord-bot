@@ -21,7 +21,6 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     map_name = data.get("map_name") or "—"
     slots_used = data.get("slots_used")
     slots_max = data.get("slots_max")
-    farm_money = data.get("farm_money")
     fields_owned = data.get("fields_owned")
     fields_total = data.get("fields_total")
     vehicles_owned = data.get("vehicles_owned")
