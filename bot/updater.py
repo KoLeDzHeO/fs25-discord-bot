@@ -78,28 +78,26 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 data["server_status"] = server_status
                 embed = build_embed(data)
 
-                moscow_date = get_moscow_datetime().date()
-                rows = await bot.db_pool.fetch(
-                    """
-                    SELECT hour, COUNT(DISTINCT player_name) AS count
-                    FROM player_online_history
-                    WHERE date = $1
-                    GROUP BY hour
-                    """,
-                    moscow_date,
+                now = get_moscow_datetime()
+                start_datetime = (now - timedelta(hours=24)).replace(
+                    minute=0, second=0, microsecond=0
+                )
+                end_datetime = now.replace(
+                    minute=59, second=59, microsecond=999999
                 )
 
-                if not rows:
-                    prev_date = moscow_date - timedelta(days=1)
-                    rows = await bot.db_pool.fetch(
-                        """
-                        SELECT hour, COUNT(DISTINCT player_name) AS count
-                        FROM player_online_history
-                        WHERE date = $1
-                        GROUP BY hour
-                        """,
-                        prev_date,
-                    )
+                rows = await bot.db_pool.fetch(
+                    """
+                    SELECT EXTRACT(HOUR FROM check_time) AS hour,
+                           COUNT(DISTINCT player_name) AS count
+                    FROM player_online_history
+                    WHERE check_time BETWEEN $1 AND $2
+                    GROUP BY hour
+                    ORDER BY hour
+                    """,
+                    start_datetime,
+                    end_datetime,
+                )
 
                 hourly_counts = [0] * 24
                 for row in rows:
