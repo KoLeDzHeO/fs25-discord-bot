@@ -15,10 +15,9 @@ from utils.logger import log_debug
 
 
 async def fetch_daily_online_counts(db_pool) -> List[int]:
-    """Возвращает число уникальных игроков по часам за текущие сутки."""
+    """Возвращает число уникальных игроков по часам за последние 24 часа."""
 
-    start = get_moscow_datetime().replace(hour=0, minute=0, second=0, microsecond=0)
-    end = start + timedelta(days=1)
+    start = get_moscow_datetime() - timedelta(hours=24)
 
     try:
         rows = await db_pool.fetch(
@@ -26,12 +25,11 @@ async def fetch_daily_online_counts(db_pool) -> List[int]:
             SELECT EXTRACT(HOUR FROM check_time) AS hour,
                    COUNT(DISTINCT player_name) AS count
             FROM player_online_history
-            WHERE check_time BETWEEN $1 AND $2
-            GROUP BY hour
+            WHERE check_time >= $1
+            GROUP BY EXTRACT(HOUR FROM check_time)
             ORDER BY hour
             """,
             start,
-            end,
         )
     except Exception as e:
         log_debug(f"[DB] Error fetching online day data: {e}")
@@ -45,7 +43,7 @@ async def fetch_daily_online_counts(db_pool) -> List[int]:
 
 
 def save_daily_online_graph(counts: List[int]) -> str:
-    """Сохраняет PNG-график количества игроков по часам за сегодня."""
+    """Сохраняет PNG-график количества игроков за последние 24 часа."""
 
     now_hour = get_moscow_datetime().hour
     hours = list(range(now_hour + 1, 24)) + list(range(0, now_hour + 1))
