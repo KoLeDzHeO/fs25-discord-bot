@@ -8,6 +8,7 @@ from typing import List, Tuple
 from asyncpg import Pool
 
 from utils.logger import log_debug
+from config.config import cleanup_history_days
 
 
 async def _fetch_total_hours(
@@ -21,10 +22,12 @@ async def _fetch_total_hours(
         FROM (
             SELECT player_name, date, hour
             FROM {history_table}
+            WHERE check_time >= NOW() - INTERVAL '{cleanup_history_days} days'
             GROUP BY player_name, date, hour
             HAVING COUNT(*) >= 3
         ) AS t
         GROUP BY player_name
+        ORDER BY player_name
     """
     try:
         rows = await db_pool.fetch(query)
@@ -51,18 +54,16 @@ async def update_total_time(
     try:
         async with db_pool.acquire() as conn:
             async with conn.transaction():
-                for name, hours in rows:
-                    await conn.execute(
-                        f"""
-                        INSERT INTO {total_table} (player_name, total_hours, updated_at)
-                        VALUES ($1, $2, NOW())
-                        ON CONFLICT (player_name) DO UPDATE
-                        SET total_hours = EXCLUDED.total_hours,
-                            updated_at = EXCLUDED.updated_at
-                        """,
-                        name,
-                        hours,
-                    )
+                await conn.executemany(
+                    f"""
+                    INSERT INTO {total_table} (player_name, total_hours, updated_at)
+                    VALUES ($1, $2, NOW())
+                    ON CONFLICT (player_name) DO UPDATE
+                    SET total_hours = EXCLUDED.total_hours,
+                        updated_at = EXCLUDED.updated_at
+                    """,
+                    rows,
+                )
         log_debug(f"[TOTAL] Обновлено {len(rows)} записей")
     except Exception as e:
         log_debug(f"[DB] Error updating total time: {e}")
