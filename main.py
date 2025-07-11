@@ -53,16 +53,9 @@ class MyBot(discord.Client):
         log_debug(f"Discord-бот авторизован как {self.user}")
 
     async def on_message(self, message: discord.Message) -> None:
-        """Обрабатывает текстовые команды."""
+        """Обрабатывает текстовые сообщения (команды больше не используются)."""
         if message.author.bot:
             return
-        if message.content.strip() == "!top7week":
-            try:
-                text = await generate_weekly_top(self.db_pool)
-                await message.channel.send(text)
-            except Exception as e:
-                log_debug(f"[CMD] top7week error: {e}")
-                await message.channel.send("Ошибка при получении топа.")
 
 
 if __name__ == "__main__":
@@ -92,6 +85,19 @@ if __name__ == "__main__":
             log_debug(f"[CMD] online_month error: {e}")
             await interaction.followup.send(
                 "Ошибка при генерации графика.", ephemeral=True
+            )
+
+    @tree.command(name="top7week", description="ТОП 7 игроков за неделю")
+    async def top7week_command(interaction: discord.Interaction) -> None:
+        """Handle `/top7week` command."""
+        await interaction.response.defer()
+        try:
+            text = await generate_weekly_top(interaction.client.db_pool)
+            await interaction.followup.send(text)
+        except Exception as e:
+            log_debug(f"[CMD] top7week error: {e}")
+            await interaction.followup.send(
+                "Ошибка при получении топа.", ephemeral=True
             )
 
     log_debug("Запускаем Discord-бота")
