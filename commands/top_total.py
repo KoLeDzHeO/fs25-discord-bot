@@ -17,18 +17,26 @@ async def _fetch_top_total(
     """Fetch top players and total count."""
     try:
         rows = await pool.fetch(
-            f"SELECT player_name, total_hours FROM {table_name} "
-            "ORDER BY total_hours DESC, player_name LIMIT $1",
+            f"""
+            SELECT player_name, total_hours,
+                   COUNT(*) OVER () AS total_count
+            FROM {table_name}
+            ORDER BY total_hours DESC, player_name
+            LIMIT $1
+            """,
             limit,
         )
-        total = await pool.fetchval(f"SELECT COUNT(*) FROM {table_name}")
     except Exception as e:
         log_debug(f"[DB] Error fetching total top: {e}")
         raise
 
+    if not rows:
+        return ([], 0)
+
+    total = int(rows[0]["total_count"]) if rows else 0
     return (
         [(r["player_name"], int(r["total_hours"])) for r in rows],
-        int(total or 0),
+        total,
     )
 
 

@@ -81,12 +81,15 @@ async def archive_weekly_top(
                     """
                 )
                 await conn.execute(f"TRUNCATE TABLE {table_name}")
-                for name, hours in rows:
-                    await conn.execute(
-                        f"INSERT INTO {table_name} (player_name, hours) VALUES ($1, $2)",
-                        name,
-                        hours,
-                    )
+                await conn.executemany(
+                    f"""
+                    INSERT INTO {table_name} (player_name, hours)
+                    VALUES ($1, $2)
+                    ON CONFLICT (player_name) DO UPDATE
+                    SET hours = EXCLUDED.hours
+                    """,
+                    rows,
+                )
         log_debug("[ARCHIVER] Топ игроков сохранён")
     except Exception as e:
         log_debug(f"[DB] Error writing weekly top: {e}")

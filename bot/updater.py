@@ -146,13 +146,19 @@ async def save_online_history_task(bot: discord.Client) -> None:
                     xml = await fetch_dedicated_server_stats(session)
                     players = parse_players_online(xml) if xml else []
                     log_debug(f"[ONLINE] Игроков онлайн: {len(players)}")
-                    for name in players:
+                    records = [(name, now_moscow) for name in players]
+                    if records:
                         try:
-                            await bot.db_pool.execute(
-                                "INSERT INTO player_online_history (player_name, check_time, date, hour, dow)"
-                                " VALUES ($1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2));",
-                                name,
-                                now_moscow,
+                            await bot.db_pool.executemany(
+                                """
+                                INSERT INTO player_online_history (
+                                    player_name, check_time, date, hour, dow
+                                ) VALUES (
+                                    $1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2)
+                                )
+                                ON CONFLICT (player_name, date, hour) DO NOTHING
+                                """,
+                                records,
                             )
                         except Exception as db_e:
                             log_debug(f"[DB] Ошибка записи игрока: {db_e}")
