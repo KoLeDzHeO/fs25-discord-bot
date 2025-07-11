@@ -45,6 +45,7 @@ class MyBot(discord.Client):
         asyncio.create_task(cleanup_old_online_history_task(self))
         log_debug("[SETUP] Background tasks started")
 
+        self.tree.add_command(top7week_command)
         await self.tree.sync()
         log_debug("[Slash] Команды синхронизированы")
 
@@ -87,7 +88,7 @@ if __name__ == "__main__":
                 "Ошибка при генерации графика.", ephemeral=True
             )
 
-    @tree.command(name="top7week", description="ТОП 7 игроков за неделю")
+    @app_commands.command(name="top7week", description="ТОП 7 игроков за неделю")
     async def top7week_command(interaction: discord.Interaction) -> None:
         """Handle `/top7week` command."""
         await interaction.response.defer()
