@@ -126,6 +126,9 @@ async def weekly_top_archive_task(
                 limit=limit,
                 max_fetch=max_fetch,
             )
+        except asyncio.CancelledError:
+            log_debug("[TASK] weekly_top_archive_task cancelled")
+            break
         except Exception as e:
             log_debug(f"[TASK] weekly_top_archive_task error: {e}")
             await asyncio.sleep(5)

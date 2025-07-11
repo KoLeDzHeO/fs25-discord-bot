@@ -27,7 +27,7 @@ def handle_task_exception(task: asyncio.Task) -> None:
     try:
         task.result()
     except Exception as e:
-        log_debug(f"[TASK ERROR] Задача завершилась с ошибкой: {e}")
+        log_debug(f"[ERROR] Задача завершилась с ошибкой: {e}")
 
 
 class MyBot(discord.Client):
@@ -36,7 +36,7 @@ class MyBot(discord.Client):
     def __init__(self, *, intents: discord.Intents) -> None:
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
-        self.bg_tasks: list[asyncio.Task] = []
+        self.tasks: list[asyncio.Task] = []
         self.db_pool = None
 
     async def _ensure_indexes(self) -> None:
@@ -50,10 +50,10 @@ class MyBot(discord.Client):
 
     async def close(self) -> None:
         """Gracefully shutdown background tasks and resources."""
-        for task in self.bg_tasks:
+        for task in self.tasks:
             task.cancel()
-        if self.bg_tasks:
-            await asyncio.gather(*self.bg_tasks, return_exceptions=True)
+        if self.tasks:
+            await asyncio.gather(*self.tasks, return_exceptions=True)
         if self.db_pool:
             await self.db_pool.close()
         await super().close()
@@ -65,23 +65,23 @@ class MyBot(discord.Client):
 
         task = asyncio.create_task(api_polling_task())
         task.add_done_callback(handle_task_exception)
-        self.bg_tasks.append(task)
+        self.tasks.append(task)
 
         task = asyncio.create_task(ftp_polling_task(self))
         task.add_done_callback(handle_task_exception)
-        self.bg_tasks.append(task)
+        self.tasks.append(task)
 
         task = asyncio.create_task(save_online_history_task(self))
         task.add_done_callback(handle_task_exception)
-        self.bg_tasks.append(task)
+        self.tasks.append(task)
 
         task = asyncio.create_task(cleanup_old_online_history_task(self))
         task.add_done_callback(handle_task_exception)
-        self.bg_tasks.append(task)
+        self.tasks.append(task)
 
         task = asyncio.create_task(total_time_update_task(self))
         task.add_done_callback(handle_task_exception)
-        self.bg_tasks.append(task)
+        self.tasks.append(task)
         log_debug("[SETUP] Background tasks started")
 
         setup_top7week(self.tree)
