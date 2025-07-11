@@ -65,6 +65,7 @@ class MyBot(discord.Client):
 
         log_debug("[Slash] Команда /top7week зарегистрирована")
         await self.tree.sync()
+        print("[SYNC] Slash-команды успешно синхронизированы.")
         log_debug("[Slash] Команды синхронизированы")
 
     async def on_ready(self) -> None:
