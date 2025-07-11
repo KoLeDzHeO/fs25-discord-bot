@@ -18,6 +18,7 @@ from utils.total_time_updater import total_time_update_task
 from utils.logger import log_debug
 from commands.top7lastweek import setup as setup_top7lastweek
 from commands.top7week import setup as setup_top7week
+from commands.top_total import setup as setup_top_total
 from commands.online_month import setup as setup_online_month
 
 
@@ -51,6 +52,8 @@ class MyBot(discord.Client):
         setup_top7week(self.tree)
 
         setup_top7lastweek(self.tree)
+
+        setup_top_total(self.tree)
         await self.tree.sync()
         print("[SYNC] Slash-команды успешно синхронизированы.")
         log_debug("[Slash] Команды синхронизированы")
