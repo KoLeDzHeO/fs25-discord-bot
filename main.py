@@ -45,7 +45,25 @@ class MyBot(discord.Client):
         asyncio.create_task(cleanup_old_online_history_task(self))
         log_debug("[SETUP] Background tasks started")
 
-        self.tree.add_command(top7week_command)
+        @self.tree.command(
+            name="top7week",
+            description="Топ 7 игроков за неделю по часам",
+        )
+        async def top7week_command(
+            interaction: discord.Interaction,
+        ) -> None:
+            """Handle `/top7week` command."""
+            await interaction.response.defer()
+            try:
+                text = await generate_weekly_top(interaction.client.db_pool)
+                await interaction.followup.send(text)
+            except Exception as e:
+                log_debug(f"[CMD] top7week error: {e}")
+                await interaction.followup.send(
+                    "Ошибка при получении топа.", ephemeral=True
+                )
+
+        log_debug("[Slash] Команда /top7week зарегистрирована")
         await self.tree.sync()
         log_debug("[Slash] Команды синхронизированы")
 
@@ -86,19 +104,6 @@ if __name__ == "__main__":
             log_debug(f"[CMD] online_month error: {e}")
             await interaction.followup.send(
                 "Ошибка при генерации графика.", ephemeral=True
-            )
-
-    @app_commands.command(name="top7week", description="ТОП 7 игроков за неделю")
-    async def top7week_command(interaction: discord.Interaction) -> None:
-        """Handle `/top7week` command."""
-        await interaction.response.defer()
-        try:
-            text = await generate_weekly_top(interaction.client.db_pool)
-            await interaction.followup.send(text)
-        except Exception as e:
-            log_debug(f"[CMD] top7week error: {e}")
-            await interaction.followup.send(
-                "Ошибка при получении топа.", ephemeral=True
             )
 
     log_debug("Запускаем Discord-бота")
