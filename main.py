@@ -13,6 +13,7 @@ from bot.updater import (
     save_online_history_task,
     cleanup_old_online_history_task,
 )
+from utils.total_time_updater import total_time_update_task
 
 from utils.logger import log_debug
 from commands.top7lastweek import setup as setup_top7lastweek
@@ -44,6 +45,7 @@ class MyBot(discord.Client):
         asyncio.create_task(ftp_polling_task(self))
         asyncio.create_task(save_online_history_task(self))
         asyncio.create_task(cleanup_old_online_history_task(self))
+        asyncio.create_task(total_time_update_task(self))
         log_debug("[SETUP] Background tasks started")
 
         setup_top7week(self.tree)
