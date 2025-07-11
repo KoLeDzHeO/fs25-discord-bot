@@ -52,3 +52,4 @@ WEEKLY_TOP_LIMIT = int(os.getenv("WEEKLY_TOP_LIMIT", 7))
 WEEKLY_TOP_MAX = int(os.getenv("WEEKLY_TOP_MAX", 10))
 WEEKLY_TOP_WEEKDAY = int(os.getenv("WEEKLY_TOP_WEEKDAY", 0))
 WEEKLY_TOP_HOUR = int(os.getenv("WEEKLY_TOP_HOUR", 12))
+WEEKLY_TOP_LAST_TABLE = "weekly_top_last"
