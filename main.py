@@ -22,12 +22,22 @@ from commands.top_total import setup as setup_top_total
 from commands.online_month import setup as setup_online_month
 
 
+def handle_task_exception(task: asyncio.Task) -> None:
+    """Log exceptions from background tasks."""
+    try:
+        task.result()
+    except Exception as e:
+        log_debug(f"[TASK ERROR] Задача завершилась с ошибкой: {e}")
+
+
 class MyBot(discord.Client):
     """Discord bot client with background tasks."""
 
     def __init__(self, *, intents: discord.Intents) -> None:
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
+        self.bg_tasks: list[asyncio.Task] = []
+        self.db_pool = None
 
     async def _ensure_indexes(self) -> None:
         """Create required database indexes if they do not exist."""
@@ -38,15 +48,40 @@ class MyBot(discord.Client):
             """
         )
 
+    async def close(self) -> None:
+        """Gracefully shutdown background tasks and resources."""
+        for task in self.bg_tasks:
+            task.cancel()
+        if self.bg_tasks:
+            await asyncio.gather(*self.bg_tasks, return_exceptions=True)
+        if self.db_pool:
+            await self.db_pool.close()
+        await super().close()
+
     async def setup_hook(self) -> None:
         """Called by discord.py when the client is ready."""
         self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
         await self._ensure_indexes()
-        asyncio.create_task(api_polling_task())
-        asyncio.create_task(ftp_polling_task(self))
-        asyncio.create_task(save_online_history_task(self))
-        asyncio.create_task(cleanup_old_online_history_task(self))
-        asyncio.create_task(total_time_update_task(self))
+
+        task = asyncio.create_task(api_polling_task())
+        task.add_done_callback(handle_task_exception)
+        self.bg_tasks.append(task)
+
+        task = asyncio.create_task(ftp_polling_task(self))
+        task.add_done_callback(handle_task_exception)
+        self.bg_tasks.append(task)
+
+        task = asyncio.create_task(save_online_history_task(self))
+        task.add_done_callback(handle_task_exception)
+        self.bg_tasks.append(task)
+
+        task = asyncio.create_task(cleanup_old_online_history_task(self))
+        task.add_done_callback(handle_task_exception)
+        self.bg_tasks.append(task)
+
+        task = asyncio.create_task(total_time_update_task(self))
+        task.add_done_callback(handle_task_exception)
+        self.bg_tasks.append(task)
         log_debug("[SETUP] Background tasks started")
 
         setup_top7week(self.tree)
@@ -54,6 +89,7 @@ class MyBot(discord.Client):
         setup_top7lastweek(self.tree)
 
         setup_top_total(self.tree)
+        setup_online_month(self.tree)
         await self.tree.sync()
         print("[SYNC] Slash-команды успешно синхронизированы.")
         log_debug("[Slash] Команды синхронизированы")
@@ -74,12 +110,12 @@ if __name__ == "__main__":
     intents.guilds = True
 
     bot = MyBot(intents=intents)
-    tree = bot.tree
-
-    setup_online_month(tree)
 
     log_debug("Запускаем Discord-бота")
     try:
         bot.run(config.discord_token)
+    except KeyboardInterrupt:
+        log_debug("[MAIN] Прерывание, останавливаем бота")
+        asyncio.run(bot.close())
     finally:
         log_debug("Discord-бот остановлен")
