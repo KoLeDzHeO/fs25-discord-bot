@@ -87,6 +87,9 @@ async def total_time_update_task(
                 total_table=total_table,
             )
             await asyncio.sleep(interval_seconds)
+        except asyncio.CancelledError:
+            log_debug("[TASK] total_time_update_task cancelled")
+            break
         except Exception as e:
             log_debug(f"[TASK] total_time_update_task error: {e}")
             await asyncio.sleep(5)
