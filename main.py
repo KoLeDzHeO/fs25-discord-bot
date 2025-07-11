@@ -17,6 +17,7 @@ from bot.updater import (
 from utils.online_month_graph import generate_online_month_graph
 from utils.weekly_top import generate_weekly_top
 from utils.logger import log_debug
+from commands.top7lastweek import setup as setup_top7lastweek
 
 
 class MyBot(discord.Client):
@@ -64,6 +65,8 @@ class MyBot(discord.Client):
                 )
 
         log_debug("[Slash] Команда /top7week зарегистрирована")
+
+        setup_top7lastweek(self.tree)
         await self.tree.sync()
         print("[SYNC] Slash-команды успешно синхронизированы.")
         log_debug("[Slash] Команды синхронизированы")
