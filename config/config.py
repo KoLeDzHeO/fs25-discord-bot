@@ -46,3 +46,9 @@ ONLINE_DAILY_GRAPH_TITLE = "Количество игроков по часам 
 
 ONLINE_MONTH_GRAPH_PATH = config.output_dir / ONLINE_MONTH_GRAPH_FILENAME
 ONLINE_DAILY_GRAPH_PATH = config.output_dir / ONLINE_DAILY_GRAPH_FILENAME
+
+# Weekly top settings
+WEEKLY_TOP_LIMIT = int(os.getenv("WEEKLY_TOP_LIMIT", 7))
+WEEKLY_TOP_MAX = int(os.getenv("WEEKLY_TOP_MAX", 10))
+WEEKLY_TOP_WEEKDAY = int(os.getenv("WEEKLY_TOP_WEEKDAY", 0))
+WEEKLY_TOP_HOUR = int(os.getenv("WEEKLY_TOP_HOUR", 12))

@@ -15,6 +15,7 @@ from bot.updater import (
     cleanup_old_online_history_task,
 )
 from utils.online_month_graph import generate_online_month_graph
+from utils.weekly_top import generate_weekly_top
 from utils.logger import log_debug
 
 
@@ -50,6 +51,18 @@ class MyBot(discord.Client):
     async def on_ready(self) -> None:
         """Log successful authorization."""
         log_debug(f"Discord-бот авторизован как {self.user}")
+
+    async def on_message(self, message: discord.Message) -> None:
+        """Обрабатывает текстовые команды."""
+        if message.author.bot:
+            return
+        if message.content.strip() == "!top7week":
+            try:
+                text = await generate_weekly_top(self.db_pool)
+                await message.channel.send(text)
+            except Exception as e:
+                log_debug(f"[CMD] top7week error: {e}")
+                await message.channel.send("Ошибка при получении топа.")
 
 
 if __name__ == "__main__":
