@@ -38,6 +38,7 @@ async def ftp_polling_task(bot: discord.Client) -> None:
         return
 
     timeout = aiohttp.ClientTimeout(total=config.http_timeout)
+    last_message: discord.Message | None = None
     last_snapshot: str | None = None
 
     async with aiohttp.ClientSession(timeout=timeout) as session:
