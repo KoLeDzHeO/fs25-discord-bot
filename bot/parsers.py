@@ -73,7 +73,6 @@ def parse_server_stats(
             else:
                 day_time_ms = int(day_time)
             day_time = day_time_ms
-
         return server_name, map_name, slots_used, slots_max, last_updated, day_time
     except Exception as e:
         log_debug(f"[ERROR] parse_server_stats: {e}")
