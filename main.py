@@ -9,7 +9,6 @@ from discord import app_commands
 from config.config import config
 from bot.updater import (
     ftp_polling_task,
-    api_polling_task,
     save_online_history_task,
     cleanup_old_online_history_task,
 )
@@ -47,6 +46,18 @@ class MyBot(discord.Client):
             ON player_online_history (player_name, date, hour)
             """
         )
+        await self.db_pool.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_online_check_time
+            ON player_online_history (check_time)
+            """
+        )
+        await self.db_pool.execute(
+            """
+            CREATE INDEX IF NOT EXISTS idx_total_hours
+            ON player_total_time (total_hours DESC)
+            """
+        )
 
     async def close(self) -> None:
         """Gracefully shutdown background tasks and resources."""
@@ -62,10 +73,6 @@ class MyBot(discord.Client):
         """Called by discord.py when the client is ready."""
         self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
         await self._ensure_indexes()
-
-        task = asyncio.create_task(api_polling_task())
-        task.add_done_callback(handle_task_exception)
-        self.tasks.append(task)
 
         task = asyncio.create_task(ftp_polling_task(self))
         task.add_done_callback(handle_task_exception)

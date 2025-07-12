@@ -7,6 +7,7 @@ from utils.helpers import get_moscow_datetime
 
 import aiohttp
 import discord
+import json
 
 from config.config import (
     config,
@@ -15,7 +16,7 @@ from config.config import (
     ONLINE_DAILY_GRAPH_FILENAME,
 )
 from .fetchers import (
-    fetch_dedicated_server_stats,
+    fetch_dedicated_server_stats_cached,
     fetch_required_files,
 )
 from .parsers import parse_all, parse_players_online
@@ -36,102 +37,94 @@ async def ftp_polling_task(bot: discord.Client) -> None:
         log_debug("❌ Канал не найден!")
         return
 
-    while not bot.is_closed():
-        try:
-            (
-                stats_xml,
-                vehicles_xml,
-                career_ftp,
-                farmland_ftp,
-                farms_ftp,
-            ) = await fetch_required_files(bot)
-            dedicated_server_stats_ftp = stats_xml
-
-            log_debug(
-                "[DEBUG] Статусы: "
-                f"stats={bool(stats_xml)}, "
-                f"vehicles={bool(vehicles_xml)}, "
-                f"careerFTP={bool(career_ftp)}, "
-                f"farmlandFTP={bool(farmland_ftp)}, "
-                f"farms={bool(farms_ftp)}"
-            )
-
-            all_files_loaded = all(
-                [stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp]
-            )
-            if all_files_loaded:
-                server_status = "🟢 Сервер работает"
-                log_debug("[FTP] Все необходимые файлы загружены")
-                data = parse_all(
-                    server_stats=stats_xml,
-                    vehicles_api=vehicles_xml,
-                    career_savegame_ftp=career_ftp,
-                    farmland_ftp=farmland_ftp,
-                    farms_xml=farms_ftp,
-                    dedicated_server_stats=dedicated_server_stats_ftp,
-                )
-            else:
-                server_status = "🔴 Сервер недоступен"
-                data = {
-                    "last_month_profit": None,
-                    "server_name": None,
-                    "map_name": None,
-                    "slots_used": None,
-                    "slots_max": None,
-                    "farm_money": None,
-                    "fields_owned": None,
-                    "fields_total": None,
-                    "vehicles_owned": None,
-                    "players_online": [],
-                }
-
-            data["server_status"] = server_status
-            embed = build_embed(data)
-
-            hourly_counts = await fetch_daily_online_counts(bot.db_pool)
-
-            image_path = save_daily_online_graph(hourly_counts)
-            embed.set_image(url=f"attachment://{ONLINE_DAILY_GRAPH_FILENAME}")
-
-            async for msg in channel.history(limit=20):
-                if msg.author == bot.user:
-                    try:
-                        await msg.delete()
-                    except Exception as e:
-                        log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
-
-            log_debug("[Discord] Отправляем сообщение")
-            await channel.send(
-                embed=embed,
-                files=[
-                    discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)
-                ],
-            )
-            log_debug("[Discord] ✅ Embed успешно отправлен.")
-
-            await asyncio.sleep(config.ftp_poll_interval)
-        except asyncio.CancelledError:
-            log_debug("[TASK] ftp_polling_task cancelled")
-            break
-        except Exception as e:
-            log_debug(f"[TASK] ftp_polling_task error: {e}")
-            await asyncio.sleep(5)
-
-
-async def api_polling_task() -> None:
-    """Периодически опрашивает API и сохраняет онлайн игроков."""
     timeout = aiohttp.ClientTimeout(total=config.http_timeout)
+    last_message: discord.Message | None = None
+    last_snapshot: str | None = None
+
     async with aiohttp.ClientSession(timeout=timeout) as session:
-        while True:
+        while not bot.is_closed():
             try:
-                await fetch_dedicated_server_stats(session)
-                await asyncio.sleep(config.api_poll_interval)
+                (
+                    stats_xml,
+                    vehicles_xml,
+                    career_ftp,
+                    farmland_ftp,
+                    farms_ftp,
+                ) = await fetch_required_files(session)
+                dedicated_server_stats_ftp = stats_xml
+
+                log_debug(
+                    "[DEBUG] Статусы: "
+                    f"stats={bool(stats_xml)}, "
+                    f"vehicles={bool(vehicles_xml)}, "
+                    f"careerFTP={bool(career_ftp)}, "
+                    f"farmlandFTP={bool(farmland_ftp)}, "
+                    f"farms={bool(farms_ftp)}"
+                )
+
+                all_files_loaded = all(
+                    [stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp]
+                )
+                if all_files_loaded:
+                    server_status = "🟢 Сервер работает"
+                    log_debug("[FTP] Все необходимые файлы загружены")
+                    data = parse_all(
+                        server_stats=stats_xml,
+                        vehicles_api=vehicles_xml,
+                        career_savegame_ftp=career_ftp,
+                        farmland_ftp=farmland_ftp,
+                        farms_xml=farms_ftp,
+                        dedicated_server_stats=dedicated_server_stats_ftp,
+                    )
+                else:
+                    server_status = "🔴 Сервер недоступен"
+                    data = {
+                        "last_month_profit": None,
+                        "server_name": None,
+                        "map_name": None,
+                        "slots_used": None,
+                        "slots_max": None,
+                        "farm_money": None,
+                        "fields_owned": None,
+                        "fields_total": None,
+                        "vehicles_owned": None,
+                        "players_online": [],
+                    }
+
+                data["server_status"] = server_status
+                embed = build_embed(data)
+
+                hourly_counts = await fetch_daily_online_counts(bot.db_pool)
+
+                image_path = save_daily_online_graph(hourly_counts)
+                embed.set_image(url=f"attachment://{ONLINE_DAILY_GRAPH_FILENAME}")
+
+                snapshot = json.dumps(data, sort_keys=True)
+
+                if snapshot != last_snapshot:
+                    last_snapshot = snapshot
+                    file = discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)
+                    if last_message is None:
+                        log_debug("[Discord] Отправляем сообщение")
+                        last_message = await channel.send(embed=embed, files=[file])
+                    else:
+                        log_debug("[Discord] Обновляем сообщение")
+                        try:
+                            await last_message.edit(embed=embed, attachments=[file])
+                        except Exception as e:
+                            log_debug(
+                                f"[Discord] Не удалось отредактировать сообщение: {e}"
+                            )
+                            last_message = await channel.send(embed=embed, files=[file])
+
+                await asyncio.sleep(config.ftp_poll_interval)
             except asyncio.CancelledError:
-                log_debug("[TASK] api_polling_task cancelled")
+                log_debug("[TASK] ftp_polling_task cancelled")
                 break
             except Exception as e:
-                log_debug(f"[TASK] api_polling_task error: {e}")
+                log_debug(f"[TASK] ftp_polling_task error: {e}")
                 await asyncio.sleep(5)
+
 
 
 async def save_online_history_task(bot: discord.Client) -> None:
@@ -151,17 +144,12 @@ async def save_online_history_task(bot: discord.Client) -> None:
                     wait_seconds = 1
 
                 if minute % step == 0:
+                    start_min = now.replace(second=0, microsecond=0)
                     try:
                         exists = await bot.db_pool.fetchval(
-                            """
-                            SELECT 1 FROM player_online_history
-                            WHERE date = CURRENT_DATE
-                              AND hour = $1
-                              AND EXTRACT(MINUTE FROM check_time) = $2
-                            LIMIT 1
-                            """,
-                            now.hour,
-                            minute,
+                            "SELECT 1 FROM player_online_history WHERE check_time >= $1 AND check_time < $2 LIMIT 1",
+                            start_min,
+                            start_min + timedelta(minutes=1),
                         )
                     except Exception as db_e:
                         log_debug(f"[DB] Ошибка проверки истории: {db_e}")
@@ -171,7 +159,7 @@ async def save_online_history_task(bot: discord.Client) -> None:
                         log_debug("[ONLINE] Срез уже был, пропускаем")
                     else:
                         log_debug("[ONLINE] Время среза, получаем список игроков")
-                        xml = await fetch_dedicated_server_stats(session)
+                        xml = await fetch_dedicated_server_stats_cached(session)
                         players = parse_players_online(xml) if xml else []
                         log_debug(f"[ONLINE] Игроков онлайн: {len(players)}")
                         records = [(name, now) for name in players]

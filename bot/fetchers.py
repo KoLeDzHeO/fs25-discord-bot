@@ -6,9 +6,11 @@ from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 
 import aiohttp
 
+import time
+
 from config.config import config
 from utils.logger import log_debug
-from ftp.fetcher import fetch_file
+from ftp.fetcher import fetch_files
 
 
 def _mask_url_param(url: str, param: str = "code", mask: str = "***") -> str:
@@ -56,20 +58,36 @@ async def fetch_dedicated_server_stats(session: aiohttp.ClientSession) -> Option
     return await _fetch(session, url, "dedicated-server-stats.xml")
 
 
-async def fetch_required_files(bot) -> Tuple[Optional[str], Optional[str], Optional[str], Optional[str], Optional[str]]:
-    """Fetch all files required for building server stats."""
-    timeout = aiohttp.ClientTimeout(total=config.http_timeout)
-    async with aiohttp.ClientSession(timeout=timeout) as session:
-        log_debug("[FTP] Получаем dedicated-server-stats.xml")
-        stats_xml = await fetch_dedicated_server_stats(session)
-        log_debug("[API] Получаем vehicles")
-        vehicles_xml = await fetch_api_file(session, "vehicles")
+_stats_cache: tuple[Optional[str], float] = (None, 0.0)
 
-    log_debug("[FTP] Получаем careerSavegame.xml")
-    career_ftp = await fetch_file("careerSavegame.xml")
-    log_debug("[FTP] Получаем farmland.xml")
-    farmland_ftp = await fetch_file("farmland.xml")
-    log_debug("[FTP] Получаем farms.xml")
-    farms_ftp = await fetch_file("farms.xml")
+
+async def fetch_dedicated_server_stats_cached(
+    session: aiohttp.ClientSession, *, ttl: int = 120
+) -> Optional[str]:
+    """Fetch stats XML with simple in-memory caching."""
+    global _stats_cache
+    data, ts = _stats_cache
+    now = time.monotonic()
+    if data is not None and now - ts < ttl:
+        log_debug("[API] Using cached dedicated-server-stats.xml")
+        return data
+    data = await fetch_dedicated_server_stats(session)
+    if data:
+        _stats_cache = (data, now)
+    return data
+
+
+async def fetch_required_files(
+    session: aiohttp.ClientSession,
+) -> Tuple[Optional[str], Optional[str], Optional[str], Optional[str], Optional[str]]:
+    """Fetch all files required for building server stats."""
+    log_debug("[API] Получаем dedicated-server-stats.xml")
+    stats_xml = await fetch_dedicated_server_stats_cached(session)
+    log_debug("[API] Получаем vehicles")
+    vehicles_xml = await fetch_api_file(session, "vehicles")
+
+    career_ftp, farmland_ftp, farms_ftp = await fetch_files(
+        "careerSavegame.xml", "farmland.xml", "farms.xml"
+    )
 
     return stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp
