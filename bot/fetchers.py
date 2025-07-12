@@ -79,15 +79,31 @@ async def fetch_dedicated_server_stats_cached(
 
 async def fetch_required_files(
     session: aiohttp.ClientSession,
-) -> Tuple[Optional[str], Optional[str], Optional[str], Optional[str], Optional[str]]:
+) -> Tuple[
+    Optional[str],
+    Optional[str],
+    Optional[str],
+    Optional[str],
+    Optional[str],
+    Optional[str],
+]:
     """Fetch all files required for building server stats."""
     log_debug("[API] Получаем dedicated-server-stats.xml")
     stats_xml = await fetch_dedicated_server_stats_cached(session)
     log_debug("[API] Получаем vehicles")
     vehicles_xml = await fetch_api_file(session, "vehicles")
+    log_debug("[API] Получаем careerSavegame из API")
+    career_api_xml = await fetch_api_file(session, "careerSavegame")
 
     career_ftp, farmland_ftp, farms_ftp = await fetch_files(
         "careerSavegame.xml", "farmland.xml", "farms.xml"
     )
 
-    return stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp
+    return (
+        stats_xml,
+        vehicles_xml,
+        career_api_xml,
+        career_ftp,
+        farmland_ftp,
+        farms_ftp,
+    )
