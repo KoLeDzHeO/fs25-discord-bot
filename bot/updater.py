@@ -26,6 +26,7 @@ from utils.online_daily_graph import (
     fetch_daily_online_counts,
 )
 from utils.logger import log_debug
+import time
 
 
 async def ftp_polling_task(bot: discord.Client) -> None:
@@ -40,6 +41,8 @@ async def ftp_polling_task(bot: discord.Client) -> None:
     timeout = aiohttp.ClientTimeout(total=config.http_timeout)
     last_message: discord.Message | None = None
     last_snapshot: str | None = None
+    last_play_time_check: float = 0.0
+    last_play_time_value: float | None = None
 
     async with aiohttp.ClientSession(timeout=timeout) as session:
         while not bot.is_closed():
@@ -100,10 +103,24 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                         "vehicles_owned": None,
                         "day_time": None,
                         "time_scale": None,
+                        "play_time": None,
                         "players_online": [],
                     }
 
                 data["server_status"] = server_status
+
+                play_time_new = data.get("play_time")
+                now = time.monotonic()
+                if (
+                    play_time_new is not None
+                    and last_play_time_value is not None
+                    and (now - last_play_time_check < 3600 or play_time_new == last_play_time_value)
+                ):
+                    data["play_time"] = last_play_time_value
+                else:
+                    if play_time_new is not None:
+                        last_play_time_value = play_time_new
+                        last_play_time_check = now
 
                 new_day_time = data.get("day_time")
                 last_day_time = None
@@ -128,7 +145,13 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 image_path = save_daily_online_graph(hourly_counts)
                 embed.set_image(url=f"attachment://{ONLINE_DAILY_GRAPH_FILENAME}")
 
-                snapshot_data = {"data": data, "counts": hourly_counts, "day_time": new_day_time}
+                snapshot_data = {
+                    "data": data,
+                    "counts": hourly_counts,
+                    "day_time": new_day_time,
+                    "play_time": last_play_time_value,
+                    "play_time_check": last_play_time_check,
+                }
                 snapshot = json.dumps(snapshot_data, sort_keys=True)
 
                 if snapshot != last_snapshot:
