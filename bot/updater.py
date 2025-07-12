@@ -135,48 +135,63 @@ async def api_polling_task() -> None:
 
 
 async def save_online_history_task(bot: discord.Client) -> None:
-    """Сохраняет список онлайн-игроков каждые ``online_slice_minutes`` минут."""
+    """Сохраняет список онлайн-игроков в строго заданные минуты часа."""
     log_debug("[TASK] Запущен save_online_history_task")
     await bot.wait_until_ready()
     timeout = aiohttp.ClientTimeout(total=config.http_timeout)
+    step = config.online_slice_minutes
     async with aiohttp.ClientSession(timeout=timeout) as session:
         while not bot.is_closed():
             try:
                 now = get_moscow_datetime()
                 minute = now.minute
 
-                now_moscow = now
+                wait_seconds = (step - (minute % step)) * 60 - now.second
+                if wait_seconds <= 0:
+                    wait_seconds = 1
 
-                if minute % config.online_slice_minutes == 0:
-                    log_debug("[ONLINE] Время среза, получаем список игроков")
-                    xml = await fetch_dedicated_server_stats(session)
-                    players = parse_players_online(xml) if xml else []
-                    log_debug(f"[ONLINE] Игроков онлайн: {len(players)}")
-                    records = [(name, now_moscow) for name in players]
-                    if records:
-                        try:
-                            await bot.db_pool.executemany(
-                                """
-                                INSERT INTO player_online_history (
-                                    player_name, check_time, date, hour, dow
-                                ) VALUES (
-                                    $1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2)
+                if minute % step == 0:
+                    try:
+                        exists = await bot.db_pool.fetchval(
+                            """
+                            SELECT 1 FROM player_online_history
+                            WHERE date = CURRENT_DATE
+                              AND hour = $1
+                              AND EXTRACT(MINUTE FROM check_time) = $2
+                            LIMIT 1
+                            """,
+                            now.hour,
+                            minute,
+                        )
+                    except Exception as db_e:
+                        log_debug(f"[DB] Ошибка проверки истории: {db_e}")
+                        exists = True
+
+                    if exists:
+                        log_debug("[ONLINE] Срез уже был, пропускаем")
+                    else:
+                        log_debug("[ONLINE] Время среза, получаем список игроков")
+                        xml = await fetch_dedicated_server_stats(session)
+                        players = parse_players_online(xml) if xml else []
+                        log_debug(f"[ONLINE] Игроков онлайн: {len(players)}")
+                        records = [(name, now) for name in players]
+                        if records:
+                            try:
+                                await bot.db_pool.executemany(
+                                    """
+                                    INSERT INTO player_online_history (
+                                        player_name, check_time, date, hour, dow
+                                    ) VALUES (
+                                        $1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2)
+                                    )
+                                    ON CONFLICT (player_name, date, hour) DO NOTHING
+                                    """,
+                                    records,
                                 )
-                                ON CONFLICT (player_name, date, hour) DO NOTHING
-                                """,
-                                records,
-                            )
-                        except Exception as db_e:
-                            log_debug(f"[DB] Ошибка записи игрока: {db_e}")
+                            except Exception as db_e:
+                                log_debug(f"[DB] Ошибка записи игрока: {db_e}")
 
-                    wait_seconds = 60
-                else:
-                    wait_seconds = (
-                        (config.online_slice_minutes - (minute % config.online_slice_minutes)) * 60
-                    ) - now.second
-                    if wait_seconds <= 0:
-                        wait_seconds = 1
-                    log_debug(f"[ONLINE] Не время среза, ждём {wait_seconds} секунд")
+                log_debug(f"[ONLINE] Ждём {wait_seconds} секунд до следующего среза")
                 await asyncio.sleep(wait_seconds)
             except asyncio.CancelledError:
                 log_debug("[TASK] save_online_history_task cancelled")
