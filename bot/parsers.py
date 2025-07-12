@@ -46,10 +46,33 @@ def parse_server_stats(
         day_time_elem = root.find('.//dayTime')
         if day_time_elem is not None and day_time_elem.text:
             try:
-                day_time = int(float(day_time_elem.text))
+                day_time = float(day_time_elem.text)
             except (ValueError, TypeError):
-                pass
+                day_time = None
 
+        if day_time is None:
+            env_elem = root.find('.//environment')
+            if env_elem is not None:
+                attr = (
+                    env_elem.get('dayTime')
+                    or env_elem.get('currentDayTime')
+                    or env_elem.get('currentTime')
+                )
+                if attr:
+                    try:
+                        day_time = float(attr)
+                    except (ValueError, TypeError):
+                        day_time = None
+
+        if isinstance(day_time, float):
+            if day_time <= 1:
+                day_time_ms = int(day_time * 86_400_000)
+            elif day_time < 1_000:
+                # assume minutes
+                day_time_ms = int(day_time * 60_000)
+            else:
+                day_time_ms = int(day_time)
+            day_time = day_time_ms
         return server_name, map_name, slots_used, slots_max, last_updated, day_time
     except Exception as e:
         log_debug(f"[ERROR] parse_server_stats: {e}")
