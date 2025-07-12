@@ -4,6 +4,7 @@ import asyncio
 
 import aiohttp
 import asyncpg
+import inspect
 import discord
 from discord import app_commands
 
@@ -63,6 +64,7 @@ class MyBot(discord.Client):
 
     async def setup_hook(self) -> None:
         """Called by discord.py when the client is ready."""
+        print("[DEBUG] asyncpg path:", inspect.getfile(asyncpg))
         self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
         await self._ensure_indexes()
 
