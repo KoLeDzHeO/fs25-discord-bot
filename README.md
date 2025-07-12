@@ -35,3 +35,7 @@
 - `/top7week` — список самых активных игроков за неделю.
 - `/top_total` — общий топ игроков по времени на сервере.
 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+This project is licensed under the [MIT License](LICENSE) — © 2025 KoLeDzHeO (Discord: 288650612051017730).
