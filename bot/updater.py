@@ -40,7 +40,6 @@ async def ftp_polling_task(bot: discord.Client) -> None:
     timeout = aiohttp.ClientTimeout(total=config.http_timeout)
     last_message: discord.Message | None = None
     last_snapshot: str | None = None
-    last_day_time: int | None = None
 
     async with aiohttp.ClientSession(timeout=timeout) as session:
         while not bot.is_closed():
@@ -107,9 +106,15 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 data["server_status"] = server_status
 
                 new_day_time = data.get("day_time")
+                last_day_time = None
+                if last_snapshot is not None:
+                    try:
+                        last_day_time = json.loads(last_snapshot).get("day_time")
+                    except Exception:
+                        last_day_time = None
                 if (
                     last_snapshot is not None
-                    and last_day_time is not None
+                    and isinstance(last_day_time, int)
                     and isinstance(new_day_time, int)
                     and abs(new_day_time - last_day_time) < 900_000
                 ):
@@ -123,13 +128,11 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 image_path = save_daily_online_graph(hourly_counts)
                 embed.set_image(url=f"attachment://{ONLINE_DAILY_GRAPH_FILENAME}")
 
-                snapshot_data = {"data": data, "counts": hourly_counts}
+                snapshot_data = {"data": data, "counts": hourly_counts, "day_time": new_day_time}
                 snapshot = json.dumps(snapshot_data, sort_keys=True)
 
                 if snapshot != last_snapshot:
                     last_snapshot = snapshot
-                    if isinstance(new_day_time, int):
-                        last_day_time = new_day_time
                     file = discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)
 
                     async for msg in channel.history(limit=config.message_cleanup_limit):
