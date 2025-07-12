@@ -7,20 +7,19 @@ import asyncpg
 import discord
 from discord import app_commands
 
-from config.config import config
 from bot.updater import (
-    ftp_polling_task,
     api_polling_task,
-    save_online_history_task,
     cleanup_old_online_history_task,
+    ftp_polling_task,
+    save_online_history_task,
 )
-from utils.total_time_updater import total_time_update_task
-
-from utils.logger import log_debug
+from commands.online_month import setup as setup_online_month
 from commands.top7lastweek import setup as setup_top7lastweek
 from commands.top7week import setup as setup_top7week
 from commands.top_total import setup as setup_top_total
-from commands.online_month import setup as setup_online_month
+from config.config import config
+from utils.logger import log_debug
+from utils.total_time_updater import total_time_update_task
 
 
 def handle_task_exception(task: asyncio.Task) -> None:

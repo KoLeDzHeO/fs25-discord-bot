@@ -3,20 +3,20 @@
 from __future__ import annotations
 
 import asyncio
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
 from typing import List, Tuple
 
 from asyncpg import Pool
 
 from config.config import (
+    WEEKLY_TOP_HOUR,
     WEEKLY_TOP_LIMIT,
     WEEKLY_TOP_MAX,
     WEEKLY_TOP_WEEKDAY,
-    WEEKLY_TOP_HOUR,
 )
-from utils.weekly_top import _get_week_bounds
 from utils.helpers import get_moscow_datetime
 from utils.logger import log_debug
+from utils.weekly_top import _get_week_bounds
 
 
 async def _fetch_top_rows(

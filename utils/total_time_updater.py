@@ -7,8 +7,8 @@ from typing import List, Tuple
 
 from asyncpg import Pool
 
-from utils.logger import log_debug
 from config.config import cleanup_history_days
+from utils.logger import log_debug
 
 
 async def _fetch_total_hours(

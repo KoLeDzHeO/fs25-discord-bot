@@ -7,22 +7,17 @@ import aiohttp
 import discord
 
 from config.config import (
-    config,
+    ONLINE_DAILY_GRAPH_FILENAME,
     cleanup_history_days,
     cleanup_task_interval_seconds,
-    ONLINE_DAILY_GRAPH_FILENAME,
-)
-from .fetchers import (
-    fetch_dedicated_server_stats,
-    fetch_required_files,
-)
-from .parsers import parse_all, parse_players_online
-from .discord_ui import build_embed
-from utils.online_daily_graph import (
-    save_daily_online_graph,
-    fetch_daily_online_counts,
+    config,
 )
 from utils.logger import log_debug
+from utils.online_daily_graph import fetch_daily_online_counts, save_daily_online_graph
+
+from .discord_ui import build_embed
+from .fetchers import fetch_dedicated_server_stats, fetch_required_files
+from .parsers import parse_all, parse_players_online
 
 
 async def ftp_polling_task(bot: discord.Client, session: aiohttp.ClientSession) -> None:
@@ -101,9 +96,7 @@ async def ftp_polling_task(bot: discord.Client, session: aiohttp.ClientSession) 
             log_debug("[Discord] Отправляем сообщение")
             await channel.send(
                 embed=embed,
-                files=[
-                    discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)
-                ],
+                files=[discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)],
             )
             log_debug("[Discord] ✅ Embed успешно отправлен.")
 

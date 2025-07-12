@@ -1,23 +1,20 @@
 """Helpers for fetching files from the API."""
 
 from typing import Optional, Tuple
-
-from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 import aiohttp
 
 from config.config import config
-from utils.logger import log_debug
 from ftp.fetcher import fetch_file
+from utils.logger import log_debug
 
 
 def _mask_url_param(url: str, param: str = "code", mask: str = "***") -> str:
     """Return ``url`` with the value of ``param`` replaced by ``mask``."""
     parts = urlsplit(url)
     query = parse_qsl(parts.query, keep_blank_values=True)
-    sanitized_query = [
-        (k, mask if k == param else v) for k, v in query
-    ]
+    sanitized_query = [(k, mask if k == param else v) for k, v in query]
     new_query = urlencode(sanitized_query)
     sanitized_parts = parts._replace(query=new_query)
     return urlunsplit(sanitized_parts)
@@ -38,7 +35,9 @@ async def _fetch(session: aiohttp.ClientSession, url: str, desc: str) -> Optiona
         return None
 
 
-async def fetch_api_file(session: aiohttp.ClientSession, filename: str) -> Optional[str]:
+async def fetch_api_file(
+    session: aiohttp.ClientSession, filename: str
+) -> Optional[str]:
     """Download a file from the API by name."""
     url = f"{config.api_base_url}?file={filename}&code={config.api_secret_code}"
     return await _fetch(session, url, filename)

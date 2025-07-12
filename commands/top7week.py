@@ -3,8 +3,8 @@ from __future__ import annotations
 import discord
 from discord import app_commands
 
-from utils.weekly_top import generate_weekly_top
 from utils.logger import log_debug
+from utils.weekly_top import generate_weekly_top
 
 
 def setup(tree: app_commands.CommandTree) -> None:
@@ -21,4 +21,3 @@ def setup(tree: app_commands.CommandTree) -> None:
             )
 
     log_debug("[Slash] Команда /top7week зарегистрирована")
-
