@@ -99,7 +99,8 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 image_path = save_daily_online_graph(hourly_counts)
                 embed.set_image(url=f"attachment://{ONLINE_DAILY_GRAPH_FILENAME}")
 
-                snapshot = json.dumps(data, sort_keys=True)
+                snapshot_data = {"data": data, "counts": hourly_counts}
+                snapshot = json.dumps(snapshot_data, sort_keys=True)
 
                 if snapshot != last_snapshot:
                     last_snapshot = snapshot
