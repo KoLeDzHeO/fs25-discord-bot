@@ -2,6 +2,8 @@
 
 from typing import Optional, Tuple
 
+from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
+
 import aiohttp
 
 from config.config import config
@@ -9,9 +11,22 @@ from utils.logger import log_debug
 from ftp.fetcher import fetch_file
 
 
+def _mask_url_param(url: str, param: str = "code", mask: str = "***") -> str:
+    """Return ``url`` with the value of ``param`` replaced by ``mask``."""
+    parts = urlsplit(url)
+    query = parse_qsl(parts.query, keep_blank_values=True)
+    sanitized_query = [
+        (k, mask if k == param else v) for k, v in query
+    ]
+    new_query = urlencode(sanitized_query)
+    sanitized_parts = parts._replace(query=new_query)
+    return urlunsplit(sanitized_parts)
+
+
 async def _fetch(session: aiohttp.ClientSession, url: str, desc: str) -> Optional[str]:
     """Fetch a file from the given ``url`` using the provided session."""
-    log_debug(f"[API] Загружаем {desc} по адресу: {url}")
+    safe_url = _mask_url_param(url)
+    log_debug(f"[API] Загружаем {desc} по адресу: {safe_url}")
     try:
         async with session.get(url) as resp:
             resp.raise_for_status()
