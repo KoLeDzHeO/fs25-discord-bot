@@ -274,6 +274,10 @@ def parse_all(
     try:
         server_name, map_name, slots_used, slots_max, _, day_time = parse_server_stats(server_stats)
 
+        ds_day_time = parse_day_time(dedicated_server_stats or server_stats)
+        if ds_day_time is not None:
+            day_time = ds_day_time
+
         if day_time is None:
             day_time = parse_day_time(career_savegame_ftp)
         if day_time is None and career_savegame_api is not None:
