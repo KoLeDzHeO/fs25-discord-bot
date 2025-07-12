@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import timedelta
+
+from utils.helpers import get_moscow_datetime
 from pathlib import Path
 from typing import List, Optional
 
@@ -66,7 +68,7 @@ async def generate_online_month_graph(db_pool) -> Optional[str]:
 
     counts = {row["day"]: row["count"] for row in rows}
 
-    today = datetime.utcnow().date()
+    today = get_moscow_datetime().date()
     start_date = today - timedelta(days=ONLINE_MONTH_DAYS - 1)
     dates = [start_date + timedelta(days=i) for i in range(ONLINE_MONTH_DAYS)]
     values = [counts.get(d, 0) for d in dates]

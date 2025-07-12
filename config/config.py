@@ -30,6 +30,10 @@ class Config:
     timezone_offset: int = int(os.getenv("TIMEZONE_OFFSET", 3))
     output_dir: Path = Path(os.getenv("OUTPUT_DIR", "output"))
 
+    http_timeout: int = int(os.getenv("HTTP_TIMEOUT", 10))
+    online_slice_minutes: int = int(os.getenv("ONLINE_HISTORY_SLICE_MINUTES", 15))
+    total_time_interval: int = int(os.getenv("TOTAL_TIME_INTERVAL_SECONDS", 3600))
+
 
 config = Config()
 
