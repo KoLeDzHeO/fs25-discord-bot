@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS player_online_history (
+    id SERIAL PRIMARY KEY,
     player_name TEXT NOT NULL,
     check_time TIMESTAMP NOT NULL,
     date DATE NOT NULL,
     hour INTEGER NOT NULL,
-    dow INTEGER NOT NULL,
-    PRIMARY KEY (player_name, date, hour)
+    dow INTEGER NOT NULL
 );
 
 CREATE INDEX IF NOT EXISTS idx_online_name_date_hour ON player_online_history (player_name, date, hour);

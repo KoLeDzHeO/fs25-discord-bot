@@ -37,6 +37,7 @@
 - `HTTP_TIMEOUT` — таймаут HTTP-запросов (сек)
 - `ONLINE_HISTORY_SLICE_MINUTES` — интервал среза онлайн-статистики
 - `TOTAL_TIME_INTERVAL_SECONDS` — интервал обновления общего времени
+- `DISCORD_MESSAGE_CLEANUP_LIMIT` — сколько сообщений удалять перед обновлением
 - `TOTAL_TOP_LIMIT` — максимальное число игроков в команде `/top_total`
 
 ## Railway

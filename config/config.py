@@ -33,6 +33,7 @@ class Config:
     http_timeout: int = int(os.getenv("HTTP_TIMEOUT", 10))
     online_slice_minutes: int = int(os.getenv("ONLINE_HISTORY_SLICE_MINUTES", 15))
     total_time_interval: int = int(os.getenv("TOTAL_TIME_INTERVAL_SECONDS", 3600))
+    message_cleanup_limit: int = int(os.getenv("DISCORD_MESSAGE_CLEANUP_LIMIT", 20))
 
 
 config = Config()
