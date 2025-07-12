@@ -17,6 +17,7 @@ async def _fetch_total_hours(
     history_table: str = "player_online_history",
 ) -> List[Tuple[str, int]]:
     """Return total active hours for each player from history."""
+    # Собираем уникальные часовые интервалы с тремя и более отметками
     query = f"""
         SELECT player_name, COUNT(*) AS hours
         FROM (
@@ -54,13 +55,14 @@ async def update_total_time(
     try:
         async with db_pool.acquire() as conn:
             async with conn.transaction():
+                # UPSERT обновляет время, если игрок уже есть в таблице
                 await conn.executemany(
                     f"""
                     INSERT INTO {total_table} (player_name, total_hours, updated_at)
                     VALUES ($1, $2, NOW())
                     ON CONFLICT (player_name) DO UPDATE
-                    SET total_hours = EXCLUDED.total_hours,
-                        updated_at = EXCLUDED.updated_at
+                        SET total_hours = EXCLUDED.total_hours,
+                            updated_at = EXCLUDED.updated_at
                     """,
                     rows,
                 )

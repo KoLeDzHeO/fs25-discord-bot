@@ -91,7 +91,7 @@ class MyBot(discord.Client):
         setup_top_total(self.tree)
         setup_online_month(self.tree)
         await self.tree.sync()
-        print("[SYNC] Slash-команды успешно синхронизированы.")
+        log_debug("[SYNC] Slash-команды успешно синхронизированы")
         log_debug("[Slash] Команды синхронизированы")
 
     async def on_ready(self) -> None:
