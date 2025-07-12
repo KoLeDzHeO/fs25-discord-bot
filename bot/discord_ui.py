@@ -26,6 +26,8 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     vehicles_owned = data.get("vehicles_owned")
     last_month_profit = data.get("last_month_profit")
     players_online = data.get("players_online", [])
+    day_time_val = data.get("day_time")
+    time_scale_val = data.get("time_scale")
 
     slots_str = (
         f"{slots_used if slots_used is not None else '—'} /"
@@ -51,11 +53,26 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     )
     vehicles_str = f"{vehicles_owned if vehicles_owned is not None else '—'}"
 
+    time_str = "—"
+    if isinstance(day_time_val, int):
+        minutes_total = day_time_val // 60000
+        hours = (minutes_total // 60) % 24
+        minutes = minutes_total % 60
+        time_str = f"{hours:02d}:{minutes:02d}"
+
+    scale_str = "—"
+    if time_scale_val is not None:
+        try:
+            scale_str = f"×{round(float(time_scale_val))}"
+        except (ValueError, TypeError):
+            pass
+
     # Текст embed'a формируем единой строкой
     lines = [
         data.get("server_status", "—"),
         f"🧷 **Сервер:** {server_name}",
         f"🗺️ **Карта:** {map_name}",
+        f"🕒 Время в игре: {time_str} ({scale_str})",
         f"💰 **Деньги фермы:** {money_str}",
         f"🌾 **Поля во владении:** {fields_str}",
         f"🚜 **Техника:** {vehicles_str} единиц",

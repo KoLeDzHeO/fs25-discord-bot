@@ -40,6 +40,7 @@ async def ftp_polling_task(bot: discord.Client) -> None:
     timeout = aiohttp.ClientTimeout(total=config.http_timeout)
     last_message: discord.Message | None = None
     last_snapshot: str | None = None
+    last_day_time: int | None = None
 
     async with aiohttp.ClientSession(timeout=timeout) as session:
         while not bot.is_closed():
@@ -47,6 +48,7 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 (
                     stats_xml,
                     vehicles_xml,
+                    career_api_xml,
                     career_ftp,
                     farmland_ftp,
                     farms_ftp,
@@ -57,13 +59,21 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                     "[DEBUG] Статусы: "
                     f"stats={bool(stats_xml)}, "
                     f"vehicles={bool(vehicles_xml)}, "
+                    f"careerAPI={bool(career_api_xml)}, "
                     f"careerFTP={bool(career_ftp)}, "
                     f"farmlandFTP={bool(farmland_ftp)}, "
                     f"farms={bool(farms_ftp)}"
                 )
 
                 all_files_loaded = all(
-                    [stats_xml, vehicles_xml, career_ftp, farmland_ftp, farms_ftp]
+                    [
+                        stats_xml,
+                        vehicles_xml,
+                        career_api_xml,
+                        career_ftp,
+                        farmland_ftp,
+                        farms_ftp,
+                    ]
                 )
                 if all_files_loaded:
                     server_status = "🟢 Сервер работает"
@@ -73,6 +83,7 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                         vehicles_api=vehicles_xml,
                         career_savegame_ftp=career_ftp,
                         farmland_ftp=farmland_ftp,
+                        career_savegame_api=career_api_xml,
                         farms_xml=farms_ftp,
                         dedicated_server_stats=dedicated_server_stats_ftp,
                     )
@@ -88,10 +99,23 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                         "fields_owned": None,
                         "fields_total": None,
                         "vehicles_owned": None,
+                        "day_time": None,
+                        "time_scale": None,
                         "players_online": [],
                     }
 
                 data["server_status"] = server_status
+
+                new_day_time = data.get("day_time")
+                if (
+                    last_snapshot is not None
+                    and last_day_time is not None
+                    and isinstance(new_day_time, int)
+                    and abs(new_day_time - last_day_time) < 900_000
+                ):
+                    await asyncio.sleep(config.ftp_poll_interval)
+                    continue
+
                 embed = build_embed(data)
 
                 hourly_counts = await fetch_daily_online_counts(bot.db_pool)
@@ -104,6 +128,8 @@ async def ftp_polling_task(bot: discord.Client) -> None:
 
                 if snapshot != last_snapshot:
                     last_snapshot = snapshot
+                    if isinstance(new_day_time, int):
+                        last_day_time = new_day_time
                     file = discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)
 
                     async for msg in channel.history(limit=config.message_cleanup_limit):
