@@ -20,10 +20,7 @@ def format_play_time(value: Any) -> str | None:
     except (ValueError, TypeError):
         return None
     hours = total_minutes // 60
-    minutes = total_minutes % 60
-    if hours >= 1:
-        return f"⏱ Общее время игры: {hours} ч. {minutes} мин."
-    return f"⏱ Общее время игры: {minutes} мин."
+    return f"🕒 Общее время игры: {hours} ч."
 
 
 def build_embed(data: Dict[str, Any]) -> discord.Embed:
