@@ -56,14 +56,18 @@ async def fetch_dedicated_server_stats(session: aiohttp.ClientSession) -> Option
     return await _fetch(session, url, "dedicated-server-stats.xml")
 
 
-async def fetch_required_files(bot) -> Tuple[Optional[str], Optional[str], Optional[str], Optional[str], Optional[str]]:
-    """Fetch all files required for building server stats."""
-    timeout = aiohttp.ClientTimeout(total=10)
-    async with aiohttp.ClientSession(timeout=timeout) as session:
-        log_debug("[FTP] Получаем dedicated-server-stats.xml")
-        stats_xml = await fetch_dedicated_server_stats(session)
-        log_debug("[API] Получаем vehicles")
-        vehicles_xml = await fetch_api_file(session, "vehicles")
+async def fetch_required_files(session: aiohttp.ClientSession) -> Tuple[
+    Optional[str],
+    Optional[str],
+    Optional[str],
+    Optional[str],
+    Optional[str],
+]:
+    """Fetch all files required for building server stats using provided session."""
+    log_debug("[FTP] Получаем dedicated-server-stats.xml")
+    stats_xml = await fetch_dedicated_server_stats(session)
+    log_debug("[API] Получаем vehicles")
+    vehicles_xml = await fetch_api_file(session, "vehicles")
 
     log_debug("[FTP] Получаем careerSavegame.xml")
     career_ftp = await fetch_file("careerSavegame.xml")

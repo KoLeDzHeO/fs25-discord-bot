@@ -2,6 +2,7 @@
 
 import asyncio
 
+import aiohttp
 import asyncpg
 import discord
 from discord import app_commands
@@ -38,6 +39,7 @@ class MyBot(discord.Client):
         self.tree = app_commands.CommandTree(self)
         self.tasks: list[asyncio.Task] = []
         self.db_pool = None
+        self.http_session: aiohttp.ClientSession | None = None
 
     async def _ensure_indexes(self) -> None:
         """Create required database indexes if they do not exist."""
@@ -56,6 +58,8 @@ class MyBot(discord.Client):
             await asyncio.gather(*self.tasks, return_exceptions=True)
         if self.db_pool:
             await self.db_pool.close()
+        if self.http_session:
+            await self.http_session.close()
         await super().close()
 
     async def setup_hook(self) -> None:
@@ -63,15 +67,18 @@ class MyBot(discord.Client):
         self.db_pool = await asyncpg.create_pool(dsn=config.postgres_url)
         await self._ensure_indexes()
 
-        task = asyncio.create_task(api_polling_task())
+        timeout = aiohttp.ClientTimeout(total=10)
+        self.http_session = aiohttp.ClientSession(timeout=timeout)
+
+        task = asyncio.create_task(api_polling_task(self.http_session))
         task.add_done_callback(handle_task_exception)
         self.tasks.append(task)
 
-        task = asyncio.create_task(ftp_polling_task(self))
+        task = asyncio.create_task(ftp_polling_task(self, self.http_session))
         task.add_done_callback(handle_task_exception)
         self.tasks.append(task)
 
-        task = asyncio.create_task(save_online_history_task(self))
+        task = asyncio.create_task(save_online_history_task(self, self.http_session))
         task.add_done_callback(handle_task_exception)
         self.tasks.append(task)
 

@@ -26,11 +26,16 @@ async def fetch_file(file_name: str) -> Optional[str]:
             await ftp_client.change_directory(config.ftp_savegame_dir)
             log_debug(f"[FTP] Downloading file: {file_name}")
             async with ftp_client.download_stream(file_name) as stream:
-                content = await stream.read()
+                buffer = bytearray()
+                while True:
+                    chunk = await stream.read(8192)
+                    if not chunk:
+                        break
+                    buffer.extend(chunk)
                 log_debug(
-                    f"[FTP] File {file_name} downloaded. Size: {len(content)} bytes"
+                    f"[FTP] File {file_name} downloaded. Size: {len(buffer)} bytes"
                 )
-                return content.decode("utf-8")
+                return buffer.decode("utf-8")
     except Exception as e:
         log_debug(f"[FTP] ❌ Error downloading file '{file_name}': {e}")
         return None
