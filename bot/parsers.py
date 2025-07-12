@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from typing import Tuple, Optional, Dict
+from typing import Tuple, Optional, Dict, Any
 
 from utils.logger import log_debug
 
@@ -149,7 +149,7 @@ def parse_all(
     farms_xml: Optional[str] = None,
     dedicated_server_stats: Optional[str] = None,
     farm_id: str = '1'
-) -> Dict[str, Optional[int]]:
+) -> Dict[str, Any]:
     """Собирает все данные из разных источников и возвращает единую структуру."""
     try:
         server_name, map_name, slots_used, slots_max, _ = parse_server_stats(server_stats)
