@@ -42,7 +42,7 @@ def parse_server_stats(
         stats_elem = root.find('.//Stats')
         last_updated = stats_elem.get('saveDateFormatted') if stats_elem is not None else None
 
-        day_time = None
+        day_time: Optional[float] = None
         day_time_elem = root.find('.//dayTime')
         if day_time_elem is not None and day_time_elem.text:
             try:
@@ -51,7 +51,21 @@ def parse_server_stats(
                 day_time = None
 
         if day_time is None:
-            env_elem = root.find('.//environment')
+            stats_attr = root.find('.//Stats')
+            if stats_attr is not None:
+                attr = (
+                    stats_attr.get('dayTime')
+                    or stats_attr.get('currentDayTime')
+                    or stats_attr.get('currentTime')
+                )
+                if attr:
+                    try:
+                        day_time = float(attr)
+                    except (ValueError, TypeError):
+                        day_time = None
+
+        if day_time is None:
+            env_elem = root.find('.//environment') or root.find('.//Environment')
             if env_elem is not None:
                 attr = (
                     env_elem.get('dayTime')
@@ -99,6 +113,15 @@ def parse_time_scale(xml_text: str) -> Optional[float]:
     """Извлекает ``timeScale`` из careerSavegame.xml."""
     try:
         root = ET.fromstring(xml_text)
+        settings = root.find('.//settings')
+        if settings is not None:
+            ts = settings.get('timeScale')
+            if ts:
+                try:
+                    return float(ts)
+                except (ValueError, TypeError):
+                    return None
+
         elem = root.find('.//timeScale')
         if elem is not None and elem.text:
             try:
