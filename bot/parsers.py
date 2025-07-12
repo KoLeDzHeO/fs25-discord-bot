@@ -133,6 +133,48 @@ def parse_time_scale(xml_text: str) -> Optional[float]:
         log_debug(f"[ERROR] parse_time_scale: {e}")
         return None
 
+
+def parse_day_time(xml_text: str) -> Optional[int]:
+    """Возвращает текущее игровое время из XML."""
+    try:
+        root = ET.fromstring(xml_text)
+
+        def _extract(node):
+            if node is None:
+                return None
+            for attr in ("dayTime", "currentDayTime", "currentTime"):
+                val = node.get(attr)
+                if val:
+                    try:
+                        return float(val)
+                    except (ValueError, TypeError):
+                        return None
+            for tag in ("dayTime", "currentDayTime", "currentTime"):
+                elem = node.find(f".//{tag}")
+                if elem is not None and elem.text:
+                    try:
+                        return float(elem.text)
+                    except (ValueError, TypeError):
+                        return None
+            return None
+
+        day_time = _extract(root)
+        if day_time is None:
+            day_time = _extract(root.find(".//Stats"))
+        if day_time is None:
+            day_time = _extract(root.find(".//environment") or root.find(".//Environment"))
+
+        if isinstance(day_time, float):
+            if day_time <= 1:
+                return int(day_time * 86_400_000)
+            if day_time < 1_000:
+                return int(day_time * 60_000)
+            return int(day_time)
+        return None
+    except Exception as e:
+        log_debug(f"[ERROR] parse_day_time: {e}")
+        return None
+
 def _count_vehicles(xml_text: str, farm_id: str) -> Optional[int]:
     """Подсчёт техники в файле vehicles."""
     try:
@@ -231,6 +273,11 @@ def parse_all(
     """Собирает все данные из разных источников и возвращает единую структуру."""
     try:
         server_name, map_name, slots_used, slots_max, _, day_time = parse_server_stats(server_stats)
+
+        if day_time is None:
+            day_time = parse_day_time(career_savegame_ftp)
+        if day_time is None and career_savegame_api is not None:
+            day_time = parse_day_time(career_savegame_api)
 
         farm_money = parse_farm_money(career_savegame_ftp)
         time_scale = parse_time_scale(career_savegame_api) if career_savegame_api is not None else None
