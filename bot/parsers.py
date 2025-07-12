@@ -134,6 +134,31 @@ def parse_time_scale(xml_text: str) -> Optional[float]:
         return None
 
 
+def parse_play_time(xml_text: str) -> Optional[float]:
+    """Возвращает общее время игры в минутах из careerSavegame.xml."""
+    try:
+        root = ET.fromstring(xml_text)
+        elem = root.find('.//playTime')
+        if elem is not None and elem.text:
+            try:
+                return float(elem.text)
+            except (ValueError, TypeError):
+                pass
+
+        stats = root.find('.//statistics')
+        if stats is not None:
+            val = stats.get('playTime')
+            if val:
+                try:
+                    return float(val)
+                except (ValueError, TypeError):
+                    return None
+        return None
+    except Exception as e:
+        log_debug(f"[ERROR] parse_play_time: {e}")
+        return None
+
+
 def parse_day_time(xml_text: str) -> Optional[int]:
     """Возвращает текущее игровое время из XML."""
     try:
@@ -286,6 +311,8 @@ def parse_all(
         farm_money = parse_farm_money(career_savegame_ftp)
         time_scale = parse_time_scale(career_savegame_api) if career_savegame_api is not None else None
 
+        play_time = parse_play_time(career_savegame_api) if career_savegame_api is not None else None
+
         fields_owned, fields_total = parse_farmland(farmland_ftp, farm_id)
 
         vehicles_owned = _count_vehicles(vehicles_api, farm_id)
@@ -313,6 +340,7 @@ def parse_all(
             'vehicles_owned': vehicles_owned,
             'day_time': day_time,
             'time_scale': time_scale,
+            'play_time': play_time,
             "players_online": players_online,
         }
     except Exception as e:

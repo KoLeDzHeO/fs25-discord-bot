@@ -13,6 +13,19 @@ def format_money(amount: Any) -> str:
     return f"{amount:,} $".replace(",", " ")
 
 
+def format_play_time(value: Any) -> str | None:
+    """Форматирование общего времени игры из минут."""
+    try:
+        total_minutes = int(float(value))
+    except (ValueError, TypeError):
+        return None
+    hours = total_minutes // 60
+    minutes = total_minutes % 60
+    if hours >= 1:
+        return f"⏱ Общее время игры: {hours} ч. {minutes} мин."
+    return f"⏱ Общее время игры: {minutes} мин."
+
+
 def build_embed(data: Dict[str, Any]) -> discord.Embed:
     """Формирует embed по данным, полученным из ``parse_all``."""
 
@@ -28,6 +41,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
     players_online = data.get("players_online", [])
     day_time_val = data.get("day_time")
     time_scale_val = data.get("time_scale")
+    play_time_val = data.get("play_time")
 
     slots_str = (
         f"{slots_used if slots_used is not None else '—'} /"
@@ -67,12 +81,18 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
         except (ValueError, TypeError):
             pass
 
+    play_time_str = format_play_time(play_time_val)
+
     # Текст embed'a формируем единой строкой
     lines = [
         data.get("server_status", "—"),
         f"🧷 **Сервер:** {server_name}",
         f"🗺️ **Карта:** {map_name}",
-        f"🕒 **Время в игре:** {time_str} ({scale_str})",
+        f"🕒 Время в игре: {time_str} ({scale_str})",
+    ]
+    if play_time_str:
+        lines.append(play_time_str)
+    lines += [
         f"💰 **Деньги фермы:** {money_str}",
         f"🌾 **Поля во владении:** {fields_str}",
         f"🚜 **Техника:** {vehicles_str} единиц",
