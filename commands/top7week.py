@@ -21,4 +21,3 @@ def setup(tree: app_commands.CommandTree) -> None:
             )
 
     log_debug("[Slash] Команда /top7week зарегистрирована")
-

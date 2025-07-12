@@ -51,20 +51,16 @@ async def _handle_command(
     await interaction.response.defer()
     pool: Pool = interaction.client.db_pool
     try:
-        rows, total = await _fetch_top_total(
-            pool, table_name=table_name, limit=limit
-        )
+        rows, total = await _fetch_top_total(pool, table_name=table_name, limit=limit)
     except Exception:
-        await interaction.followup.send(
-            "Ошибка при получении топа.", ephemeral=True
-        )
+        await interaction.followup.send("Ошибка при получении топа.", ephemeral=True)
         return
 
     if not rows:
         await interaction.followup.send("Нет данных.")
         return
 
-    lines = ["\U0001F3C6 Топ игроков по общему времени:"]
+    lines = ["\U0001f3c6 Топ игроков по общему времени:"]
     for idx, (name, hours) in enumerate(rows, start=1):
         lines.append(f"{idx}. {name} — {hours} ч")
 

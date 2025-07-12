@@ -45,12 +45,10 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
         f" {slots_max if slots_max is not None else '—'}"
     )
 
-# Формируем строку для денег фермы и прибыли за последний месяц
+    # Формируем строку для денег фермы и прибыли за последний месяц
     if last_month_profit is not None:
         sign = "+" if last_month_profit >= 0 else "−"
-        formatted_profit = (
-            f"{sign}{abs(last_month_profit):,} $".replace(",", " ")
-        )
+        formatted_profit = f"{sign}{abs(last_month_profit):,} $".replace(",", " ")
         money_str = (
             f"{format_money(data.get('farm_money'))} / {formatted_profit}"
             " (за последний месяц)"

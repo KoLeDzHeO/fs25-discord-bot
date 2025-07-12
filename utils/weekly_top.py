@@ -61,7 +61,7 @@ async def generate_weekly_top(db_pool) -> str:
         return "Нет данных за неделю."
 
     limit = min(WEEKLY_TOP_LIMIT, len(rows))
-    lines: List[str] = [f"\U0001F4CA ТОП {limit} игроков за неделю:"]
+    lines: List[str] = [f"\U0001f4ca ТОП {limit} игроков за неделю:"]
     for idx, row in enumerate(rows[:limit], start=1):
         lines.append(f"{idx}. {row['player_name']} — {row['hours']} ч")
 

@@ -35,4 +35,3 @@ def setup(tree: app_commands.CommandTree) -> None:
             )
 
     log_debug("[Slash] Команда /online_month зарегистрирована")
-

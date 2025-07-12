@@ -39,7 +39,6 @@ async def ftp_polling_task(bot: discord.Client) -> None:
         return
 
     timeout = aiohttp.ClientTimeout(total=config.http_timeout)
-    last_message: discord.Message | None = None
     last_snapshot: str | None = None
     last_play_time_check: float = 0.0
     last_play_time_value: float | None = None
@@ -114,7 +113,10 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 if (
                     play_time_new is not None
                     and last_play_time_value is not None
-                    and (now - last_play_time_check < 3600 or play_time_new == last_play_time_value)
+                    and (
+                        now - last_play_time_check < 3600
+                        or play_time_new == last_play_time_value
+                    )
                 ):
                     data["play_time"] = last_play_time_value
                 else:
@@ -156,15 +158,21 @@ async def ftp_polling_task(bot: discord.Client) -> None:
 
                 if snapshot != last_snapshot:
                     last_snapshot = snapshot
-                    file = discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)
+                    file = discord.File(
+                        image_path, filename=ONLINE_DAILY_GRAPH_FILENAME
+                    )
 
-                    async for msg in channel.history(limit=config.message_cleanup_limit):
+                    async for msg in channel.history(
+                        limit=config.message_cleanup_limit
+                    ):
                         if msg.author == bot.user:
                             log_debug(f"[Discord] Удаляем сообщение {msg.id}")
                             try:
                                 await msg.delete()
                             except Exception as e:
-                                log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
+                                log_debug(
+                                    f"[Discord] Не удалось удалить сообщение: {e}"
+                                )
 
                     log_debug("[Discord] Отправляем сообщение")
                     await channel.send(embed=embed, files=[file])
@@ -176,7 +184,6 @@ async def ftp_polling_task(bot: discord.Client) -> None:
             except Exception as e:
                 log_debug(f"[TASK] ftp_polling_task error: {e}")
                 await asyncio.sleep(5)
-
 
 
 async def save_online_history_task(bot: discord.Client) -> None:

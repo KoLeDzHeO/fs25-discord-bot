@@ -19,15 +19,15 @@ def parse_server_stats(
         root = ET.fromstring(xml_text)
         server_elem = root  # <Server> — корень
 
-        server_name = server_elem.get('name')
-        map_name = server_elem.get('mapName')
+        server_name = server_elem.get("name")
+        map_name = server_elem.get("mapName")
 
-        slots_elem = server_elem.find('.//Slots')
+        slots_elem = server_elem.find(".//Slots")
         slots_max = None
         slots_used = None
         if slots_elem is not None:
-            cap = slots_elem.get('capacity')
-            used = slots_elem.get('numUsed')
+            cap = slots_elem.get("capacity")
+            used = slots_elem.get("numUsed")
             if cap is not None:
                 try:
                     slots_max = int(cap)
@@ -39,11 +39,13 @@ def parse_server_stats(
                 except ValueError:
                     pass
 
-        stats_elem = root.find('.//Stats')
-        last_updated = stats_elem.get('saveDateFormatted') if stats_elem is not None else None
+        stats_elem = root.find(".//Stats")
+        last_updated = (
+            stats_elem.get("saveDateFormatted") if stats_elem is not None else None
+        )
 
         day_time: Optional[float] = None
-        day_time_elem = root.find('.//dayTime')
+        day_time_elem = root.find(".//dayTime")
         if day_time_elem is not None and day_time_elem.text:
             try:
                 day_time = float(day_time_elem.text)
@@ -51,12 +53,12 @@ def parse_server_stats(
                 day_time = None
 
         if day_time is None:
-            stats_attr = root.find('.//Stats')
+            stats_attr = root.find(".//Stats")
             if stats_attr is not None:
                 attr = (
-                    stats_attr.get('dayTime')
-                    or stats_attr.get('currentDayTime')
-                    or stats_attr.get('currentTime')
+                    stats_attr.get("dayTime")
+                    or stats_attr.get("currentDayTime")
+                    or stats_attr.get("currentTime")
                 )
                 if attr:
                     try:
@@ -65,12 +67,12 @@ def parse_server_stats(
                         day_time = None
 
         if day_time is None:
-            env_elem = root.find('.//environment') or root.find('.//Environment')
+            env_elem = root.find(".//environment") or root.find(".//Environment")
             if env_elem is not None:
                 attr = (
-                    env_elem.get('dayTime')
-                    or env_elem.get('currentDayTime')
-                    or env_elem.get('currentTime')
+                    env_elem.get("dayTime")
+                    or env_elem.get("currentDayTime")
+                    or env_elem.get("currentTime")
                 )
                 if attr:
                     try:
@@ -97,7 +99,7 @@ def parse_farm_money(xml_text: str) -> Optional[int]:
     """Получает баланс фермы из careerSavegame.xml на FTP."""
     try:
         root = ET.fromstring(xml_text)
-        elem = root.find('.//statistics/money')
+        elem = root.find(".//statistics/money")
         if elem is not None and elem.text:
             try:
                 return int(float(elem.text))
@@ -113,16 +115,16 @@ def parse_time_scale(xml_text: str) -> Optional[float]:
     """Извлекает ``timeScale`` из careerSavegame.xml."""
     try:
         root = ET.fromstring(xml_text)
-        settings = root.find('.//settings')
+        settings = root.find(".//settings")
         if settings is not None:
-            ts = settings.get('timeScale')
+            ts = settings.get("timeScale")
             if ts:
                 try:
                     return float(ts)
                 except (ValueError, TypeError):
                     return None
 
-        elem = root.find('.//timeScale')
+        elem = root.find(".//timeScale")
         if elem is not None and elem.text:
             try:
                 return float(elem.text)
@@ -138,16 +140,16 @@ def parse_play_time(xml_text: str) -> Optional[float]:
     """Возвращает общее время игры в минутах из careerSavegame.xml."""
     try:
         root = ET.fromstring(xml_text)
-        elem = root.find('.//playTime')
+        elem = root.find(".//playTime")
         if elem is not None and elem.text:
             try:
                 return float(elem.text)
             except (ValueError, TypeError):
                 pass
 
-        stats = root.find('.//statistics')
+        stats = root.find(".//statistics")
         if stats is not None:
-            val = stats.get('playTime')
+            val = stats.get("playTime")
             if val:
                 try:
                     return float(val)
@@ -187,7 +189,9 @@ def parse_day_time(xml_text: str) -> Optional[int]:
         if day_time is None:
             day_time = _extract(root.find(".//Stats"))
         if day_time is None:
-            day_time = _extract(root.find(".//environment") or root.find(".//Environment"))
+            day_time = _extract(
+                root.find(".//environment") or root.find(".//Environment")
+            )
 
         if isinstance(day_time, float):
             if day_time <= 1:
@@ -200,24 +204,25 @@ def parse_day_time(xml_text: str) -> Optional[int]:
         log_debug(f"[ERROR] parse_day_time: {e}")
         return None
 
+
 def _count_vehicles(xml_text: str, farm_id: str) -> Optional[int]:
     """Подсчёт техники в файле vehicles."""
     try:
         root = ET.fromstring(xml_text)
-        vehicles = root.findall('.//vehicle')
+        vehicles = root.findall(".//vehicle")
         if not vehicles:
             return 0
 
-        keywords = ['pallet', 'tree', 'wood', 'object', 'trailerWood', 'camera']
+        keywords = ["pallet", "tree", "wood", "object", "trailerWood", "camera"]
 
-        has_farmid = any(v.get('farmId') is not None for v in vehicles)
+        has_farmid = any(v.get("farmId") is not None for v in vehicles)
         if not has_farmid:
             return None
 
         count = 0
         for v in vehicles:
-            if v.get('farmId') == farm_id:
-                filename = v.get('filename', '')
+            if v.get("farmId") == farm_id:
+                filename = v.get("filename", "")
                 if not any(k in filename for k in keywords):
                     count += 1
         return count
@@ -230,13 +235,14 @@ def parse_farmland(xml_text: str, farm_id: str) -> Tuple[int, int]:
     """Подсчитывает количество полей у фермы."""
     try:
         root = ET.fromstring(xml_text)
-        farmlands = root.findall('.//Farmland') or root.findall('.//farmland')
+        farmlands = root.findall(".//Farmland") or root.findall(".//farmland")
         total = len(farmlands)
-        owned = len([f for f in farmlands if f.get('farmId') == farm_id])
+        owned = len([f for f in farmlands if f.get("farmId") == farm_id])
         return owned, total
     except Exception as e:
         log_debug(f"[ERROR] parse_farmland: {e}")
         return 0, 0
+
 
 def parse_players_online(xml_text: str) -> list:
     """Возвращает список ников онлайн-игроков из dedicated-server-stats.xml.
@@ -283,7 +289,6 @@ def parse_last_month_profit(xml_text: str) -> Optional[int]:
         return None
 
 
-
 def parse_all(
     server_stats: str,
     vehicles_api: str,
@@ -293,11 +298,13 @@ def parse_all(
     vehicles_ftp: Optional[str] = None,
     farms_xml: Optional[str] = None,
     dedicated_server_stats: Optional[str] = None,
-    farm_id: str = '1'
+    farm_id: str = "1",
 ) -> Dict[str, Optional[int]]:
     """Собирает все данные из разных источников и возвращает единую структуру."""
     try:
-        server_name, map_name, slots_used, slots_max, _, day_time = parse_server_stats(server_stats)
+        server_name, map_name, slots_used, slots_max, _, day_time = parse_server_stats(
+            server_stats
+        )
 
         ds_day_time = parse_day_time(dedicated_server_stats or server_stats)
         if ds_day_time is not None:
@@ -309,9 +316,17 @@ def parse_all(
             day_time = parse_day_time(career_savegame_api)
 
         farm_money = parse_farm_money(career_savegame_ftp)
-        time_scale = parse_time_scale(career_savegame_api) if career_savegame_api is not None else None
+        time_scale = (
+            parse_time_scale(career_savegame_api)
+            if career_savegame_api is not None
+            else None
+        )
 
-        play_time = parse_play_time(career_savegame_api) if career_savegame_api is not None else None
+        play_time = (
+            parse_play_time(career_savegame_api)
+            if career_savegame_api is not None
+            else None
+        )
 
         fields_owned, fields_total = parse_farmland(farmland_ftp, farm_id)
 
@@ -322,28 +337,29 @@ def parse_all(
 
         log_debug(f"[PARSE_ALL] Сервер: {server_name}, Карта: {map_name}")
 
-        last_month_profit = parse_last_month_profit(farms_xml) if farms_xml is not None else None
+        last_month_profit = (
+            parse_last_month_profit(farms_xml) if farms_xml is not None else None
+        )
 
         players_online = []
         if dedicated_server_stats is not None:
             players_online = parse_players_online(dedicated_server_stats)
 
         return {
-            'last_month_profit': last_month_profit,
-            'server_name': server_name,
-            'map_name': map_name,
-            'slots_used': slots_used,
-            'slots_max': slots_max,
-            'farm_money': farm_money,
-            'fields_owned': fields_owned,
-            'fields_total': fields_total,
-            'vehicles_owned': vehicles_owned,
-            'day_time': day_time,
-            'time_scale': time_scale,
-            'play_time': play_time,
+            "last_month_profit": last_month_profit,
+            "server_name": server_name,
+            "map_name": map_name,
+            "slots_used": slots_used,
+            "slots_max": slots_max,
+            "farm_money": farm_money,
+            "fields_owned": fields_owned,
+            "fields_total": fields_total,
+            "vehicles_owned": vehicles_owned,
+            "day_time": day_time,
+            "time_scale": time_scale,
+            "play_time": play_time,
             "players_online": players_online,
         }
     except Exception as e:
         log_debug(f"[ERROR] parse_all: {e}")
         return {}
-
