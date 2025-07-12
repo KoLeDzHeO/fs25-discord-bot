@@ -168,7 +168,7 @@ async def save_online_history_task(bot: discord.Client) -> None:
                         except Exception as db_e:
                             log_debug(f"[DB] Ошибка записи игрока: {db_e}")
 
-                    await asyncio.sleep(60)
+                    wait_seconds = 60
                 else:
                     wait_seconds = ((15 - (minute % 15)) * 60) - now.second
                     if wait_seconds <= 0:
