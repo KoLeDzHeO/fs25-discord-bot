@@ -1,7 +1,9 @@
 """Background tasks for updating and storing server information."""
 
 import asyncio
-from datetime import datetime, timedelta
+from datetime import timedelta
+
+from utils.helpers import get_moscow_datetime
 
 import aiohttp
 import discord
@@ -118,7 +120,7 @@ async def ftp_polling_task(bot: discord.Client) -> None:
 
 async def api_polling_task() -> None:
     """Периодически опрашивает API и сохраняет онлайн игроков."""
-    timeout = aiohttp.ClientTimeout(total=10)
+    timeout = aiohttp.ClientTimeout(total=config.http_timeout)
     async with aiohttp.ClientSession(timeout=timeout) as session:
         while True:
             try:
@@ -133,20 +135,19 @@ async def api_polling_task() -> None:
 
 
 async def save_online_history_task(bot: discord.Client) -> None:
-    """Сохраняет список онлайн-игроков каждые 15 минут."""
+    """Сохраняет список онлайн-игроков каждые ``online_slice_minutes`` минут."""
     log_debug("[TASK] Запущен save_online_history_task")
     await bot.wait_until_ready()
-    timeout = aiohttp.ClientTimeout(total=10)
+    timeout = aiohttp.ClientTimeout(total=config.http_timeout)
     async with aiohttp.ClientSession(timeout=timeout) as session:
         while not bot.is_closed():
             try:
-                now = datetime.now()
+                now = get_moscow_datetime()
                 minute = now.minute
 
-                now_utc = datetime.utcnow().replace(tzinfo=None)
-                now_moscow = now_utc + timedelta(hours=config.timezone_offset)
+                now_moscow = now
 
-                if minute % 15 == 0:
+                if minute % config.online_slice_minutes == 0:
                     log_debug("[ONLINE] Время среза, получаем список игроков")
                     xml = await fetch_dedicated_server_stats(session)
                     players = parse_players_online(xml) if xml else []
@@ -170,7 +171,9 @@ async def save_online_history_task(bot: discord.Client) -> None:
 
                     wait_seconds = 60
                 else:
-                    wait_seconds = ((15 - (minute % 15)) * 60) - now.second
+                    wait_seconds = (
+                        (config.online_slice_minutes - (minute % config.online_slice_minutes)) * 60
+                    ) - now.second
                     if wait_seconds <= 0:
                         wait_seconds = 1
                     log_debug(f"[ONLINE] Не время среза, ждём {wait_seconds} секунд")

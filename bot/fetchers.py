@@ -58,7 +58,7 @@ async def fetch_dedicated_server_stats(session: aiohttp.ClientSession) -> Option
 
 async def fetch_required_files(bot) -> Tuple[Optional[str], Optional[str], Optional[str], Optional[str], Optional[str]]:
     """Fetch all files required for building server stats."""
-    timeout = aiohttp.ClientTimeout(total=10)
+    timeout = aiohttp.ClientTimeout(total=config.http_timeout)
     async with aiohttp.ClientSession(timeout=timeout) as session:
         log_debug("[FTP] Получаем dedicated-server-stats.xml")
         stats_xml = await fetch_dedicated_server_stats(session)

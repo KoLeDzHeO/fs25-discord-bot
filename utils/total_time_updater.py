@@ -8,7 +8,7 @@ from typing import List, Tuple
 from asyncpg import Pool
 
 from utils.logger import log_debug
-from config.config import cleanup_history_days
+from config.config import cleanup_history_days, config
 
 
 async def _fetch_total_hours(
@@ -75,7 +75,7 @@ async def update_total_time(
 async def total_time_update_task(
     bot,
     *,
-    interval_seconds: int = 3600,
+    interval_seconds: int = config.total_time_interval,
     history_table: str = "player_online_history",
     total_table: str = "player_total_time",
 ) -> None:
