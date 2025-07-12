@@ -85,7 +85,7 @@ def build_embed(data: Dict[str, Any]) -> discord.Embed:
         data.get("server_status", "—"),
         f"🧷 **Сервер:** {server_name}",
         f"🗺️ **Карта:** {map_name}",
-        f"🕒 Время в игре: {time_str} ({scale_str})",
+        f"🕒 **Время в игре:** {time_str} ({scale_str})",
     ]
     if play_time_str:
         lines.append(play_time_str)
