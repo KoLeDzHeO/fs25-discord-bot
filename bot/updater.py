@@ -25,7 +25,7 @@ from utils.online_daily_graph import (
 from utils.logger import log_debug
 
 
-async def ftp_polling_task(bot: discord.Client) -> None:
+async def ftp_polling_task(bot: discord.Client, session: aiohttp.ClientSession) -> None:
     """Periodically updates the Discord message with server stats."""
     log_debug("[TASK] Запущен ftp_polling_task")
     await bot.wait_until_ready()
@@ -42,7 +42,7 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 career_ftp,
                 farmland_ftp,
                 farms_ftp,
-            ) = await fetch_required_files(bot)
+            ) = await fetch_required_files(session)
             dedicated_server_stats_ftp = stats_xml
 
             log_debug(
@@ -116,71 +116,69 @@ async def ftp_polling_task(bot: discord.Client) -> None:
             await asyncio.sleep(5)
 
 
-async def api_polling_task() -> None:
+async def api_polling_task(session: aiohttp.ClientSession) -> None:
     """Периодически опрашивает API и сохраняет онлайн игроков."""
-    timeout = aiohttp.ClientTimeout(total=10)
-    async with aiohttp.ClientSession(timeout=timeout) as session:
-        while True:
-            try:
-                await fetch_dedicated_server_stats(session)
-                await asyncio.sleep(config.api_poll_interval)
-            except asyncio.CancelledError:
-                log_debug("[TASK] api_polling_task cancelled")
-                break
-            except Exception as e:
-                log_debug(f"[TASK] api_polling_task error: {e}")
-                await asyncio.sleep(5)
+    while True:
+        try:
+            await fetch_dedicated_server_stats(session)
+            await asyncio.sleep(config.api_poll_interval)
+        except asyncio.CancelledError:
+            log_debug("[TASK] api_polling_task cancelled")
+            break
+        except Exception as e:
+            log_debug(f"[TASK] api_polling_task error: {e}")
+            await asyncio.sleep(5)
 
 
-async def save_online_history_task(bot: discord.Client) -> None:
+async def save_online_history_task(
+    bot: discord.Client, session: aiohttp.ClientSession
+) -> None:
     """Сохраняет список онлайн-игроков каждые 15 минут."""
     log_debug("[TASK] Запущен save_online_history_task")
     await bot.wait_until_ready()
-    timeout = aiohttp.ClientTimeout(total=10)
-    async with aiohttp.ClientSession(timeout=timeout) as session:
-        while not bot.is_closed():
-            try:
-                now = datetime.now()
-                minute = now.minute
+    while not bot.is_closed():
+        try:
+            now = datetime.now()
+            minute = now.minute
 
-                now_utc = datetime.utcnow().replace(tzinfo=None)
-                now_moscow = now_utc + timedelta(hours=config.timezone_offset)
+            now_utc = datetime.utcnow().replace(tzinfo=None)
+            now_moscow = now_utc + timedelta(hours=config.timezone_offset)
 
-                if minute % 15 == 0:
-                    log_debug("[ONLINE] Время среза, получаем список игроков")
-                    xml = await fetch_dedicated_server_stats(session)
-                    players = parse_players_online(xml) if xml else []
-                    log_debug(f"[ONLINE] Игроков онлайн: {len(players)}")
-                    records = [(name, now_moscow) for name in players]
-                    if records:
-                        try:
-                            await bot.db_pool.executemany(
-                                """
-                                INSERT INTO player_online_history (
-                                    player_name, check_time, date, hour, dow
-                                ) VALUES (
-                                    $1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2)
-                                )
-                                ON CONFLICT (player_name, date, hour) DO NOTHING
-                                """,
-                                records,
+            if minute % 15 == 0:
+                log_debug("[ONLINE] Время среза, получаем список игроков")
+                xml = await fetch_dedicated_server_stats(session)
+                players = parse_players_online(xml) if xml else []
+                log_debug(f"[ONLINE] Игроков онлайн: {len(players)}")
+                records = [(name, now_moscow) for name in players]
+                if records:
+                    try:
+                        await bot.db_pool.executemany(
+                            """
+                            INSERT INTO player_online_history (
+                                player_name, check_time, date, hour, dow
+                            ) VALUES (
+                                $1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2)
                             )
-                        except Exception as db_e:
-                            log_debug(f"[DB] Ошибка записи игрока: {db_e}")
+                            ON CONFLICT (player_name, date, hour) DO NOTHING
+                            """,
+                            records,
+                        )
+                    except Exception as db_e:
+                        log_debug(f"[DB] Ошибка записи игрока: {db_e}")
 
-                    wait_seconds = 60
-                else:
-                    wait_seconds = ((15 - (minute % 15)) * 60) - now.second
-                    if wait_seconds <= 0:
-                        wait_seconds = 1
-                    log_debug(f"[ONLINE] Не время среза, ждём {wait_seconds} секунд")
-                await asyncio.sleep(wait_seconds)
-            except asyncio.CancelledError:
-                log_debug("[TASK] save_online_history_task cancelled")
-                break
-            except Exception as e:
-                log_debug(f"[TASK] save_online_history_task error: {e}")
-                await asyncio.sleep(5)
+                wait_seconds = 60
+            else:
+                wait_seconds = ((15 - (minute % 15)) * 60) - now.second
+                if wait_seconds <= 0:
+                    wait_seconds = 1
+                log_debug(f"[ONLINE] Не время среза, ждём {wait_seconds} секунд")
+            await asyncio.sleep(wait_seconds)
+        except asyncio.CancelledError:
+            log_debug("[TASK] save_online_history_task cancelled")
+            break
+        except Exception as e:
+            log_debug(f"[TASK] save_online_history_task error: {e}")
+            await asyncio.sleep(5)
 
 
 async def cleanup_old_online_history_task(bot: discord.Client) -> None:

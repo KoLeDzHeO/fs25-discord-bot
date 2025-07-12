@@ -1,8 +1,10 @@
 """Простейший логгер для вывода сообщений."""
 
 import logging
+import os
 
-logging.basicConfig(level=logging.INFO, format="%(message)s")
+log_level = os.getenv("LOG_LEVEL", "INFO").upper()
+logging.basicConfig(level=getattr(logging, log_level, logging.INFO), format="%(message)s")
 
 
 def log_debug(message: str) -> None:
