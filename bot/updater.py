@@ -105,7 +105,7 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                     last_snapshot = snapshot
                     file = discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)
 
-                    async for msg in channel.history(limit=20):
+                    async for msg in channel.history(limit=config.message_cleanup_limit):
                         if msg.author == bot.user:
                             log_debug(f"[Discord] Удаляем сообщение {msg.id}")
                             try:
@@ -171,7 +171,6 @@ async def save_online_history_task(bot: discord.Client) -> None:
                                     ) VALUES (
                                         $1, $2, DATE($2), EXTRACT(HOUR FROM $2), EXTRACT(DOW FROM $2)
                                     )
-                                    ON CONFLICT (player_name, date, hour) DO NOTHING
                                     """,
                                     records,
                                 )
