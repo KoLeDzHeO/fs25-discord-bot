@@ -115,6 +115,7 @@ if __name__ == "__main__":
     intents = discord.Intents.default()
     intents.messages = True
     intents.guilds = True
+    intents.message_content = True
 
     bot = MyBot(intents=intents)
 

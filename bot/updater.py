@@ -104,18 +104,17 @@ async def ftp_polling_task(bot: discord.Client) -> None:
                 if snapshot != last_snapshot:
                     last_snapshot = snapshot
                     file = discord.File(image_path, filename=ONLINE_DAILY_GRAPH_FILENAME)
-                    if last_message is None:
-                        log_debug("[Discord] Отправляем сообщение")
-                        last_message = await channel.send(embed=embed, files=[file])
-                    else:
-                        log_debug("[Discord] Обновляем сообщение")
-                        try:
-                            await last_message.edit(embed=embed, attachments=[file])
-                        except Exception as e:
-                            log_debug(
-                                f"[Discord] Не удалось отредактировать сообщение: {e}"
-                            )
-                            last_message = await channel.send(embed=embed, files=[file])
+
+                    async for msg in channel.history(limit=20):
+                        if msg.author == bot.user:
+                            log_debug(f"[Discord] Удаляем сообщение {msg.id}")
+                            try:
+                                await msg.delete()
+                            except Exception as e:
+                                log_debug(f"[Discord] Не удалось удалить сообщение: {e}")
+
+                    log_debug("[Discord] Отправляем сообщение")
+                    await channel.send(embed=embed, files=[file])
 
                 await asyncio.sleep(config.ftp_poll_interval)
             except asyncio.CancelledError:
