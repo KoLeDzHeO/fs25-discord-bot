@@ -6,10 +6,7 @@ from typing import List
 
 import matplotlib.pyplot as plt
 
-from config.config import (
-    ONLINE_DAILY_GRAPH_PATH,
-    ONLINE_DAILY_GRAPH_TITLE,
-)
+from config.config import ONLINE_DAILY_GRAPH_PATH, ONLINE_DAILY_GRAPH_TITLE
 from utils.helpers import get_moscow_datetime
 from utils.logger import log_debug
 

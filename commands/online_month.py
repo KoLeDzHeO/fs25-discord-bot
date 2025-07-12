@@ -6,8 +6,8 @@ import discord
 from discord import app_commands
 
 from config.config import ONLINE_MONTH_GRAPH_TITLE
-from utils.online_month_graph import generate_online_month_graph
 from utils.logger import log_debug
+from utils.online_month_graph import generate_online_month_graph
 
 
 def setup(tree: app_commands.CommandTree) -> None:
@@ -35,4 +35,3 @@ def setup(tree: app_commands.CommandTree) -> None:
             )
 
     log_debug("[Slash] Команда /online_month зарегистрирована")
-

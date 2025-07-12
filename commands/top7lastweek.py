@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 import discord
+from asyncpg import Pool
 from discord import app_commands
 
-from asyncpg import Pool
-
-from config.config import WEEKLY_TOP_LIMIT, WEEKLY_TOP_LAST_TABLE
+from config.config import WEEKLY_TOP_LAST_TABLE, WEEKLY_TOP_LIMIT
 from utils.logger import log_debug
 
 
@@ -38,13 +37,9 @@ async def _handle_command(
     await interaction.response.defer()
     pool: Pool = interaction.client.db_pool
     try:
-        rows = await _fetch_last_week_top(
-            pool, table_name=table_name, limit=limit
-        )
+        rows = await _fetch_last_week_top(pool, table_name=table_name, limit=limit)
     except Exception:
-        await interaction.followup.send(
-            "Ошибка при получении топа.", ephemeral=True
-        )
+        await interaction.followup.send("Ошибка при получении топа.", ephemeral=True)
         return
 
     if not rows:
@@ -52,7 +47,7 @@ async def _handle_command(
         return
 
     count = min(limit, len(rows))
-    lines = [f"\U0001F553 Топ {count} игроков за прошлую неделю:"]
+    lines = [f"\U0001f553 Топ {count} игроков за прошлую неделю:"]
     for idx, (name, hours) in enumerate(rows[:count], start=1):
         lines.append(f"{idx}. {name} — {hours} ч")
 
@@ -67,9 +62,6 @@ def setup(
 ) -> None:
     @tree.command(name="top7lastweek", description="Топ игроков прошлой недели")
     async def top7lastweek_command(interaction: discord.Interaction) -> None:
-        await _handle_command(
-            interaction, table_name=table_name, limit=limit
-        )
+        await _handle_command(interaction, table_name=table_name, limit=limit)
 
     log_debug("[Slash] Команда /top7lastweek зарегистрирована")
-
