@@ -6,15 +6,17 @@ from discord import app_commands
 from asyncpg import Pool
 
 from utils.logger import log_debug
+from config.config import TOTAL_TOP_LIMIT, TOTAL_TOP_TABLE
 
 
 async def _fetch_top_total(
     pool: Pool,
     *,
-    table_name: str = "player_total_time",
-    limit: int = 30,
+    table_name: str = TOTAL_TOP_TABLE,
+    limit: int = TOTAL_TOP_LIMIT,
 ) -> tuple[list[tuple[str, int]], int]:
-    """Fetch top players and total count."""
+    """Возвращает список игроков и общее количество записей."""
+    # Считаем часы игрока и общее число строк через оконную функцию
     try:
         rows = await pool.fetch(
             f"""
@@ -43,8 +45,8 @@ async def _fetch_top_total(
 async def _handle_command(
     interaction: discord.Interaction,
     *,
-    table_name: str = "player_total_time",
-    limit: int = 30,
+    table_name: str = TOTAL_TOP_TABLE,
+    limit: int = TOTAL_TOP_LIMIT,
 ) -> None:
     await interaction.response.defer()
     pool: Pool = interaction.client.db_pool
@@ -75,8 +77,8 @@ async def _handle_command(
 def setup(
     tree: app_commands.CommandTree,
     *,
-    table_name: str = "player_total_time",
-    limit: int = 30,
+    table_name: str = TOTAL_TOP_TABLE,
+    limit: int = TOTAL_TOP_LIMIT,
 ) -> None:
     @tree.command(name="top_total", description="Топ игроков по общему времени")
     async def top_total_command(interaction: discord.Interaction) -> None:

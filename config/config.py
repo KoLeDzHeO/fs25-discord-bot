@@ -53,3 +53,9 @@ WEEKLY_TOP_MAX = int(os.getenv("WEEKLY_TOP_MAX", 10))
 WEEKLY_TOP_WEEKDAY = int(os.getenv("WEEKLY_TOP_WEEKDAY", 0))
 WEEKLY_TOP_HOUR = int(os.getenv("WEEKLY_TOP_HOUR", 12))
 WEEKLY_TOP_LAST_TABLE = "weekly_top_last"
+
+# Top total settings
+# Ограничение размера топа по общему времени
+TOTAL_TOP_LIMIT = int(os.getenv("TOTAL_TOP_LIMIT", 30))
+# Название таблицы с суммарным временем
+TOTAL_TOP_TABLE = "player_total_time"

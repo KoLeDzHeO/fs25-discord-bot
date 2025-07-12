@@ -32,7 +32,11 @@ async def fetch_api_file(session: aiohttp.ClientSession, filename: str) -> Optio
 async def fetch_dedicated_server_stats(session: aiohttp.ClientSession) -> Optional[str]:
     """Download ``dedicated-server-stats.xml`` from the API feed."""
     url = (
-        f"{config.api_base_url.replace('dedicated-server-savegame.html', 'dedicated-server-stats.xml')}?code={config.api_secret_code}"
+        config.api_base_url.replace(
+            "dedicated-server-savegame.html",
+            "dedicated-server-stats.xml",
+        )
+        + f"?code={config.api_secret_code}"
     )
     return await _fetch(session, url, "dedicated-server-stats.xml")
 

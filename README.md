@@ -23,6 +23,7 @@
 - `FTP_USER` — имя пользователя FTP
 - `FTP_PASS` — пароль FTP
 - `POSTGRES_URL` — строка подключения к PostgreSQL
+- `TOTAL_TOP_LIMIT` — максимальное число игроков в команде `/top_total`
 
 ## Railway
 

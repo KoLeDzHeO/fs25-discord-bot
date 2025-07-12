@@ -4,7 +4,9 @@ from typing import Tuple, Optional, Dict
 from utils.logger import log_debug
 
 
-def parse_server_stats(xml_text: str) -> Tuple[Optional[str], Optional[str], Optional[int], Optional[int], Optional[str]]:
+def parse_server_stats(
+    xml_text: str,
+) -> Tuple[Optional[str], Optional[str], Optional[int], Optional[int], Optional[str]]:
     """Извлекает общую информацию о сервере."""
     try:
         root = ET.fromstring(xml_text)

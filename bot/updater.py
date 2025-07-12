@@ -46,7 +46,12 @@ async def ftp_polling_task(bot: discord.Client) -> None:
             dedicated_server_stats_ftp = stats_xml
 
             log_debug(
-                f"[DEBUG] Статусы: stats={bool(stats_xml)}, vehicles={bool(vehicles_xml)}, careerFTP={bool(career_ftp)}, farmlandFTP={bool(farmland_ftp)}, farms={bool(farms_ftp)}"
+                "[DEBUG] Статусы: "
+                f"stats={bool(stats_xml)}, "
+                f"vehicles={bool(vehicles_xml)}, "
+                f"careerFTP={bool(career_ftp)}, "
+                f"farmlandFTP={bool(farmland_ftp)}, "
+                f"farms={bool(farms_ftp)}"
             )
 
             all_files_loaded = all(
