@@ -13,6 +13,7 @@ from bot.updater import (
     cleanup_old_online_history_task,
 )
 from utils.total_time_updater import total_time_update_task
+from utils.weekly_archiver import weekly_top_archive_task
 
 from utils.logger import log_debug
 from commands.top7lastweek import setup as setup_top7lastweek
@@ -87,6 +88,10 @@ class MyBot(discord.Client):
         self.tasks.append(task)
 
         task = asyncio.create_task(total_time_update_task(self))
+        task.add_done_callback(handle_task_exception)
+        self.tasks.append(task)
+
+        task = asyncio.create_task(weekly_top_archive_task(self))
         task.add_done_callback(handle_task_exception)
         self.tasks.append(task)
         log_debug("[SETUP] Background tasks started")
