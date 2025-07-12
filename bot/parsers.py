@@ -6,8 +6,15 @@ from utils.logger import log_debug
 
 def parse_server_stats(
     xml_text: str,
-) -> Tuple[Optional[str], Optional[str], Optional[int], Optional[int], Optional[str]]:
-    """Извлекает общую информацию о сервере."""
+) -> Tuple[
+    Optional[str],
+    Optional[str],
+    Optional[int],
+    Optional[int],
+    Optional[str],
+    Optional[int],
+]:
+    """Извлекает общую информацию о сервере и время в игре."""
     try:
         root = ET.fromstring(xml_text)
         server_elem = root  # <Server> — корень
@@ -35,10 +42,18 @@ def parse_server_stats(
         stats_elem = root.find('.//Stats')
         last_updated = stats_elem.get('saveDateFormatted') if stats_elem is not None else None
 
-        return server_name, map_name, slots_used, slots_max, last_updated
+        day_time = None
+        day_time_elem = root.find('.//dayTime')
+        if day_time_elem is not None and day_time_elem.text:
+            try:
+                day_time = int(float(day_time_elem.text))
+            except (ValueError, TypeError):
+                pass
+
+        return server_name, map_name, slots_used, slots_max, last_updated, day_time
     except Exception as e:
         log_debug(f"[ERROR] parse_server_stats: {e}")
-        return None, None, None, None, None
+        return None, None, None, None, None, None
 
 
 def parse_farm_money(xml_text: str) -> Optional[int]:
@@ -54,6 +69,22 @@ def parse_farm_money(xml_text: str) -> Optional[int]:
         return None
     except Exception as e:
         log_debug(f"[ERROR] parse_farm_money: {e}")
+        return None
+
+
+def parse_time_scale(xml_text: str) -> Optional[float]:
+    """Извлекает ``timeScale`` из careerSavegame.xml."""
+    try:
+        root = ET.fromstring(xml_text)
+        elem = root.find('.//timeScale')
+        if elem is not None and elem.text:
+            try:
+                return float(elem.text)
+            except (ValueError, TypeError):
+                return None
+        return None
+    except Exception as e:
+        log_debug(f"[ERROR] parse_time_scale: {e}")
         return None
 
 def _count_vehicles(xml_text: str, farm_id: str) -> Optional[int]:
@@ -145,6 +176,7 @@ def parse_all(
     vehicles_api: str,
     career_savegame_ftp: str,
     farmland_ftp: str,
+    career_savegame_api: Optional[str] = None,
     vehicles_ftp: Optional[str] = None,
     farms_xml: Optional[str] = None,
     dedicated_server_stats: Optional[str] = None,
@@ -152,9 +184,10 @@ def parse_all(
 ) -> Dict[str, Optional[int]]:
     """Собирает все данные из разных источников и возвращает единую структуру."""
     try:
-        server_name, map_name, slots_used, slots_max, _ = parse_server_stats(server_stats)
+        server_name, map_name, slots_used, slots_max, _, day_time = parse_server_stats(server_stats)
 
         farm_money = parse_farm_money(career_savegame_ftp)
+        time_scale = parse_time_scale(career_savegame_api) if career_savegame_api is not None else None
 
         fields_owned, fields_total = parse_farmland(farmland_ftp, farm_id)
 
@@ -181,6 +214,8 @@ def parse_all(
             'fields_owned': fields_owned,
             'fields_total': fields_total,
             'vehicles_owned': vehicles_owned,
+            'day_time': day_time,
+            'time_scale': time_scale,
             "players_online": players_online,
         }
     except Exception as e:
