@@ -49,17 +49,19 @@ async def generate_online_month_graph(db_pool) -> Optional[str]:
     try:
         rows = await db_pool.fetch(
             f"""
-            SELECT DATE(check_time) AS day,
+            SELECT COALESCE(date, DATE(check_time)) AS day,
                    COUNT(DISTINCT player_name) AS count
             FROM player_online_history
             WHERE check_time >= NOW() - INTERVAL '{ONLINE_MONTH_DAYS} days'
-            GROUP BY day
+            GROUP BY COALESCE(date, DATE(check_time))
             ORDER BY day
             """
         )
     except Exception as e:
         log_debug(f"[DB] Error fetching online month data: {e}")
         raise
+
+    log_debug(f"[GRAPH] Месячные данные: {rows}")
 
     if not rows:
         return None
